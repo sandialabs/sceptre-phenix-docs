@@ -1,0 +1,39 @@
+site_name: 'phenix documentation'
+site_description: 'A place for phenix users to call home.'
+site_author: 'activeshadow and dnkcom'
+
+repo_name: 'activeshadow/minimega'
+repo_url: 'https://github.com/activeshadow/minimega/tree/phenix/phenix'
+
+docs_dir: src
+site_dir: docs
+
+theme:
+  name: 'material'
+  language: 'en'
+  feature:
+    tabs: true
+  favicon: images/favicon.ico
+  logo: images/phenix.png
+  palette:
+    primary: 'deep orange'
+    accent: 'brown'
+  custom_dir: 'theme'
+  include_sidebar: true
+
+extra:
+  social:
+    - icon: 'fontawesome/brands/github'
+      link: 'https://github.com/activeshadow/minimega/tree/phenix/phenix'
+
+extra_css:
+  - stylesheets/style.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - toc:
+      permalink: true

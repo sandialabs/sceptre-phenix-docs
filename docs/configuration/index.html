@@ -1,0 +1,1042 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A place for phenix users to call home.">
+      
+      
+      
+        <meta name="author" content="activeshadow and dnkcom">
+      
+      <link rel="shortcut icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.1">
+    
+    
+      
+        <title>Configuration Files - phenix documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ff6e42">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/style.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-orange" data-md-color-accent="brown">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration-files" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="phenix documentation" class="md-header-nav__button md-logo" aria-label="phenix documentation">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            phenix documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Configuration Files
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/activeshadow/minimega/tree/phenix/phenix/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    activeshadow/minimega
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="phenix documentation" class="md-nav__button md-logo" aria-label="phenix documentation">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    phenix documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/activeshadow/minimega/tree/phenix/phenix/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    activeshadow/minimega
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Welcome" class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../apps/" title="Apps" class="md-nav__link">
+      Apps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Configuration Files
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Configuration Files" class="md-nav__link md-nav__link--active">
+      Configuration Files
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    Topology
+  </a>
+  
+    <nav class="md-nav" aria-label="Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-settings" class="md-nav__link">
+    Default Settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-values" class="md-nav__link">
+    Required Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-values" class="md-nav__link">
+    Optional Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    Scenario
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-apps" class="md-nav__link">
+    Experiment Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-apps" class="md-nav__link">
+    Host Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiment" class="md-nav__link">
+    Experiment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    User
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    Role
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../experiments/" title="Experiments" class="md-nav__link">
+      Experiments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../image/" title="Virtual Disk Images Management" class="md-nav__link">
+      Virtual Disk Images Management
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../schema/" title="Configuration File Schemas" class="md-nav__link">
+      Configuration File Schemas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../user-administration/" title="User Administration in phēnix" class="md-nav__link">
+      User Administration in phēnix
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vms/" title="VMs" class="md-nav__link">
+      VMs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    Topology
+  </a>
+  
+    <nav class="md-nav" aria-label="Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-settings" class="md-nav__link">
+    Default Settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-values" class="md-nav__link">
+    Required Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-values" class="md-nav__link">
+    Optional Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    Scenario
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-apps" class="md-nav__link">
+    Experiment Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-apps" class="md-nav__link">
+    Host Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiment" class="md-nav__link">
+    Experiment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    User
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    Role
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/activeshadow/minimega/tree/phenix/phenix/edit/master/docs/configuration.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="configuration-files">Configuration Files<a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h1>
+<p><code>phenix</code> currently supports six (6) different configuration file types:</p>
+<ul>
+<li><a href="#topology">Topology</a></li>
+<li><a href="#scenario">Scenario</a></li>
+<li><a href="#experiment">Experiment</a></li>
+<li><a href="#image">Image</a></li>
+<li><a href="#user">User</a></li>
+<li><a href="#role">Role</a></li>
+</ul>
+<p>Typically, users will create <code>Topology</code> and <code>Scenario</code> configuration files by
+hand, while the rest will be generated by <code>phenix</code> using available commands.
+However, it is possible to create all configuration file types by hand if
+necessary.</p>
+<p>Configuration files are versioned using a header section based heavily on what
+<a href="https://kubernetes.io">Kubernetes</a> does. Each configuration file will have a
+header section that looks like the following:</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
+kind: Topology
+metadata:
+  name: foobar
+spec:
+  ...
+</code></pre></div>
+
+
+<p>In the example above, the <code>kind</code> field represents the type of configuration file
+(e.g., Topology, Scenario, Image). The <code>apiVersion</code> field represents the
+version the <code>spec</code> section conforms to (currently there is only <code>v1</code> for all
+configuration types), and the <code>spec</code> section will contain the actual details for
+the configuration type based on the configuration schema. Note that, at least in
+the header section, keys are camel-case and begin with a lowercase letter, while
+values are camel-cased but begin with a capital letter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Throughout the documentation, we mention <code>creating configurations manually</code>.
+When we say this, we mean passing a YAML or JSON configuration file of any
+type to the <code>phenix config create</code> command.</p>
+</div>
+<h2 id="topology">Topology<a class="headerlink" href="#topology" title="Permanent link">&para;</a></h2>
+<p>The <code>Topology</code> configuration is one of the core configuration types for
+<code>phenix</code>, as it describes a network topology to be deployed in <code>minimega</code> that
+can be used by one or more experiments to be executed.</p>
+<p>A topology is comprised of one or more <em>nodes</em> (which is a VM or container), each
+including system descriptions and configurations, as well as any networking
+settings required to connect all of the nodes in a topology together. This
+configuration becomes the basis for most of the minimega commands later created
+in the relevant minimega startup script.</p>
+<h3 id="default-settings">Default Settings<a class="headerlink" href="#default-settings" title="Permanent link">&para;</a></h3>
+<p>If left unmodified or unset, the following are the default settings for each
+node:
+- memory will be set to 512MB
+- snapshot will be set to true
+- no network settings will be included</p>
+<h3 id="required-values">Required Values<a class="headerlink" href="#required-values" title="Permanent link">&para;</a></h3>
+<p>Each topology must have a unique name, which should be lowercase and not include
+spaces. In addition, each node in the topology must:</p>
+<ul>
+<li>have a specified type (available types are defined in the
+  <a href="../schema/#node-schema">schema</a></li>
+<li>have a unique hostname</li>
+<li>have an OS type of <code>linux</code> or <code>windows</code></li>
+<li>have a disk image assigned</li>
+</ul>
+<h3 id="optional-values">Optional Values<a class="headerlink" href="#optional-values" title="Permanent link">&para;</a></h3>
+<p>Optional values for a node in the topology configuration can include:</p>
+<ul>
+<li>static network configurations</li>
+<li>specific memory values (e.g., 1-16GB)</li>
+<li>specific VCPUs values (e.g., 1-4)</li>
+<li>additional disk storage</li>
+<li>file injections</li>
+<li>labels (typically used by phenix apps)</li>
+<li>routing ruleset(s)</li>
+</ul>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>A contrived, four node example -- three VMs and a router -- is given below, and is
+driven by the <a href="../schema/#topology-schema">topology schema described here</a>.</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
+kind: Topology
+metadata:
+  name: foobar
+spec:
+  nodes:
+  - type: VirtualMachine
+    general:
+      hostname: host-00
+      snapshot: true
+    hardware:
+      os_type: linux
+      drives:
+      - image: ubuntu.qc2
+    injections:
+      - src: foo/bar/sucka.fish
+        dst: /data/sucka.fish
+      - src: /foo/bar/sucka/fish.sh
+        dst: /data/fish.sh
+    network:
+      interfaces:
+      - name: IF0
+        vlan: EXP-1
+        address: 192.168.10.1
+        mask: 24
+        gateway: 192.168.10.254
+        proto: static
+        type: ethernet
+      - name: IF1
+        vlan: MGMT
+        address: 172.16.10.1
+        mask: 16
+        proto: static
+        type: ethernet
+  - type: VirtualMachine
+    general:
+      hostname: host-01
+      snapshot: true
+    hardware:
+      os_type: linux
+      drives:
+      - image: ubuntu.qc2
+    network:
+      interfaces:
+      - name: IF0
+        vlan: EXP-1
+        address: 192.168.10.2
+        mask: 24
+        gateway: 192.168.10.254
+        proto: static
+        type: ethernet
+      - name: IF1
+        vlan: MGMT
+        address: 172.16.10.2
+        mask: 16
+        proto: static
+        type: ethernet
+      - name: S0
+        vlan: EXT
+        address: 10.0.0.1
+        mask: 24
+        proto: static
+        type: serial
+        udp_port: 8989
+        baud_rate: 9600
+        device: /dev/ttyS0
+  - type: VirtualMachine
+    general:
+      hostname: AD1
+      snapshot: true
+    hardware:
+      os_type: windows
+      drives:
+      - image: win-svr-2k8.qc2
+    network:
+      interfaces:
+      - name: IF0
+        vlan: EXP-1
+        address: 192.168.10.250
+        mask: 24
+        gateway: 192.168.10.254
+        proto: static
+        type: ethernet
+      - name: IF1
+        vlan: MGMT
+        address: 172.16.10.3
+        mask: 16
+        proto: static
+        type: ethernet
+  - type: Router
+    labels:
+      ntp-server: &quot;true&quot;
+    general:
+      hostname: router-00
+      snapshot: true
+    hardware:
+      os_type: linux
+      drives:
+      - image: vyatta.qc2
+    network:
+      interfaces:
+      - name: IF0
+        vlan: EXP-1
+        address: 192.168.10.254
+        mask: 24
+        proto: static
+        type: ethernet
+        ruleset_in: test
+      - name: IF1
+        vlan: MGMT
+        address: 172.16.10.254
+        mask: 16
+        proto: static
+        type: ethernet
+      rulesets:
+      - name: test
+        default: drop
+        rules:
+        - id: 10
+          action: accept
+          protocol: all
+          source:
+            address: 1.1.1.1
+            port: 53
+</code></pre></div>
+
+
+<h2 id="scenario">Scenario<a class="headerlink" href="#scenario" title="Permanent link">&para;</a></h2>
+<p>The <code>Scenario</code> configuration is used to define and configure one or more
+<code>phenix</code> apps (<a href="../apps/#default-apps">default</a> or 
+<a href="../apps/#user-apps">user</a>) for use on a topology. In this sense, a
+topology can have one or more scenarios associated with it, but a scenario can
+only be associated with a single topology.</p>
+<p>There are two categories of <code>phenix</code> apps that can be configured in a scenario: 1) experiment, 
+and 2) host. A scenario can contain zero or more experiment and/or host apps.</p>
+<h3 id="experiment-apps">Experiment Apps<a class="headerlink" href="#experiment-apps" title="Permanent link">&para;</a></h3>
+<p>An experiment app is a <code>phenix</code> app that can be applied to experiment topology
+using a single configuration. For example, a <code>phenix</code> app that adds a minimega
+tap to all hosts in the cluster or one that injects the same file into every
+node in the experiment topology would be good candidates for an experiment app.</p>
+<h3 id="host-apps">Host Apps<a class="headerlink" href="#host-apps" title="Permanent link">&para;</a></h3>
+<p>A host app is a <code>phenix</code> app that 1) does not get applied to all nodes in the
+experiment topology, and/or 2) requires a unique configuration for each node.
+For example, a <code>phenix</code> app that configures a VPN between two nodes in an
+experiment using WireGuard would need to be a host app because 1) only two nodes
+will be modified, and 2) each of the two nodes will require different
+configurations (e.g., one will be a WireGuard client and the other a WireGuard
+server). Each configured host app will contain a list of topology nodes to apply
+the app to, along with custom metadata for the app specific to the topology
+node.</p>
+<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<p>The following is an example of a configuration for a scenario named <code>foobar</code>,
+which can only be applied to an accompanying topology named <code>foobar</code> (while these
+names are the same in this example, the topology and scenario names do not have 
+to match). Included in this scenario is an experiment app named <code>miniccc-injector</code> 
+and three host apps: <code>startup</code>, <code>protonuke</code> and <code>wireguard</code>. Each entry in the list 
+of app hosts includes custom app metadata and the hostname of the topology node to 
+apply the metadata to.</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
+kind: Scenario
+metadata:
+  name: foobar
+  annotations:
+    topology: foobar
+spec:
+  apps:
+    experiment:
+    - name: miniccc-injector 
+      metadata:
+        # files to inject into each node in experiment, based on OS type
+        linux:
+          src: /phenix/injects/miniccc
+          dst: /usr/local/bin/miniccc
+        windows:
+          src: /phenix/injects/miniccc.exe
+          dst: phenix/miniccc.exe
+    host:
+    - name: startup
+      hosts:
+      - hostname: host-00 # hostname of topology node to apply it to
+        metadata:
+          domain_controller:
+            domain: example.com
+            ip: 10.0.0.1
+            username: admin
+            password: SuperSecretPassword
+    - name: protonuke
+      hosts:
+      - hostname: host-01 # hostname of topology node to apply it to
+        metadata:
+          # protonuke app metadata for this topology node
+          args: -logfile /var/log/protonuke.log -level debug -http -https -smtp -ssh 192.168.100.100
+    - name: wireguard
+      hosts:
+      - hostname: AD1 # hostname of topology node to apply it to
+        metadata:
+          # wireguard app metadata for this topology node
+          infrastructure:
+            private_key: GLlxWJom8cQViGHojqOUShWIZG7IsSX8
+            address: 10.255.255.1/24
+            listen_port: 51820
+          peers:
+            public_key: +joyya2F9g72qbKBtPDn00mIevG1j1OqeN76ylFLsiE=
+            allowed_ips: 10.255.255.10/32
+</code></pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above example includes a host app named <code>startup</code>, which is a phenix
+<em>default</em> app. Meaning, it is possible to configure default phenix apps in a
+scenario configuration, not just user apps.</p>
+</div>
+<h2 id="experiment">Experiment<a class="headerlink" href="#experiment" title="Permanent link">&para;</a></h2>
+<p><code>Experiment</code> configurations represent the combination of topologies and scenarios
+to form an experiment (though experiments do not require a scenario).</p>
+<p>Typically experiment configurations are <a href="../experiments/#create-a-new-experiment">created
+automatically</a>, but it is possible to
+create them manually using a configuration file similar to the one shown below.
+In this case, an experiment named <code>foobar</code> would be created based on an existing
+topology named <code>foobar</code> and an existing scenario named <code>foobar</code> (note that none
+of the names have to match).</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
+kind: Experiment
+metadata:
+  name: foobar
+  annotations:
+    topology: foobar # this is required
+    scenario: foobar # this is optional
+</code></pre></div>
+
+
+<p>Once created, either manually or automatically, the experiment configuration
+will be expanded to have the topology and scenario configurations embedded in
+it, as well as additional details like cluster host schedules for VMs, VLAN
+ranges, etc. The advantage of embedding the topology and scenario into the
+experiment is that they can be modified in the experiment without modifying the
+originals.</p>
+<h2 id="image">Image<a class="headerlink" href="#image" title="Permanent link">&para;</a></h2>
+<p>The <code>Image</code> configuration is used to generate VM disk images using a custom
+version of <a href="https://github.com/glattercj/vmdb2">vmdb2</a>. Representing a disk
+image in a configuration like this allows for the same disk image to easily be
+built in different clusters without having to actually move large disk image
+files.</p>
+<p>Typically image configurations are <a href="../image/#creating-a-disk-image">created
+automatically</a>, but users can also create them
+manually using a configuration file similar to the one shown below.</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
+kind: Image
+metadata:
+  name: foobar
+spec:
+  format: qcow2
+  mirror: http://us.archive.ubuntu.com/ubuntu/
+  packages:
+  - initramfs-tools
+  - net-tools
+  - isc-dhcp-client
+  - openssh-server
+  - init
+  - iputils-ping
+  - vim
+  - less
+  - netbase
+  - curl
+  - ifupdown
+  - dbus
+  - linux-image-generic
+  - linux-headers-generic
+  release: bionic
+  size: 5G
+  variant: minbase
+  scripts:
+    POSTBUILD_APT_CLEANUP: |
+      apt clean || apt-get clean || echo &quot;unable to clean apt cache&quot;
+    POSTBUILD_NO_ROOT_PASSWD: |
+      sed -i &#39;s/nullok_secure/nullok/&#39; /etc/pam.d/common-auth
+      sed -i &#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&#39; /etc/ssh/sshd_config
+      sed -i &#39;s/#PermitEmptyPasswords no/PermitEmptyPasswords yes/&#39; /etc/ssh/sshd_config
+      sed -i &#39;s/PermitRootLogin prohibit-password/PermitRootLogin yes/&#39; /etc/ssh/sshd_config
+      sed -i &#39;s/PermitEmptyPasswords no/PermitEmptyPasswords yes/&#39; /etc/ssh/sshd_config
+      passwd -d root
+</code></pre></div>
+
+
+<h2 id="user">User<a class="headerlink" href="#user" title="Permanent link">&para;</a></h2>
+<p>The <code>User</code> configuration tracks phenix UI user settings (e.g., username,
+password, and RBAC permissions). Typically user configurations are created
+automatically when a UI admin creates a new user via the UI, but they can also
+be created manually using a configuration file similar to the one shown below.</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
+kind: User
+metadata:
+  name: admin@foo.com
+spec:
+  username: admin@foo.com
+  first_name: Admin
+  last_name: Istrator
+  password: ****************
+  rbac:
+    roleName: Global Admin
+    policies:
+    - resourceNames:
+      - &#39;*&#39;
+      resources:
+      - &#39;*&#39;
+      - &#39;*/*&#39;
+      verbs:
+      - &#39;*&#39;
+    - resourceNames:
+      - admin@foo.com
+      resources:
+      - users
+      verbs:
+      - get
+</code></pre></div>
+
+
+<h2 id="role">Role<a class="headerlink" href="#role" title="Permanent link">&para;</a></h2>
+<p>The <code>Role</code> configuration is used to represent a named set of RBAC permissions
+that represent a user's role in the UI. When a new user is created, the role
+that user should have is specified, and using that role name the appropriate
+RBAC permissions are copied from the role configuration into the user
+configuration.</p>
+<p>There are six (6) default role configurations that get created automatically,
+and are described <a href="../user-administration/#roles">here</a>. An example role
+configuration is shown below for completeness.</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: global-admin
+spec:
+  roleName: Global Admin
+  policies:
+  - resourceNames:
+    - &#39;*&#39;
+    resources:
+    - &#39;*&#39;
+    - &#39;*/*&#39;
+    verbs:
+    - &#39;*&#39;
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+
+      <!-- Social links -->
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/activeshadow/minimega/tree/phenix/phenix" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.aa3f9871.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
