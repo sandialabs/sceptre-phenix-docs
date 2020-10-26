@@ -2,8 +2,8 @@ site_name: 'phenix documentation'
 site_description: 'A place for phenix users to call home.'
 site_author: 'activeshadow and dnkcom'
 
-repo_name: 'activeshadow/minimega'
-repo_url: 'https://github.com/activeshadow/minimega/tree/phenix/phenix'
+repo_name: 'activeshadow/phenix-docs'
+repo_url: 'https://github.com/activeshadow/phenix-docs'
 
 docs_dir: src
 site_dir: docs
