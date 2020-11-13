@@ -229,8 +229,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#building" class="md-nav__link">
-    Building
+  <a href="#installing-and-running-via-docker" class="md-nav__link">
+    Installing and Running via Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-and-running-via-apt" class="md-nav__link">
+    Installing and Running via Apt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-from-source" class="md-nav__link">
+    Building from Source
   </a>
   
 </li>
@@ -389,8 +403,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#building" class="md-nav__link">
-    Building
+  <a href="#installing-and-running-via-docker" class="md-nav__link">
+    Installing and Running via Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-and-running-via-apt" class="md-nav__link">
+    Installing and Running via Apt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-from-source" class="md-nav__link">
+    Building from Source
   </a>
   
 </li>
@@ -432,15 +460,87 @@
                 
                 
                 <h1 id="welcome">Welcome<a class="headerlink" href="#welcome" title="Permanent link">&para;</a></h1>
-<p>This is the documentation for the minimega phenix orchestration tool.</p>
+<p>This is the documentation for the minimega <code>phenix</code> orchestration tool. <code>phenix</code>
+development happens in the
+<a href="https://github.com/activeshadow/minimega">activeshadow/minimega</a> repository, in
+the <code>phenix</code> directory of the <code>phenix</code> branch (the default branch for the repo).</p>
 <h2 id="getting-started-with-phenix">Getting Started with phenix<a class="headerlink" href="#getting-started-with-phenix" title="Permanent link">&para;</a></h2>
-<h3 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h3>
+<p>The first step in using <code>phenix</code> is to get it installed. <code>phenix</code> needs access
+to the minimega unix socket, so the best place to deploy it is on a minimega
+cluster's head node. The minimega unix socket will be located at
+<code>/tmp/minimega/minimega</code> on default cluster deployments and will be owned by
+root, so unless the socket's group ownership and group write permissions have
+been updated, <code>phenix</code> will need to be run as root in order to access the
+socket.</p>
+<h3 id="installing-and-running-via-docker">Installing and Running via Docker<a class="headerlink" href="#installing-and-running-via-docker" title="Permanent link">&para;</a></h3>
+<p>An <code>activeshadow/phenix</code> Docker image available from Docker Hub is automatically
+built and tagged as <code>latest</code> each time the default <code>phenix</code> branch of the git
+repo is updated. A Docker image can also be built manually by cloning the git
+repo and running the following command from the <code>phenix</code> directory:</p>
+<div class="codehilite"><pre><span></span><code>VER=$(git log -1 --format=&quot;%h&quot;) COMMIT=$(git log -1 --format=&quot;%h&quot;) docker \
+  build -t phenix -f docker/Dockerfile .
+</code></pre></div>
+
+
+<p>To run <code>phenix</code> as a Docker container, it will need to run in privileged mode
+and have access to the host network and some host directories. An example is
+below.</p>
+<div class="codehilite"><pre><span></span><code>docker run -d --name phenix \
+  --privileged \
+  --hostname=$(hostname) \
+  --volume=/dev:/dev \
+  --volume=/proc:/proc \
+  --volume=/sys:/sys \
+  --volume=/phenix:/phenix \
+  --volume=/etc/phenix:/etc/phenix \
+  --volume=/tmp/minimega:/tmp/minimega \
+  --volume=/var/log/phenix:/var/log/phenix \
+  --volume=/etc/localtime:/etc/localtime:ro \
+  activeshadow/phenix
+</code></pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you build the Docker image manually, be sure to replace the last line in
+the command above with the tag used to build the image.</p>
+</div>
+<p>With <code>phenix</code> running in a container, it's useful to setup a bash alias for
+<code>phenix</code>:</p>
+<div class="codehilite"><pre><span></span><code>alias phenix=&quot;docker exec -it phenix&quot;
+</code></pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Docker image, whether it was pulled from Docker Hub or built locally,
+will also include the <code>phenix</code> user apps available in the
+<a href="https://github.com/activeshadow/phenix-apps">activeshadow/phenix-apps</a>
+repo.</p>
+</div>
+<h3 id="installing-and-running-via-apt">Installing and Running via Apt<a class="headerlink" href="#installing-and-running-via-apt" title="Permanent link">&para;</a></h3>
+<p>A <code>minimega</code> Debian package is hosted at
+<a href="https://apt.sceptre.dev">https://apt.sceptre.dev</a> that includes all the
+<code>minimega</code> executables, as well as the <code>phenix</code> executable. The <code>minimega</code>
+executables in this package will be more up-to-date than the versioned Debian
+package released by the official <code>minimega</code> development team.</p>
+<p>When installed via the Debian package, <code>systemd</code> units get installed for
+<code>minimega</code>, <code>miniweb</code>, and <code>phenix</code>, and a <code>minimega</code> system group is created.
+Any user part of the <code>minimega</code> group can access minimega without having to run
+as root.</p>
+<p>Contrary to the <code>phenix</code> Docker image, the <code>phenix-apps</code> must be installed
+separately, but there's a Debian package for them too.</p>
+<p>See <a href="https://apt.sceptre.dev">https://apt.sceptre.dev</a> for instructions on
+adding the Apt repo and installing <code>phenix</code> (via the <code>minimega</code> package) and
+<code>phenix-apps</code>.</p>
+<h3 id="building-from-source">Building from Source<a class="headerlink" href="#building-from-source" title="Permanent link">&para;</a></h3>
 <p>To build locally, you will need Golang v1.14 and Node v14.2 installed. Once
 those are installed (if not already), simply run <code>make bin/phenix</code>.</p>
-<p>If you do not want to install Golang and/or Node locally, you can also use Docker
-to build phenix (assuming you have Docker installed). Simply run
-<code>./build-with-docker.sh</code> and once built, the phenix binary will be available at
-<code>bin/phenix</code>. See <code>./build-with-docker.sh -h</code> for usage details.</p>
+<p>If you do not want to install Golang and/or Node locally, you can also use
+Docker to build phenix (assuming you have Docker installed). Simply run
+<code>./docker-build.sh</code> from the <code>phenix</code> directory and once built, the phenix
+binary will be available at <code>bin/phenix</code>. See <code>./docker-build.sh -h</code> for usage
+details.</p>
 <h3 id="using">Using<a class="headerlink" href="#using" title="Permanent link">&para;</a></h3>
 <p>The following output results from <code>bin/phenix help</code>:</p>
 <div class="codehilite"><pre><span></span><code>A cli application for phēnix

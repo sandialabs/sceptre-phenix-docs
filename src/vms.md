@@ -15,6 +15,7 @@ Available commands
 * `restore` a snapshot by clicking the play button next to the desired snapshot name.
 
 Buttons from left to right on the footer of modal:
+
 * `pause` a running VM with the pause button
 * Create a `snapshot` of a running VM with the camera button
 * Create a `backing image` of a running VM with the floppy disk button
@@ -33,6 +34,17 @@ Or, run the following to see the information for a specific VM in an experiment.
 ```
 $> phenix vm info <experiment name> <vm name>
 ```
+
+## VM VNC Access
+
+### From the Web-UI
+
+The experiment must be started; click on the VM screenshot to open a new browser
+tab that provides VNC access to the VM.
+
+### From the Command Line Binary
+
+Not applicable.
 
 ## Packet Capture
 
@@ -157,6 +169,7 @@ $> phenix vm resume <experiment name> <vm name>
 ### From the Web-UI
 
 There are two ways to modify VM settings:
+
 1. Click on a stopped experiment to access the Stopped Component. You are able to edit the 
 following:
     * Host name
@@ -164,7 +177,7 @@ following:
     * Memory
     * Disk
     * Do not boot flag
-2. From a running experiment, click on the VM name and then the redeploy button (yellow 
+1. From a running experiment, click on the VM name and then the redeploy button (yellow
 power button, second from the right on the modal footer). You are able to edit the following:
     * CPU
     * Memory

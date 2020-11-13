@@ -9,12 +9,12 @@ to apply _user apps_ to an experiment using a
 
 ## Default Apps
 
-|         |                                                                          |
-|---------|--------------------------------------------------------------------------|
-| ntp     | provides/configures NTP service for experiment                           |
-| serial  | configures serial interfaces in VM images                                |
-| startup | configures minimega startup injections based on OS type                  |
-| vyatta  | customizes Vyatta routers, including setting interfaces, ACL rules, etc. |
+|         |                                                                               |
+|---------|-------------------------------------------------------------------------------|
+| ntp     | provides/configures NTP service for experiment                                |
+| serial  | configures serial interfaces in VM images                                     |
+| startup | configures minimega startup injections based on OS type                       |
+| vrouter | customizes Vyatta/VyOS routers, including setting interfaces, ACL rules, etc. |
 
 ## User Apps
 
@@ -48,6 +48,21 @@ status to signal to `phenix` that an error occurred.
     for the `post-start and cleanup` stages. More specifically, it will only
     process updates to `status.apps.<app name>`, which can be anything the app
     wants it to be (e.g. a simple string, an array, or a map/dictionary).
+
+### Available User Apps
+
+The [activeshadow/phenix-apps](https://github.com/activeshadow/phenix-apps) repo
+is home to some user apps that have already been created by the community,
+including the following:
+
+* protonuke
+* wireguard
+* mirror
+
+In addition, this repo also contains some generic library/utility code for
+making custom user app development easier. See the
+[README](https://github.com/activeshadow/phenix-apps/blob/master/README.md) for
+additional details.
 
 ### Example
 

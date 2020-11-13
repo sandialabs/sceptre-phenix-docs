@@ -40,7 +40,7 @@ Or ...
 $> phenix exp restart <experiment name>
 ```
 
-Optionally, you can use the `--dry-run` flag to do everything expect call out to
+Optionally, you can use the `--dry-run` flag to do everything except call out to
 minimega.
 
 The `phenix exp --help` command will output:

@@ -248,6 +248,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#available-user-apps" class="md-nav__link">
+    Available User Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -389,6 +396,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#available-user-apps" class="md-nav__link">
+    Available User Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -446,8 +460,8 @@ to apply <em>user apps</em> to an experiment using a
 <td>configures minimega startup injections based on OS type</td>
 </tr>
 <tr>
-<td>vyatta</td>
-<td>customizes Vyatta routers, including setting interfaces, ACL rules, etc.</td>
+<td>vrouter</td>
+<td>customizes Vyatta/VyOS routers, including setting interfaces, ACL rules, etc.</td>
 </tr>
 </tbody>
 </table>
@@ -484,6 +498,19 @@ for the <code>post-start and cleanup</code> stages. More specifically, it will o
 process updates to <code>status.apps.&lt;app name&gt;</code>, which can be anything the app
 wants it to be (e.g. a simple string, an array, or a map/dictionary).</p>
 </div>
+<h3 id="available-user-apps">Available User Apps<a class="headerlink" href="#available-user-apps" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://github.com/activeshadow/phenix-apps">activeshadow/phenix-apps</a> repo
+is home to some user apps that have already been created by the community,
+including the following:</p>
+<ul>
+<li>protonuke</li>
+<li>wireguard</li>
+<li>mirror</li>
+</ul>
+<p>In addition, this repo also contains some generic library/utility code for
+making custom user app development easier. See the
+<a href="https://github.com/activeshadow/phenix-apps/blob/master/README.md">README</a> for
+additional details.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>Below is a very contrived example of a simple <em>user app</em> that changes the disk
 image used for every node in the experiment topology. Assuming the name of the

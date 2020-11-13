@@ -5,7 +5,7 @@
 There are two primary ways to create new users. 
 
 1. Choose the `Create Account` link off the login page and complete all fields
-   one the `Create a New Account` dialogue. This will initiate a message to an
+   in the `Create a New Account` dialogue. This will initiate a message to an
    administrator's account who can then activate the account, setting the
    role(s) and resource name(s).
 

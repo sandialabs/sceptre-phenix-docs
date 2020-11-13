@@ -1,18 +1,99 @@
 # Welcome
 
-This is the documentation for the minimega phenix orchestration tool.
+This is the documentation for the minimega `phenix` orchestration tool. `phenix`
+development happens in the
+[activeshadow/minimega](https://github.com/activeshadow/minimega) repository, in
+the `phenix` directory of the `phenix` branch (the default branch for the repo).
 
 ## Getting Started with phenix
 
-### Building
+The first step in using `phenix` is to get it installed. `phenix` needs access
+to the minimega unix socket, so the best place to deploy it is on a minimega
+cluster's head node. The minimega unix socket will be located at
+`/tmp/minimega/minimega` on default cluster deployments and will be owned by
+root, so unless the socket's group ownership and group write permissions have
+been updated, `phenix` will need to be run as root in order to access the
+socket.
+
+### Installing and Running via Docker
+
+An `activeshadow/phenix` Docker image available from Docker Hub is automatically
+built and tagged as `latest` each time the default `phenix` branch of the git
+repo is updated. A Docker image can also be built manually by cloning the git
+repo and running the following command from the `phenix` directory:
+
+```
+VER=$(git log -1 --format="%h") COMMIT=$(git log -1 --format="%h") docker \
+  build -t phenix -f docker/Dockerfile .
+```
+
+To run `phenix` as a Docker container, it will need to run in privileged mode
+and have access to the host network and some host directories. An example is
+below.
+
+```
+docker run -d --name phenix \
+  --privileged \
+  --hostname=$(hostname) \
+  --volume=/dev:/dev \
+  --volume=/proc:/proc \
+  --volume=/sys:/sys \
+  --volume=/phenix:/phenix \
+  --volume=/etc/phenix:/etc/phenix \
+  --volume=/tmp/minimega:/tmp/minimega \
+  --volume=/var/log/phenix:/var/log/phenix \
+  --volume=/etc/localtime:/etc/localtime:ro \
+  activeshadow/phenix
+```
+
+!!! note
+    If you build the Docker image manually, be sure to replace the last line in
+    the command above with the tag used to build the image.
+
+
+With `phenix` running in a container, it's useful to setup a bash alias for
+`phenix`:
+
+```
+alias phenix="docker exec -it phenix"
+```
+
+!!! note
+    The Docker image, whether it was pulled from Docker Hub or built locally,
+    will also include the `phenix` user apps available in the
+    [activeshadow/phenix-apps](https://github.com/activeshadow/phenix-apps)
+    repo.
+
+### Installing and Running via Apt
+
+A `minimega` Debian package is hosted at
+[https://apt.sceptre.dev](https://apt.sceptre.dev) that includes all the
+`minimega` executables, as well as the `phenix` executable. The `minimega`
+executables in this package will be more up-to-date than the versioned Debian
+package released by the official `minimega` development team.
+
+When installed via the Debian package, `systemd` units get installed for
+`minimega`, `miniweb`, and `phenix`, and a `minimega` system group is created.
+Any user part of the `minimega` group can access minimega without having to run
+as root.
+
+Contrary to the `phenix` Docker image, the `phenix-apps` must be installed
+separately, but there's a Debian package for them too.
+
+See [https://apt.sceptre.dev](https://apt.sceptre.dev) for instructions on
+adding the Apt repo and installing `phenix` (via the `minimega` package) and
+`phenix-apps`.
+
+### Building from Source
 
 To build locally, you will need Golang v1.14 and Node v14.2 installed. Once
 those are installed (if not already), simply run `make bin/phenix`.
  
-If you do not want to install Golang and/or Node locally, you can also use Docker
-to build phenix (assuming you have Docker installed). Simply run
-`./build-with-docker.sh` and once built, the phenix binary will be available at
-`bin/phenix`. See `./build-with-docker.sh -h` for usage details.
+If you do not want to install Golang and/or Node locally, you can also use
+Docker to build phenix (assuming you have Docker installed). Simply run
+`./docker-build.sh` from the `phenix` directory and once built, the phenix
+binary will be available at `bin/phenix`. See `./docker-build.sh -h` for usage
+details.
 
 ### Using
 
