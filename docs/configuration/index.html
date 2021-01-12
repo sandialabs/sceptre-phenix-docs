@@ -294,15 +294,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#experiment-apps" class="md-nav__link">
-    Experiment Apps
+  <a href="#apps" class="md-nav__link">
+    Apps
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#host-apps" class="md-nav__link">
-    Host Apps
+  <a href="#app-configuration-options" class="md-nav__link">
+    App Configuration Options
   </a>
   
 </li>
@@ -408,6 +408,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../state-of-health/" title="State of Health" class="md-nav__link">
+      State of Health
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../user-administration/" title="User Administration in phēnix" class="md-nav__link">
       User Administration in phēnix
     </a>
@@ -499,15 +511,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#experiment-apps" class="md-nav__link">
-    Experiment Apps
+  <a href="#apps" class="md-nav__link">
+    Apps
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#host-apps" class="md-nav__link">
-    Host Apps
+  <a href="#app-configuration-options" class="md-nav__link">
+    App Configuration Options
   </a>
   
 </li>
@@ -776,35 +788,70 @@ spec:
 
 <h2 id="scenario">Scenario<a class="headerlink" href="#scenario" title="Permanent link">&para;</a></h2>
 <p>The <code>Scenario</code> configuration is used to define and configure one or more
-<code>phenix</code> apps (<a href="../apps/#default-apps">default</a> or 
-<a href="../apps/#user-apps">user</a>) for use on a topology. In this sense, a
-topology can have one or more scenarios associated with it, but a scenario can
-only be associated with a single topology.</p>
-<p>There are two categories of <code>phenix</code> apps that can be configured in a scenario: 1) experiment, 
-and 2) host. A scenario can contain zero or more experiment and/or host apps.</p>
-<h3 id="experiment-apps">Experiment Apps<a class="headerlink" href="#experiment-apps" title="Permanent link">&para;</a></h3>
-<p>An experiment app is a <code>phenix</code> app that can be applied to experiment topology
-using a single configuration. For example, a <code>phenix</code> app that adds a minimega
-tap to all hosts in the cluster or one that injects the same file into every
-node in the experiment topology would be good candidates for an experiment app.</p>
-<h3 id="host-apps">Host Apps<a class="headerlink" href="#host-apps" title="Permanent link">&para;</a></h3>
-<p>A host app is a <code>phenix</code> app that 1) does not get applied to all nodes in the
-experiment topology, and/or 2) requires a unique configuration for each node.
-For example, a <code>phenix</code> app that configures a VPN between two nodes in an
-experiment using WireGuard would need to be a host app because 1) only two nodes
-will be modified, and 2) each of the two nodes will require different
-configurations (e.g., one will be a WireGuard client and the other a WireGuard
-server). Each configured host app will contain a list of topology nodes to apply
-the app to, along with custom metadata for the app specific to the topology
-node.</p>
+<code>phenix</code> apps (<a href="../apps/#default-apps">default</a> or <a href="../apps/#user-apps">user</a>) for
+use on a topology. In this sense, a topology can have one or more scenarios
+associated with it, but a scenario can only be associated with a single
+topology.</p>
+<h3 id="apps">Apps<a class="headerlink" href="#apps" title="Permanent link">&para;</a></h3>
+<p>A <code>phenix</code> app can be applied to an experiment topology using a single
+configuration, a per-host configuration, or both. For example, a <code>phenix</code> app
+that adds a minimega tap to all hosts in the cluster, one that injects the same
+file into every node in the experiment topology, or one that configures a VPN
+between two nodes in an experiment using WireGuard. The first two examples could
+use a single configuration, while the last example would use a per-host
+configuration because 1) only two nodes will be modified, and 2) each of the two
+nodes will require different configurations (e.g., one will be a WireGuard
+client and the other a WireGuard server). Each configured app can contain a list
+of topology nodes to apply the app to, along with custom metadata for the app
+specific to the topology node.</p>
+<h3 id="app-configuration-options">App Configuration Options<a class="headerlink" href="#app-configuration-options" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>assetDir</code>: used by apps to generate absolute path to asset files when
+  relative paths are provided in app metadata. The default is an empty string.</p>
+</li>
+<li>
+<p><code>fromScenario</code>: name of another scenario config to pull this app config from.
+  This allows for defining complex app configurations in a single base scenario
+  and referencing it from scenarios included in experiments. The default is an
+  empty string.</p>
+</li>
+<li>
+<p><code>hosts</code>: a list of per-host configurations to apply to the experiment
+  topology. The default is <code>nil</code>.</p>
+<ul>
+<li>
+<p><code>hostname</code>: the name of the experiment VM to apply this per-host metadata
+  to.</p>
+</li>
+<li>
+<p><code>metadata</code>: app metadata to apply to this experiment VM. The default is
+  <code>nil</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>metadata</code>: app metadata to apply to this experiment. The default is <code>nil</code>.</p>
+</li>
+<li>
+<p><code>name</code>: the name of the app being configured. There is no default value; one
+  must be provided.</p>
+</li>
+<li>
+<p><code>runPeriodically</code>: a <a href="https://golang.org/pkg/time/#ParseDuration">Golang duration
+  string</a> specifying how often to
+  trigger the app's running stage. The default value is an empty string, which
+  means the app's running stage will not be triggered periodically.</p>
+</li>
+</ul>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
 <p>The following is an example of a configuration for a scenario named <code>foobar</code>,
-which can only be applied to an accompanying topology named <code>foobar</code> (while these
-names are the same in this example, the topology and scenario names do not have 
-to match). Included in this scenario is an experiment app named <code>miniccc-injector</code> 
-and three host apps: <code>startup</code>, <code>protonuke</code> and <code>wireguard</code>. Each entry in the list 
-of app hosts includes custom app metadata and the hostname of the topology node to 
-apply the metadata to.</p>
+which can only be applied to an accompanying topology named <code>foobar</code> (while
+these names are the same in this example, the topology and scenario names do not
+have to match). Included in this scenario are apps named <code>miniccc-injector</code>,
+<code>startup</code>, <code>protonuke</code> and <code>wireguard</code>. Each entry in the list of app hosts
+includes custom app metadata and the hostname of the topology node to apply the
+metadata to.</p>
 <div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v1
 kind: Scenario
 metadata:
@@ -813,50 +860,48 @@ metadata:
     topology: foobar
 spec:
   apps:
-    experiment:
-    - name: miniccc-injector 
+  - name: miniccc-injector
+    metadata:
+      # files to inject into each node in experiment, based on OS type
+      linux:
+        src: /phenix/injects/miniccc
+        dst: /usr/local/bin/miniccc
+      windows:
+        src: /phenix/injects/miniccc.exe
+        dst: phenix/miniccc.exe
+  - name: startup
+    hosts:
+    - hostname: host-00 # hostname of topology node to apply it to
       metadata:
-        # files to inject into each node in experiment, based on OS type
-        linux:
-          src: /phenix/injects/miniccc
-          dst: /usr/local/bin/miniccc
-        windows:
-          src: /phenix/injects/miniccc.exe
-          dst: phenix/miniccc.exe
-    host:
-    - name: startup
-      hosts:
-      - hostname: host-00 # hostname of topology node to apply it to
-        metadata:
-          domain_controller:
-            domain: example.com
-            ip: 10.0.0.1
-            username: admin
-            password: SuperSecretPassword
-    - name: protonuke
-      hosts:
-      - hostname: host-01 # hostname of topology node to apply it to
-        metadata:
-          # protonuke app metadata for this topology node
-          args: -logfile /var/log/protonuke.log -level debug -http -https -smtp -ssh 192.168.100.100
-    - name: wireguard
-      hosts:
-      - hostname: AD1 # hostname of topology node to apply it to
-        metadata:
-          # wireguard app metadata for this topology node
-          infrastructure:
-            private_key: GLlxWJom8cQViGHojqOUShWIZG7IsSX8
-            address: 10.255.255.1/24
-            listen_port: 51820
-          peers:
-            public_key: +joyya2F9g72qbKBtPDn00mIevG1j1OqeN76ylFLsiE=
-            allowed_ips: 10.255.255.10/32
+        domain_controller:
+          domain: example.com
+          ip: 10.0.0.1
+          username: admin
+          password: SuperSecretPassword
+  - name: protonuke
+    hosts:
+    - hostname: host-01 # hostname of topology node to apply it to
+      metadata:
+        # protonuke app metadata for this topology node
+        args: -logfile /var/log/protonuke.log -level debug -http -https -smtp -ssh 192.168.100.100
+  - name: wireguard
+    hosts:
+    - hostname: AD1 # hostname of topology node to apply it to
+      metadata:
+        # wireguard app metadata for this topology node
+        infrastructure:
+          private_key: GLlxWJom8cQViGHojqOUShWIZG7IsSX8
+          address: 10.255.255.1/24
+          listen_port: 51820
+        peers:
+          public_key: +joyya2F9g72qbKBtPDn00mIevG1j1OqeN76ylFLsiE=
+          allowed_ips: 10.255.255.10/32
 </code></pre></div>
 
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The above example includes a host app named <code>startup</code>, which is a phenix
+<p>The above example includes an app named <code>startup</code>, which is a phenix
 <em>default</em> app. Meaning, it is possible to configure default phenix apps in a
 scenario configuration, not just user apps.</p>
 </div>

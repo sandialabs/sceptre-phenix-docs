@@ -126,6 +126,15 @@ Key: E - experiment resource, V - VM resource, U - user resource
 | Exp. Scoped | yes
 | Res. Scoped | no
 
+#### Resource: `experiments/trigger`
+
+|      |      |
+|------|------|
+| Verb | create
+| Desc | trigger the running stage of an experiment
+| Exp. Scoped | yes
+| Res. Scoped | no
+
 #### Resource: `experiments/captures`
 
 |      |      |

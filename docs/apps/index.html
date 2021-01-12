@@ -240,6 +240,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#additional-core-apps" class="md-nav__link">
+    Additional Core Apps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#user-apps" class="md-nav__link">
     User Apps
   </a>
@@ -339,6 +346,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../state-of-health/" title="State of Health" class="md-nav__link">
+      State of Health
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../user-administration/" title="User Administration in phēnix" class="md-nav__link">
       User Administration in phēnix
     </a>
@@ -383,6 +402,13 @@
         <li class="md-nav__item">
   <a href="#default-apps" class="md-nav__link">
     Default Apps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-core-apps" class="md-nav__link">
+    Additional Core Apps
   </a>
   
 </li>
@@ -465,15 +491,34 @@ to apply <em>user apps</em> to an experiment using a
 </tr>
 </tbody>
 </table>
+<h2 id="additional-core-apps">Additional Core Apps<a class="headerlink" href="#additional-core-apps" title="Permanent link">&para;</a></h2>
+<p>The apps listed below are provided by the core <code>phenix</code> application, but are not
+considered default apps since they do not get applied to every experiment by
+default. They're more like a <a href="#user-apps">user app</a>, but implemented in the core
+application instead of as a stand-alone executable.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>soh</td>
+<td>provide state of health monitoring for an experiment</td>
+</tr>
+</tbody>
+</table>
 <h2 id="user-apps">User Apps<a class="headerlink" href="#user-apps" title="Permanent link">&para;</a></h2>
 <p><code>phenix</code> <em>user apps</em> are stand-alone executables that <code>phenix</code> shells out to at
 different stages of the experiment lifecycle (<code>configure, pre-start, post-start,
-and cleanup</code>). When <code>phenix</code> encounters an app in an experiment scenario that
-isn't a default app, it checks to see if an executable exists in its current
-<code>PATH</code> in the form of <code>phenix-app-&lt;app name&gt;</code>. If the executable exists,
-<code>phenix</code> shells out to it, providing the current lifecycle stage as an argument
-and providing the experiment <code>metadata, spec, and status</code> as a JSON string over
-<code>STDIN</code>.</p>
+running, and cleanup</code>). When <code>phenix</code> encounters an app in an experiment
+scenario that isn't a default app, it checks to see if an executable exists in
+its current <code>PATH</code> in the form of <code>phenix-app-&lt;app name&gt;</code>. If the executable
+exists, <code>phenix</code> shells out to it, providing the current lifecycle stage as an
+argument and providing the experiment <code>metadata, spec, and status</code> as a JSON
+string over <code>STDIN</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There will be three (3) top-level keys available in the JSON passed to a
@@ -494,9 +539,17 @@ status to signal to <code>phenix</code> that an error occurred.</p>
 <p class="admonition-title">Note</p>
 <p><code>phenix</code> will only process updates to the <code>spec</code> value for the <code>configure
 and pre-start</code> stages, and will only process updates to the <code>status</code> value
-for the <code>post-start and cleanup</code> stages. More specifically, it will only
-process updates to <code>status.apps.&lt;app name&gt;</code>, which can be anything the app
-wants it to be (e.g. a simple string, an array, or a map/dictionary).</p>
+for the <code>post-start, running, and cleanup</code> stages. More specifically, it
+will only process updates to <code>status.apps.&lt;app name&gt;</code>, which can be anything
+the app wants it to be (e.g. a simple string, an array, or a
+map/dictionary).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible for the execution of app stages to be canceled by the caller.
+In the case of user apps, <code>phenix</code> will send a <code>SIGTERM</code> to the user app
+process and wait a maximum of 10 seconds for the process to exit gracefully
+before killin the process with a <code>SIGKILL</code>.</p>
 </div>
 <h3 id="available-user-apps">Available User Apps<a class="headerlink" href="#available-user-apps" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://github.com/activeshadow/phenix-apps">activeshadow/phenix-apps</a> repo

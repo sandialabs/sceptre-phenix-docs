@@ -1,0 +1,906 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A place for phenix users to call home.">
+      
+      
+      
+        <meta name="author" content="activeshadow and dnkcom">
+      
+      <link rel="shortcut icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.1">
+    
+    
+      
+        <title>State of Health - phenix documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ff6e42">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/style.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-orange" data-md-color-accent="brown">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#state-of-health" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="phenix documentation" class="md-header-nav__button md-logo" aria-label="phenix documentation">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            phenix documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              State of Health
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/activeshadow/phenix-docs/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    activeshadow/phenix-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="phenix documentation" class="md-nav__button md-logo" aria-label="phenix documentation">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    phenix documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/activeshadow/phenix-docs/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    activeshadow/phenix-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Welcome" class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../apps/" title="Apps" class="md-nav__link">
+      Apps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configuration/" title="Configuration Files" class="md-nav__link">
+      Configuration Files
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../experiments/" title="Experiments" class="md-nav__link">
+      Experiments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../image/" title="Virtual Disk Images Management" class="md-nav__link">
+      Virtual Disk Images Management
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../kb/" title="Knowledge Base" class="md-nav__link">
+      Knowledge Base
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../schema/" title="Configuration File Schemas" class="md-nav__link">
+      Configuration File Schemas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        State of Health
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="State of Health" class="md-nav__link md-nav__link--active">
+      State of Health
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topology-graph" class="md-nav__link">
+    Topology Graph
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-volume" class="md-nav__link">
+    Network Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soh-messages" class="md-nav__link">
+    SoH Messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-soh-scenario-config" class="md-nav__link">
+    Sample SoH Scenario Config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    Configuration Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-reachability" class="md-nav__link">
+    Network Reachability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injecting-icmp-rules" class="md-nav__link">
+    Injecting ICMP Rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packet-capture" class="md-nav__link">
+    Packet Capture
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-and-control" class="md-nav__link">
+    Command and Control
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../user-administration/" title="User Administration in phēnix" class="md-nav__link">
+      User Administration in phēnix
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vms/" title="VMs" class="md-nav__link">
+      VMs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topology-graph" class="md-nav__link">
+    Topology Graph
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-volume" class="md-nav__link">
+    Network Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soh-messages" class="md-nav__link">
+    SoH Messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-soh-scenario-config" class="md-nav__link">
+    Sample SoH Scenario Config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    Configuration Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-reachability" class="md-nav__link">
+    Network Reachability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injecting-icmp-rules" class="md-nav__link">
+    Injecting ICMP Rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packet-capture" class="md-nav__link">
+    Packet Capture
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-and-control" class="md-nav__link">
+    Command and Control
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/activeshadow/phenix-docs/edit/master/docs/state-of-health.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="state-of-health">State of Health<a class="headerlink" href="#state-of-health" title="Permanent link">&para;</a></h1>
+<p>State of Health (SoH) is a core (but not default) app meant to assist with
+understanding the state of a running experiment. It has many <a href="#configuration-options">configuration
+options</a>, and relies on minimega's command and control
+infrastructure (ie. the <code>miniccc</code> agent running in experiment VMs) to drive and
+collect the experiment health state data. See the <a href="#command-and-control">command and
+control</a> section for more details.</p>
+<p>SoH information is presented in the UI in three separate tabs. You can access
+the information by clicking the SoH button from the Experiments or Running
+Experiment components.</p>
+<p>Button available on the experiments table.</p>
+<p><img alt="screenshot" class="center" src="../images/exps_soh.png" width="100" /></p>
+<p>Button available in running experiment.</p>
+<p><img alt="screenshot" class="center" src="../images/exp_run.png" width="200" /></p>
+<h2 id="topology-graph">Topology Graph<a class="headerlink" href="#topology-graph" title="Permanent link">&para;</a></h2>
+<p>This tab displays a network graph of the running experiment.</p>
+<p><img alt="screenshot" class="center" src="../images/net_graph.png" width="800" /></p>
+<p>The color of the node is based on the condition of the corresponding VM and
+could be:</p>
+<ul>
+<li><code>Running</code></li>
+<li><code>Not running</code> (part of the experiment, but currently paused)</li>
+<li><code>Not booted</code> (part of the experiment, but marked as Do Not Boot)</li>
+<li><code>Not deployed</code> (part of the experiment, but flushed from minimega)</li>
+<li><code>Experiment stopped</code></li>
+</ul>
+<p><img alt="screenshot" class="center" src="../images/graph_legend.png" width="800" /></p>
+<p>It is also possible to filter the graph based on nodes that are either:</p>
+<ul>
+<li><code>Running</code>,</li>
+<li><code>Not running</code>,</li>
+<li><code>Not booted</code>, or</li>
+<li><code>Not deployed</code>.</li>
+</ul>
+<p>The <code>Refresh Network</code> button will reset the filter, showing all nodes. </p>
+<p>The <code>Manual Refresh</code> button will request the latest server-side SoH data and
+update the three tabs.</p>
+<p>Hovering over a node in the graph will cause it to expand to show what operating
+system the node is running. An orange border around a node is indicative of the
+node currently having health issues (e.g., expected processes not running or not
+being able to reach other nodes on the network). Other virtual systems will also
+be represented accordingly (e.g., a printer or firewall).</p>
+<p><img alt="screenshot" class="center" src="../images/linux.png" width="800" /></p>
+<p>Clicking on the node with an orange border will produce a details modal with the
+current error reporting.</p>
+<p><img alt="screenshot" class="center" src="../images/soh_log_details.png" width="800" /></p>
+<p>If there are no errors to report and command and control is enabled, the details
+modal will only show the current CPU load.</p>
+<p><img alt="screenshot" class="center" src="../images/soh_details.png" width="800" /></p>
+<p>Note the green button in the lower right corner of the modal; this will provide
+access to the VNC for any running VM. When the VM is not running, access to the
+VNC will be disabled. Finally, if there is no SoH information to report on a 
+given VM, it will be noted in the details modal. The following screenshot is an
+example of no SoH information with the VNC button disabled.</p>
+<p><img alt="screenshot" class="center" src="../images/soh_no_details.png" width="800" /></p>
+<h2 id="network-volume">Network Volume<a class="headerlink" href="#network-volume" title="Permanent link">&para;</a></h2>
+<p>This tab displays a chord graph that shows network flows between nodes using
+flows from PacketBeat fed to ElasticSearch; connections represent the volume of
+traffic between nodes.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This information is only available if the packet capture option is enabled
+for SoH.</p>
+</div>
+<p>This is an example chord graph of a Protonuke server with two clients; one of
+which is requesting content at a delayed interval (therefore less traffic flow).</p>
+<p><img alt="screenshot" class="center" src="../images/chord.png" width="800" /></p>
+<p>If you hover over traffic flow, a tooltip will appear providing additional
+details. (In this screenshot, the mouse is hovering over the traffic for IP
+<code>192.168.100.1</code>.)</p>
+<p><img alt="screenshot" class="center" src="../images/chord_tooltip.png" width="800" /></p>
+<h2 id="soh-messages">SoH Messages<a class="headerlink" href="#soh-messages" title="Permanent link">&para;</a></h2>
+<p>The final tab will display any error messages from the SoH agents.</p>
+<p><img alt="screeshot" class="center" src="../images/soh_messages.png" width="800" /></p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Just like any other app, the SoH app is configured via the <code>Scenario</code>
+configuration. SoH will only be enabled for an experiment if it's present in the
+scenario as <code>soh</code>, and has multiple configuration options available, described
+in detail below.</p>
+<h3 id="sample-soh-scenario-config">Sample SoH Scenario Config<a class="headerlink" href="#sample-soh-scenario-config" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>spec:
+  apps:
+  - name: soh
+    metadata:
+      appMetadataProfileKey: sohProfile # metadata key to look for in other apps
+      c2Timeout: 5m
+      exitOnError: false
+      hostListeners:
+        client:
+        - :502
+        server:
+        - :80
+        - :443
+      hostProcesses:
+        client:
+        - miniccc
+        server:
+        - miniccc
+      injectICMPAllow: true
+      packetCapture:
+        elasticImage: /phenix/images/elasticsearch.qc2
+        packetBeatImage: /phenix/images/packetbeat.qc2
+        elasticServer:
+          hostname: soh-elasticsearch-server
+          vcpus: 4
+          memory: 4096
+          ipAddress: 172.16.200.1/16
+          VLAN: MGMT
+        captureHosts:
+          client:
+          - IF0 # interface to monitor on &quot;client&quot; node in topology
+          server:
+          - IF0 # interface to monitor on &quot;server&quot; node in topology
+      skipInitialNetworkConfigTests: false # if true, testReachability will be off
+      skipHosts:
+      - kali.qc2 # can be an image name, in which case any host using image will be skipped
+      - foobar-host # can be hostname from topology
+      testReachability: full # can be off, sample, or full
+</code></pre></div>
+
+
+<h3 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>appMetadataProfileKey</code>: since the listeners and processes one might want to
+  monitor could be highly dependent on other apps that are configured for an
+  experiment, it's possible to specify the <code>hostListeners</code> and <code>hostProcesses</code>
+  to be monitored in the other apps themselves under the key specified here.
+  The default key is <code>sohProfile</code>.</p>
+</li>
+<li>
+<p><code>c2Timeout</code>: a <a href="https://golang.org/pkg/time/#ParseDuration">Golang duration
+  string</a> specifying how long to
+  wait for the <code>miniccc</code> C2 client to become active in a VM before moving on and
+  marking the VM as not to be monitored. The default is <code>5m</code>.</p>
+</li>
+<li>
+<p><code>exitOnError</code>: a boolean representing whether the app should cause the entire
+  experiment deployment to fail if it has any errors. The default is <code>false</code>.</p>
+</li>
+<li>
+<p><code>hostListeners</code>: a map of VMs, each specifying a list of listening ports to
+  check for within the VM. If the port can be listening on any interface, the
+  form <code>:80</code> can be used. If the port should be listening on a specific
+  interface, the form <code>192.168.1.10:80</code> can be used. The default is <code>nil</code>.</p>
+</li>
+<li>
+<p><code>hostProcesses</code>: a map of VMs, each specifying a list of process names to
+  check for within the VM. The default is <code>nil</code>.</p>
+</li>
+<li>
+<p><code>injectICMPAllow</code>: a boolean representing whether any existing firewall/router
+  rulesets should have a rule added to allow ICMP between all nodes to
+  facilitate reachability testing. See <a href="#injecting-icmp-rules">Injecting ICMP
+  Rules</a> for more details. If reachability tests are
+  disabled, then this will be too, regardless of its setting here. The default
+  is <code>false</code>.</p>
+</li>
+<li>
+<p><code>packetCapture</code>: if present, a partially hidden packet capture infrastructure
+  based on Elastic, Kibana, and PacketBeat will be deployed for the experiment.
+  See <a href="#packet-capture">Packet Capture</a> for more details. The default is <code>nil</code>.</p>
+<ul>
+<li>
+<p><code>elasticImage</code>: path to the disk image to use for the Elastic/Kibana VM
+  for packet capture. An <code>image/elasticsearch</code> config comes bundled with
+  phenix and can be used to build an image to use here. There is no default
+  for this setting; if packet capture is to be deployed it must be provided.</p>
+</li>
+<li>
+<p><code>packetBeatImage</code>: path to the disk image to use for the PacketBeat VM for
+  packet capture. An <code>image/packetbeat</code> config comes bundled with phenix and
+  can be used to build an image to use here. There is no default for this
+  setting; if packet capture is to be deployed it must be provided.</p>
+</li>
+<li>
+<p><code>elasticServer</code>: </p>
+<ul>
+<li>
+<p><code>hostname</code>: the hostname to use for the Elastic/Kibana server added to
+  the experiment topology. There is no default for this setting; if
+  packet capture is to be deployed it must be provided.</p>
+</li>
+<li>
+<p><code>vcpus</code>: the number of CPUs to assign to the Elastic/Kibana server VM.
+  The default is 4.</p>
+</li>
+<li>
+<p><code>memory</code>: the amount of memory to assign to the Elastic/Kibana server
+  VM. The default is 4096.</p>
+</li>
+<li>
+<p><code>ipAddress</code>: the IP address to use for the Elastic/Kibana server added
+  to the experiment topology. The network interface this IP address is
+  used for will be added to the experiment VLAN specified by <code>vlan</code>. The
+  IP address should be specified in CIDR notation. There should also be
+  sufficient IP addresses after the one specified here to be assigned to
+  each of the PacketBeat monitor VMs that will be deployed, as the IP
+  addresses assigned to them on the VLAN specified by <code>vlan</code> will
+  increment up from this IP. There is no default for this setting; if
+  packet capture is to be deployed it must be provided.</p>
+</li>
+<li>
+<p><code>vlan</code>: the experiment VLAN to add the Elastic/Kibana and PacketBeat
+  VMs to. There is no default for this setting; if packet capture is to
+  be deployed it must be provided.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>captureHosts</code>: a map of VMs, each specifying a list of network interface
+  names to monitor. One PacketBeat VM will be deployed for each VM interface
+  specified. The defalt is <code>nil</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>skipInitialNetworkConfigTests</code>: by default, a set of tests will be run on
+  each VM to ensure the VM was assigned the correct IP address and can reach its
+  default gateway (if specified). Setting this to true will skip these initial
+  tests, but will also disable reachability testing. The default is <code>false</code>.</p>
+</li>
+<li>
+<p><code>skipHosts</code>: a list of VM hostnames and/or disk image names to skip health
+  monitoring for. For disk image names, any host using the disk image as its
+  primary image will be skipped. The default is <code>nil</code>.</p>
+</li>
+<li>
+<p><code>testReachability</code>: reachability testing is the process of making sure each VM
+  can reach other VMs within the experiment over the network. See <a href="#network-reachability">Network
+  Reachability</a> for more details. There are three options
+  for this setting: <code>off, sample, full</code>.</p>
+<ul>
+<li>
+<p><code>off</code>: reachability testing is disabled. This is the default.</p>
+</li>
+<li>
+<p><code>sample</code>: each VM in the experiment will attempt to ping a random VM in
+  every other experiment VLAN.</p>
+</li>
+<li>
+<p><code>full</code>: each VM in the experiment will attempt to ping every other VM in
+  every other experiment VLAN.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="network-reachability">Network Reachability<a class="headerlink" href="#network-reachability" title="Permanent link">&para;</a></h3>
+<p>Testing network reachability for a VM requires that the VM has minimega's
+command and control (C2) layer active (ie., the <code>miniccc</code> agent is running in
+the VM), has the correct IP address configured, and can ping its default route
+if one is configured. If C2 is not active for a VM after the <code>c2Timeout</code>
+duration has passed, then the VM will be excluded from reachability testing.
+Once C2 is up for a VM, the VM is queried to confirm its IP address is
+configured and its gateway is reachable for a maximum of 5 minutes. Once all the
+VMs with C2 detected have their IP address configured and their gateways are
+reachable, reachability tests begin.</p>
+<p>Reachability tests are run in the post-start stage and each time the running
+stage is triggered. Given this, if for some reason a VM comes up with its C2
+agent active, but its network has to be configured manually, it will not be
+included in reachability tests during the post-start stage. Once the VM's
+network settings have been configured manually, the running stage can be
+triggered and the VM will be included in reachability tests this time around.</p>
+<h3 id="injecting-icmp-rules">Injecting ICMP Rules<a class="headerlink" href="#injecting-icmp-rules" title="Permanent link">&para;</a></h3>
+<p>The <code>injectICMPAllow</code> option can be used to add rules to routers/firewalls in
+the topology to prevent reachability tests from failing due to ACLs. When
+enabled, all rulesets present in the experiment (either in the topology or
+scenario) will have a rule prepended to the list of existing rules allowing the
+ICMP protocol to/from any address. To ensure this rule is applied before any
+other rule, the SoH app attempts to inject it with an ID of 1 (since Vyatta/VyOS
+orders rules by ID). If a rule already exists with an ID of 1 then injecting
+this rule will fail.</p>
+<p>A check is done each time an experiment is started to see if injecting ICMP
+rules is enabled, and if not, any injected rules are removed from the
+experiment. This means the setting can be changed between runs of an experiment
+(e.g., using <code>phenix config edit experiment/&lt;name&gt;</code>) and the change will be
+reflected accurately when the experiment is started again.</p>
+<h3 id="packet-capture">Packet Capture<a class="headerlink" href="#packet-capture" title="Permanent link">&para;</a></h3>
+<p>The SoH packet capture capability leverages minimega's tap mirroring to monitor
+traffic on experiment VM interfaces with PacketBeat and feed network flow data
+to ElasticSearch.</p>
+<p>When enabled, an Elastic/Kibana VM is added to the experiment's topology so it
+can be accessed via the phenix UI. PacketBeat VMs are deployed in minimega for
+each experiment VM interface that's configured to be monitored, but are not
+added to the experiment topology so they do not clutter the phenix UI.</p>
+<p>When packet capture is enabled, the phenix UI SoH tab will include a Network
+Volume tab that uses network flow data queried from ElasticSearch to populate a
+chord graph in an effort to depict how much traffic is flowing between VMs.
+Users/Analysts can also access Kibana using VNC via the phenix UI to do
+additional analysis on the network flow data that's being captured.</p>
+<h2 id="command-and-control">Command and Control<a class="headerlink" href="#command-and-control" title="Permanent link">&para;</a></h2>
+<p>As mentioned above, SoH relies on minimega's command and control infrastructure
+to drive and collect the experiment health state data. Under the hood, the SoH
+app uses C2 to execute a test on a VM (<code>cc exec</code>), wait for the command to
+complete (<code>cc commands</code>), grab the STDOUT/STDERR of the command (<code>cc
+responses</code>), and compare it to an expected response. Current tests executed on
+Linux VMs include the following:</p>
+<ul>
+<li><code>ip addr</code></li>
+<li><code>ip route</code></li>
+<li><code>ping -c 1 &lt;ip&gt;</code></li>
+<li><code>pgrep &lt;process&gt;</code></li>
+<li><code>ss -lntu state all 'sport = &lt;port&gt;'</code></li>
+<li><code>cat /proc/loadavg</code></li>
+</ul>
+<p>Corresponding tests for Windows VMs include the following:</p>
+<ul>
+<li><code>ipconfig /all</code></li>
+<li><code>route print</code></li>
+<li><code>ping -n 1 &lt;ip&gt;</code></li>
+<li><code>powershell -command "Get-Process &lt;process&gt; -ErrorAction SilentlyContinue"</code></li>
+<li><code>powershell -command "netstat -an | select-string -pattern 'listening' | select-string -pattern '&lt;port&gt;'"</code></li>
+<li><code>powershell -command "Get-WmiObject Win32_Processor | Measure-Object -Property LoadPercentage -Average | Select Average"</code></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+
+      <!-- Social links -->
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/activeshadow/minimega/tree/phenix/phenix" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.aa3f9871.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

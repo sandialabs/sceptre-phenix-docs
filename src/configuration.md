@@ -218,42 +218,63 @@ spec:
 ## Scenario
 
 The `Scenario` configuration is used to define and configure one or more
-`phenix` apps ([default](apps.md#default-apps) or 
-[user](apps.md#user-apps)) for use on a topology. In this sense, a
-topology can have one or more scenarios associated with it, but a scenario can
-only be associated with a single topology.
+`phenix` apps ([default](apps.md#default-apps) or [user](apps.md#user-apps)) for
+use on a topology. In this sense, a topology can have one or more scenarios
+associated with it, but a scenario can only be associated with a single
+topology.
 
-There are two categories of `phenix` apps that can be configured in a scenario: 1) experiment, 
-and 2) host. A scenario can contain zero or more experiment and/or host apps.
+### Apps
 
-### Experiment Apps
+A `phenix` app can be applied to an experiment topology using a single
+configuration, a per-host configuration, or both. For example, a `phenix` app
+that adds a minimega tap to all hosts in the cluster, one that injects the same
+file into every node in the experiment topology, or one that configures a VPN
+between two nodes in an experiment using WireGuard. The first two examples could
+use a single configuration, while the last example would use a per-host
+configuration because 1) only two nodes will be modified, and 2) each of the two
+nodes will require different configurations (e.g., one will be a WireGuard
+client and the other a WireGuard server). Each configured app can contain a list
+of topology nodes to apply the app to, along with custom metadata for the app
+specific to the topology node.
 
-An experiment app is a `phenix` app that can be applied to experiment topology
-using a single configuration. For example, a `phenix` app that adds a minimega
-tap to all hosts in the cluster or one that injects the same file into every
-node in the experiment topology would be good candidates for an experiment app.
+### App Configuration Options
 
-### Host Apps
+* `assetDir`: used by apps to generate absolute path to asset files when
+  relative paths are provided in app metadata. The default is an empty string.
 
-A host app is a `phenix` app that 1) does not get applied to all nodes in the
-experiment topology, and/or 2) requires a unique configuration for each node.
-For example, a `phenix` app that configures a VPN between two nodes in an
-experiment using WireGuard would need to be a host app because 1) only two nodes
-will be modified, and 2) each of the two nodes will require different
-configurations (e.g., one will be a WireGuard client and the other a WireGuard
-server). Each configured host app will contain a list of topology nodes to apply
-the app to, along with custom metadata for the app specific to the topology
-node.
+* `fromScenario`: name of another scenario config to pull this app config from.
+  This allows for defining complex app configurations in a single base scenario
+  and referencing it from scenarios included in experiments. The default is an
+  empty string.
+
+* `hosts`: a list of per-host configurations to apply to the experiment
+  topology. The default is `nil`.
+
+    * `hostname`: the name of the experiment VM to apply this per-host metadata
+      to.
+
+    * `metadata`: app metadata to apply to this experiment VM. The default is
+      `nil`.
+
+* `metadata`: app metadata to apply to this experiment. The default is `nil`.
+
+* `name`: the name of the app being configured. There is no default value; one
+  must be provided.
+
+* `runPeriodically`: a [Golang duration
+  string](https://golang.org/pkg/time/#ParseDuration) specifying how often to
+  trigger the app's running stage. The default value is an empty string, which
+  means the app's running stage will not be triggered periodically.
 
 ### Example
 
 The following is an example of a configuration for a scenario named `foobar`,
-which can only be applied to an accompanying topology named `foobar` (while these
-names are the same in this example, the topology and scenario names do not have 
-to match). Included in this scenario is an experiment app named `miniccc-injector` 
-and three host apps: `startup`, `protonuke` and `wireguard`. Each entry in the list 
-of app hosts includes custom app metadata and the hostname of the topology node to 
-apply the metadata to.
+which can only be applied to an accompanying topology named `foobar` (while
+these names are the same in this example, the topology and scenario names do not
+have to match). Included in this scenario are apps named `miniccc-injector`,
+`startup`, `protonuke` and `wireguard`. Each entry in the list of app hosts
+includes custom app metadata and the hostname of the topology node to apply the
+metadata to.
 
 ```
 apiVersion: phenix.sandia.gov/v1
@@ -264,48 +285,46 @@ metadata:
     topology: foobar
 spec:
   apps:
-    experiment:
-    - name: miniccc-injector 
+  - name: miniccc-injector
+    metadata:
+      # files to inject into each node in experiment, based on OS type
+      linux:
+        src: /phenix/injects/miniccc
+        dst: /usr/local/bin/miniccc
+      windows:
+        src: /phenix/injects/miniccc.exe
+        dst: phenix/miniccc.exe
+  - name: startup
+    hosts:
+    - hostname: host-00 # hostname of topology node to apply it to
       metadata:
-        # files to inject into each node in experiment, based on OS type
-        linux:
-          src: /phenix/injects/miniccc
-          dst: /usr/local/bin/miniccc
-        windows:
-          src: /phenix/injects/miniccc.exe
-          dst: phenix/miniccc.exe
-    host:
-    - name: startup
-      hosts:
-      - hostname: host-00 # hostname of topology node to apply it to
-        metadata:
-          domain_controller:
-            domain: example.com
-            ip: 10.0.0.1
-            username: admin
-            password: SuperSecretPassword
-    - name: protonuke
-      hosts:
-      - hostname: host-01 # hostname of topology node to apply it to
-        metadata:
-          # protonuke app metadata for this topology node
-          args: -logfile /var/log/protonuke.log -level debug -http -https -smtp -ssh 192.168.100.100
-    - name: wireguard
-      hosts:
-      - hostname: AD1 # hostname of topology node to apply it to
-        metadata:
-          # wireguard app metadata for this topology node
-          infrastructure:
-            private_key: GLlxWJom8cQViGHojqOUShWIZG7IsSX8
-            address: 10.255.255.1/24
-            listen_port: 51820
-          peers:
-            public_key: +joyya2F9g72qbKBtPDn00mIevG1j1OqeN76ylFLsiE=
-            allowed_ips: 10.255.255.10/32
+        domain_controller:
+          domain: example.com
+          ip: 10.0.0.1
+          username: admin
+          password: SuperSecretPassword
+  - name: protonuke
+    hosts:
+    - hostname: host-01 # hostname of topology node to apply it to
+      metadata:
+        # protonuke app metadata for this topology node
+        args: -logfile /var/log/protonuke.log -level debug -http -https -smtp -ssh 192.168.100.100
+  - name: wireguard
+    hosts:
+    - hostname: AD1 # hostname of topology node to apply it to
+      metadata:
+        # wireguard app metadata for this topology node
+        infrastructure:
+          private_key: GLlxWJom8cQViGHojqOUShWIZG7IsSX8
+          address: 10.255.255.1/24
+          listen_port: 51820
+        peers:
+          public_key: +joyya2F9g72qbKBtPDn00mIevG1j1OqeN76ylFLsiE=
+          allowed_ips: 10.255.255.10/32
 ```
 
 !!! note
-    The above example includes a host app named `startup`, which is a phenix
+    The above example includes an app named `startup`, which is a phenix
     _default_ app. Meaning, it is possible to configure default phenix apps in a
     scenario configuration, not just user apps.
 
