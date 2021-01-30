@@ -39,7 +39,7 @@ docker run -d --name phenix \
   --volume=/sys:/sys \
   --volume=/phenix:/phenix \
   --volume=/etc/phenix:/etc/phenix \
-  --volume=/tmp/minimega:/tmp/minimega \
+  --volume=/tmp:/tmp \
   --volume=/var/log/phenix:/var/log/phenix \
   --volume=/etc/localtime:/etc/localtime:ro \
   activeshadow/phenix
