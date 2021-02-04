@@ -24,7 +24,7 @@ theme:
 extra:
   social:
     - icon: 'fontawesome/brands/github'
-      link: 'https://github.com/activeshadow/minimega/tree/phenix/phenix'
+      link: 'https://github.com/activeshadow/phenix'
 
 extra_css:
   - stylesheets/style.css

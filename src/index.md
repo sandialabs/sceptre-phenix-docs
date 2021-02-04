@@ -2,8 +2,7 @@
 
 This is the documentation for the minimega `phenix` orchestration tool. `phenix`
 development happens in the
-[activeshadow/minimega](https://github.com/activeshadow/minimega) repository, in
-the `phenix` directory of the `phenix` branch (the default branch for the repo).
+[activeshadow/phenix](https://github.com/activeshadow/phenix) repository.
 
 ## Getting Started with phenix
 
