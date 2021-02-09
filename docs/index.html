@@ -528,9 +528,9 @@ been updated, <code>phenix</code> will need to be run as root in order to access
 socket.</p>
 <h3 id="installing-and-running-via-docker">Installing and Running via Docker<a class="headerlink" href="#installing-and-running-via-docker" title="Permanent link">&para;</a></h3>
 <p>An <code>activeshadow/phenix</code> Docker image available from Docker Hub is automatically
-built and tagged as <code>latest</code> each time the default <code>phenix</code> branch of the git
-repo is updated. A Docker image can also be built manually by cloning the git
-repo and running the following command from the <code>phenix</code> directory:</p>
+built and tagged as <code>latest</code> each time the default <code>main</code> branch of the git repo
+is updated. A Docker image can also be built manually by cloning the git repo
+and running the following command from the <code>phenix</code> directory:</p>
 <div class="codehilite"><pre><span></span><code>VER=$(git log -1 --format=&quot;%h&quot;) COMMIT=$(git log -1 --format=&quot;%h&quot;) docker \
   build -t phenix -f docker/Dockerfile .
 </code></pre></div>
@@ -539,19 +539,61 @@ repo and running the following command from the <code>phenix</code> directory:</
 and have access to the host network and some host directories. An example is
 below.</p>
 <div class="codehilite"><pre><span></span><code>docker run -d --name phenix \
-  --privileged \
   --hostname=$(hostname) \
+  --network=host \
+  --privileged \
   --volume=/dev:/dev \
   --volume=/proc:/proc \
-  --volume=/sys:/sys \
   --volume=/phenix:/phenix \
   --volume=/etc/phenix:/etc/phenix \
   --volume=/tmp:/tmp \
   --volume=/var/log/phenix:/var/log/phenix \
   --volume=/etc/localtime:/etc/localtime:ro \
-  activeshadow/phenix
+  activeshadow/phenix phenix ui
 </code></pre></div>
 
+<ul>
+<li>
+<p><code>--hostname=$(hostname)</code>: set the container's hostname to be the same as the
+  host. This is mainly beneficial when gathering cluster node details.</p>
+</li>
+<li>
+<p><code>--network=host</code>: use the host's network stack in the container. Using
+  <code>--publish=3000:3000</code> is also a valid option.</p>
+</li>
+<li>
+<p><code>--privileged</code>, <code>--volume=/dev:/dev</code>, and <code>--volume=/proc:/proc</code>: needed for
+  building images with <code>phenix</code>. These options can be omitted if <code>phenix</code> won't
+  be used to build images.</p>
+</li>
+<li>
+<p><code>--volume=/phenix:/phenix</code>: <code>/phenix</code> is used as the base directory for
+  <code>phenix</code> by default (see <code>--base-dir.phenix</code> global option), so we share this
+  directory with the host to persist changes across container restarts.</p>
+</li>
+<li>
+<p><code>--volume=/etc/phenix:/etc/phenix</code>: the <code>phenix</code> config store is written to
+  <code>/etc/phenix/store.bdb</code> by default when <code>phenix</code> is run as root, so we share
+  this directory with the host so config changes persist across container
+  restarts.</p>
+</li>
+<li>
+<p><code>--volume=/tmp:/tmp</code>: <code>minimega</code> creates its Unix socket in <code>/tmp/minimega</code> by
+  default, so we share this directory with the host so <code>phenix</code> can have access
+  to the <code>minimega</code> socket. <code>phenix</code> also writes some files to <code>/tmp</code> that
+  <code>minimega</code> needs access to (e.g. injecting the <code>miniccc</code> agent into images),
+  which also makes this volume mount necessary.</p>
+</li>
+<li>
+<p><code>--volume=/var/log/phenix:/var/log/phenix</code>: <code>phenix</code> writes its logs to
+  <code>/var/log/phenix</code> by default when run as root. Sharing this directory with the
+  host makes it easier to debug issues if the container fails.</p>
+</li>
+<li>
+<p><code>--volume=/etc/localtime:/etc/localtime:ro</code>: set the container's timezone to
+  be the same as the host.</p>
+</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you build the Docker image manually, be sure to replace the last line in
@@ -559,7 +601,7 @@ the command above with the tag used to build the image.</p>
 </div>
 <p>With <code>phenix</code> running in a container, it's useful to setup a bash alias for
 <code>phenix</code>:</p>
-<div class="codehilite"><pre><span></span><code>alias phenix=&quot;docker exec -it phenix&quot;
+<div class="codehilite"><pre><span></span><code>alias phenix=&quot;docker exec -it phenix phenix&quot;
 </code></pre></div>
 
 <div class="admonition note">

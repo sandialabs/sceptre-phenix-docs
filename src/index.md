@@ -17,9 +17,9 @@ socket.
 ### Installing and Running via Docker
 
 An `activeshadow/phenix` Docker image available from Docker Hub is automatically
-built and tagged as `latest` each time the default `phenix` branch of the git
-repo is updated. A Docker image can also be built manually by cloning the git
-repo and running the following command from the `phenix` directory:
+built and tagged as `latest` each time the default `main` branch of the git repo
+is updated. A Docker image can also be built manually by cloning the git repo
+and running the following command from the `phenix` directory:
 
 ```
 VER=$(git log -1 --format="%h") COMMIT=$(git log -1 --format="%h") docker \
@@ -32,29 +32,60 @@ below.
 
 ```
 docker run -d --name phenix \
-  --privileged \
   --hostname=$(hostname) \
+  --network=host \
+  --privileged \
   --volume=/dev:/dev \
   --volume=/proc:/proc \
-  --volume=/sys:/sys \
   --volume=/phenix:/phenix \
   --volume=/etc/phenix:/etc/phenix \
   --volume=/tmp:/tmp \
   --volume=/var/log/phenix:/var/log/phenix \
   --volume=/etc/localtime:/etc/localtime:ro \
-  activeshadow/phenix
+  activeshadow/phenix phenix ui
 ```
+
+* `--hostname=$(hostname)`: set the container's hostname to be the same as the
+  host. This is mainly beneficial when gathering cluster node details.
+
+* `--network=host`: use the host's network stack in the container. Using
+  `--publish=3000:3000` is also a valid option.
+
+* `--privileged`, `--volume=/dev:/dev`, and `--volume=/proc:/proc`: needed for
+  building images with `phenix`. These options can be omitted if `phenix` won't
+  be used to build images.
+
+* `--volume=/phenix:/phenix`: `/phenix` is used as the base directory for
+  `phenix` by default (see `--base-dir.phenix` global option), so we share this
+  directory with the host to persist changes across container restarts.
+
+* `--volume=/etc/phenix:/etc/phenix`: the `phenix` config store is written to
+  `/etc/phenix/store.bdb` by default when `phenix` is run as root, so we share
+  this directory with the host so config changes persist across container
+  restarts.
+
+* `--volume=/tmp:/tmp`: `minimega` creates its Unix socket in `/tmp/minimega` by
+  default, so we share this directory with the host so `phenix` can have access
+  to the `minimega` socket. `phenix` also writes some files to `/tmp` that
+  `minimega` needs access to (e.g. injecting the `miniccc` agent into images),
+  which also makes this volume mount necessary.
+
+* `--volume=/var/log/phenix:/var/log/phenix`: `phenix` writes its logs to
+  `/var/log/phenix` by default when run as root. Sharing this directory with the
+  host makes it easier to debug issues if the container fails.
+
+* `--volume=/etc/localtime:/etc/localtime:ro`: set the container's timezone to
+  be the same as the host.
 
 !!! note
     If you build the Docker image manually, be sure to replace the last line in
     the command above with the tag used to build the image.
 
-
 With `phenix` running in a container, it's useful to setup a bash alias for
 `phenix`:
 
 ```
-alias phenix="docker exec -it phenix"
+alias phenix="docker exec -it phenix phenix"
 ```
 
 !!! note
