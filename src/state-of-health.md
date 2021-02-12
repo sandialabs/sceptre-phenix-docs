@@ -313,7 +313,7 @@ Linux VMs include the following:
 * `ip addr`
 * `ip route`
 * `ping -c 1 <ip>`
-* `pgrep <process>`
+* `pgrep -f <process>`
 * `ss -lntu state all 'sport = <port>'`
 * `cat /proc/loadavg`
 
