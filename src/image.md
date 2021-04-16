@@ -11,8 +11,7 @@ $> phenix image list
 ## Creating a disk image
 
 The [`vmdb2` utility](https://github.com/glattercj/vmdb2) is required -- in path
--- to create the disk images. `vmdb2` is installed by default in the
-`activeshadow/phenix` Docker image.
+-- to create the disk images.
 
 ```
 $> phenix image create <image name>

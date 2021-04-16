@@ -2,8 +2,8 @@ site_name: 'phenix documentation'
 site_description: 'A place for phenix users to call home.'
 site_author: 'activeshadow and dnkcom'
 
-repo_name: 'activeshadow/phenix-docs'
-repo_url: 'https://github.com/activeshadow/phenix-docs'
+repo_name: 'sandia-minimega/phenix-docs'
+repo_url: 'https://github.com/sandia-minimega/phenix-docs'
 
 docs_dir: src
 site_dir: docs
@@ -24,7 +24,7 @@ theme:
 extra:
   social:
     - icon: 'fontawesome/brands/github'
-      link: 'https://github.com/activeshadow/phenix'
+      link: 'https://github.com/sandia-minimega/phenix'
 
 extra_css:
   - stylesheets/style.css

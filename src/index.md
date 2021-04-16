@@ -2,7 +2,8 @@
 
 This is the documentation for the minimega `phenix` orchestration tool. `phenix`
 development happens in the
-[activeshadow/phenix](https://github.com/activeshadow/phenix) repository.
+[sandia-minimega/phenix](https://github.com/sandia-minimega/phenix) GitHub
+repository.
 
 ## Getting Started with phenix
 
@@ -16,15 +17,8 @@ socket.
 
 ### Installing and Running via Docker
 
-An `activeshadow/phenix` Docker image available from Docker Hub is automatically
-built and tagged as `latest` each time the default `main` branch of the git repo
-is updated. A Docker image can also be built manually by cloning the git repo
-and running the following command from the `phenix` directory:
-
-```
-VER=$(git log -1 --format="%h") COMMIT=$(git log -1 --format="%h") docker \
-  build -t phenix -f docker/Dockerfile .
-```
+A Docker image can be built by cloning the git repo and running the
+`docker-build.sh` script in the root of the repo.
 
 To run `phenix` as a Docker container, it will need to run in privileged mode
 and have access to the host network and some host directories. An example is
@@ -42,7 +36,7 @@ docker run -d --name phenix \
   --volume=/tmp:/tmp \
   --volume=/var/log/phenix:/var/log/phenix \
   --volume=/etc/localtime:/etc/localtime:ro \
-  activeshadow/phenix phenix ui
+  phenix phenix ui
 ```
 
 * `--hostname=$(hostname)`: set the container's hostname to be the same as the
@@ -89,9 +83,8 @@ alias phenix="docker exec -it phenix phenix"
 ```
 
 !!! note
-    The Docker image, whether it was pulled from Docker Hub or built locally,
-    will also include the `phenix` user apps available in the
-    [activeshadow/phenix-apps](https://github.com/activeshadow/phenix-apps)
+    The Docker image will also include the `phenix` user apps available in the
+    [sandia-minimega/phenix-apps](https://github.com/sandia-minimega/phenix-apps)
     repo.
 
 ### Installing and Running via Apt

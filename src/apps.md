@@ -69,8 +69,9 @@ status to signal to `phenix` that an error occurred.
 
 ### Available User Apps
 
-The [activeshadow/phenix-apps](https://github.com/activeshadow/phenix-apps) repo
-is home to some user apps that have already been created by the community,
+The
+[sandia-minimega/phenix-apps](https://github.com/sandia-minimega/phenix-apps)
+repo is home to some user apps that have already been created by the community,
 including the following:
 
 * protonuke
@@ -79,8 +80,8 @@ including the following:
 
 In addition, this repo also contains some generic library/utility code for
 making custom user app development easier. See the
-[README](https://github.com/activeshadow/phenix-apps/blob/master/README.md) for
-additional details.
+[README](https://github.com/sandia-minimega/phenix-apps/blob/master/README.md)
+for additional details.
 
 ### Example
 
