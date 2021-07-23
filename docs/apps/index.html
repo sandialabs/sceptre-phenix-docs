@@ -254,6 +254,19 @@
     Default Apps
   </a>
   
+    <nav class="md-nav" aria-label="Default Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vrouter-app" class="md-nav__link">
+    vrouter App
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -447,6 +460,19 @@
     Default Apps
   </a>
   
+    <nav class="md-nav" aria-label="Default Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vrouter-app" class="md-nav__link">
+    vrouter App
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -530,10 +556,195 @@ to apply <em>user apps</em> to an experiment using a
 </tr>
 <tr>
 <td>vrouter</td>
-<td>customizes Vyatta/VyOS routers, including setting interfaces, ACL rules, etc.</td>
+<td>customizes Vyatta/VyOS and minirouter routers, including setting interfaces, ACL rules, etc.</td>
 </tr>
 </tbody>
 </table>
+<h3 id="vrouter-app">vrouter App<a class="headerlink" href="#vrouter-app" title="Permanent link">&para;</a></h3>
+<p>As of commit <code>e276a5b</code>, the <code>vrouter</code> app also supports the use of minimega's
+<code>minirouter</code> to include interface configuration, DHCP and DNS configuration,
+firewall rules, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Support for firewall rules with <code>minirouter</code> currently requires the use of
+the <code>activeshadow/minimega@minifw</code> branch until <a href="https://github.com/sandia-minimega/minimega/pull/1456">PR
+1456</a> is merged.</p>
+</div>
+<p>The following is an example of how the <code>vrouter</code> app can be configured via a
+<code>Scenario</code> configuration, showing all the possible options.</p>
+<div class="codehilite"><pre><span></span><code>spec:
+  apps:
+  - name: vrouter
+    hosts:
+    - hostname: rtr
+      metadata:
+        ipsec:
+        - local: 10.0.10.2
+          peer: 10.0.40.2
+          tunnels:
+          - local: 192.168.10.0/24
+            remote: 192.168.100.0/24
+        acl:
+          ingress:
+            IF0: in-rules
+          rulesets:
+          - name: in-rules
+            default: drop
+            rules:
+            - action: accept
+              description: Allow Incoming HTTP
+              source:
+                address: 192.168.0.0/24
+              destination:
+                address: 10.0.0.0/24
+                port: 80
+              protocol: tcp
+        dhcp:
+        - listenAddress: 10.0.0.254
+          ranges:
+          - lowAddress: 10.0.0.10
+            highAddress: 10.0.0.20
+          defaultRoute: 10.0.0.254
+          dnsServers:
+          - 10.0.0.254
+          staticAssignments:
+            00:00:00:00:00:AA: 10.0.0.50
+        - listenAddress: 192.168.0.254
+          ranges:
+          - lowAddress: 192.168.0.10
+            highAddress: 192.168.0.20
+          defaultRoute: 192.168.0.254
+          dnsServers:
+          - 192.168.0.254
+          staticAssignments:
+            00:00:00:00:00:BB: 192.168.0.50
+        dns:
+          1.2.3.4: foo.com
+</code></pre></div>
+
+<ul>
+<li>
+<p><code>ipsec</code>: if present, point-to-point IPSec tunnels are nailed up between the
+  list of given IP addresses and traffic between the given networks is tunneled.</p>
+<ul>
+<li>
+<p><code>local</code>: IP address on a local interface (e.g. this router) to bind the
+  IPSec tunnel to. It must have a route to the <code>peer</code> IP address.</p>
+</li>
+<li>
+<p><code>peer</code>: remote IP address to create the IPSec tunnel with.</p>
+</li>
+<li>
+<p><code>tunnels</code>: list of local and remote networks to tunnel through this
+  point-to-point connection.</p>
+<ul>
+<li>
+<p><code>local</code>: local network to tunnel to the given remote network.</p>
+</li>
+<li>
+<p><code>remote</code>: remote network to tunnel to the given local network.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>acl</code>: if present, access control lists (ACLs / firewall rules) are created on
+  the router per the defined rulesets.</p>
+<ul>
+<li>
+<p><code>ingress</code>: for each interface-to-ruleset mapping, apply the given ruleset
+  to the given interface for inbound traffic. Note that the interface name
+  used (in this example, <code>IF0</code>) refers to the name given to a network
+  interface in the router's topology configuration.</p>
+</li>
+<li>
+<p><code>egress</code>: for each interface-to-ruleset mapping, apply the given ruleset
+  to the given interface for outbound traffic.</p>
+</li>
+<li>
+<p><code>rulesets</code>: list of rulesets to create on the router.</p>
+</li>
+<li>
+<p><code>name</code>: name of the ruleset; used in the interface-to-ruleset mapping in
+    the <code>ingress/egress</code> sections.</p>
+</li>
+<li>
+<p><code>default</code>: default action to apply to traffic that doesn't match any
+    rules.</p>
+</li>
+<li>
+<p><code>rules</code>: list of rules to apply to traffic.</p>
+<ul>
+<li>
+<p><code>action</code>: action to apply to traffic matching rule.</p>
+</li>
+<li>
+<p><code>source</code>: map describing what source to limit matching traffic to. If
+  not provided, all sources are matched.</p>
+</li>
+<li>
+<p><code>address</code>: source address to limit matching traffic to. If not
+    provided, all source addresses are matched.</p>
+</li>
+<li>
+<p><code>port</code>: source port to limit matching traffic to. If not
+    provided, all source ports are matched.</p>
+</li>
+<li>
+<p><code>destination</code>: map describing what destination to limit matching
+  traffic to. If not provided, all sources are matched.</p>
+</li>
+<li>
+<p><code>address</code>: destination address to limit matching traffic to. If not
+    provided, all destination addresses are matched.</p>
+</li>
+<li>
+<p><code>port</code>: destination port to limit matching traffic to. If not
+    provided, all destination ports are matched.</p>
+</li>
+<li>
+<p><code>protocol</code>: IP protocol to limit matching traffic to. If not provided,
+  all protocols are matched.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>dhcp</code>: if present, DHCP is configured on the router per the provided list.</p>
+</li>
+<li>
+<p><code>listenAddress</code>: IP address on a local interface (e.g. this router) to bind
+    this DHCP configuration to.</p>
+</li>
+<li>
+<p><code>ranges</code>: list of IP address low/high ranges to use for DHCP assignments.
+    The IP addresses must be within the IP network of the <code>listenAddress</code>.</p>
+</li>
+<li>
+<p><code>defaultRoute</code>: default gateway to be included in DHCP leases.</p>
+</li>
+<li>
+<p><code>dnsServers</code>: list of DNS servers to be included in DHCP leases.</p>
+</li>
+<li>
+<p><code>staticAssignments</code>: map of MAC-to-IP assignments to use for static DHCP
+    addresses.</p>
+</li>
+<li>
+<p><code>dns</code>: if present, map of IP-to-domain DNS entries to create on the router.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, the <code>ipsec</code> metadata section only applies to Vyatta/VyOS routers.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, the <code>dhcp</code> and <code>dns</code> metadata sections only apply to minirouter
+routers.</p>
+</div>
 <h2 id="additional-core-apps">Additional Core Apps<a class="headerlink" href="#additional-core-apps" title="Permanent link">&para;</a></h2>
 <p>The apps listed below are provided by the core <code>phenix</code> application, but are not
 considered default apps since they do not get applied to every experiment by

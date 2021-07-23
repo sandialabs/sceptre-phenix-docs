@@ -9,12 +9,160 @@ to apply _user apps_ to an experiment using a
 
 ## Default Apps
 
-|         |                                                                               |
-|---------|-------------------------------------------------------------------------------|
-| ntp     | provides/configures NTP service for experiment                                |
-| serial  | configures serial interfaces in VM images                                     |
-| startup | configures minimega startup injections based on OS type                       |
-| vrouter | customizes Vyatta/VyOS routers, including setting interfaces, ACL rules, etc. |
+|         |                                                                                              |
+|---------|----------------------------------------------------------------------------------------------|
+| ntp     | provides/configures NTP service for experiment                                               |
+| serial  | configures serial interfaces in VM images                                                    |
+| startup | configures minimega startup injections based on OS type                                      |
+| vrouter | customizes Vyatta/VyOS and minirouter routers, including setting interfaces, ACL rules, etc. |
+
+### vrouter App
+
+As of commit `e276a5b`, the `vrouter` app also supports the use of minimega's
+`minirouter` to include interface configuration, DHCP and DNS configuration,
+firewall rules, etc.
+
+!!! note
+    Support for firewall rules with `minirouter` currently requires the use of
+    the `activeshadow/minimega@minifw` branch until [PR
+    1456](https://github.com/sandia-minimega/minimega/pull/1456) is merged.
+
+The following is an example of how the `vrouter` app can be configured via a
+`Scenario` configuration, showing all the possible options.
+
+```
+spec:
+  apps:
+  - name: vrouter
+    hosts:
+    - hostname: rtr
+      metadata:
+        ipsec:
+        - local: 10.0.10.2
+          peer: 10.0.40.2
+          tunnels:
+          - local: 192.168.10.0/24
+            remote: 192.168.100.0/24
+        acl:
+          ingress:
+            IF0: in-rules
+          rulesets:
+          - name: in-rules
+            default: drop
+            rules:
+            - action: accept
+              description: Allow Incoming HTTP
+              source:
+                address: 192.168.0.0/24
+              destination:
+                address: 10.0.0.0/24
+                port: 80
+              protocol: tcp
+        dhcp:
+        - listenAddress: 10.0.0.254
+          ranges:
+          - lowAddress: 10.0.0.10
+            highAddress: 10.0.0.20
+          defaultRoute: 10.0.0.254
+          dnsServers:
+          - 10.0.0.254
+          staticAssignments:
+            00:00:00:00:00:AA: 10.0.0.50
+        - listenAddress: 192.168.0.254
+          ranges:
+          - lowAddress: 192.168.0.10
+            highAddress: 192.168.0.20
+          defaultRoute: 192.168.0.254
+          dnsServers:
+          - 192.168.0.254
+          staticAssignments:
+            00:00:00:00:00:BB: 192.168.0.50
+        dns:
+          1.2.3.4: foo.com
+```
+
+* `ipsec`: if present, point-to-point IPSec tunnels are nailed up between the
+  list of given IP addresses and traffic between the given networks is tunneled.
+
+    * `local`: IP address on a local interface (e.g. this router) to bind the
+      IPSec tunnel to. It must have a route to the `peer` IP address.
+
+    * `peer`: remote IP address to create the IPSec tunnel with.
+
+    * `tunnels`: list of local and remote networks to tunnel through this
+      point-to-point connection.
+
+        * `local`: local network to tunnel to the given remote network.
+
+        * `remote`: remote network to tunnel to the given local network.
+
+* `acl`: if present, access control lists (ACLs / firewall rules) are created on
+  the router per the defined rulesets.
+
+    * `ingress`: for each interface-to-ruleset mapping, apply the given ruleset
+      to the given interface for inbound traffic. Note that the interface name
+      used (in this example, `IF0`) refers to the name given to a network
+      interface in the router's topology configuration.
+
+    * `egress`: for each interface-to-ruleset mapping, apply the given ruleset
+      to the given interface for outbound traffic.
+
+    * `rulesets`: list of rulesets to create on the router.
+
+      * `name`: name of the ruleset; used in the interface-to-ruleset mapping in
+        the `ingress/egress` sections.
+
+      * `default`: default action to apply to traffic that doesn't match any
+        rules.
+
+      * `rules`: list of rules to apply to traffic.
+
+        * `action`: action to apply to traffic matching rule.
+
+        * `source`: map describing what source to limit matching traffic to. If
+          not provided, all sources are matched.
+
+          * `address`: source address to limit matching traffic to. If not
+            provided, all source addresses are matched.
+
+          * `port`: source port to limit matching traffic to. If not
+            provided, all source ports are matched.
+
+        * `destination`: map describing what destination to limit matching
+          traffic to. If not provided, all sources are matched.
+
+          * `address`: destination address to limit matching traffic to. If not
+            provided, all destination addresses are matched.
+
+          * `port`: destination port to limit matching traffic to. If not
+            provided, all destination ports are matched.
+
+        * `protocol`: IP protocol to limit matching traffic to. If not provided,
+          all protocols are matched.
+
+* `dhcp`: if present, DHCP is configured on the router per the provided list.
+
+  * `listenAddress`: IP address on a local interface (e.g. this router) to bind
+    this DHCP configuration to.
+
+  * `ranges`: list of IP address low/high ranges to use for DHCP assignments.
+    The IP addresses must be within the IP network of the `listenAddress`.
+
+  * `defaultRoute`: default gateway to be included in DHCP leases.
+
+  * `dnsServers`: list of DNS servers to be included in DHCP leases.
+
+  * `staticAssignments`: map of MAC-to-IP assignments to use for static DHCP
+    addresses.
+
+* `dns`: if present, map of IP-to-domain DNS entries to create on the router.
+
+!!! note
+    Currently, the `ipsec` metadata section only applies to Vyatta/VyOS routers.
+
+!!! note
+    Currently, the `dhcp` and `dns` metadata sections only apply to minirouter
+    routers.
 
 ## Additional Core Apps
 

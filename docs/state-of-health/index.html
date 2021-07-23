@@ -657,6 +657,19 @@ in detail below.</p>
       appMetadataProfileKey: sohProfile # metadata key to look for in other apps
       c2Timeout: 5m
       exitOnError: false
+      hostCustomTests:
+        host-00:
+        - name: FooBarTest
+          testScript: |
+            cat /etc/passwd | grep root
+          testStdout: root
+          executor: bash
+        host-01:
+        - name: SuckaTest.ps1
+          testScript: |
+            Get-Process miniccc -ErrorAction SilentlyContinue
+          testStdout: miniccc
+          executor: powershell -NoProfile -ExecutionPolicy bypass -File
       hostListeners:
         client:
         - :502
@@ -688,6 +701,17 @@ in detail below.</p>
       - kali.qc2 # can be an image name, in which case any host using image will be skipped
       - foobar-host # can be hostname from topology
       testReachability: full # can be off, sample, or full
+      testCustomReachability:
+      - src: host-00
+        dst: host-01|IF0
+        proto: tcp
+        port: 22
+        wait: 30s
+      - src: host-01
+        dst: host-00|IF0
+        proto: tcp
+        port: 22
+        wait: 30s
 </code></pre></div>
 
 <h3 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link">&para;</a></h3>
@@ -708,6 +732,31 @@ in detail below.</p>
 <li>
 <p><code>exitOnError</code>: a boolean representing whether the app should cause the entire
   experiment deployment to fail if it has any errors. The default is <code>false</code>.</p>
+</li>
+<li>
+<p><code>hostCustomTests</code>: If present, a map of custom tests to run on the given
+  hosts.</p>
+<ul>
+<li>
+<p><code>name</code>: name of test. Used as script name to be sent to the host.</p>
+</li>
+<li>
+<p><code>testScript</code>: the actual script (can be multiple lines) to be executed
+  using the specified <code>executor</code>.</p>
+</li>
+<li>
+<p><code>executor</code>: the application to execute the <code>testScript</code> with (e.g. <code>bash</code>,
+  <code>powershell</code>).</p>
+</li>
+<li>
+<p><code>testStdout</code>: a string to look for in STDOUT from the executed script. If
+  found, the test passes. If not found, it fails.</p>
+</li>
+<li>
+<p><code>testStderr</code>: a string to look for in STDERR from the executed script. If
+  found, the test passes. If not found, it fails.</p>
+</li>
+</ul>
 </li>
 <li>
 <p><code>hostListeners</code>: a map of VMs, each specifying a list of listening ports to
@@ -815,6 +864,36 @@ in detail below.</p>
 </li>
 </ul>
 </li>
+<li>
+<p><code>testCustomReachability</code>: if present, a list of custom reachability test
+  settings.</p>
+<ul>
+<li>
+<p><code>src</code>: hostname to conduct test from.</p>
+</li>
+<li>
+<p><code>dst</code>: hostname and interface name (e.g. <code>host-01|IF0</code>) to conduct test
+  to.</p>
+</li>
+<li>
+<p><code>proto</code>: protocol to use for test. Currently the options are <code>tcp</code> and
+  <code>udp</code>. If <code>udp</code> is used, the <code>udpPacketBase64</code> setting must be provided.</p>
+</li>
+<li>
+<p><code>port</code>: destination port to conduct test to.</p>
+</li>
+<li>
+<p><code>wait</code>: amount of time to wait for a response from the destination. If not
+  provided, the default of <code>5s</code> is used.</p>
+</li>
+<li>
+<p><code>udpPacketBase64</code>: a base64-encoded packet to send when testing using
+  <code>udp</code>. This is required to generate a response over UDP to determine if
+  the remote server is up and reachable. The given packet must be valid
+  enough to generate a response from the server.</p>
+</li>
+</ul>
+</li>
 </ul>
 <h3 id="network-reachability">Network Reachability<a class="headerlink" href="#network-reachability" title="Permanent link">&para;</a></h3>
 <p>Testing network reachability for a VM requires that the VM has minimega's
@@ -832,6 +911,12 @@ agent active, but its network has to be configured manually, it will not be
 included in reachability tests during the post-start stage. Once the VM's
 network settings have been configured manually, the running stage can be
 triggered and the VM will be included in reachability tests this time around.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Support for custom reachability testing using TCP or UDP currently requires
+the use of the <code>activeshadow/minimega@tcp-conn-test</code> branch until <a href="https://github.com/sandia-minimega/minimega/pull/1457">PR
+1457</a> is merged.</p>
+</div>
 <h3 id="injecting-icmp-rules">Injecting ICMP Rules<a class="headerlink" href="#injecting-icmp-rules" title="Permanent link">&para;</a></h3>
 <p>The <code>injectICMPAllow</code> option can be used to add rules to routers/firewalls in
 the topology to prevent reachability tests from failing due to ACLs. When
@@ -870,7 +955,7 @@ Linux VMs include the following:</p>
 <li><code>ip addr</code></li>
 <li><code>ip route</code></li>
 <li><code>ping -c 1 &lt;ip&gt;</code></li>
-<li><code>pgrep &lt;process&gt;</code></li>
+<li><code>pgrep -f &lt;process&gt;</code></li>
 <li><code>ss -lntu state all 'sport = &lt;port&gt;'</code></li>
 <li><code>cat /proc/loadavg</code></li>
 </ul>

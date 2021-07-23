@@ -118,6 +118,19 @@ spec:
       appMetadataProfileKey: sohProfile # metadata key to look for in other apps
       c2Timeout: 5m
       exitOnError: false
+      hostCustomTests:
+        host-00:
+        - name: FooBarTest
+          testScript: |
+            cat /etc/passwd | grep root
+          testStdout: root
+          executor: bash
+        host-01:
+        - name: SuckaTest.ps1
+          testScript: |
+            Get-Process miniccc -ErrorAction SilentlyContinue
+          testStdout: miniccc
+          executor: powershell -NoProfile -ExecutionPolicy bypass -File
       hostListeners:
         client:
         - :502
@@ -149,6 +162,17 @@ spec:
       - kali.qc2 # can be an image name, in which case any host using image will be skipped
       - foobar-host # can be hostname from topology
       testReachability: full # can be off, sample, or full
+      testCustomReachability:
+      - src: host-00
+        dst: host-01|IF0
+        proto: tcp
+        port: 22
+        wait: 30s
+      - src: host-01
+        dst: host-00|IF0
+        proto: tcp
+        port: 22
+        wait: 30s
 ```
 
 ### Configuration Options
@@ -166,6 +190,23 @@ spec:
 
 * `exitOnError`: a boolean representing whether the app should cause the entire
   experiment deployment to fail if it has any errors. The default is `false`.
+
+* `hostCustomTests`: If present, a map of custom tests to run on the given
+  hosts.
+
+    * `name`: name of test. Used as script name to be sent to the host.
+
+    * `testScript`: the actual script (can be multiple lines) to be executed
+      using the specified `executor`.
+
+    * `executor`: the application to execute the `testScript` with (e.g. `bash`,
+      `powershell`).
+
+    * `testStdout`: a string to look for in STDOUT from the executed script. If
+      found, the test passes. If not found, it fails.
+
+    * `testStderr`: a string to look for in STDERR from the executed script. If
+      found, the test passes. If not found, it fails.
 
 * `hostListeners`: a map of VMs, each specifying a list of listening ports to
   check for within the VM. If the port can be listening on any interface, the
@@ -248,6 +289,27 @@ spec:
     * `full`: each VM in the experiment will attempt to ping every other VM in
       every other experiment VLAN.
 
+* `testCustomReachability`: if present, a list of custom reachability test
+  settings.
+
+    * `src`: hostname to conduct test from.
+
+    * `dst`: hostname and interface name (e.g. `host-01|IF0`) to conduct test
+      to.
+
+    * `proto`: protocol to use for test. Currently the options are `tcp` and
+      `udp`. If `udp` is used, the `udpPacketBase64` setting must be provided.
+
+    * `port`: destination port to conduct test to.
+
+    * `wait`: amount of time to wait for a response from the destination. If not
+      provided, the default of `5s` is used.
+
+    * `udpPacketBase64`: a base64-encoded packet to send when testing using
+      `udp`. This is required to generate a response over UDP to determine if
+      the remote server is up and reachable. The given packet must be valid
+      enough to generate a response from the server.
+
 ### Network Reachability
 
 Testing network reachability for a VM requires that the VM has minimega's
@@ -266,6 +328,11 @@ agent active, but its network has to be configured manually, it will not be
 included in reachability tests during the post-start stage. Once the VM's
 network settings have been configured manually, the running stage can be
 triggered and the VM will be included in reachability tests this time around.
+
+!!! note
+    Support for custom reachability testing using TCP or UDP currently requires
+    the use of the `activeshadow/minimega@tcp-conn-test` branch until [PR
+    1457](https://github.com/sandia-minimega/minimega/pull/1457) is merged.
 
 ### Injecting ICMP Rules
 
