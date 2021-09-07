@@ -25,6 +25,8 @@ extra:
   social:
     - icon: 'fontawesome/brands/github'
       link: 'https://github.com/sandia-minimega/phenix'
+    - icon: 'fontawesome/solid/cog'
+      link: '/swagger.html'
 
 extra_css:
   - stylesheets/style.css
