@@ -565,7 +565,7 @@ editor window; nothing will be saved.
 Changing the name in an existing config is only available through the editor
 window.
 
-    ![screenshot](images/disabled.png){: width=600 .center}
+  ![screenshot](images/disabled.png){: width=600 .center}
 
 Selecting the `Save` button will post any updates server-side for validation and
 addition to the store. Selecting the `Exit` button will leave the editor window;
@@ -577,4 +577,4 @@ Selecting the delete icon will delete a config. A confirmation dialog will be
 presented to confirm the selection. Once the config is deleted, it cannot be
 restored to the store.
 
-    ![screenshot](images/delete.png){: width=150 .center}
+  ![screenshot](images/actions.png){: width=150 .center}
