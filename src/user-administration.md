@@ -1,4 +1,4 @@
-# User Administration in phēnix
+# User Administration in phenix
 
 ## Create a new user
 

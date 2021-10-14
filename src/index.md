@@ -123,7 +123,7 @@ details.
 The following output results from `bin/phenix help`:
 
 ```
-A cli application for phēnix
+A cli application for phenix
 
 Usage:
   phenix [flags]

@@ -174,6 +174,7 @@ application instead of as a stand-alone executable.
 |     |                                                      |
 |-----|------------------------------------------------------|
 | soh | provide state of health monitoring for an experiment |
+| scorch | [Scorch](/scorch) &mdash; **SC**enario **ORCH**estration &mdash; is an automated scenario orchestration framework within phenix |
 
 ## User Apps
 
