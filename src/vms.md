@@ -8,19 +8,33 @@ The experiment must be started; click on the experiment name to enter the
 Running Experiment component. Within that component, click on the VM name and
 you will be presented with a VM information modal.
 
-![screenshot](images/vm_diag.png){: width=400 .center}
+![screenshot](images/vms_vm_info.png)
 
 Available commands
 
 * `restore` a snapshot by clicking the play button next to the desired snapshot name.
 
-Buttons from left to right on the footer of modal:
+Buttons from left to right:
 
-* `pause` a running VM with the pause button
-* Create a `snapshot` of a running VM with the camera button
-* Create a `backing image` of a running VM with the floppy disk button
-* `redeploy` a running VM with the yellow power button
-* `kill` a running VM with the trash can 
+* `pause` a running VM
+* Create a `memory snapshot` of a running VM
+* Create a `backing image` of a running VM
+* Create a `snapshot` of a running VM
+* `record screenshot` of a running VM
+* `modify state` opens another toolbar of buttons
+
+#### Modify State Toolbar
+
+![screenshot](images/vms_modify_state_tlbar.png)
+
+Buttons from left to right:
+
+* `redeploy` a running VM
+* `reset disk state` of a running VM
+* `restart` a running VM
+* `shutdown` a running VM
+* `kill` a running VM
+* `close` modify state toolbar
 
 ### From the Command Line Binary
 
@@ -34,6 +48,49 @@ Or, run the following to see the information for a specific VM in an experiment.
 ```
 $> phenix vm info <experiment name> <vm name>
 ```
+
+## Create a Backing Image
+
+### From the Web-UI
+
+Click on the name of a running VM in a started experiment to access the VM information 
+modal.  Click the `create backing image` button as shown in the screenshot below.
+
+![screenshot](images/vms_backing_image.png)
+
+### From the Command Line Binary
+
+Not applicable.
+
+## Create a Memory Snapshot
+
+### From the Web-UI
+
+Click on the name of a running VM in a started experiment to access the VM information
+modal.  Click the `memory snapshot` button as shown in the screenshot below.
+
+![screenshot](images/vms_memory_snapshot.png)
+
+### From the Command Line Binary
+
+To create an ELF memory dump, run the following command.
+
+```
+$> phenix vm memory-snapshot <experiment name> <vm name> <snapshot file path>
+```
+
+## Create a VM Snapshot
+
+### From the Web-UI
+
+Click on a running VM in a started experiment to access the VM information
+modal.  Click the `vm snapshot` button as shown in the screenshot below.
+
+![screenshot](images/vms_snapshot.png)
+
+### From the Command Line Binary
+
+Not applicable.
 
 ## VM VNC Access
 
@@ -73,8 +130,12 @@ $> phenix vm capture stop <experiment name> <vm name>
 
 ### From the Web-UI
 
-Click on a running VM in a started experiment to access the VM information modal. 
-The red trash can icon to the far right of the modal footer will kill that VM. 
+Click on the name of a running VM in a started experiment to access the VM information 
+modal. Click the `modify state` button on the far right to open the modify state toolbar.
+Click the `kill` button as shown in the screenshot below.
+
+![screenshot](images/vms_kill.png)
+
 _Note_: if you stop and then start the experiment again, that VM will run again 
 per the experiment configuration.
 
@@ -114,9 +175,11 @@ $> phenix vm net disconnect <experiment name> <vm name> <iface index>
 ### From the Web-UI
 
 Click on the name of a running VM in a started experiment to access the VM information 
-modal. To pause a VM, click on the pause button (pause button, furthest button to the 
-left). To start a paused VM, that same button will become a green play button; simply 
+modal. To pause a VM, click on the `pause` button as shown in the screenshot below.
+To start a paused VM, that same button will become a green play button; simply 
 click it to start.
+
+![screenshot](images/vms_pause.png)
 
 ### From the Command Line Binary
 
@@ -135,9 +198,10 @@ $> phenix vm resume <experiment name> <vm name>
 ### From the Web-UI
 
 Click on the name of a running VM in a started experiment to access the VM information 
-modal. To redeploy a VM, click on the redeploy button (yellow power button, second from 
-the right). You will be able to modify the settings for CPU, Memory, Disk, and whether 
-to replicate original injections before you redeploy the VM.
+modal. Click the `modify state` button on the far right to open the modify state toolbar.
+Click the `redeploy` button as shown in the screenshot below.
+
+![screenshot](images/vms_redeploy.png)
 
 ### From the Command Line Binary
 
@@ -145,6 +209,42 @@ To redploy a VM, run the following command.
 
 ```
 $> phenix vm redeploy <experiment name> <vm name>
+```
+
+## Reset Disk State
+
+### From the Web-UI
+
+Click on the name of a running VM in a started experiment to access the VM information 
+modal. Click the `modify state` button on the far right to open the modify state toolbar.
+Click the `reset disk state` button as shown in the screenshot below.
+
+![screenshot](images/vms_reset_disk_state.png)
+
+### From the Command Line Binary
+
+To reset the first disk to the initial pre-boot state, run the following command.
+
+```
+$> phenix vm reset-disk <experiment name> <vm name>
+```
+
+## Restart a VM
+
+### From the Web-UI
+
+Click on the name of a running VM in a started experiment to access the VM information 
+modal. Click the `modify state` button on the far right to open the modify state toolbar.
+Click the `restart` button as shown in the screenshot below.
+
+![screenshot](images/vms_restart.png)
+
+### From the Command Line Binary
+
+To restart a VM, run the following command.
+
+```
+$> phenix vm restart <experiment name> <vm name>
 ```
 
 ## Resume a VM
@@ -162,7 +262,24 @@ To resume a paused VM, run the following command.
 ```
 $> phenix vm resume <experiment name> <vm name>
 ```
-<br>
+
+## Shutdown a VM
+
+### From the Web-UI
+
+Click on the name of a running VM in a started experiment to access the VM information 
+modal. Click the `modify state` button on the far right to open the modify state toolbar.
+Click the `shutdown` button as shown in the screenshot below.
+
+![screenshot](images/vms_shutdown.png)
+
+### From the Command Line Binary
+
+To shutdown a VM, run the following command.
+
+```
+$> phenix vm shutdown <experiment name> <vm name>
+```
 
 ## Modify VM Settings
 
@@ -193,3 +310,9 @@ $> phenix cfg edit topology/<topology name>
 ```
 
 This will launch the system editor where you can directly modify the experiment settings.
+
+## Applying Actions to Multiple VMs
+
+!!! note
+    See [VM Multi Action](vm-multi-action.md) for documentation on applying
+    actions to multiple VMs at once.
