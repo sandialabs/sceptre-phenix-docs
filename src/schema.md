@@ -190,6 +190,39 @@ Node:
           default: false
           example: false
           nullable: true
+    delay:
+      type: object
+      title: Delayed start
+      default: null
+      properties:
+        user:
+          type: boolean
+          title: User triggered boot
+          default: false
+          example: true
+        timer:
+          type: string
+          title: Timer triggered boot
+          minLength: 2
+          example: 5m
+        c2:
+          type: array
+          title: Command and control triggered boot
+          items:
+            type: object
+            title: Host
+            required:
+            - hostname
+            properties:
+              hostname:
+                type: string
+                title: Hostname
+                example: VM1
+              useUUID:
+                type: boolean
+                title: Use UUID instead of hostname
+                default: false
+                example: true
     hardware:
       type: object
       title: Node Hardware Configuration
@@ -352,7 +385,7 @@ Node:
                       required:
                       - network
                       properties:
-                        network: 
+                        network:
                           type: string
                           title: Network
                           minLength: 1
@@ -982,7 +1015,7 @@ components:
                           required:
                           - network
                           properties:
-                            network: 
+                            network:
                               type: string
                               title: Network
                               minLength: 1
