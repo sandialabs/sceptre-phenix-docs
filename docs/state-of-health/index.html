@@ -721,6 +721,8 @@ in detail below.</p>
         - miniccc
         server:
         - miniccc
+      hostsToUseUUIDForC2Active:
+      - host-02
       injectICMPAllow: true
       packetCapture:
         elasticImage: /phenix/images/elasticsearch.qc2
@@ -807,6 +809,14 @@ in detail below.</p>
 <li>
 <p><code>hostProcesses</code>: a map of VMs, each specifying a list of process names to
   check for within the VM. The default is <code>nil</code>.</p>
+</li>
+<li>
+<p><code>hostsToUseUUIDForC2Active</code>: a list of topology hostnames to use the minimega
+  VM UUID for when determining if their cc agent is active. This is useful for
+  topology nodes that are configured with snapshots disabled, preventing their
+  hostname from getting updated when booted. Note that this configuration option
+  also supports being set to <code>all</code> (e.g., <code>hostsToUseUUIDForC2Active: all</code>) if a
+  user wishes to use the minimega VM UUID for all topology nodes.</p>
 </li>
 <li>
 <p><code>injectICMPAllow</code>: a boolean representing whether any existing firewall/router
