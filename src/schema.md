@@ -555,6 +555,10 @@ iface:
       type: string
       title: OpenVSwitch Bridge
       default: phenix
+    driver:
+      type: string
+      title: QEMU network device driver (qemu-kvm -device help)
+      example: e1000
 iface_address:
   type: object
   required:
