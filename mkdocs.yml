@@ -2,8 +2,9 @@ site_name: 'phenix documentation'
 site_description: 'A place for phenix users to call home.'
 site_author: 'activeshadow and dnkcom'
 
-repo_name: 'sandia-minimega/phenix-docs'
-repo_url: 'https://github.com/sandia-minimega/phenix-docs'
+repo_name: 'sandia-minimega/phenix'
+repo_url: 'https://github.com/sandia-minimega/phenix'
+edit_uri: 'https://github.com/sandia-minimega/phenix-docs/edit/main/src'
 
 docs_dir: src
 site_dir: docs
@@ -16,16 +17,28 @@ theme:
   favicon: images/favicon.ico
   logo: images/phenix.png
   palette:
-    primary: 'deep orange'
-    accent: 'brown'
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: 'deep orange'
+      accent: 'brown'
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: 'deep orange'
+      accent: 'brown'
+      toggle:
+        icon: material/brightness-3
+        name: Switch to light mode
   custom_dir: 'theme'
   include_sidebar: true
 
 extra:
   social:
     - icon: 'fontawesome/brands/github'
-      link: 'https://github.com/sandia-minimega/phenix'
-    - icon: 'fontawesome/solid/cog'
+      link: 'https://github.com/sandia-minimega/phenix-docs'
+    - icon: 'fontawesome/solid/gear'
       link: '/swagger.html'
 
 extra_css:

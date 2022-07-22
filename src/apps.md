@@ -22,11 +22,6 @@ As of commit `e276a5b`, the `vrouter` app also supports the use of minimega's
 `minirouter` to include interface configuration, DHCP and DNS configuration,
 firewall rules, etc.
 
-!!! note
-    Support for firewall rules with `minirouter` currently requires the use of
-    the `activeshadow/minimega@minifw` branch until [PR
-    1456](https://github.com/sandia-minimega/minimega/pull/1456) is merged.
-
 The following is an example of how the `vrouter` app can be configured via a
 `Scenario` configuration, showing all the possible options.
 
@@ -173,8 +168,87 @@ application instead of as a stand-alone executable.
 
 |     |                                                      |
 |-----|------------------------------------------------------|
-| soh | provide state of health monitoring for an experiment |
-| scorch | [Scorch](/scorch) &mdash; **SC**enario **ORCH**estration &mdash; is an automated scenario orchestration framework within phenix |
+| scorch | [Scorch](scorch.md) &mdash; **SC**enario **ORCH**estration &mdash; is an automated scenario orchestration framework within phenix |
+| soh | provide [state of health](state-of-health.md) monitoring for an experiment |
+| tap | manage host taps (typically used for external network access) for an experiment |
+
+### tap App
+
+The `tap` app manages the creation and removal of host taps needed by
+experiments to access external network resources. This includes creating the tap
+in a network namespace (`netns`) to avoid interface address collisions with
+other experiments, connecting the netns with the system network to enable
+external network access, and modifying iptables to allow external network access
+from the tapped experiment VLAN.
+
+!!! note
+    Host taps can also be used to access VM network resources directly from the
+    host the VM is running on. This is an advanced topic that will be documented
+    soon.
+
+In order for a tap to have access to experiment VMs in the tapped VLAN, it must
+have an IP address on the same subnet as the rest of the VMs in the VLAN.
+Attempting to tap multiple experiments could fail if the VLANs being tapped are
+using the same subnet, so the tap is put into a netns to provide isolation and
+avoid address collisions.
+
+With the tap in a netns, however, it no longer has a path to external networks
+via the system's default netns. To remedy this, a `veth pair` is used to connect
+the tap's netns with the default netns. A very small (`/30`) IP subnet is used
+for the veth pair, and phenix manages the selection and tracking of the subnets
+used for each pair to avoid collisions.
+
+With the veth pair in place, packets from the experiment VLAN can now be routed
+externally with the help of IP masquerading in both the tap's netns and the
+default netns.
+
+!!! warning
+    This has not been fully tested against all the possible iptables firewall
+    configurations. If you experience problems with external access, it may be
+    due to a more restrictive iptables configuration than we've tested with.
+
+The following is an example of how the `tap` app can be configured via a
+`Scenario` configuration, showing all the possible options.
+
+!!! note
+    The `externalAccess.firewall` portion of the tap configuration has not been
+    implemented yet.
+
+```
+spec:
+  apps:
+  - name: tap
+    metadata:
+      # the bridge to add the tap to (will default to 'phenix' if not provided)
+    - bridge: phenix
+      # the experiment VLAN to tap
+      vlan: MGMT
+      # IP address to use for host tap -- VMs on the tapped VLAN would use this
+      # address as their gateway if they need external access (and it's enabled
+      # below)
+      ip: 172.20.5.254/24
+      externalAccess:
+        # defaults to false
+        enabled: true
+        # this section is planned, but not implemented yet
+        firewall:
+          # default action to take if none of the rules below match a packet
+          default: drop
+          rules:
+            # action to take if a packet matches this rule
+          - action: accept
+            description: Only allow web access
+            source:
+              # can also use `addresses` to specify a list of addresses
+              address: 172.20.5.0/29
+            destination:
+              address: 10.0.0.0/24
+              # can also use `port` to specify a single port
+              ports: [80, 443]
+            # can also use `protocols` to specify a list of protocols
+            protocol: tcp
+
+```
 
 ## User Apps
 
