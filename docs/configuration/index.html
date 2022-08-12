@@ -332,6 +332,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#network-address-translation-nat" class="md-nav__link">
+    Network Address Translation (NAT)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -705,6 +712,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#network-address-translation-nat" class="md-nav__link">
+    Network Address Translation (NAT)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1002,6 +1016,21 @@ tag in the Delay column next to the Screenshot column. The tag will indicate
 what type of dealy was set. Once all the delayed VMs have started, the Delay
 column will no longer be visible.</p>
 </div>
+<h4 id="network-address-translation-nat">Network Address Translation (NAT)<a class="headerlink" href="#network-address-translation-nat" title="Permanent link">&para;</a></h4>
+<p>For nodes of type <code>Router</code>, basic source NAT can be configured to masquerade
+packets from one or more networks out a specific interface. For example, assume
+a router has three interfaces &mdash; <code>eth0, eth1, eth2</code>. <code>eth0</code> is connected to
+the Internet, while <code>eth1, eth2</code> are connected to networks that use private IP
+space. To masquerade packets from <code>eth1, eth2</code> out <code>eth0</code> the following
+configuration could be used.</p>
+<div class="codehilite"><pre><span></span><code>network:
+  nat:
+    - out: eth0
+      in:
+        - eth1
+        - eth2
+</code></pre></div>
+
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>A contrived, four node example &mdash; three VMs and a router &mdash; is given
 below, and is driven by the

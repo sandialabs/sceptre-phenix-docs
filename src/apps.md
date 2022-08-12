@@ -74,6 +74,28 @@ spec:
             00:00:00:00:00:BB: 192.168.0.50
         dns:
           1.2.3.4: foo.com
+        snat:
+        - interface: IF0
+          srcAddr: 192.168.0.0/24
+          translation: masquerade
+        dnat:
+        - interface: IF1
+          dstAddr: 10.0.0.1
+          dstPort: 80
+          protocol: tcp
+          translation: 192.168.0.250:8080
+        emulators:
+        - ingress:
+          - IF0
+          egress:
+          - IF1
+          name: comcast
+          bandwidth: 400kbit
+          burst: 15kb
+          delay: 500ms
+          corruption: 5%
+          loss: 10%
+          reordering: 5%
 ```
 
 * `ipsec`: if present, point-to-point IPSec tunnels are nailed up between the
@@ -135,6 +157,9 @@ spec:
         * `protocol`: IP protocol to limit matching traffic to. If not provided,
           all protocols are matched.
 
+        * `stateful`: if true, enable established and related traffic for this
+          ruleset.
+
 * `dhcp`: if present, DHCP is configured on the router per the provided list.
 
   * `listenAddress`: IP address on a local interface (e.g. this router) to bind
@@ -153,7 +178,12 @@ spec:
 * `dns`: if present, map of IP-to-domain DNS entries to create on the router.
 
 !!! note
-    Currently, the `ipsec` metadata section only applies to Vyatta/VyOS routers.
+    Currently, the `ipsec`, `emulators`, and `snat/dnat` metadata sections only
+    apply to Vyatta/VyOS routers.
+
+!!! note
+    Currently, the `stateful` setting for ACL rules only applies to Vyatta/VyOS
+    routers.
 
 !!! note
     Currently, the `dhcp` and `dns` metadata sections only apply to minirouter

@@ -115,6 +115,24 @@ three options available to set, but on only one option can be set:
     what type of dealy was set. Once all the delayed VMs have started, the Delay
     column will no longer be visible.
 
+#### Network Address Translation (NAT)
+
+For nodes of type `Router`, basic source NAT can be configured to masquerade
+packets from one or more networks out a specific interface. For example, assume
+a router has three interfaces &mdash; `eth0, eth1, eth2`. `eth0` is connected to
+the Internet, while `eth1, eth2` are connected to networks that use private IP
+space. To masquerade packets from `eth1, eth2` out `eth0` the following
+configuration could be used.
+
+```
+network:
+  nat:
+    - out: eth0
+      in:
+        - eth1
+        - eth2
+```
+
 ### Example
 
 A contrived, four node example &mdash; three VMs and a router &mdash; is given

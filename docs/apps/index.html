@@ -704,6 +704,28 @@ firewall rules, etc.</p>
             00:00:00:00:00:BB: 192.168.0.50
         dns:
           1.2.3.4: foo.com
+        snat:
+        - interface: IF0
+          srcAddr: 192.168.0.0/24
+          translation: masquerade
+        dnat:
+        - interface: IF1
+          dstAddr: 10.0.0.1
+          dstPort: 80
+          protocol: tcp
+          translation: 192.168.0.250:8080
+        emulators:
+        - ingress:
+          - IF0
+          egress:
+          - IF1
+          name: comcast
+          bandwidth: 400kbit
+          burst: 15kb
+          delay: 500ms
+          corruption: 5%
+          loss: 10%
+          reordering: 5%
 </code></pre></div>
 
 <ul>
@@ -791,6 +813,10 @@ firewall rules, etc.</p>
 <p><code>protocol</code>: IP protocol to limit matching traffic to. If not provided,
   all protocols are matched.</p>
 </li>
+<li>
+<p><code>stateful</code>: if true, enable established and related traffic for this
+  ruleset.</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -822,7 +848,13 @@ firewall rules, etc.</p>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Currently, the <code>ipsec</code> metadata section only applies to Vyatta/VyOS routers.</p>
+<p>Currently, the <code>ipsec</code>, <code>emulators</code>, and <code>snat/dnat</code> metadata sections only
+apply to Vyatta/VyOS routers.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, the <code>stateful</code> setting for ACL rules only applies to Vyatta/VyOS
+routers.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
