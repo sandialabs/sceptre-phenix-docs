@@ -249,34 +249,35 @@ spec:
   apps:
   - name: tap
     metadata:
-      # the bridge to add the tap to (will default to 'phenix' if not provided)
-    - bridge: phenix
-      # the experiment VLAN to tap
-      vlan: MGMT
-      # IP address to use for host tap -- VMs on the tapped VLAN would use this
-      # address as their gateway if they need external access (and it's enabled
-      # below)
-      ip: 172.20.5.254/24
-      externalAccess:
-        # defaults to false
-        enabled: true
-        # this section is planned, but not implemented yet
-        firewall:
-          # default action to take if none of the rules below match a packet
-          default: drop
-          rules:
-            # action to take if a packet matches this rule
-          - action: accept
-            description: Only allow web access
-            source:
-              # can also use `addresses` to specify a list of addresses
-              address: 172.20.5.0/29
-            destination:
-              address: 10.0.0.0/24
-              # can also use `port` to specify a single port
-              ports: [80, 443]
-            # can also use `protocols` to specify a list of protocols
-            protocol: tcp
+      taps:
+        # the bridge to add the tap to (will default to 'phenix' if not provided)
+      - bridge: phenix
+        # the experiment VLAN to tap
+        vlan: MGMT
+        # IP address to use for host tap -- VMs on the tapped VLAN would use this
+        # address as their gateway if they need external access (and it's enabled
+        # below)
+        ip: 172.20.5.254/24
+        externalAccess:
+          # defaults to false
+          enabled: true
+          # this section is planned, but not implemented yet
+          firewall:
+            # default action to take if none of the rules below match a packet
+            default: drop
+            rules:
+              # action to take if a packet matches this rule
+            - action: accept
+              description: Only allow web access
+              source:
+                # can also use `addresses` to specify a list of addresses
+                address: 172.20.5.0/29
+              destination:
+                address: 10.0.0.0/24
+                # can also use `port` to specify a single port
+                ports: [80, 443]
+              # can also use `protocols` to specify a list of protocols
+              protocol: tcp
 
 ```
 
