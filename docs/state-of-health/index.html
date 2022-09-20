@@ -726,7 +726,9 @@ in detail below.</p>
         - name: FooBarTest
           testScript: |
             cat /etc/passwd | grep root
-          testStdout: root
+          validateStdout: |
+            count=$(wc -l)
+            [[ $count -eq 1 ]] &amp;&amp; exit 0 || exit 1
           executor: bash
         host-01:
         - name: SuckaTest.ps1
@@ -821,6 +823,18 @@ in detail below.</p>
 <li>
 <p><code>testStderr</code>: a string to look for in STDERR from the executed script. If
   found, the test passes. If not found, it fails.</p>
+</li>
+<li>
+<p><code>validateStdout</code>: a script to run that will be provided, via STDIN, the
+  STDOUT from the executed script. If this validation script exits 0, the
+  test passes. If it exits non-zero, the test fails. This validation script
+  should always be a bash script, even if the host is a Windows host.</p>
+</li>
+<li>
+<p><code>validateStderr</code>: a script to run that will be provided, via STDIN, the
+  STDERR from the executed script. If this validation script exits 0, the
+  test passes. If it exits non-zero, the test fails. This validation script
+  should always be a bash script, even if the host is a Windows host.</p>
 </li>
 </ul>
 </li>

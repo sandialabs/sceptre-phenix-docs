@@ -123,7 +123,9 @@ spec:
         - name: FooBarTest
           testScript: |
             cat /etc/passwd | grep root
-          testStdout: root
+          validateStdout: |
+            count=$(wc -l)
+            [[ $count -eq 1 ]] && exit 0 || exit 1
           executor: bash
         host-01:
         - name: SuckaTest.ps1
@@ -209,6 +211,16 @@ spec:
 
     * `testStderr`: a string to look for in STDERR from the executed script. If
       found, the test passes. If not found, it fails.
+
+    * `validateStdout`: a script to run that will be provided, via STDIN, the
+      STDOUT from the executed script. If this validation script exits 0, the
+      test passes. If it exits non-zero, the test fails. This validation script
+      should always be a bash script, even if the host is a Windows host.
+
+    * `validateStderr`: a script to run that will be provided, via STDIN, the
+      STDERR from the executed script. If this validation script exits 0, the
+      test passes. If it exits non-zero, the test fails. This validation script
+      should always be a bash script, even if the host is a Windows host.
 
 * `hostListeners`: a map of VMs, each specifying a list of listening ports to
   check for within the VM. If the port can be listening on any interface, the
