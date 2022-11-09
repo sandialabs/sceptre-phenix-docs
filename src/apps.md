@@ -53,6 +53,10 @@ spec:
                 address: 10.0.0.0/24
                 port: 80
               protocol: tcp
+            - action: accept
+              description: Allow Established
+              stateful: true
+              protocol: all
         dhcp:
         - listenAddress: 10.0.0.254
           ranges:
@@ -126,56 +130,65 @@ spec:
 
     * `rulesets`: list of rulesets to create on the router.
 
-      * `name`: name of the ruleset; used in the interface-to-ruleset mapping in
-        the `ingress/egress` sections.
+        * `name`: name of the ruleset; used in the interface-to-ruleset mapping
+          in the `ingress/egress` sections.
 
-      * `default`: default action to apply to traffic that doesn't match any
-        rules.
+        * `default`: default action to apply to traffic that doesn't match any
+          rules.
 
-      * `rules`: list of rules to apply to traffic.
+        * `rules`: list of rules to apply to traffic.
 
-        * `action`: action to apply to traffic matching rule.
+            * `action`: action to apply to traffic matching rule.
 
-        * `source`: map describing what source to limit matching traffic to. If
-          not provided, all sources are matched.
+            * `source`: map describing what source to limit matching traffic to.
+              If not provided, all sources are matched.
 
-          * `address`: source address to limit matching traffic to. If not
-            provided, all source addresses are matched.
+                * `address`: source address to limit matching traffic to. If not
+                  provided, all source addresses are matched.
 
-          * `port`: source port to limit matching traffic to. If not
-            provided, all source ports are matched.
+                * `port`: source port to limit matching traffic to. If not
+                  provided, all source ports are matched.
 
-        * `destination`: map describing what destination to limit matching
-          traffic to. If not provided, all sources are matched.
+            * `destination`: map describing what destination to limit matching
+              traffic to. If not provided, all sources are matched.
 
-          * `address`: destination address to limit matching traffic to. If not
-            provided, all destination addresses are matched.
+                * `address`: destination address to limit matching traffic to.
+                  If not provided, all destination addresses are matched.
 
-          * `port`: destination port to limit matching traffic to. If not
-            provided, all destination ports are matched.
+                * `port`: destination port to limit matching traffic to. If not
+                  provided, all destination ports are matched.
 
-        * `protocol`: IP protocol to limit matching traffic to. If not provided,
-          all protocols are matched.
+            * `protocol`: IP protocol to limit matching traffic to. Must be
+              provided; to allow all protocols, use the `all` keyword.
 
-        * `stateful`: if true, enable established and related traffic for this
-          ruleset.
+            * `stateful`: if true, enable established and related traffic for
+              this ruleset.
 
 * `dhcp`: if present, DHCP is configured on the router per the provided list.
 
-  * `listenAddress`: IP address on a local interface (e.g. this router) to bind
-    this DHCP configuration to.
+    * `listenAddress`: IP address on a local interface (e.g. this router) to
+      bind this DHCP configuration to.
 
-  * `ranges`: list of IP address low/high ranges to use for DHCP assignments.
-    The IP addresses must be within the IP network of the `listenAddress`.
+    * `ranges`: list of IP address low/high ranges to use for DHCP assignments.
+      The IP addresses must be within the IP network of the `listenAddress`.
 
-  * `defaultRoute`: default gateway to be included in DHCP leases.
+    * `defaultRoute`: default gateway to be included in DHCP leases.
 
-  * `dnsServers`: list of DNS servers to be included in DHCP leases.
+    * `dnsServers`: list of DNS servers to be included in DHCP leases.
 
-  * `staticAssignments`: map of MAC-to-IP assignments to use for static DHCP
-    addresses.
+    * `staticAssignments`: map of MAC-to-IP assignments to use for static DHCP
+      addresses.
 
 * `dns`: if present, map of IP-to-domain DNS entries to create on the router.
+
+!!! note
+    The `ingress` and `egress` setting for ACLs are from the perspective of the
+    network segment the specified interface is connected to, not from the
+    perspective of the interface itself. For example, if `IF0` on a router is
+    connected to VLAN `EXP_01`, then specifying `IFO: in-rules` for the
+    `ingress` setting means the rules specified in the `in-rules` ruleset will
+    be applied to packets "ingressing into" VLAN `EXP_01`. Under the hood, the
+    rules are actually applied to packets "egressing out of" interface `IF0`.
 
 !!! note
     Currently, the `ipsec`, `emulators`, and `snat/dnat` metadata sections only

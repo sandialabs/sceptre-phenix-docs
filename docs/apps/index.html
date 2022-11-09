@@ -683,6 +683,10 @@ firewall rules, etc.</p>
                 address: 10.0.0.0/24
                 port: 80
               protocol: tcp
+            - action: accept
+              description: Allow Established
+              stateful: true
+              protocol: all
         dhcp:
         - listenAddress: 10.0.0.254
           ranges:
@@ -770,14 +774,14 @@ firewall rules, etc.</p>
 </li>
 <li>
 <p><code>rulesets</code>: list of rulesets to create on the router.</p>
-</li>
+<ul>
 <li>
-<p><code>name</code>: name of the ruleset; used in the interface-to-ruleset mapping in
-    the <code>ingress/egress</code> sections.</p>
+<p><code>name</code>: name of the ruleset; used in the interface-to-ruleset mapping
+  in the <code>ingress/egress</code> sections.</p>
 </li>
 <li>
 <p><code>default</code>: default action to apply to traffic that doesn't match any
-    rules.</p>
+  rules.</p>
 </li>
 <li>
 <p><code>rules</code>: list of rules to apply to traffic.</p>
@@ -786,36 +790,42 @@ firewall rules, etc.</p>
 <p><code>action</code>: action to apply to traffic matching rule.</p>
 </li>
 <li>
-<p><code>source</code>: map describing what source to limit matching traffic to. If
-  not provided, all sources are matched.</p>
-</li>
+<p><code>source</code>: map describing what source to limit matching traffic to.
+  If not provided, all sources are matched.</p>
+<ul>
 <li>
 <p><code>address</code>: source address to limit matching traffic to. If not
-    provided, all source addresses are matched.</p>
+  provided, all source addresses are matched.</p>
 </li>
 <li>
 <p><code>port</code>: source port to limit matching traffic to. If not
-    provided, all source ports are matched.</p>
+  provided, all source ports are matched.</p>
+</li>
+</ul>
 </li>
 <li>
 <p><code>destination</code>: map describing what destination to limit matching
   traffic to. If not provided, all sources are matched.</p>
-</li>
+<ul>
 <li>
-<p><code>address</code>: destination address to limit matching traffic to. If not
-    provided, all destination addresses are matched.</p>
+<p><code>address</code>: destination address to limit matching traffic to.
+  If not provided, all destination addresses are matched.</p>
 </li>
 <li>
 <p><code>port</code>: destination port to limit matching traffic to. If not
-    provided, all destination ports are matched.</p>
+  provided, all destination ports are matched.</p>
+</li>
+</ul>
 </li>
 <li>
-<p><code>protocol</code>: IP protocol to limit matching traffic to. If not provided,
-  all protocols are matched.</p>
+<p><code>protocol</code>: IP protocol to limit matching traffic to. Must be
+  provided; to allow all protocols, use the <code>all</code> keyword.</p>
 </li>
 <li>
-<p><code>stateful</code>: if true, enable established and related traffic for this
-  ruleset.</p>
+<p><code>stateful</code>: if true, enable established and related traffic for
+  this ruleset.</p>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -823,14 +833,14 @@ firewall rules, etc.</p>
 </li>
 <li>
 <p><code>dhcp</code>: if present, DHCP is configured on the router per the provided list.</p>
-</li>
+<ul>
 <li>
-<p><code>listenAddress</code>: IP address on a local interface (e.g. this router) to bind
-    this DHCP configuration to.</p>
+<p><code>listenAddress</code>: IP address on a local interface (e.g. this router) to
+  bind this DHCP configuration to.</p>
 </li>
 <li>
 <p><code>ranges</code>: list of IP address low/high ranges to use for DHCP assignments.
-    The IP addresses must be within the IP network of the <code>listenAddress</code>.</p>
+  The IP addresses must be within the IP network of the <code>listenAddress</code>.</p>
 </li>
 <li>
 <p><code>defaultRoute</code>: default gateway to be included in DHCP leases.</p>
@@ -840,12 +850,24 @@ firewall rules, etc.</p>
 </li>
 <li>
 <p><code>staticAssignments</code>: map of MAC-to-IP assignments to use for static DHCP
-    addresses.</p>
+  addresses.</p>
+</li>
+</ul>
 </li>
 <li>
 <p><code>dns</code>: if present, map of IP-to-domain DNS entries to create on the router.</p>
 </li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>ingress</code> and <code>egress</code> setting for ACLs are from the perspective of the
+network segment the specified interface is connected to, not from the
+perspective of the interface itself. For example, if <code>IF0</code> on a router is
+connected to VLAN <code>EXP_01</code>, then specifying <code>IFO: in-rules</code> for the
+<code>ingress</code> setting means the rules specified in the <code>in-rules</code> ruleset will
+be applied to packets "ingressing into" VLAN <code>EXP_01</code>. Under the hood, the
+rules are actually applied to packets "egressing out of" interface <code>IF0</code>.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Currently, the <code>ipsec</code>, <code>emulators</code>, and <code>snat/dnat</code> metadata sections only
