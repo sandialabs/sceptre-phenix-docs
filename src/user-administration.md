@@ -1,8 +1,58 @@
-# User Administration in phenix
+# User Authn/Authz in phenix
+
+`phenix` provides three separate modes of user authentication (authn) and
+authorization (authz).
+
+* disabled
+* enabled
+* proxy
+
+## `disabled` Mode
+
+When in `disabled` mode, no user authentication or authorization occurs. Users
+do not have to authenticate, and all actions are allowed.
+
+To use `disabled` mode, the UI should be built with `VUE_APP_AUTH=disabled` (if
+Docker is being used to build the UI, use Docker build arg
+`PHENIX_WEB_AUTH=disabled`) and the UI server should be started without the
+`-k/--jwt-signing-key` option set.
+
+## `enabled` Mode
+
+When in `enabled` mode, user authentication and authorization occurs within
+phenix directly. Users have to authenticate to the phenix UI, and certain
+actions are prohibited based on the role assigned to the user.
+
+To use `enabled` mode, the UI should be built with `VUE_APP_AUTH=enabled` (if
+Docker is being used to build the UI, use Docker build arg
+`PHENIX_WEB_AUTH=enabled`) and the UI server should be started with the
+`-k/--jwt-signing-key` (and optionally the `--jwt-lifetime`) option set.
+
+## `proxy` Mode
+
+When in `proxy` mode, user authentication is expected to occur in a reverse
+proxy that sits in front of phenix but user authorization still occurs within
+phenix directly. Users authenticate to the proxy, and certain actions are
+prohibited based on the role assigned to the user.
+
+To use `proxy` mode, the UI should be built with `VUE_APP_AUTH=proxy` (if Docker
+is being used to build the UI, use Docker build arg `PHENIX_WEB_AUTH=proxy`) and
+the UI server should be started with the `-k/--jwt-signing-key` and
+`--proxy-auth-header` (and optionally the `--jwt-lifetime`) options set.
+
+In addition, the reverse proxy should add a header to requests being proxied
+that contains the username of the authenticated user, with the name of the
+header matching what `--proxy-auth-header` is set to (for example,
+`--proxy-auth-header=X-phenix-user`).
+
+If a user is able to authenticate to the proxy but is not yet a user in phenix,
+they will be added as a phenix user automatically and assigned the `Disabled`
+role that will deny all actions until an admin user can assign them a different
+role.
 
 ## Create a new user
 
-There are two primary ways to create new users. 
+There are three primary ways to create new users.
 
 1. Choose the `Create Account` link off the login page and complete all fields
    in the `Create a New Account` dialogue. This will initiate a message to an
@@ -15,9 +65,24 @@ There are two primary ways to create new users.
 
 2. From the `Users` tab, click the `+` button to create a new user. Here the
    administrator will add the [role(s) and resource
-   name(s)](#user-administration). 
+   name(s)](#user-administration).
 
     ![screenshot](images/create_a_new_user.png){: width=400 .center}
+
+3. Create a YAML or JSON file at `/etc/phenix/users.[yml|json]` with the
+   following structure. When the `phenix` UI starts, it looks for this file and
+   adds any users present in the file that are not already present in `phenix`.
+   For users in the file that already exist, `phenix` ensures the user role
+   matches what's in the file and updates it as necessary. This file is also
+   automatically watched, so any users added to the file while `phenix` is
+   running will automatically be added to `phenix`.
+
+```
+ui:
+  users:
+    - <username>:<password>:<role name>
+    - ...
+```
 
 ## Login
 
