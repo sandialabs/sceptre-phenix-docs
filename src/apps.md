@@ -181,6 +181,39 @@ spec:
 
 * `dns`: if present, map of IP-to-domain DNS entries to create on the router.
 
+* `emulators`: if present, an list of network emulator traffic policies to apply
+  to one or more interfaces on ingress or egress. For each emulator in the list,
+  only the `name` key is required, though the traffic policy will not get
+  applied if there's not at least one `ingress` or `egress` interface defined.
+
+    * `name`: unique name of traffic policy for this router.
+
+    * `ingress`: list of interface names to apply traffic policy to on ingress.
+      The names listed should be the same names used for network interfaces in
+      the topology.
+
+    * `egress`: list of interface names to apply traffic policy to on egress.
+      The names listed should be the same names used for network interfaces in
+      the topology.
+
+    * `bandwidth`: maximum allowed bandwidth for interface and direction this
+      traffic policy is applied to.
+
+    * `burst`: burst size in bytes for interface and direction this traffic
+      policy is applied to.
+
+    * `delay`: fixed amount of time to add to all packets for interface and
+      direction this traffic policy is applied to.
+
+    * `corruption`: percentage of corrupted packets for interface and direction
+      this traffic policy is applied to.
+
+    * `loss`: percentage of lost packets for interface and direction this
+      traffic policy is applied to.
+
+    * `reordering`: percentage of reordered packets for interface and direction
+      this traffic policy is applied to.
+
 !!! note
     The `ingress` and `egress` setting for ACLs are from the perspective of the
     network segment the specified interface is connected to, not from the

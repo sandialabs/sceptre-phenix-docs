@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.11">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.0b4">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.91872f81.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
@@ -56,8 +56,6 @@
     
     
       
-    
-    
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="brown">
@@ -114,8 +112,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="brown"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
@@ -123,8 +119,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="brown"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
@@ -864,6 +858,51 @@ firewall rules, etc.</p>
 <li>
 <p><code>dns</code>: if present, map of IP-to-domain DNS entries to create on the router.</p>
 </li>
+<li>
+<p><code>emulators</code>: if present, an list of network emulator traffic policies to apply
+  to one or more interfaces on ingress or egress. For each emulator in the list,
+  only the <code>name</code> key is required, though the traffic policy will not get
+  applied if there's not at least one <code>ingress</code> or <code>egress</code> interface defined.</p>
+<ul>
+<li>
+<p><code>name</code>: unique name of traffic policy for this router.</p>
+</li>
+<li>
+<p><code>ingress</code>: list of interface names to apply traffic policy to on ingress.
+  The names listed should be the same names used for network interfaces in
+  the topology.</p>
+</li>
+<li>
+<p><code>egress</code>: list of interface names to apply traffic policy to on egress.
+  The names listed should be the same names used for network interfaces in
+  the topology.</p>
+</li>
+<li>
+<p><code>bandwidth</code>: maximum allowed bandwidth for interface and direction this
+  traffic policy is applied to.</p>
+</li>
+<li>
+<p><code>burst</code>: burst size in bytes for interface and direction this traffic
+  policy is applied to.</p>
+</li>
+<li>
+<p><code>delay</code>: fixed amount of time to add to all packets for interface and
+  direction this traffic policy is applied to.</p>
+</li>
+<li>
+<p><code>corruption</code>: percentage of corrupted packets for interface and direction
+  this traffic policy is applied to.</p>
+</li>
+<li>
+<p><code>loss</code>: percentage of lost packets for interface and direction this
+  traffic policy is applied to.</p>
+</li>
+<li>
+<p><code>reordering</code>: percentage of reordered packets for interface and direction
+  this traffic policy is applied to.</p>
+</li>
+</ul>
+</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1138,10 +1177,10 @@ def main() :
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.3de43c86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.144481d1.min.js"></script>
+      <script src="../assets/javascripts/bundle.ce0331ff.min.js"></script>
       
     
     
