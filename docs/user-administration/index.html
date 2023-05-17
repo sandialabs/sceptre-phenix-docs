@@ -435,6 +435,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#generating-user-authentication-tokens" class="md-nav__link">
+    Generating User Authentication Tokens
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#user-administration" class="md-nav__link">
     User Administration
   </a>
@@ -723,6 +730,13 @@
         <li class="md-nav__item">
   <a href="#login" class="md-nav__link">
     Login
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-user-authentication-tokens" class="md-nav__link">
+    Generating User Authentication Tokens
   </a>
   
 </li>
@@ -1024,6 +1038,17 @@ authentication is enabled:</p>
 </code></pre></div>
 
 <p>Without the <code>-k</code> (or <code>--jwt-signing-key</code>), authentication is disabled.</p>
+<h2 id="generating-user-authentication-tokens">Generating User Authentication Tokens<a class="headerlink" href="#generating-user-authentication-tokens" title="Permanent link">&para;</a></h2>
+<p>From the <code>Users</code> tab, click the key icon next to the given user's name. A dialog
+box will pop up where you can enter in a description for the token to be created
+and an expiration date. This expiration date should be entered in Golang time
+duration. For example, <code>4320h</code> is valid and represents 4320 hours or about 6
+months. After clicking <code>Create Token</code> a token should appear with the expiriation
+date.  </p>
+<p>This token can be used to authenticate when using the Phenix API. Specifically, you would include the following as a header in HTTP requests.</p>
+<div class="codehilite"><pre><span></span><code>X-phenix-auth-token: Bearer &lt;TOKEN&gt;
+</code></pre></div>
+
 <h2 id="user-administration">User Administration<a class="headerlink" href="#user-administration" title="Permanent link">&para;</a></h2>
 <h3 id="updating-users">Updating Users<a class="headerlink" href="#updating-users" title="Permanent link">&para;</a></h3>
 <p>An administrator is able to click on the username on the table in the Users tab

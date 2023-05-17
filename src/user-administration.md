@@ -99,6 +99,21 @@ $> phenix ui -k <some_string>
 
 Without the `-k` (or `--jwt-signing-key`), authentication is disabled.
 
+## Generating User Authentication Tokens
+
+From the `Users` tab, click the key icon next to the given user's name. A dialog
+box will pop up where you can enter in a description for the token to be created
+and an expiration date. This expiration date should be entered in Golang time
+duration. For example, `4320h` is valid and represents 4320 hours or about 6
+months. After clicking `Create Token` a token should appear with the expiriation
+date.  
+
+This token can be used to authenticate when using the Phenix API. Specifically, you would include the following as a header in HTTP requests.
+
+```
+X-phenix-auth-token: Bearer <TOKEN>
+```
+
 ## User Administration
 
 ### Updating Users
