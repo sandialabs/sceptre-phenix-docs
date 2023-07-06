@@ -2,9 +2,9 @@ site_name: 'phenix documentation'
 site_description: 'A place for phenix users to call home.'
 site_author: 'activeshadow and dnkcom'
 
-repo_name: 'sandia-minimega/phenix'
-repo_url: 'https://github.com/sandia-minimega/phenix'
-edit_uri: 'https://github.com/sandia-minimega/phenix-docs/edit/main/src'
+repo_name: 'sandialabs/sceptre-phenix'
+repo_url: 'https://github.com/sandialabs/sceptre-phenix'
+edit_uri: 'https://github.com/sandialabs/sceptre-phenix-docs/edit/main/src'
 
 docs_dir: src
 site_dir: docs
@@ -37,9 +37,11 @@ theme:
 extra:
   social:
     - icon: 'fontawesome/brands/github'
-      link: 'https://github.com/sandia-minimega/phenix-docs'
+      link: 'https://github.com/sandialabs/sceptre-phenix-docs'
     - icon: 'fontawesome/solid/gear'
       link: '/swagger.html'
+  version:
+    provider: mike
 
 extra_css:
   - stylesheets/style.css
