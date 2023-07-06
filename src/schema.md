@@ -19,7 +19,9 @@ Topology:
       type: array
       title: Nodes
       items:
-        $ref: "#/components/schemas/Node"
+        oneOf:
+        - $ref: '#/components/schemas/minimega_node'
+        - $ref: '#/components/schemas/external_node'
 ```
 
 ## Scenario Schema
@@ -27,495 +29,663 @@ Topology:
 ```
 Scenario:
   type: object
+  nullable: true
   required:
   - apps
   properties:
-    apps:
-      type: array
-      items:
-        type: object
-        required:
-        - name
-        properties:
-          name:
-            type: string
-            minLength: 1
-          assetDir:
-            type: string
-          metadata:
-            type: object
-            additionalProperties: true
-          hosts:
-            type: array
-            items:
-              type: object
-              required:
-              - hostname
-              - metadata
-              properties:
-                hostname:
-                  type: string
-                  minLength: 1
-                metadata:
-                  type: object
-                  additionalProperties: true
+	apps:
+	  type: array
+	  nullable: true
+	  items:
+		type: object
+		required:
+		- name
+		properties:
+		  name:
+			type: string
+			example: example-app
+		  assetDir:
+			type: string
+			example: /phenix/topologies/example-topo/assets
+		  metadata:
+			type: object
+			nullable: true
+			additionalProperties: true
+			example:
+			  setting0: true
+			  setting1: 42
+			  setting2: universe key
+		  hosts:
+			type: array
+			items:
+			  type: object
+			  required:
+			  - hostname
+			  properties:
+				hostname:
+				  type: string
+				  example: example-host
+				metadata:
+				  type: object
+				  nullable: true
+				  additionalProperties: true
+				  example:
+					setting0: true
+					setting1: 42
+					setting2: universe key
 ```
 
 ## Experiment Schema
-
-!!! warning "INCOMPLETE SCHEMA"
-    This schema definition is not complete.
 
 ```
 Experiment:
   type: object
   required:
-  - experimentName
+  - topology
   properties:
-    experimentName:
-      type: string
-      minLength: 1
-    baseDir:
-      type: string
-    vlans:
-      type: object
-      title: VLANs
-      properties:
-        aliases:
-          type: object
-          title: Aliases
-          additionalProperties:
-            type: integer
-          example:
-            MGMT: 200
-        min:
-          type: integer
-        max:
-          type: integer
-    schedule:
-      type: object
-      title: Schedule
-      additionalProperties:
-        type: string
-      example:
-        ADServer: compute1
+	topology:
+	  $ref: "#/components/schemas/Topology"
+	scenario:
+	  $ref: "#/components/schemas/Scenario"
+	baseDir:
+	  type: string
+	  example: /phenix/topologies/example-topo
+	experimentName:
+	  type: string
+	  example: example-exp
+	  readOnly: true
+	vlans:
+	  type: object
+	  nullable: true
+	  properties:
+		aliases:
+		  type: object
+		  nullable: true
+		  additionalProperties:
+			type: integer
+		  example:
+			MGMT: 200
+		min:
+		  type: integer
+		max:
+		  type: integer
+	schedule:
+	  type: object
+	  nullable: true
+	  additionalProperties:
+		type: string
+	  example:
+		ADServer: compute1
 ```
 
 ## Image Schema
 
-!!! warning "INCOMPLETE SCHEMA"
-    This schema definition is not complete.
-
 ```
 Image:
   type: object
-  title: ubuntu Image
   required:
+  - format
+  - mirror
   - release
+  - size
+  - variant
   properties:
-    release:
-      type: string
-      minLength: 1
+	compress:
+	  type: boolean
+	  default: false
+	  example: false
+	deb_append:
+	  type: string
+	  example: --components=main,restricted
+	format:
+	  type: string
+	  example: qcow2
+	mirror:
+	  type: string
+	  example: http://us.archive.ubuntu.com/ubuntu/
+	overlays:
+	  type: array
+	  nullable: true
+	  items:
+		type: string
+	  example:
+	  - /phenix/vmdb/overlays/example-overlay
+	packages:
+	  type: array
+	  nullable: true
+	  items:
+		type: string
+	  example:
+	  - isc-dhcp-client
+	  - openssh-server
+	ramdisk:
+	  type: boolean
+	  default: false
+	  example: false
+	release:
+	  type: string
+	  example: focal
+	script_order:
+	  type: array
+	  nullable: true
+	  items:
+		type: string
+	  example:
+	  - POSTBUILD_APT_CLEANUP
+	scripts:
+	  type: object
+	  nullable: true
+	  additionalProperties:
+		type: string
+	  example:
+		POSTBUILD_APT_CLEANUP: |
+		  apt clean || apt-get clean || echo "unable to clean apt cache"
+	size:
+	  type: string
+	  example: 10G
+	variant:
+	  type: string
+	  example: minbase
 ```
 
 ## User Schema
 
-!!! bug "MISSING SCHEMA"
-    This schema definition does not (yet) exist.
+```
+User:
+  type: object
+  required:
+  - first_name
+  - last_name
+  - username
+  properties:
+	first_name:
+	  type: string
+	  example: John
+	last_name:
+	  type: string
+	  example: Doe
+	password:
+	  type: string
+	  example: '<encrypted password>'
+	  readOnly: true
+	rbac:
+	  allOf:
+	  - $ref: "#/components/schemas/Role"
+	  readOnly: true
+	username:
+	  type: string
+	  example: johndoe@example.com
+```
 
 ## Role Schema
 
-!!! bug "MISSING SCHEMA"
-    This schema definition does not (yet) exist.
+```
+Role:
+  type: object
+  required:
+  - policies
+  - roleName
+  properties:
+	policies:
+	  type: array
+	  items:
+		type: object
+		properties:
+		  resources:
+			type: array
+			items:
+			  type: string
+		  resourceNames:
+			type: array
+			items:
+			  type: string
+		  verbs:
+			type: array
+			items:
+			  type: string
+	  example:
+	  - resources:
+		- experiments
+		- experiments/*
+		resourceNames:
+		- '*'
+		verbs:
+		- list
+		- get
+	roleName:
+	  type: string
+	  example: Example Role
+```
 
-## Node Schema
+## Node Schemas
 
-The `node` schema contains references to the `interface` schema [described
+### `minimega_node` Schema
+
+The `minimega_node` schema contains references to the `interface` schema [described
 here](#interface-schema).
 
 ```
-Node:
+minimega_node:
   type: object
-  title: Node
   required:
   - type
   - general
   - hardware
   properties:
-    type:
-      type: string
-      title: Node Type
-      enum:
-      - Firewall
-      - Printer
-      - Router
-      - Server
-      - Switch
-      - VirtualMachine
-      default: VirtualMachine
-      example: VirtualMachine
-    general:
-      type: object
-      title: General Node Configuration
-      required:
-      - hostname
-      properties:
-        hostname:
-          type: string
-          title: Hostname
-          minLength: 1
-          example: ADServer
-        description:
-          type: string
-          title: Description
-          example: Active Directory Server
-        vm_type:
-          type: string
-          title: VM (Emulation) Type
-          enum:
-          - kvm
-          - container
-          - ""
-          default: kvm
-          example: kvm
-        snapshot:
-          type: boolean
-          title: Snapshot Mode
-          default: false
-          example: false
-          nullable: true
-        do_not_boot:
-          type: boolean
-          title: Do Not Boot VM
-          default: false
-          example: false
-          nullable: true
-    delay:
-      type: object
-      title: Delayed start
-      default: null
-      properties:
-        user:
-          type: boolean
-          title: User triggered boot
-          default: false
-          example: true
-        timer:
-          type: string
-          title: Timer triggered boot
-          minLength: 2
-          example: 5m
-        c2:
-          type: array
-          title: Command and control triggered boot
-          items:
-            type: object
-            title: Host
-            required:
-            - hostname
-            properties:
-              hostname:
-                type: string
-                title: Hostname
-                example: VM1
-              useUUID:
-                type: boolean
-                title: Use UUID instead of hostname
-                default: false
-                example: true
-    hardware:
-      type: object
-      title: Node Hardware Configuration
-      required:
-      - os_type
-      - drives
-      properties:
-        cpu:
-          type: string
-          title: CPU Emulation
-          enum:
-          - Broadwell
-          - Haswell
-          - core2duo
-          - pentium3
-          - ""
-          default: Broadwell
-          example: Broadwell
-        vcpus:
-          type: integer
-          title: VCPU Count
-          default: 1
-          example: 4
-        memory:
-          type: integer
-          title: Memory
-          default: 1024
-          example: 8192
-        os_type:
-          type: string
-          title: OS Type
-          enum:
-          - windows
-          - linux
-          - rhel
-          - centos
-          default: linux
-          example: windows
-        drives:
-          type: array
-          title: Drives
-          items:
-            type: object
-            title: Drive
-            required:
-            - image
-            properties:
-              image:
-                type: string
-                title: Image File Name
-                minLength: 1
-                example: ubuntu.qc2
-              interface:
-                type: string
-                title: Drive Interface
-                enum:
-                - ahci
-                - ide
-                - scsi
-                - sd
-                - mtd
-                - floppy
-                - pflash
-                - virtio
-                - ""
-                default: ide
-                example: ide
-              cache_mode:
-                type: string
-                title: Drive Cache Mode
-                enum:
-                - none
-                - writeback
-                - unsafe
-                - directsync
-                - writethrough
-                - ""
-                default: writeback
-                example: writeback
-              inject_partition:
-                type: integer
-                title: Disk Image Partition to Inject Files Into
-                default: 1
-                example: 2
-                nullable: true
-    network:
-      type: object
-      title: Node Network Configuration
-      required:
-      - interfaces
-      properties:
-        interfaces:
-          type: array
-          title: Network Interfaces
-          items:
-            type: object
-            title: Network Interface
-            oneOf:
-            - $ref: '#/components/schemas/static_iface'
-            - $ref: '#/components/schemas/dhcp_iface'
-            - $ref: '#/components/schemas/serial_iface'
-        routes:
-          type: array
-          items:
-            type: object
-            title: Network Route
-            required:
-            - destination
-            - next
-            - cost
-            properties:
-              destination:
-                type: string
-                title: Routing Destination
-                minLength: 1
-                example: 192.168.0.0/24
-              next:
-                type: string
-                title: Next Hop for Routing Destination
-                minLength: 1
-                example: 192.168.1.254
-              cost:
-                type: integer
-                title: Routing Cost (weight)
-                default: 1
-                example: 1
-        ospf:
-          type: object
-          title: OSPF Routing Configuration
-          required:
-          - router_id
-          - areas
-          properties:
-            router_id:
-              type: string
-              title: Router ID
-              minLength: 1
-              example: 0.0.0.1
-            areas:
-              type: array
-              title: Routing Areas
-              items:
-                type: object
-                title: Routing Area
-                required:
-                - area_id
-                - area_networks
-                properties:
-                  area_id:
-                    type: integer
-                    title: Area ID
-                    example: 1
-                    default: 1
-                  area_networks:
-                    type: array
-                    title: Area Networks
-                    items:
-                      type: object
-                      title: Area Network
-                      required:
-                      - network
-                      properties:
-                        network:
-                          type: string
-                          title: Network
-                          minLength: 1
-                          example: 10.1.25.0/24
-        rulesets:
-          type: array
-          title: Firewall Rulesets
-          items:
-            type: object
-            title: Firewall Ruleset
-            required:
-            - name
-            - default
-            - rules
-            properties:
-              name:
-                type: string
-                title: Ruleset Name
-                minLength: 1
-                example: OutToDMZ
-              description:
-                type: string
-                title: Ruleset Description
-                minLength: 1
-                example: From Corp to the DMZ network
-              default:
-                type: string
-                title: Default Firewall Action
-                enum:
-                - accept
-                - drop
-                - reject
-                example: drop
-              rules:
-                type: array
-                title: Firewall Rules
-                items:
-                  type: object
-                  title: Firewall Rule
-                  required:
-                  - id
-                  - action
-                  - protocol
-                  properties:
-                    id:
-                      type: integer
-                      title: Rule ID
-                      example: 10
-                    description:
-                      type: string
-                      title: Rule Description
-                      example: Allow UDP 10.1.26.80 ==> 10.2.25.0/24:123
-                    action:
-                      type: string
-                      title: Rule Action
-                      enum:
-                      - accept
-                      - drop
-                      - reject
-                      example: accept
-                    protocol:
-                      type: string
-                      title: Network Protocol
-                      enum:
-                      - tcp
-                      - udp
-                      - icmp
-                      - esp
-                      - ah
-                      - all
-                      default: tcp
-                      example: tcp
-                    source:
-                      type: object
-                      title: Source Address
-                      required:
-                      - address
-                      properties:
-                        address:
-                          type: string
-                          title: IP Address
-                          minLength: 1
-                          example: 10.1.24.60
-                        port:
-                          type: integer
-                          title: Port Number
-                          example: 3389
-                    destination:
-                      type: object
-                      title: Destination Address
-                      required:
-                      - address
-                      properties:
-                        address:
-                          type: string
-                          title: IP Address
-                          minLength: 1
-                          example: 10.1.24.60
-                        port:
-                          type: integer
-                          title: Port Number
-                          example: 3389
-    injections:
-      type: array
-      title: Node File Injections
-      items:
-        type: object
-        title: Node File Injection
-        required:
-        - src
-        - dst
-        properties:
-          src:
-            type: string
-            title: Location of Source File to Inject
-            minLength: 1
-            example: foo.xml
-          dst:
-            type: string
-            title: Destination Location to Inject File To
-            minLength: 1
-            example: /etc/phenix/foo.xml
-          description:
-            type: string
-            title: Description of file being injected
-            example: phenix config file
-          permissions:
-            type: string
-            title: Injected file permissions (UNIX style)
-            example: 0664
+	type:
+	  type: string
+	  default: VirtualMachine
+	  example: VirtualMachine
+	general:
+	  type: object
+	  required:
+	  - hostname
+	  properties:
+		hostname:
+		  type: string
+		  example: ADServer
+		description:
+		  type: string
+		  example: Active Directory Server
+		vm_type:
+		  type: string
+		  enum:
+		  - kvm
+		  - container
+		  - ""
+		  default: kvm
+		  example: kvm
+		snapshot:
+		  type: boolean
+		  default: false
+		  example: false
+		  nullable: true
+		do_not_boot:
+		  type: boolean
+		  default: false
+		  example: false
+		  nullable: true
+	hardware:
+	  type: object
+	  required:
+	  - os_type
+	  - drives
+	  properties:
+		cpu:
+		  type: string
+		  default: Broadwell
+		  example: Broadwell
+		vcpus:
+		  oneOf:
+		  - type: integer
+		  - type: string
+		  default: 1
+		  example: 4
+		memory:
+		  oneOf:
+		  - type: integer
+		  - type: string
+		  default: 1024
+		  example: 8192
+		os_type:
+		  type: string
+		  enum:
+		  - centos
+		  - linux
+		  - minirouter
+		  - rhel
+		  - vyatta
+		  - vyos
+		  - windows
+		  default: linux
+		  example: windows
+		drives:
+		  type: array
+		  minItems: 1
+		  items:
+			type: object
+			required:
+			- image
+			properties:
+			  image:
+				type: string
+				minLength: 1
+				example: ubuntu.qc2
+			  interface:
+				type: string
+				enum:
+				- ahci
+				- ide
+				- scsi
+				- sd
+				- mtd
+				- floppy
+				- pflash
+				- virtio
+				- ""
+				default: ide
+				example: ide
+			  cache_mode:
+				type: string
+				enum:
+				- none
+				- writeback
+				- unsafe
+				- directsync
+				- writethrough
+				- ""
+				default: writeback
+				example: writeback
+			  inject_partition:
+				type: integer
+				default: 1
+				example: 2
+				nullable: true
+	network:
+	  type: object
+	  nullable: true
+	  required:
+	  - interfaces
+	  properties:
+		interfaces:
+		  type: array
+		  nullable: true
+		  items:
+			type: object
+			oneOf:
+			- $ref: '#/components/schemas/static_iface'
+			- $ref: '#/components/schemas/dhcp_iface'
+			- $ref: '#/components/schemas/serial_iface'
+		routes:
+		  type: array
+		  nullable: true
+		  items:
+			type: object
+			required:
+			- destination
+			- next
+			properties:
+			  destination:
+				type: string
+				example: 192.168.0.0/24
+			  next:
+				type: string
+				example: 192.168.1.254
+			  cost:
+				type: integer
+				default: 1
+				example: 1
+				nullable: true
+		ospf:
+		  type: object
+		  nullable: true
+		  required:
+		  - router_id
+		  - areas
+		  properties:
+			router_id:
+			  type: string
+			  example: 0.0.0.1
+			areas:
+			  type: array
+			  items:
+				type: object
+				required:
+				- area_id
+				- area_networks
+				properties:
+				  area_id:
+					type: integer
+					example: 1
+					default: 1
+				  area_networks:
+					type: array
+					items:
+					  type: object
+					  required:
+					  - network
+					  properties:
+						network:
+						  type: string
+						  example: 10.1.25.0/24
+		rulesets:
+		  type: array
+		  nullable: true
+		  items:
+			type: object
+			required:
+			- name
+			- default
+			- rules
+			properties:
+			  name:
+				type: string
+				example: OutToDMZ
+			  description:
+				type: string
+				example: From Corp to the DMZ network
+			  default:
+				type: string
+				enum:
+				- accept
+				- drop
+				- reject
+				example: drop
+			  rules:
+				type: array
+				items:
+				  type: object
+				  required:
+				  - id
+				  - action
+				  - protocol
+				  properties:
+					id:
+					  type: integer
+					  example: 10
+					description:
+					  type: string
+					  example: Allow UDP 10.1.26.80 ==> 10.2.25.0/24:123
+					action:
+					  type: string
+					  enum:
+					  - accept
+					  - drop
+					  - reject
+					  example: accept
+					protocol:
+					  type: string
+					  enum:
+					  - tcp
+					  - udp
+					  - tcp_udp
+					  - icmp
+					  - esp
+					  - ah
+					  - all
+					  default: tcp
+					  example: tcp
+					source:
+					  type: object
+					  nullable: true
+					  required:
+					  - address
+					  properties:
+						address:
+						  type: string
+						  example: 10.1.24.60
+						port:
+						  type: integer
+						  example: 3389
+					destination:
+					  type: object
+					  nullable: true
+					  required:
+					  - address
+					  properties:
+						address:
+						  type: string
+						  example: 10.1.24.60
+						port:
+						  type: integer
+						  example: 3389
+	injections:
+	  type: array
+	  nullable: true
+	  items:
+		type: object
+		required:
+		- src
+		- dst
+		properties:
+		  src:
+			type: string
+			example: foo.xml
+		  dst:
+			type: string
+			example: /etc/phenix/foo.xml
+		  description:
+			type: string
+			example: phenix config file
+		  permissions:
+			type: string
+			example: '0664'
+	delay:
+	  type: object
+	  nullable: true
+	  properties:
+		timer:
+		  type: string
+		  example: 5m
+		user:
+		  type: boolean
+		c2:
+		  type: array
+		  nullable: true
+		  items:
+			type: object
+			properties:
+			  hostname:
+				type: string
+			  useUUID:
+				type: boolean
+	advanced:
+	  type: object
+	  nullable: true
+	  additionalProperties:
+		type: string
+	commands:
+	  type: array
+	  nullable: true
+	  items:
+		type: string
+	  example:
+	  - exec df -h
+```
+
+### `external_node` Schema
+
+```
+external_node:
+  type: object
+  required:
+  - external
+  - type
+  - general
+  properties:
+	external:
+	  type: boolean
+	type:
+	  type: string
+	  default: HIL
+	  example: HIL
+	general:
+	  type: object
+	  required:
+	  - hostname
+	  properties:
+		hostname:
+		  type: string
+		  example: ADServer
+		description:
+		  type: string
+		  example: Active Directory Server
+		vm_type:
+		  type: string
+		  enum:
+		  - vm
+		  - container
+		  - ""
+		  default: vm
+		  example: vm
+	hardware:
+	  type: object
+	  nullable: true
+	  required:
+	  - os_type
+	  properties:
+		cpu:
+		  type: string
+		  default: Broadwell
+		  example: Broadwell
+		vcpus:
+		  oneOf:
+		  - type: integer
+		  - type: string
+		  default: 1
+		  example: 4
+		memory:
+		  oneOf:
+		  - type: integer
+		  - type: string
+		  default: 1024
+		  example: 8192
+		os_type:
+		  type: string
+		  default: linux
+		  example: windows
+	network:
+	  type: object
+	  nullable: true
+	  required:
+	  - interfaces
+	  properties:
+		interfaces:
+		  type: array
+		  items:
+			type: object
+			required:
+			- name
+			properties:
+			  name:
+				type: string
+				example: eth0
+			  proto:
+				type: string
+				enum:
+				- static
+				- dhcp
+				- manual
+				- ""
+				default: dhcp
+				example: static
+			  address:
+				type: string
+				format: ipv4
+				example: 192.168.1.100
+			  mask:
+				type: integer
+				minimum: 0
+				maximum: 32
+				default: 24
+				example: 24
+			  gateway:
+				type: string
+				format: ipv4
+				example: 192.168.1.1
+			  vlan:
+				type: string
+				example: EXP-1
 ```
 
 ## Interface Schema
@@ -527,76 +697,67 @@ iface:
   - name
   - vlan
   properties:
-    name:
-      type: string
-      title: Name
-      minLength: 1
-      example: eth0
-    vlan:
-      type: string
-      title: VLAN
-      minLength: 1
-      example: EXP-1
-    autostart:
-      type: boolean
-      title: Auto Start Interface
-      default: true
-    mac:
-      type: string
-      title: Interface MAC Address
-      example: 00:11:22:33:44:55:66
-      pattern: '^([0-9a-fA-F]{2}[:-]){5}([0-9a-fA-F]){2}$'
-    mtu:
-      type: integer
-      title: Interface MTU
-      default: 1500
-      example: 1500
-    bridge:
-      type: string
-      title: OpenVSwitch Bridge
-      default: phenix
-    driver:
-      type: string
-      title: QEMU network device driver (qemu-kvm -device help)
-      example: e1000
+	name:
+	  type: string
+	  example: eth0
+	vlan:
+	  type: string
+	  example: EXP-1
+	autostart:
+	  type: boolean
+	  default: true
+	mac:
+	  type: string
+	  example: 00:11:22:33:44:55
+	mtu:
+	  type: integer
+	  default: 1500
+	  example: 1500
+	bridge:
+	  type: string
+	  default: phenix
+	driver:
+	  type: string
+	  example: e1000
 iface_address:
   type: object
   required:
   - address
   - mask
   properties:
-    address:
-      type: string
-      format: ipv4
-      title: IP Address
-      minLength: 7
-      example: 192.168.1.100
-    mask:
-      type: integer
-      title: IP Address Netmask
-      minimum: 0
-      maximum: 32
-      default: 24
-      example: 24
-    gateway:
-      type: string
-      format: ipv4
-      title: Default Gateway
-      minLength: 7
-      example: 192.168.1.1
+	address:
+	  type: string
+	  format: ipv4
+	  example: 192.168.1.100
+	mask:
+	  type: integer
+	  minimum: 0
+	  maximum: 32
+	  default: 24
+	  example: 24
+	gateway:
+	  type: string
+	  format: ipv4
+	  example: 192.168.1.1
+	dns:
+	  nullable: true
+	  oneOf:
+	  - type: string
+	  - type: array
+		items:
+		  type: string
+	  example:
+	  - 192.168.1.1
+	  - 192.168.1.2
 iface_rulesets:
   type: object
   properties:
-    ruleset_out:
-      type: string
-      title: Outbound Ruleset
-      example: OutToInet
-      pattern: '^[\w-]+$'
-    ruleset_in:
-      type: string
-      title: Inbound Ruleset
-      example: InFromInet
-      pattern: '^[\w-]+$'
+	ruleset_out:
+	  type: string
+	  example: OutToInet
+	ruleset_in:
+	  type: string
+	  example: InFromInet
 static_iface:
   allOf:
   - $ref: '#/components/schemas/iface'
@@ -606,21 +767,19 @@ static_iface:
   - type
   - proto
   properties:
-    type:
-      type: string
-      title: Interface Type
-      enum:
-      - ethernet
-      default: ethernet
-      example: ethernet
-    proto:
-      type: string
-      title: Interface Protocol
-      enum:
-      - static
-      - ospf
-      default: static
-      example: static
+	type:
+	  type: string
+	  enum:
+	  - ethernet
+	  default: ethernet
+	  example: ethernet
+	proto:
+	  type: string
+	  enum:
+	  - static
+	  - ospf
+	  default: static
+	  example: static
 dhcp_iface:
   allOf:
   - $ref: '#/components/schemas/iface'
@@ -629,20 +788,19 @@ dhcp_iface:
   - type
   - proto
   properties:
-    type:
-      type: string
-      title: Interface Type
-      enum:
-      - ethernet
-      default: ethernet
-      example: ethernet
-    proto:
-      type: string
-      title: Interface Protocol
-      enum:
-      - dhcp
-      default: dhcp
-      example: dhcp
+	type:
+	  type: string
+	  enum:
+	  - ethernet
+	  default: ethernet
+	  example: ethernet
+	proto:
+	  type: string
+	  enum:
+	  - dhcp
+	  - manual
+	  default: dhcp
+	  example: dhcp
 serial_iface:
   allOf:
   - $ref: '#/components/schemas/iface'
@@ -655,54 +813,47 @@ serial_iface:
   - baud_rate
   - device
   properties:
-    type:
-      type: string
-      title: Interface Type
-      enum:
-      - serial
-      default: serial
-      example: serial
-    proto:
-      type: string
-      title: Interface Protocol
-      enum:
-      - static
-      default: static
-      example: static
-    udp_port:
-      type: integer
-      title: UDP Port
-      minimum: 0
-      maximum: 65535
-      default: 8989
-      example: 8989
-    baud_rate:
-      type: integer
-      title: Serial Baud Rate
-      enum:
-      - 110
-      - 300
-      - 600
-      - 1200
-      - 2400
-      - 4800
-      - 9600
-      - 14400
-      - 19200
-      - 38400
-      - 57600
-      - 115200
-      - 128000
-      - 256000
-      default: 9600
-      example: 9600
-    device:
-      type: string
-      title: Serial Device
-      minLength: 1
-      default: /dev/ttyS0
-      example: /dev/ttyS0
-      pattern: '^[\w\/]+\w+$'
+	type:
+	  type: string
+	  enum:
+	  - serial
+	  default: serial
+	  example: serial
+	proto:
+	  type: string
+	  enum:
+	  - static
+	  default: static
+	  example: static
+	udp_port:
+	  type: integer
+	  minimum: 0
+	  maximum: 65535
+	  default: 8989
+	  example: 8989
+	baud_rate:
+	  type: integer
+	  enum:
+	  - 110
+	  - 300
+	  - 600
+	  - 1200
+	  - 2400
+	  - 4800
+	  - 9600
+	  - 14400
+	  - 19200
+	  - 38400
+	  - 57600
+	  - 115200
+	  - 128000
+	  - 256000
+	  default: 9600
+	  example: 9600
+	device:
+	  type: string
+	  default: /dev/ttyS0
+	  example: /dev/ttyS0
 ```
 
 ## Complete Schema

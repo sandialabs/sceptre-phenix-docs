@@ -51,17 +51,19 @@ The `Topology` configuration is one of the core configuration types for
 `phenix`, as it describes a network topology to be deployed in `minimega` that
 can be used by one or more experiments to be executed.
 
-A topology is comprised of one or more _nodes_, which is a VM, each
+A topology is comprised of one or more _nodes_, which can either be a VM
+(`external: false` - the default) or an external node (`external: true`), each
 including system descriptions and configurations, as well as any networking
 settings required to connect all of the nodes in a topology together. This
 configuration becomes the basis for most of the minimega commands later created
-in the relevant minimega startup script.
+in the relevant minimega startup script (at least for internal VMs).
 
 ### Default Settings
 
 If left unmodified or unset, the following are the default settings for each
 node:
 
+- external will be set to `false`
 - memory will be set to `512`MB
 - vcpus will be set to `1`
 - snapshot will be set to `true`
@@ -132,6 +134,23 @@ network:
         - eth1
         - eth2
 ```
+
+### External Nodes
+
+There may be cases where an experiment includes external devices (hardware in
+the loop) that should still be included in the topology for the purposes of the
+[State of Health](/state-of-health) network diagram, state of health
+reachability checks, or for use by custom user apps. External nodes can be
+included in the topology by marking them as `external: true`. Among other
+things, this will prevent them from being deployed as a VM in minimega. The
+configuration schema for an external node in the topology is defined
+[here](/schema/#external_node-schema).
+
+!!! warning
+    Do not use `external: false` for internal nodes that should be deployed in
+    minimega. Instead, don't include the `external` configuration key at all.
+    This is a quirk of how we internally decide which node schema should be used
+    (via `oneOf`).
 
 ### Example
 
