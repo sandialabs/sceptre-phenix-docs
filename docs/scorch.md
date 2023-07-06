@@ -44,6 +44,7 @@ The following Scorch component types are considered `core` components, in that t
 
 - break
 - pause
+- soh
 - tap
 
 #### `break` Component
@@ -90,6 +91,41 @@ spec:
           duration: 2s
       runs:
       - start: ["brief-pause"]
+```
+
+#### `soh` Component
+
+The `soh` component allows users to execute the [State of
+Health](/state-of-health) app at scheduled times throughout a Scorch run. This
+is handy when, for example, other Scorch components might cause nodes in the
+experiment to misbehave or fail. The component can be configured to limit which
+health checks are run, and can also be configured to fail if any of the health
+checks fail. The log level can also be configured, which will limit what logs
+get sent to the component's UI modal while the component is running.
+
+```
+spec:
+  apps:
+  - name: scorch
+    metadata:
+      components:
+      - name: health-check
+        type: soh
+        metadata:
+          c2Timeout: 5s # if provided, will update the C2 timeout setting when this component runs the state of health app
+          checks:       # default is to run all the following checks
+            - network-config       # Ensure all nodes still have network configured per the topology. Will use `skipInitialNetworkConfigTests` setting in soh app config.
+            - reachability         # Basic ICMP-based reachability testing. Will use `testReachability` setting in soh app config.
+            - custom-reachability  # IP-based reachability testing (TCP or UDP). Will use `testCustomReachability` setting in soh app config.
+            - processes            # Ensure processes are running in nodes. Will use `hostProcesses` setting in soh app config.
+            - ports                # Ensure listeners are running in nodes. Will use `hostListeners` setting in soh app config.
+            - custom               # Run custom tests in nodes. Will use `hostCustomTests` setting in soh app config.
+            - cpu-load             # Gather CPU load stats from nodes.
+            - flows                # Gather paket flows from ElasticSearch server. Requires `packetCapture` setting to be cofigured in soh app config.
+          failOnError: true # default is false
+          logLevel: debug   # default is info
+      runs:
+      - start: ["health-check"]
 ```
 
 #### `tap` Component
