@@ -6,9 +6,6 @@ repo_name: 'sandialabs/sceptre-phenix'
 repo_url: 'https://github.com/sandialabs/sceptre-phenix'
 edit_uri: 'https://github.com/sandialabs/sceptre-phenix-docs/edit/main/src'
 
-docs_dir: src
-site_dir: docs
-
 theme:
   name: 'material'
   language: 'en'
