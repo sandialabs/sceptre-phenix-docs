@@ -304,6 +304,11 @@ spec:
         # address as their gateway if they need external access (and it's enabled
         # below)
         ip: 172.20.5.254/24
+        # IP subnet to use for veth pair between host and tap's network
+        # namespace when external access is enabled (will default to a /30
+        # subnet that is not already in use by any other running experiment if
+        # not provided)
+        subnet: 10.213.47.8/30
         externalAccess:
           # defaults to false
           enabled: true
