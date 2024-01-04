@@ -4,7 +4,7 @@ site_author: 'activeshadow and dnkcom'
 
 repo_name: 'sandialabs/sceptre-phenix'
 repo_url: 'https://github.com/sandialabs/sceptre-phenix'
-edit_uri: 'https://github.com/sandialabs/sceptre-phenix-docs/edit/main/src'
+edit_uri: 'https://github.com/sandialabs/sceptre-phenix-docs/edit/main/docs'
 
 theme:
   name: 'material'
