@@ -17,6 +17,11 @@ providing the `Default Bridge Name` setting.
 This can also be done via the CLI by providing the `--default-bridge, -b` option
 when using the `phenix exp create` subcommand.
 
+!!! warning
+    As mentioned above, the experiment netflow capability will not work if a
+    default bridge name is not explicitly specified for an experiment. This is
+    to prevent network flows across multiple experiments from being captured.
+
 ## Usage
 
 Running experiments will have a green network icon to the left of the VM search
