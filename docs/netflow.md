@@ -18,7 +18,7 @@ This can also be done via the CLI by providing the `--default-bridge, -b` option
 when using the `phenix exp create` subcommand.
 
 !!! warning
-    As mentioned above, the experiment netflow capability will not work if a
+    As mentioned above, the experiment netflow capability **will not work** if a
     default bridge name is not explicitly specified for an experiment. This is
     to prevent network flows across multiple experiments from being captured.
 
