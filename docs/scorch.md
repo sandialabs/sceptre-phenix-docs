@@ -1,8 +1,8 @@
 # Scorch
 
-Scorch &mdash; **SC**enario **ORCH**estration &mdash; is an automated scenario orchestration framework within phenix. It is included in phenix as a [core app](/apps/#additional-core-apps). The development of the Scorch framework was motivated by the need to facilitate rigorous experimentation. Some advantages of Scorch include the ability to run many repeated scenarios on an experiment with consistency and minimal overhead. Scorch also provides the ability to efficiently capture experimental data for retrieval and analysis.
+Scorch &mdash; **SC**enario **ORCH**estration &mdash; is an automated scenario orchestration framework within phenix. It is included in phenix as a [core app](apps.md#additional-core-apps). The development of the Scorch framework was motivated by the need to facilitate rigorous experimentation. Some advantages of Scorch include the ability to run many repeated scenarios on an experiment with consistency and minimal overhead. Scorch also provides the ability to efficiently capture experimental data for retrieval and analysis.
 
-A phenix [scenario](/configuration/#scenario) configuration file is used to define and configure the Scorch app for use on a topology. The Scorch app is meant to allow for the staging of [Scorch components](#scorch-components) in sequence to execute against a running experiment. When applied to a given topology, the Scorch app will be available in the Scorch table to execute and then observe, manipulate in some cases, and review output from available components for a given [stage](#stages) in the [Scorch pipeline](#scorch-pipeline).
+A phenix [scenario](configuration.md#scenario) configuration file is used to define and configure the Scorch app for use on a topology. The Scorch app is meant to allow for the staging of [Scorch components](#scorch-components) in sequence to execute against a running experiment. When applied to a given topology, the Scorch app will be available in the Scorch table to execute and then observe, manipulate in some cases, and review output from available components for a given [stage](#stages) in the [Scorch pipeline](#scorch-pipeline).
 
 The screenshots and [configuration file](#configuration) in the rest of this document are from an example Scorch app, `scorch-demo`.
 
@@ -96,7 +96,7 @@ spec:
 #### `soh` Component
 
 The `soh` component allows users to execute the [State of
-Health](/state-of-health) app at scheduled times throughout a Scorch run. This
+Health](state-of-health.md) app at scheduled times throughout a Scorch run. This
 is handy when, for example, other Scorch components might cause nodes in the
 experiment to misbehave or fail. The component can be configured to limit which
 health checks are run, and can also be configured to fail if any of the health
@@ -189,7 +189,7 @@ The Scorch table, accessible as one of the tab selections within the phenix UI, 
 
 ## Scorch Pipeline
 
-Scorch pipelines are available on the [Scorch table](#scorch-table) in the phenix UI. The table is sorted by Experiment name by default. Only those experiments with the Scorch app configured in the [scenario](/configuration/#scenario) configuration will be listed in the table. It is possible to _start_ or _stop_ an experiment, as well as _start_ or _stop_ a Scorch component. Finally, if a terminal is available when a break point is reached in a running Scorch app, it can be accessed from the table.
+Scorch pipelines are available on the [Scorch table](#scorch-table) in the phenix UI. The table is sorted by Experiment name by default. Only those experiments with the Scorch app configured in the [scenario](configuration.md#scenario) configuration will be listed in the table. It is possible to _start_ or _stop_ an experiment, as well as _start_ or _stop_ a Scorch component. Finally, if a terminal is available when a break point is reached in a running Scorch app, it can be accessed from the table.
 
 The Scorch pipeline provides a graphical representation of the Scorch app, including the `configure, start, stop, and cleanup` stages. If the Scorch app provides output for a given step, or component, users can click into the component and receive the output. A user can access the terminal if a break point is reached by clicking on the component. As with the terminal access described above, a dialog will be presented with a terminal running on the phenix host system.
 

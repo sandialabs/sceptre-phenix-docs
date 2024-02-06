@@ -139,12 +139,12 @@ network:
 
 There may be cases where an experiment includes external devices (hardware in
 the loop) that should still be included in the topology for the purposes of the
-[State of Health](/state-of-health) network diagram, state of health
+[State of Health](state-of-health.md) network diagram, state of health
 reachability checks, or for use by custom user apps. External nodes can be
 included in the topology by marking them as `external: true`. Among other
 things, this will prevent them from being deployed as a VM in minimega. The
 configuration schema for an external node in the topology is defined
-[here](/schema/#external_node-schema).
+[here](schema.md#external_node-schema).
 
 !!! warning
     Do not use `external: false` for internal nodes that should be deployed in
