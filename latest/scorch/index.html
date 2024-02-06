@@ -1,0 +1,1311 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A place for phenix users to call home.">
+      
+      
+        <meta name="author" content="activeshadow and dnkcom">
+      
+      
+      
+        <link rel="prev" href="../schema/">
+      
+      
+        <link rel="next" href="../state-of-health/">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+    
+    
+      
+        <title>Scorch - phenix documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/style.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="brown">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scorch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="phenix documentation" class="md-header__button md-logo" aria-label="phenix documentation" data-md-component="logo">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            phenix documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scorch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="brown"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="brown"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.04 7 9.54 0 4.5-2.94 8.27-7 9.54.95.3 1.95.46 3 .46a10 10 0 0 0 10-10A10 10 0 0 0 9 2Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sandialabs/sceptre-phenix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sandialabs/sceptre-phenix
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="phenix documentation" class="md-nav__button md-logo" aria-label="phenix documentation" data-md-component="logo">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    phenix documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sandialabs/sceptre-phenix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sandialabs/sceptre-phenix
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Experiments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Disk Images Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Knowledge Base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Experiment Netflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration File Schemas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Scorch
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Scorch
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scorch-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scorch Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scorch Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automated-component-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated Component Data Collection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#break-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      break Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pause-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      pause Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soh-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      soh Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tap-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      tap Component
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-defined-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      User-defined Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scorch-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scorch Table
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scorch-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scorch Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scorch Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state-of-health/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    State of Health
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-administration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User Authn/Authz in phenix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vm-multi-action/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VM Multi Action
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scorch-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scorch Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scorch Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automated-component-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated Component Data Collection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#break-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      break Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pause-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      pause Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soh-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      soh Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tap-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      tap Component
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-defined-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      User-defined Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scorch-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scorch Table
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scorch-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scorch Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scorch Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="scorch">Scorch<a class="headerlink" href="#scorch" title="Permanent link">&para;</a></h1>
+<p>Scorch &mdash; <strong>SC</strong>enario <strong>ORCH</strong>estration &mdash; is an automated scenario orchestration framework within phenix. It is included in phenix as a <a href="../apps/#additional-core-apps">core app</a>. The development of the Scorch framework was motivated by the need to facilitate rigorous experimentation. Some advantages of Scorch include the ability to run many repeated scenarios on an experiment with consistency and minimal overhead. Scorch also provides the ability to efficiently capture experimental data for retrieval and analysis.</p>
+<p>A phenix <a href="../configuration/#scenario">scenario</a> configuration file is used to define and configure the Scorch app for use on a topology. The Scorch app is meant to allow for the staging of <a href="#scorch-components">Scorch components</a> in sequence to execute against a running experiment. When applied to a given topology, the Scorch app will be available in the Scorch table to execute and then observe, manipulate in some cases, and review output from available components for a given <a href="#stages">stage</a> in the <a href="#scorch-pipeline">Scorch pipeline</a>.</p>
+<p>The screenshots and <a href="#configuration">configuration file</a> in the rest of this document are from an example Scorch app, <code>scorch-demo</code>.</p>
+<h2 id="scorch-components">Scorch Components<a class="headerlink" href="#scorch-components" title="Permanent link">&para;</a></h2>
+<p>A Scorch component is simply an executable available to be called by the Scorch app within phenix. A component is expected to implement any or all of the various <a href="#stages">stages</a> in the <a href="#scorch-pipeline">Scorch pipeline</a>.</p>
+<p>For an executable to be considered a Scorch component, it must meet the following requirements:</p>
+<ol>
+<li>Follow the <code>phenix-scorch-component-&lt;type&gt;</code> naming convention, where <code>&lt;type&gt;</code> is the component type used in the Scorch app configuration. An example would be <code>phenix-scorch-component-tcpdump</code>.</li>
+<li>Be an executable file.</li>
+<li>Be in the <code>PATH</code> of the user running phenix.</li>
+</ol>
+<p>When the Scorch app executes a Scorch component, it will pass a number of positional arguments to the component via the command line, as well as the JSON representation of the experiment the component is to be executed against via STDIN. The positional arguments passed are as follows:</p>
+<ol>
+<li>run stage (<code>configure</code>, <code>start</code>, <code>stop</code>, or <code>cleanup</code>)</li>
+<li>component name (name given to component type in Scorch app configuration)</li>
+<li>run ID (integer <code>&gt;= 0</code> representing the array index of the Scorch run in the app configuration being executed)</li>
+<li>loop (integer <code>&gt;= 0</code> representing the current run loop being executed)</li>
+<li>count (integer <code>&gt;= 0</code> representing the current loop count being executed)</li>
+</ol>
+<p>During component execution, the Scorch app assumes anything written to STDOUT by a component is intended to be relayed to the user. Thus, when Scorch is run via the web UI, anything written to STDOUT gets streamed to the UI for viewing. Any error messages generated by a component should be written to the log file or to STDERR unless it's to also be relayed to the user directly.</p>
+<p>The Scorch app expects a component executable to exit with a value of <code>0</code> upon completion if the component was successful, and exit with any other value otherwise. An exit value of anything other than <code>0</code> will result in Scorch halting execution of the current stage and jumping to the next appropriate stage to complete the Scorch run.</p>
+<h3 id="automated-component-data-collection">Automated Component Data Collection<a class="headerlink" href="#automated-component-data-collection" title="Permanent link">&para;</a></h3>
+<p>The Scorch app is capable of generating a configuration file for and starting an instance of <a href="https://www.elastic.co/beats/filebeat">Filebeat</a> in the background before execution of each Scorch run. As each Scorch component is executed, any data it generates and collects can be configured to be automatically processed by Filebeat for indexing in <a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a>. At a minimum, this requires the following.</p>
+<ol>
+<li>Filebeat to be enabled and configured in the Scorch app configuration.</li>
+<li>A Filebeat input to be configured for each component generating and collecting data.</li>
+<li>The <code>filebeat</code> executable installed and in the <code>PATH</code> of the user running phenix.</li>
+</ol>
+<p>See the <a href="#example-configuration">example configuration</a> below for examples of how Filebeat and Filebeat inputs are configured in the Scorch app configuration.</p>
+<h3 id="built-in-components">Built-in Components<a class="headerlink" href="#built-in-components" title="Permanent link">&para;</a></h3>
+<p>The following Scorch component types are considered <code>core</code> components, in that they are included in the main phenix repository and are available for use in Scorch app configurations by default.</p>
+<ul>
+<li>break</li>
+<li>pause</li>
+<li>soh</li>
+<li>tap</li>
+</ul>
+<h4 id="break-component"><code>break</code> Component<a class="headerlink" href="#break-component" title="Permanent link">&para;</a></h4>
+<p>The <code>break</code> component is comparable to a source code break point when debugging an application in that it pauses execution of the current Scorch run until a user exits the break. While the <code>break</code> component is running, users have access to a shell on the server running phenix as the user running phenix. The first user to access the shell via the terminal modal in the UI will have read-write access. If other users access the shell, they will have read-only access but will get live updates as the user with read-write access uses the terminal.</p>
+<p>It's possible to configure the <code>break</code> component in the Scorch app configuration to create a minimega tap when the component is executed. When the component is executed, the tap will be deleted. In addition to the tap, external network access can also be configured (e.g., Internet access).</p>
+<p>An example of configuring a <code>break</code> component to create a tap and configure external network access during the <code>configure</code> stage is as follows. The <code>break</code> component can be configured to run in any stage.</p>
+<div class="codehilite"><pre><span></span><code>spec:
+  apps:
+  - name: scorch
+    metadata:
+      components:
+      - name: break-tap
+        type: break
+        metadata:
+          tap:
+            bridge: phenix
+            vlan: MGMT
+            ip: 172.16.33.25/16
+            internetAccess: true
+      runs:
+      - configure: [&quot;break-tap&quot;]
+</code></pre></div>
+
+<h4 id="pause-component"><code>pause</code> Component<a class="headerlink" href="#pause-component" title="Permanent link">&para;</a></h4>
+<p>The <code>pause</code> component is similar to the <code>break</code> component in that it pauses execution of the current Scorch run, but instead of waiting for user intervention it simply pauses for a predefined duration.</p>
+<p>A simple example is as follows. The <code>pause</code> component can be configured to run in any stage. The value used for the <code>duration</code> key should be a valid <a href="https://pkg.go.dev/time#ParseDuration">Golang duration string</a>.</p>
+<div class="codehilite"><pre><span></span><code>spec:
+  apps:
+  - name: scorch
+    metadata:
+      components:
+      - name: brief-pause
+        type: pause
+        metadata:
+          duration: 2s
+      runs:
+      - start: [&quot;brief-pause&quot;]
+</code></pre></div>
+
+<h4 id="soh-component"><code>soh</code> Component<a class="headerlink" href="#soh-component" title="Permanent link">&para;</a></h4>
+<p>The <code>soh</code> component allows users to execute the <a href="../state-of-health/">State of
+Health</a> app at scheduled times throughout a Scorch run. This
+is handy when, for example, other Scorch components might cause nodes in the
+experiment to misbehave or fail. The component can be configured to limit which
+health checks are run, and can also be configured to fail if any of the health
+checks fail. The log level can also be configured, which will limit what logs
+get sent to the component's UI modal while the component is running.</p>
+<div class="codehilite"><pre><span></span><code>spec:
+  apps:
+  - name: scorch
+    metadata:
+      components:
+      - name: health-check
+        type: soh
+        metadata:
+          c2Timeout: 5s # if provided, will update the C2 timeout setting when this component runs the state of health app
+          checks:       # default is to run all the following checks
+            - network-config       # Ensure all nodes still have network configured per the topology. Will use `skipInitialNetworkConfigTests` setting in soh app config.
+            - reachability         # Basic ICMP-based reachability testing. Will use `testReachability` setting in soh app config.
+            - custom-reachability  # IP-based reachability testing (TCP or UDP). Will use `testCustomReachability` setting in soh app config.
+            - processes            # Ensure processes are running in nodes. Will use `hostProcesses` setting in soh app config.
+            - ports                # Ensure listeners are running in nodes. Will use `hostListeners` setting in soh app config.
+            - custom               # Run custom tests in nodes. Will use `hostCustomTests` setting in soh app config.
+            - cpu-load             # Gather CPU load stats from nodes.
+            - flows                # Gather paket flows from ElasticSearch server. Requires `packetCapture` setting to be cofigured in soh app config.
+          failOnError: true # default is false
+          logLevel: debug   # default is info
+      runs:
+      - start: [&quot;health-check&quot;]
+</code></pre></div>
+
+<h4 id="tap-component"><code>tap</code> Component<a class="headerlink" href="#tap-component" title="Permanent link">&para;</a></h4>
+<p>The <code>tap</code> component implements the exact same functionality described above in the <code>break</code> component for creating a minimega tap and, optionally, external network access, but allows for the tap (and external network access, if configured) to exist while other components are executed (as opposed to only existing for the duration of the <code>break</code> component).</p>
+<p>An example of configuring a <code>tap</code> component to create a tap and configure external network access is as follows. The <code>tap</code> component can only be configured to run in the <code>start</code> stage (create the tap) and the <code>stop</code> stage (delete the tap).</p>
+<div class="codehilite"><pre><span></span><code>spec:
+  apps:
+  - name: scorch
+    metadata:
+      components:
+      - name: tap-inet
+        type: tap
+        metadata:
+          bridge: phenix
+          vlan: MGMT
+          ip: 172.16.33.25/16
+          internetAccess: true
+      runs:
+      - start: [&quot;tap-inet&quot;]
+      - stop: [&quot;tap-inet&quot;]
+</code></pre></div>
+
+<p><strong>NOTE:</strong> In deployments where <code>minimega</code> is running in a container on the headnode, and Docker networking is in use (e.g., the <code>minimega</code> container is <strong>not</strong> configured to use host networking), users will need to execute the following commands if access to the <code>minimega</code> tap created by the <code>tap</code> (or <code>break</code>) component from the Docker host is required.</p>
+<div class="codehilite"><pre><span></span><code>ovs-docker add-port phenix TDN minimega
+docker exec -it minimega ovs-vsctl add-port phenix TDN
+ovs-vsctl add-port phenix temp-tap tag=&lt;vlan ID&gt; -- set interface temp-tap type=internal
+</code></pre></div>
+
+<p>The above commands assume the name of the minimega container is <code>minimega</code>. The name of the local tap created (in this case, <code>temp-tap</code>) can be whatever, but the value for the VLAN tag must match the numerical ID of the VLAN that's mapped to the VLAN alias used in the <code>tap</code> (or <code>break</code>) component configuration.</p>
+<blockquote>
+<p>Using host networking mode for the <code>minimega</code> container allows for all the above nonsense to be skipped.</p>
+</blockquote>
+<h3 id="user-defined-components">User-defined Components<a class="headerlink" href="#user-defined-components" title="Permanent link">&para;</a></h3>
+<p>The following Scorch component types have been developed external to the main phenix repository and are available in the <a href="https://github.com/activeshadow/phenix-apps/tree/main/src/python/phenix_apps/apps/scorch">phenix-apps</a> repository, which also includes README-based documentation for each. They are all developed in Python, and leverage common helper classes that ease the development of user components.</p>
+<ul>
+<li>art</li>
+<li>cc</li>
+<li>ettercap</li>
+<li>hoststats</li>
+<li>snort</li>
+<li>tcpdump</li>
+<li>vmstats</li>
+</ul>
+<h2 id="scorch-table">Scorch Table<a class="headerlink" href="#scorch-table" title="Permanent link">&para;</a></h2>
+<p>The Scorch table, accessible as one of the tab selections within the phenix UI, lists all possible Scorch apps available based on the experiments established in phenix. The following columns or functions are available:</p>
+<ul>
+<li>Experiment name</li>
+<li>Experiment status: this reports on the status of the experiment &mdash; an experiment must be running for a Scorch app to start</li>
+<li>Scorch app status: this will report the running or stopped status of the Scorch app itself</li>
+<li>Terminal: if the Scorch app has reached a break point, a terminal will be available &mdash; if clicked, a terminal dialog will be opened and is running on the phenix host system</li>
+<li>Find an Experiment: similar to the search fields in other tables within the phenix UI, it is possible to filter experiment names based on terms entered here</li>
+</ul>
+<p><img alt="Scorch Table" src="../images/table.png" /></p>
+<h2 id="scorch-pipeline">Scorch Pipeline<a class="headerlink" href="#scorch-pipeline" title="Permanent link">&para;</a></h2>
+<p>Scorch pipelines are available on the <a href="#scorch-table">Scorch table</a> in the phenix UI. The table is sorted by Experiment name by default. Only those experiments with the Scorch app configured in the <a href="../configuration/#scenario">scenario</a> configuration will be listed in the table. It is possible to <em>start</em> or <em>stop</em> an experiment, as well as <em>start</em> or <em>stop</em> a Scorch component. Finally, if a terminal is available when a break point is reached in a running Scorch app, it can be accessed from the table.</p>
+<p>The Scorch pipeline provides a graphical representation of the Scorch app, including the <code>configure, start, stop, and cleanup</code> stages. If the Scorch app provides output for a given step, or component, users can click into the component and receive the output. A user can access the terminal if a break point is reached by clicking on the component. As with the terminal access described above, a dialog will be presented with a terminal running on the phenix host system.</p>
+<p><img alt="Scorch Pipeline" src="../images/pipeline.png" /></p>
+<p>The following functions are also available in the Scorch pipeline UI:</p>
+<ul>
+<li>Return to the table: a button that will return to the Scorch table</li>
+<li>Scorch app status: a button that will allow a running Scorch app to be stopped or started depending on the current status</li>
+</ul>
+<p><img alt="Return to Scorch table" class="center" src="../images/return.png" width="200" /></p>
+<p><img alt="Stopped or Started button" class="center" src="../images/status.png" width="300" /></p>
+<h3 id="stages">Stages<a class="headerlink" href="#stages" title="Permanent link">&para;</a></h3>
+<p>For a given Scorch pipeline, there are four stages of execution:</p>
+<ol>
+<li><code>configure</code></li>
+<li><code>start</code></li>
+<li><code>stop</code></li>
+<li><code>cleanup</code></li>
+</ol>
+<p>A Scorch component may implement any or all of the various stages, and Scorch will execute each stage inside the components in order. Each component can be configured in the Scorch app scenario <a href="#configuration">configuration file</a>.</p>
+<blockquote>
+<p>* There is additional <code>done</code> stage in the UI obtained when <code>cleanup</code> has been completed. It is meant to report the completion of all stages in the Pipeline UI.</p>
+</blockquote>
+<p>It's completely up to the component developer if and how an execution stage is implemented and handled by the component. If a component is configured in the Scorch app to be executed as part of a stage, but the component does not implement said stage, then the Scorch app will happily continue on to the next component in the stage (unless the component errors out if the current stage is not implemented, in which case the Scorch run will fail).</p>
+<p><img alt="Pipeline Stages" src="../images/stages.png" /></p>
+<p>The following indicators are presented for each component of the Scorch app:</p>
+<ul>
+<li>Uninitialized: a component has not yet been reached or initialized &mdash; if the component has not yet been run, all components will be identified as uninitialized</li>
+<li>Running: the component is currently running and has not yet been completed</li>
+<li>Success: the component has completed successfully</li>
+<li>Break Point: a break component has been reached &mdash; a terminal should be accessible by clicking on the component</li>
+<li>Backgrounded: a component is running in the background</li>
+<li>Failure: a component has failed for some reason &mdash; reporting on the failure may be accessible by click on the component</li>
+</ul>
+<p><img alt="Legend" src="../images/legend.png" /></p>
+<p>Loops are also available within a Scorch app and are included in the configuration file. A loop supports <em>looping</em> within a given component through additional components. Once a loop is completed, the next component is executed. There is no limit on the number of loops or depth of them. The Scorch pipeline UI supports access to each loop and will report the depth in the pipeline's title. The first loop in the <code>scorch-demo</code> app is presented in the following example; clicking the return button will return the display one level up in the loop chain (or ending at the parent Scorch app).</p>
+<p><img alt="Example Loop within Scorch app" src="../images/loop.png" /></p>
+<p>In addition to loops, multi-run is supported within a Scorch app. Unlike loops, multi-run allows for individual Scorch runs containing four separate stages. They are not nested in each other but are independent runs. A use case for multi-run could be executing multiple independent portions of an experiment against a topology, in any order or executing a run multiple times. There are two runs depicted in the <a href="#configuration">configuration</a> below.</p>
+<p>As described above, each component will provide a modal for output reporting. The output could either be a fairly straight forward report, nothing at all, or it  include logging output for a given component in the stage. The result will be streamed as it is received if the component is currently in a running component. If the component has finished running, the output will be static.</p>
+<p><img alt="Output of Snort component" src="../images/output.png" /></p>
+<p>A terminal modal is available from the Scorch table when a break point component is reached; it is also available in the Scorch pipeline. There are two types of terminal modals: read-write and read-only. If another user opens a terminal modal for a given component, it will be read-only the next time a terminal is open. The following are examples of each. In the first example, a read-only terminal, the user viewing this modal is only observing what another using is executing. In the second example, a read-write terminal, the user ran two simple commands on the phenix host system.</p>
+<p><img alt="Read-only Terminal" class="center" src="../images/read-only.png" width="300" /></p>
+<p><img alt="Read-write Terminal" class="center" src="../images/read-write.png" width="300" /></p>
+<p>If a component fails, the Scorch app will skip the remaining components involved in the current execution stage and jump to the next appropriate stage to complete the Scorch run. For example, if a component fails in the <code>Configure</code> stage the Scorch app will jump to the <code>Cleanup</code> stage, and if a component fails in the <code>Start</code> stage Scorch will jump to the <code>Stop</code> stage (skipping execution of any configured loops in either case).</p>
+<p><img alt="Failed component &mdash; trafficgen in the Configure stage" class="center" src="../images/failed.png" width="300" /></p>
+<h2 id="example-configuration">Example Configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>apiVersion: phenix.sandia.gov/v2
+kind: Scenario
+metadata:
+  name: scorch-demo
+spec:
+  scenario:
+    apps:
+    - name: mirror
+      metadata:
+        directGRE:
+          enabled: true
+          mirrorBridge: phenix
+          mirrorNet: 172.30.0.0/16
+          mirrorVLAN: mirror
+      hosts:
+      - hostname: detector
+        metadata:
+          interface: IF0
+          vlans:
+          - EXP
+      - name: scorch
+        metadata:
+          components:
+          - name: vmstats
+            type: vmstats
+            metadata:
+              filebeat.inputs:
+              - enabled: true
+                type: log
+                json.add_error_key: true
+                paths:
+                - vm_stats.jsonl
+                processors:
+                - copy_fields:
+                    fields:
+                    - from: json
+                      to: scorch.vmstats
+                - drop_fields:
+                    fields:
+                    - json
+                - timestamp:
+                    field: scorch.vmstats.UTC
+                    layouts:
+                    - &#39;2006-01-02 15:04:05&#39;
+          - name: hoststats
+            type: hoststats
+            background: true
+            metadata:
+              filebeat.inputs:
+              - enabled: true
+                type: log
+                json.add_error_key: true
+                paths:
+                - host_stats.jsonl
+                processors:
+                - copy_fields:
+                    fields:
+                    - from: json
+                      to: scorch.hoststats
+                - drop_fields:
+                    fields:
+                    - json
+                - timestamp:
+                    field: scorch.hoststats.timestamp
+                    layouts:
+                    - UNIX_MS
+          - name: trafficgen
+            type: trafficgen
+            metadata:
+              scripts:
+                backgroundGen: /phenix/topologies/scorch-demo/scripts/background-gen.py
+                malwareGen: /phenix/topologies/scorch-demo/scripts/malware-gen.py
+                trafficServer: /phenix/topologies/scorch-demo/scripts/traffic-server.py
+              targets:
+              - backgroundClient:
+                  hostname: background-gen
+                  probability: 0.01
+                  rate: 10000
+                duration: 30
+                hostname: traffic-server
+                interface: IF0
+                malwareClient:
+                  hostname: malware-gen
+                  probability: 1.25
+                  rate: 20
+          - name: break
+            type: break
+            metadata: {}
+          - name: tcpdump
+            type: tcpdump
+            metadata:
+              convertToJSON: false
+              filebeat.inputs:
+              - enabled: true
+                type: log
+                paths:
+                - tcpdump.pcap.json
+                processors:
+                - copy_fields:
+                    fields:
+                    - from: json
+                      to: scorch.tcpdump
+                - drop_fields:
+                    fields:
+                    - json
+              vms:
+                detector: eth0
+          - name: snort
+            type: snort
+            metadata:
+              configs:
+              - dst: /etc/snort/snort.conf
+                name: snort
+                src: /phenix/topologies/scorch-demo/configs/snort.conf
+              - dst: /etc/snort/rules/emotet.rules
+                name: emotet
+                src: /phenix/topologies/scorch-demo/configs/emotet.rules
+              filebeat.inputs:
+              - enabled: true
+                type: log
+                json.add_error_key: true
+                paths:
+                - snort-stats.jsonl
+                processors:
+                - copy_fields:
+                    fields:
+                    - from: json
+                      to: scorch.snort
+                - drop_fields:
+                    fields:
+                    - json
+                - timestamp:
+                    field: scorch.snort.timestamp
+                    layouts:
+                    - UNIX
+              hostname: detector
+              scripts:
+                configSnort:
+                  executor: bash
+                  script: /phenix/topologies/scorch-demo/scripts/configure-snort.sh
+              sniffInterface: eth0
+              waitDuration: 5
+          runs:
+          - configure:
+            - trafficgen
+            - snort
+            start:
+            - hoststats
+            - vmstats
+            loop:
+              execute:
+                configure: null
+                start:
+                - tcpdump
+                - snort
+                - trafficgen
+                stop:
+                - trafficgen
+                - snort
+                - tcpdump
+                cleanup: null
+            stop:
+            - vmstats
+            - hoststats
+            - break
+          - start:
+            - tcpdump
+            - trafficgen
+            stop:
+            - trafficgen
+            - tcpdump
+          filebeat:
+            enabled: true
+            config:
+              output.elasticsearch:
+                hosts:
+                - es:9200
+              setup.dashboards.enabled: true
+              setup.kibana.host: http://kibana:5601
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/sandialabs/sceptre-phenix-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/swagger.html" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M495.9 166.6c3.2 8.7.5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4l-55.6 17.8c-8.8 2.8-18.6.3-24.5-6.8-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4c-1.1-8.4-1.7-16.9-1.7-25.5s.6-17.1 1.7-25.4l-43.3-39.4c-6.9-6.2-9.6-15.9-6.4-24.6 4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2 5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8 8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.caa56a14.min.js"></script>
+      
+    
+  </body>
+</html>
