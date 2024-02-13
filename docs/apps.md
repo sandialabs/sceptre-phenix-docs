@@ -45,7 +45,8 @@ spec:
           - name: in-rules
             default: drop
             rules:
-            - action: accept
+            - id: 10
+              action: accept
               description: Allow Incoming HTTP
               source:
                 address: 192.168.0.0/24
@@ -53,7 +54,8 @@ spec:
                 address: 10.0.0.0/24
                 port: 80
               protocol: tcp
-            - action: accept
+            - id: 20
+              action: accept
               description: Allow Established
               stateful: true
               protocol: all
@@ -137,6 +139,7 @@ spec:
           rules.
 
         * `rules`: list of rules to apply to traffic.
+            * `id`: integer to identify the order of the fules in the set.
 
             * `action`: action to apply to traffic matching rule.
 
