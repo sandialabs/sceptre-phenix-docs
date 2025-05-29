@@ -51,3 +51,6 @@ markdown_extensions:
   - footnotes
   - toc:
       permalink: true
+  - pymdownx.snippets:
+      url_download: true
+      url_max_size: 0
