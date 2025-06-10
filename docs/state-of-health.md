@@ -350,11 +350,6 @@ included in reachability tests during the post-start stage. Once the VM's
 network settings have been configured manually, the running stage can be
 triggered and the VM will be included in reachability tests this time around.
 
-!!! note
-    Support for custom reachability testing using TCP or UDP currently requires
-    the use of the `activeshadow/minimega@tcp-conn-test` branch until [PR
-    1457](https://github.com/sandia-minimega/minimega/pull/1457) is merged.
-
 ### Injecting ICMP Rules
 
 The `injectICMPAllow` option can be used to add rules to routers/firewalls in
