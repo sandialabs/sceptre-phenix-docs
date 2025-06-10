@@ -6,7 +6,7 @@ complete schema is [described here](#complete-schema).
 ## Topology Schema
 
 The `topology` schema is largely comprised of nodes, [described
-here](#node-schema).
+here](#node-schemas).
 
 ```
 Topology:

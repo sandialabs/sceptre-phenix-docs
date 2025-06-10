@@ -22,7 +22,7 @@ Configuration files are versioned using a header section based heavily on what
 [Kubernetes](https://kubernetes.io) does. Each configuration file will have a
 header section that looks like the following:
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v1
 kind: Topology
 metadata:
@@ -75,7 +75,7 @@ Each topology must have a unique name, which should be lowercase and not include
 spaces. In addition, each node in the topology must:
 
 - have a specified type &mdash; the available types are defined in the
-  [schema](schema.md#node-schema)
+  [schema](schema.md#node-schemas)
 - have a unique hostname
 - have an OS type of `linux` or `windows`
 - have a disk image assigned
@@ -126,7 +126,7 @@ the Internet, while `eth1, eth2` are connected to networks that use private IP
 space. To masquerade packets from `eth1, eth2` out `eth0` the following
 configuration could be used.
 
-```
+```yaml
 network:
   nat:
     - out: eth0
@@ -158,7 +158,7 @@ A contrived, four node example &mdash; three VMs and a router &mdash; is given
 below, and is driven by the
 [topology schema described here](schema.md#topology-schema).
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v1
 kind: Topology
 metadata:
@@ -358,7 +358,7 @@ have to match). Included in this scenario are apps named `miniccc-injector`,
 includes custom app metadata and the hostname of the topology node to apply the
 metadata.
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v1
 kind: Scenario
 metadata:
@@ -426,7 +426,7 @@ shown below. In this case, an experiment named `foobar` would be created based
 on an existing topology named `foobar` and an existing scenario named `foobar`
 (note that none of the names are required to match).
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v1
 kind: Experiment
 metadata:
@@ -461,7 +461,7 @@ Typically image configurations are
 configuration file similar to the one shown below. This file can then be created
 in the phēnix store using the `phenix cfg create <path-to-file>` command.
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v1
 kind: Image
 metadata:
@@ -511,7 +511,7 @@ password, and RBAC permissions). Typically user configurations are created
 automatically when a UI admin creates a new user via the UI, but they can also
 be created manually using a configuration file similar to the one shown below.
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v1
 kind: User
 metadata:
@@ -551,7 +551,7 @@ There are six (6) default role configurations that get created automatically,
 and are described [here](user-administration.md#roles). An example role
 configuration is shown below for completeness.
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v1
 kind: Role
 metadata:

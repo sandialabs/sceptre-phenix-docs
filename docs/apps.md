@@ -25,7 +25,7 @@ firewall rules, etc.
 The following is an example of how the `vrouter` app can be configured via a
 `Scenario` configuration, showing all the possible options.
 
-```
+```yaml
 spec:
   apps:
   - name: vrouter
@@ -224,7 +224,7 @@ spec:
     rules are actually applied to packets "egressing out of" interface `IF0`.
 
 !!! note
-    Currently, the `ipsec`, `emulators`, and `snat/dnat` metadata sections only
+    Currently, the `ipsec`, `emulators`, and `snat`/`dnat` metadata sections only
     apply to Vyatta/VyOS routers.
 
 !!! note
@@ -290,7 +290,7 @@ The following is an example of how the `tap` app can be configured via a
     The `externalAccess.firewall` portion of the tap configuration has not been
     implemented yet.
 
-```
+```yaml
 spec:
   apps:
   - name: tap
@@ -335,18 +335,18 @@ spec:
 ## User Apps
 
 `phenix` _user apps_ are stand-alone executables that `phenix` shells out to at
-different stages of the experiment lifecycle (`configure, pre-start, post-start,
-running, and cleanup`). When `phenix` encounters an app in an experiment
+different stages of the experiment lifecycle (`configure`, `pre-start`, `post-start`,
+`running`, and `cleanup`). When `phenix` encounters an app in an experiment
 scenario that isn't a default app, it checks to see if an executable exists in
 its current `PATH` in the form of `phenix-app-<app name>`. If the executable
 exists, `phenix` shells out to it, providing the current lifecycle stage as an
-argument and providing the experiment `metadata, spec, and status` as a JSON
+argument and providing the experiment `metadata`, `spec`, and `status` as a JSON
 string over `STDIN`.
 
 !!! note
     There will be three (3) top-level keys available in the JSON passed to a
-    user app over `STDIN`: `metadata, spec, and status`. For the `configure and
-    pre-start` stages, the `status` value will be null or otherwise ignored. The
+    user app over `STDIN`: `metadata`, `spec`, and `status`. For the `configure` and
+    `pre-start` stages, the `status` value will be null or otherwise ignored. The
     `spec` value will be [experiment schema](schema.md#experiment-schema).
 
 !!! tip
@@ -359,9 +359,9 @@ error, it can print any error messages to `STDERR` and exit with a non-zero
 status to signal to `phenix` that an error occurred.
 
 !!! note
-    `phenix` will only process updates to the `spec` value for the `configure
-    and pre-start` stages, and will only process updates to the `status` value
-    for the `post-start, running, and cleanup` stages. More specifically, it
+    `phenix` will only process updates to the `spec` value for the `configure`
+    and `pre-start` stages, and will only process updates to the `status` value
+    for the `post-start`, `running`, and `cleanup` stages. More specifically, it
     will only process updates to `status.apps.<app name>`, which can be anything
     the app wants it to be (e.g. a simple string, an array, or a
     map/dictionary).
@@ -374,8 +374,7 @@ status to signal to `phenix` that an error occurred.
 
 ### Available User Apps
 
-The
-[sandia-minimega/phenix-apps](https://github.com/sandia-minimega/phenix-apps)
+The [sandialabs/sceptre-phenix-apps](https://github.com/sandialabs/sceptre-phenix-apps)
 repo is home to some user apps that have already been created by the community,
 including the following:
 
@@ -385,7 +384,7 @@ including the following:
 
 In addition, this repo also contains some generic library/utility code for
 making custom user app development easier. See the
-[README](https://github.com/sandia-minimega/phenix-apps/blob/master/README.md)
+[README](https://github.com/sandialabs/sceptre-phenix-apps/blob/main/README.md)
 for additional details.
 
 ### Example
@@ -396,7 +395,7 @@ executable for this app as `phenix-app-image-changer`, it could be applied to a
 topology by including a scenario in an experiment that includes an experiment
 app named `image-changer`.
 
-```
+```python
 import json, sys
 
 
