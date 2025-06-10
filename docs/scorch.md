@@ -4,7 +4,7 @@ Scorch &mdash; **SC**enario **ORCH**estration &mdash; is an automated scenario o
 
 A phenix [scenario](configuration.md#scenario) configuration file is used to define and configure the Scorch app for use on a topology. The Scorch app is meant to allow for the staging of [Scorch components](#scorch-components) in sequence to execute against a running experiment. When applied to a given topology, the Scorch app will be available in the Scorch table to execute and then observe, manipulate in some cases, and review output from available components for a given [stage](#stages) in the [Scorch pipeline](#scorch-pipeline).
 
-The screenshots and [configuration file](#configuration) in the rest of this document are from an example Scorch app, `scorch-demo`.
+The screenshots and [configuration file](#example-configuration) in the rest of this document are from an example Scorch app, `scorch-demo`.
 
 ## Scorch Components
 
@@ -213,7 +213,7 @@ For a given Scorch pipeline, there are four stages of execution:
 1. `stop`
 1. `cleanup`
 
-A Scorch component may implement any or all of the various stages, and Scorch will execute each stage inside the components in order. Each component can be configured in the Scorch app scenario [configuration file](#configuration).
+A Scorch component may implement any or all of the various stages, and Scorch will execute each stage inside the components in order. Each component can be configured in the Scorch app scenario [configuration file](configuration.md).
 
 > \* There is additional `done` stage in the UI obtained when `cleanup` has been completed. It is meant to report the completion of all stages in the Pipeline UI.
 
@@ -236,7 +236,7 @@ Loops are also available within a Scorch app and are included in the configurati
 
 ![Example Loop within Scorch app](images/loop.png)
 
-In addition to loops, multi-run is supported within a Scorch app. Unlike loops, multi-run allows for individual Scorch runs containing four separate stages. They are not nested in each other but are independent runs. A use case for multi-run could be executing multiple independent portions of an experiment against a topology, in any order or executing a run multiple times. There are two runs depicted in the [configuration](#configuration) below.
+In addition to loops, multi-run is supported within a Scorch app. Unlike loops, multi-run allows for individual Scorch runs containing four separate stages. They are not nested in each other but are independent runs. A use case for multi-run could be executing multiple independent portions of an experiment against a topology, in any order or executing a run multiple times. There are two runs depicted in the [configuration](#example-configuration) below.
 
 As described above, each component will provide a modal for output reporting. The output could either be a fairly straight forward report, nothing at all, or it  include logging output for a given component in the stage. The result will be streamed as it is received if the component is currently in a running component. If the component has finished running, the output will be static.
 
@@ -254,7 +254,7 @@ If a component fails, the Scorch app will skip the remaining components involved
 
 ## Example Configuration
 
-```
+```yaml
 apiVersion: phenix.sandia.gov/v2
 kind: Scenario
 metadata:

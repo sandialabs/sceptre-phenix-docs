@@ -110,7 +110,7 @@ in detail below.
 
 ### Sample SoH Scenario Config
 
-```
+```yaml
 spec:
   apps:
   - name: soh
