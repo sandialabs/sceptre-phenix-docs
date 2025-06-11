@@ -55,7 +55,7 @@ Multiple search terms
 
 Not applicable.
 
-## Starting/stoppping Packet Captures
+## Starting/Stopping Packet Captures
 
 ### From the Web-UI
 
@@ -78,20 +78,20 @@ to find all the VMs with active packet captures.
 
 To start packet captures on running VMs for a specific subnet, use the following command.
 
-```
-$> phenix vm capture start-subnet <experiment name> <subnet>
+```shell
+phenix vm capture start-subnet <experiment name> <subnet>
 ```
 
 To stop all packet captures for a specific subnet, use the following command.
 
-```
-$> phenix vm capture stop-subnet <experiment name> <subnet>
+```shell
+phenix vm capture stop-subnet <experiment name> <subnet>
 ```
 
 To stop all packet captures for an experiment, use the following command.
 
-```
-$> phenix vm capture stop-all <experiment name>
+```shell
+phenix vm capture stop-all <experiment name>
 ```
 
 ## Stopped Experiment Component

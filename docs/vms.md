@@ -41,12 +41,14 @@ Buttons from left to right:
 There are two options for displaying the information for VMs in an experiment. First run 
 the following command to see information for all VMs in a given experiment.
 
+```shell
+phenix vm info <experiment name>
 ```
-$> phenix vm info <experiment name>
-```
+
 Or, run the following to see the information for a specific VM in an experiment.
-```
-$> phenix vm info <experiment name> <vm name>
+
+```shell
+phenix vm info <experiment name> <vm name>
 ```
 
 ## Create a Backing Image
@@ -75,8 +77,8 @@ modal.  Click the `memory snapshot` button as shown in the screenshot below.
 
 To create an ELF memory dump, run the following command.
 
-```
-$> phenix vm memory-snapshot <experiment name> <vm name> <snapshot file path>
+```shell
+phenix vm memory-snapshot <experiment name> <vm name> <snapshot file path>
 ```
 
 ## Create a VM Snapshot
@@ -116,14 +118,14 @@ However, when you stop packet capture, it will stop captures on all network taps
 
 To start a packet capture, run the following command.
 
-```
-$> phenix vm capture start <experiment name> <vm name> <iface index> </path/to/out file>
+```shell
+phenix vm capture start <experiment name> <vm name> <iface index> </path/to/out file>
 ```
 
 To stop all packet captures on a running VM, use the following command.
 
-```
-$> phenix vm capture stop <experiment name> <vm name>
+```shell
+phenix vm capture stop <experiment name> <vm name>
 ```
 
 ## Kill a VM
@@ -143,8 +145,8 @@ per the experiment configuration.
 
 To kill a VM, run the following command.
 
-```
-$> phenix vm kill <experiment name> <vm name>
+```shell
+phenix vm kill <experiment name> <vm name>
 ```
 
 ## Modify the Network Connectivity
@@ -160,14 +162,14 @@ network interface you wish to change, and select the previous network setting.
 
 To connect a VM network interface to a different network, run the following command.
 
-```
-$> phenix vm net connect <experiment name> <vm name> <iface index> <vlan id>
+```shell
+phenix vm net connect <experiment name> <vm name> <iface index> <vlan id>
 ```
 
 To disconnect a VM network interface, run the following command.
 
-```
-$> phenix vm net disconnect <experiment name> <vm name> <iface index>
+```shell
+phenix vm net disconnect <experiment name> <vm name> <iface index>
 ```
 
 ## Pause a VM
@@ -185,12 +187,14 @@ click it to start.
 
 To pause a VM, run the following command.
 
+```shell
+phenix vm pause <experiment name> <vm name>
 ```
-$> phenix vm pause <experiment name> <vm name>
-```
+
 To resume a paused VM, run the following command.
-```
-$> phenix vm resume <experiment name> <vm name>
+
+```shell
+phenix vm resume <experiment name> <vm name>
 ```
 
 ## Redeploy a VM
@@ -207,8 +211,8 @@ Click the `redeploy` button as shown in the screenshot below.
 
 To redploy a VM, run the following command.
 
-```
-$> phenix vm redeploy <experiment name> <vm name>
+```shell
+phenix vm redeploy <experiment name> <vm name>
 ```
 
 ## Reset Disk State
@@ -225,8 +229,8 @@ Click the `reset disk state` button as shown in the screenshot below.
 
 To reset the first disk to the initial pre-boot state, run the following command.
 
-```
-$> phenix vm reset-disk <experiment name> <vm name>
+```shell
+phenix vm reset-disk <experiment name> <vm name>
 ```
 
 ## Restart a VM
@@ -243,8 +247,8 @@ Click the `restart` button as shown in the screenshot below.
 
 To restart a VM, run the following command.
 
-```
-$> phenix vm restart <experiment name> <vm name>
+```shell
+phenix vm restart <experiment name> <vm name>
 ```
 
 ## Resume a VM
@@ -259,8 +263,8 @@ left).
 
 To resume a paused VM, run the following command.
 
-```
-$> phenix vm resume <experiment name> <vm name>
+```shell
+phenix vm resume <experiment name> <vm name>
 ```
 
 ## Shutdown a VM
@@ -277,8 +281,8 @@ Click the `shutdown` button as shown in the screenshot below.
 
 To shutdown a VM, run the following command.
 
-```
-$> phenix vm shutdown <experiment name> <vm name>
+```shell
+phenix vm shutdown <experiment name> <vm name>
 ```
 
 ## Modify VM Settings
@@ -305,8 +309,8 @@ power button, second from the right on the modal footer). You are able to edit t
 
 **This command is not yet implemented.** For now, you can edit the stopped experiment directly with the following command.
 
-```
-$> phenix cfg edit topology/<topology name>
+```shell
+phenix cfg edit topology/<topology name>
 ```
 
 This will launch the system editor where you can directly modify the experiment settings.

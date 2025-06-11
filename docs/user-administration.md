@@ -77,7 +77,7 @@ There are three primary ways to create new users.
    automatically watched, so any users added to the file while `phenix` is
    running will automatically be added to `phenix`.
 
-```
+```yaml
 ui:
   users:
     - <username>:<password>:<role name>
@@ -93,8 +93,8 @@ token to local storage so that you can remove the requirement to enter a
 If an administrator starts the UI server with the following command,
 authentication is enabled:
 
-```
-$> phenix ui -k <some_string>
+```shell
+phenix ui -k <some_string>
 ```
 
 Without the `-k` (or `--jwt-signing-key`), authentication is disabled.

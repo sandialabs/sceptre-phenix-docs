@@ -30,7 +30,7 @@ of apps instead of a map.
 For example, say you have an experiment whose `scenario.apps` section of the
 config looks like the following when you go to edit it:
 
-```
+```yaml
 scenario:
   apps:
     experiment:
@@ -46,7 +46,7 @@ scenario:
 
 After editing, the scenario section should look like the following:
 
-```
+```yaml
 scenario:
   apps:
   - name: test-user-app

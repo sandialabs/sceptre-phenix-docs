@@ -4,17 +4,17 @@ This is only available from the command line binary at this time.
 
 ## Listing disk images
 
-```
-$> phenix image list
+```shell
+phenix image list
 ```
 
 ## Creating a disk image
 
-The [`vmdb2` utility](https://github.com/glattercj/vmdb2) is required -- in path
--- to create the disk images.
+The [`vmdb2` utility](https://gitlab.com/glattercj/vmdb2) is required -- in path
+-- to create the disk images. This utility is included with the phenix Docker image.
 
-```
-$> phenix image create <image name>
+```shell
+phenix image create <image name>
 ```
 
 The `phenix image create --help` will output:
@@ -58,15 +58,15 @@ Global Flags:
 
 The `vmdb2` configuration file can be read by running the following command:
 
-```
-$> phenix cfg get image/<image name>
+```shell
+phenix cfg get image/<image name>
 ```
 
 ## Building a disk image
 
 Building a disk image requires an existing configuration in the store
 (i.e., the `create` command should be run first to create a configuration);
-the `phenix image build --help` will output:
+running `phenix image build --help` will output:
 
 ```
 Build a virtual disk image
@@ -102,55 +102,56 @@ Global Flags:
 
 ## Miscellaneous Commands
 
-### Append
+### append
 
 The disk image management tool will allow you to add packages, overlays,
 and scripts to exisitng configurations using the `append` command.
 Command usage is:
 
-```
-$> phenix image append <configuration name> [flags]
+```shell
+phenix image append <configuration name> [flags]
 ```
 
 Flags are for the overlays, packages, and scripts that you want to append.
 
-### Create From an Existing Configuration
+### create-from
 
 Run this command if you have an existing configuration that you would like
 to use as the base to create a new configuration from. The usage involves
 referencing the existing configuration, the new configuration name, and
 then additional packages, overlays, and scripts.
 
-```
-$> phenix image create-from <existing configuration> <new configuration> [flags]
+```shell
+phenix image create-from <existing configuration> <new configuration> [flags]
 ```
 
 Flags are for the overlays, packages, and scripts that you want to add to
 the new configuration.
 
-### Delete
+### delete
 
 ```
-$> phenix image delete <image name>
+phenix image delete <image name>
 ```
 
 An alternative could be to use the configuration management tool.
 
 ```
-$> phenix cfg delete image/<image name>
+phenix cfg delete image/<image name>
 ```
 
-### Remove
+### remove
 
 The `remove` command will allow you to remove any packages, overlays,
 and scripts from an existing image configuration.
 
+```shell
+phenix image remove <configuration name> [flags]
 ```
-$> phenix image remove <configuration name> [flags]
-```
+
 Flags are for the overlays, packages, and scripts that you want to remove.
 
-### Update
+### update
 
 This `update` command is used to update the script on an existing image
 configuration. The path to a script is tracked in the code. The image
@@ -158,8 +159,8 @@ configuration gets updated with the script in the path; if no changes were
 made no harm. If the path no longer exists, phenix will leave the
 configuration alone.
 
-```
-$> phenix image update <configuration name>
+```shell
+phenix image update <configuration name>
 ```
 
 ## Kali Image
@@ -177,19 +178,19 @@ https://www.kali.org/tutorials/build-kali-with-live-build-on-debian-based-system
 1. Download and install the latest version of the Kali archive keyring package.
    At time of writing, the latest version was 2020.2.
 
-```
-$> wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2020.2_all.deb
-$> sudo dpkg -i kali-archive-keyring_2020.2_all.deb
+```shell
+wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2020.2_all.deb
+sudo dpkg -i kali-archive-keyring_2020.2_all.deb
 ```
 
 2. Next, create the `debootstrap` build script for Kali, based entirely off the
    existing Debian Sid build script. Note that the following commands will
    likely need to be run as root.
 
-```
-$> cd /usr/share/debootstrap/scripts
-$> sed -e "s/debian-archive-keyring.gpg/kali-archive-keyring.gpg/g" sid > kali
-$> ln -s kali kali-rolling
+```shell
+cd /usr/share/debootstrap/scripts
+sed -e "s/debian-archive-keyring.gpg/kali-archive-keyring.gpg/g" sid > kali
+ln -s kali kali-rolling
 ```
 
 At this point, you should be able to build a Kali release with `phenix image`.

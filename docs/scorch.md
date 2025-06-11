@@ -55,7 +55,7 @@ It's possible to configure the `break` component in the Scorch app configuration
 
 An example of configuring a `break` component to create a tap and configure external network access during the `configure` stage is as follows. The `break` component can be configured to run in any stage.
 
-```
+```yaml
 spec:
   apps:
   - name: scorch
@@ -79,7 +79,7 @@ The `pause` component is similar to the `break` component in that it pauses exec
 
 A simple example is as follows. The `pause` component can be configured to run in any stage. The value used for the `duration` key should be a valid [Golang duration string](https://pkg.go.dev/time#ParseDuration).
 
-```
+```yaml
 spec:
   apps:
   - name: scorch
@@ -103,7 +103,7 @@ health checks are run, and can also be configured to fail if any of the health
 checks fail. The log level can also be configured, which will limit what logs
 get sent to the component's UI modal while the component is running.
 
-```
+```yaml
 spec:
   apps:
   - name: scorch
@@ -134,7 +134,7 @@ The `tap` component implements the exact same functionality described above in t
 
 An example of configuring a `tap` component to create a tap and configure external network access is as follows. The `tap` component can only be configured to run in the `start` stage (create the tap) and the `stop` stage (delete the tap).
 
-```
+```yaml
 spec:
   apps:
   - name: scorch
