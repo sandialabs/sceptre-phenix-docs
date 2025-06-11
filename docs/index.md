@@ -27,14 +27,14 @@ socket.
 
 !!! note
     In most cases, it's much easier to deploy the latest version of both phēnix
-    and minimega with Docker (see next section). The phēnix repository includes
-    a Docker Compose file that will always ensure the required versions are
+    and minimega with [Docker](https://www.docker.com/) (see next section). The phēnix repository includes
+    a [Docker Compose](https://docs.docker.com/compose/) file that will always ensure the required versions are
     working together correctly.
 
 ### Installing and Running via Docker
 
 The phēnix repository includes Docker resources in the `docker` directory. By
-far the easiest way to get phēnix up and running is to use the Docker Compose
+far the easiest way to get phēnix up and running is to use the [Docker Compose](https://docs.docker.com/compose/)
 configuration located at `docker/docker-compose.yml`. This will ensure that the
 latest required version of minimega is also present and configured with the
 additional Linux tools required to operate correctly with phēnix.
@@ -50,9 +50,9 @@ The above command will first build the phenix and minimega Docker images and
 then start all the Docker services defined in the compose file in detached mode.
 
 Besides phēnix and minimega, there are two additional services defined in the
-compose file; one for ElasticSearch and one for Kibana. These are included in
+compose file; one for Elasticsearch and one for Kibana. These are included in
 the compose file because they're often used with the Scorch phēnix application.
-If you don't need the ElasticSearch and Kibana services, you can prevent them
+If you don't need the Elasticsearch and Kibana services, you can prevent them
 from being started by specifying that only the `phenix` service (and its
 dependency service `minimega`) be brought up.
 
