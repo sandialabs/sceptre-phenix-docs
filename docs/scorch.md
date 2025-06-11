@@ -166,15 +166,28 @@ The above commands assume the name of the minimega container is `minimega`. The 
 
 ### User-defined Components
 
-The following Scorch component types have been developed external to the main phenix repository and are available in the [phenix-apps](https://github.com/activeshadow/phenix-apps/tree/main/src/python/phenix_apps/apps/scorch) repository, which also includes README-based documentation for each. They are all developed in Python, and leverage common helper classes that ease the development of user components.
+The following Scorch component types have been developed external to the main phenix repository and are available in the [sceptre-phenix-apps](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch) repository, which also includes README-based documentation for each component. They are all developed in Python, and leverage common helper classes that ease the development of user components.
 
-- art
-- cc
-- ettercap
-- hoststats
-- snort
-- tcpdump
-- vmstats
+| App | Link | Description |
+| --- | ------ | ----------- |
+| art | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/art) | Atomic Red Team |
+| caldera | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/caldera) | Executes operations in [MITRE Caldera](https://caldera.mitre.org/) via the REST API. |
+| cc | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/cc) | minimega Command and Control (cc) Component. |
+| collector | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/collector) | Collects and processes data from cyber-physical experiments and Scorch components. |
+| disruption | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/disruption) | Orchestrates and executes disruption scenarios for cyber-physical experiments. |
+| ettercap | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/ettercap) | Component that runs Ettercap, relies on `ettercap` executable in the VM. |
+| hoststats | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/hoststats) | Collects statistics on minimega host(s). |
+| iperf | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/iperf) | Collects network performance measurements using [iperf3](https://github.com/esnet/iperf) or [rperf](https://github.com/opensource-3d-p/rperf). |
+| mm | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/mm) | minimega (mm) Component. |
+| opcexport | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/opcexport) | Exports data from an OPC server to Elasticsearch. |
+| pcap | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pcap) | Collects PCAPs from VMs via minimega's `capture pcap` API. |
+| qos | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/qos) | Apply Quality of Service (QoS) effects on network interfaces, including dropping packets (loss), delaying packets (delay), or limiting bandwidth (rate). |
+| rtds | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/rtds) | Collects and verifies data from the Real-Time Dynamic Simulator (RTDS), and orchestrates the starting/stopping of RSCAD cases. |
+| snort | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/snort) | Configures and runs [Snort](https://www.snort.org/). Snort must be installed on VMs. |
+| tcpdump | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/tcpdump) | Executes and collects and processes data from `tcpdump`. |
+| trafficgen | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/trafficgen) | Traffic Generator. |
+| vmstats | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/vmstats) | Collects resource utilization statistics from Linux VMs in the experiment, using the `vmstats` command. |
+
 ## Scorch Table
 
 The Scorch table, accessible as one of the tab selections within the phenix UI, lists all possible Scorch apps available based on the experiments established in phenix. The following columns or functions are available:
