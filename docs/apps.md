@@ -25,7 +25,7 @@ firewall rules, etc.
 The following is an example of how the `vrouter` app can be configured via a
 `Scenario` configuration, showing all the possible options.
 
-```yaml
+``` yaml title="vrouter example"
 spec:
   apps:
   - name: vrouter
@@ -290,7 +290,7 @@ The following is an example of how the `tap` app can be configured via a
     The `externalAccess.firewall` portion of the tap configuration has not been
     implemented yet.
 
-```yaml
+```yaml title="tap app example"
 spec:
   apps:
   - name: tap

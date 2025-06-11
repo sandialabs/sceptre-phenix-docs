@@ -42,7 +42,7 @@ additional Linux tools required to operate correctly with phēnix.
 To run phēnix and minimega using Docker Compose, run the following command from
 the `docker` directory.
 
-```
+```shell
 docker compose up -d --build
 ```
 
@@ -56,7 +56,7 @@ If you don't need the ElasticSearch and Kibana services, you can prevent them
 from being started by specifying that only the `phenix` service (and its
 dependency service `minimega`) be brought up.
 
-```
+```shell
 docker compose up -d --build phenix
 ```
 
@@ -68,7 +68,7 @@ docker compose up -d --build phenix
 With `phenix` running in a container, it's useful to setup a bash alias for
 `phenix`:
 
-```
+```shell
 alias phenix="docker exec -it phenix phenix"
 ```
 
@@ -163,7 +163,7 @@ $HOME/.config/phenix/config.[yaml|json|toml]
 
 An example configuration file might look like the following:
 
-```
+```yaml
 base-dir:
   minimega: /tmp/minimega
   phenix: /phenix
@@ -206,5 +206,4 @@ single machine. Using `etcd`, on the other hand, allows for users to run
 deployed as a separate service.
 
 To use `etcd`, the `--store.endpoint` global flag should be configured with the
-URL of the deployed `etcd` server. For example, `--store.endpoint
-etcd://localhost:2379`.
+URL of the deployed `etcd` server. For example, `--store.endpoint etcd://localhost:2379`.

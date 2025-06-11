@@ -8,7 +8,7 @@ complete schema is [described here](#complete-schema).
 The `topology` schema is largely comprised of nodes, [described
 here](#node-schemas).
 
-```
+```yaml
 Topology:
   type: object
   title: Demo Topology
@@ -26,7 +26,7 @@ Topology:
 
 ## Scenario Schema
 
-```
+```yaml
 Scenario:
   type: object
   nullable: true
@@ -77,7 +77,7 @@ Scenario:
 
 ## Experiment Schema
 
-```
+```yaml
 Experiment:
   type: object
   required:
@@ -120,7 +120,7 @@ Experiment:
 
 ## Image Schema
 
-```
+```yaml
 Image:
   type: object
   required:
@@ -190,7 +190,7 @@ Image:
 
 ## User Schema
 
-```
+```yaml
 User:
   type: object
   required:
@@ -219,7 +219,7 @@ User:
 
 ## Role Schema
 
-```
+```yaml
 Role:
   type: object
   required:
@@ -264,7 +264,7 @@ Role:
 The `minimega_node` schema contains references to the `interface` schema [described
 here](#interface-schema).
 
-```
+```yaml
 minimega_node:
   type: object
   required:
@@ -586,7 +586,7 @@ minimega_node:
 
 ### `external_node` Schema
 
-```
+```yaml
 external_node:
   type: object
   required:
@@ -691,7 +691,7 @@ external_node:
 
 ## Interface Schema
 
-```
+```yaml
 iface:
   type: object
   required:
