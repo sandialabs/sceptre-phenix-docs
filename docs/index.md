@@ -1,9 +1,9 @@
 # Welcome
 
-This is the documentation for the minimega `phenix` orchestration tool. `phenix`
-development happens in the
-[sandialabs/sceptre-phenix](https://github.com/sandialabs/sceptre-phenix) GitHub
-repository.
+This is the documentation for the minimega `phenix` orchestration tool. 
+`phenix` development happens in the
+[sandialabs/sceptre-phenix](https://github.com/sandialabs/sceptre-phenix) 
+GitHub repository.
 
 ## Getting Started with phēnix
 
@@ -27,14 +27,17 @@ socket.
 
 !!! note
     In most cases, it's much easier to deploy the latest version of both phēnix
-    and minimega with [Docker](https://www.docker.com/) (see next section). The phēnix repository includes
-    a [Docker Compose](https://docs.docker.com/compose/) file that will always ensure the required versions are
+    and minimega with [Docker](https://www.docker.com/) (see next section). 
+    The phēnix repository includes
+    a [Docker Compose](https://docs.docker.com/compose/) file that will always 
+    ensure the required versions are
     working together correctly.
 
 ### Installing and Running via Docker
 
 The phēnix repository includes Docker resources in the `docker` directory. By
-far the easiest way to get phēnix up and running is to use the [Docker Compose](https://docs.docker.com/compose/)
+far the easiest way to get phēnix up and running is to use the 
+[Docker Compose](https://docs.docker.com/compose/)
 configuration located at `docker/docker-compose.yml`. This will ensure that the
 latest required version of minimega is also present and configured with the
 additional Linux tools required to operate correctly with phēnix.
@@ -80,14 +83,15 @@ are needed for building QCOW2 VM images with phēnix. They can be omitted if
 phēnix won't be used to build images.
 
 The `/var/log/phenix` volume mount is shared with the host to make debugging
-failed container issues easier, since phēnix writes logs to `/var/log/phenix` by
-default when run as root.
+failed container issues easier, since phēnix writes logs to `/var/log/phenix` 
+by default when run as root.
 
 The `/etc/phenix` volume mount is shared with the host to persist phēnix
 configuration changes across container restarts, since the phēnix configuration
 store is written to `/etc/phenix/store.bdb` by default when run as root.
 
-The `/var/run/netns` volume mount is shared with the host to synchronize network
+The `/var/run/netns` volume mount is shared with the host to synchronize 
+network
 namespaces created by phēnix taps between the phēnix and minimega containers.
 
 The `/phenix` volume mount is used as the base directory for phēnix by default
@@ -105,7 +109,8 @@ hack/build/docker-build.sh
 ```
 
 Once the build is finished, there will be a `phenix` executable located in the
-`bin` directory. For additional usage details, pass the `-h` option to the build
+`bin` directory. For additional usage details, pass the `-h` option to the 
+build
 script.
 
 ### Using
@@ -144,7 +149,8 @@ Use "phenix [command] --help" for more information about a command.
 
 Thanks to [viper](https://github.com/spf13/viper), it is possible to specify
 values for all of the global and `ui` command flags listed above using a
-configuration file. Global flags set at the command line will override settings 
+configuration file. Global flags set at the command line will override 
+settings
 in the configuration file. phenix looks for a configuration in the following 
 locations.
 
@@ -200,7 +206,8 @@ The phenix tool uses a key-value data store as the storage service for all of
 data needed throughout the various capabilities (as opposed to a database). By
 default it uses [bbolt](https://github.com/etcd-io/bbolt) but also supports
 [etcd](https://github.com/etcd-io/etcd). `bbolt` is used by default because it
-has no external dependencies, but has a limitation of only being accessible on a
+has no external dependencies, but has a limitation of only being accessible on 
+a
 single machine. Using `etcd`, on the other hand, allows for users to run
 `phenix` on multiple machines and access the same data, but requires `etcd` be
 deployed as a separate service.

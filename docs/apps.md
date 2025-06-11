@@ -335,7 +335,8 @@ spec:
 ## User Apps
 
 `phenix` _user apps_ are stand-alone executables that `phenix` shells out to at
-different stages of the experiment lifecycle (`configure`, `pre-start`, `post-start`,
+different stages of the experiment lifecycle (
+`configure`, `pre-start`, `post-start`,
 `running`, and `cleanup`). When `phenix` encounters an app in an experiment
 scenario that isn't a default app, it checks to see if an executable exists in
 its current `PATH` in the form of `phenix-app-<app name>`. If the executable
@@ -345,8 +346,10 @@ string over `STDIN`.
 
 !!! note
     There will be three (3) top-level keys available in the JSON passed to a
-    user app over `STDIN`: `metadata`, `spec`, and `status`. For the `configure` and
-    `pre-start` stages, the `status` value will be null or otherwise ignored. The
+    user app over `STDIN`: `metadata`, `spec`, and `status`. For the `configure` 
+    and
+    `pre-start` stages, the `status` value will be null or otherwise ignored. 
+    The
     `spec` value will be [experiment schema](schema.md#experiment-schema).
 
 !!! tip
@@ -374,7 +377,8 @@ status to signal to `phenix` that an error occurred.
 
 ### Available User Apps
 
-The [sandialabs/sceptre-phenix-apps](https://github.com/sandialabs/sceptre-phenix-apps)
+The 
+[sandialabs/sceptre-phenix-apps](https://github.com/sandialabs/sceptre-phenix-apps)
 repo is home to some user apps that have already been created by the community,
 including the following:
 
