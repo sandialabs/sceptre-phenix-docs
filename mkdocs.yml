@@ -11,6 +11,8 @@ theme:
   language: 'en'
   feature:
     tabs: true
+  features:
+    - content.code.copy
   favicon: images/favicon.ico
   logo: images/phenix.png
   palette:
