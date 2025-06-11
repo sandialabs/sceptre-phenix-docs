@@ -54,3 +54,10 @@ markdown_extensions:
   - pymdownx.snippets:
       url_download: true
       url_max_size: 0
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
