@@ -77,7 +77,7 @@ example of no SoH information with the VNC button disabled.
 ## Network Volume
 
 This tab displays a chord graph that shows network flows between nodes using
-flows from PacketBeat fed to ElasticSearch; connections represent the volume of
+flows from Packetbeat fed to Elasticsearch; connections represent the volume of
 traffic between nodes.
 
 !!! tip
@@ -245,16 +245,16 @@ spec:
   is `false`.
 
 * `packetCapture`: if present, a partially hidden packet capture infrastructure
-  based on Elastic, Kibana, and PacketBeat will be deployed for the experiment.
+  based on Elasticsearch, Kibana, and Packetbeat will be deployed for the experiment.
   See [Packet Capture](#packet-capture) for more details. The default is `nil`.
 
     * `elasticImage`: path to the disk image to use for the Elastic/Kibana VM
-      for packet capture. An `image/elasticsearch` config comes bundled with
+      for packet capture. An `image/PHENIX-elasticsearch` config comes bundled with
       phenix and can be used to build an image to use here. There is no default
       for this setting; if packet capture is to be deployed it must be provided.
 
-    * `packetBeatImage`: path to the disk image to use for the PacketBeat VM for
-      packet capture. An `image/packetbeat` config comes bundled with phenix and
+    * `packetBeatImage`: path to the disk image to use for the Packetbeat VM for
+      packet capture. An `image/PHENIX-packetbeat` config comes bundled with phenix and
       can be used to build an image to use here. There is no default for this
       setting; if packet capture is to be deployed it must be provided.
 
@@ -275,17 +275,17 @@ spec:
           used for will be added to the experiment VLAN specified by `vlan`. The
           IP address should be specified in CIDR notation. There should also be
           sufficient IP addresses after the one specified here to be assigned to
-          each of the PacketBeat monitor VMs that will be deployed, as the IP
+          each of the Packetbeat monitor VMs that will be deployed, as the IP
           addresses assigned to them on the VLAN specified by `vlan` will
           increment up from this IP. There is no default for this setting; if
           packet capture is to be deployed it must be provided.
 
-        * `vlan`: the experiment VLAN to add the Elastic/Kibana and PacketBeat
+        * `vlan`: the experiment VLAN to add the Elastic/Kibana and Packetbeat
           VMs to. There is no default for this setting; if packet capture is to
           be deployed it must be provided.
 
     * `captureHosts`: a map of VMs, each specifying a list of network interface
-      names to monitor. One PacketBeat VM will be deployed for each VM interface
+      names to monitor. One Packetbeat VM will be deployed for each VM interface
       specified. The defalt is `nil`.
 
 * `skipInitialNetworkConfigTests`: by default, a set of tests will be run on
@@ -300,7 +300,7 @@ spec:
 * `testReachability`: reachability testing is the process of making sure each VM
   can reach other VMs within the experiment over the network. See [Network
   Reachability](#network-reachability) for more details. There are three options
-  for this setting: `off, sample, full`.
+  for this setting: `off`, `sample`, `full`.
 
     * `off`: reachability testing is disabled. This is the default.
 
@@ -370,16 +370,16 @@ reflected accurately when the experiment is started again.
 ### Packet Capture 
 
 The SoH packet capture capability leverages minimega's tap mirroring to monitor
-traffic on experiment VM interfaces with PacketBeat and feed network flow data
-to ElasticSearch.
+traffic on experiment VM interfaces with Packetbeat and feed network flow data
+to Elasticsearch.
 
-When enabled, an Elastic/Kibana VM is added to the experiment's topology so it
-can be accessed via the phenix UI. PacketBeat VMs are deployed in minimega for
+When enabled, an Elasticsearch/Kibana VM is added to the experiment's topology so it
+can be accessed via the phenix UI. Packetbeat VMs are deployed in minimega for
 each experiment VM interface that's configured to be monitored, but are not
 added to the experiment topology so they do not clutter the phenix UI.
 
 When packet capture is enabled, the phenix UI SoH tab will include a Network
-Volume tab that uses network flow data queried from ElasticSearch to populate a
+Volume tab that uses network flow data queried from Elasticsearch to populate a
 chord graph in an effort to depict how much traffic is flowing between VMs.
 Users/Analysts can also access Kibana using VNC via the phenix UI to do
 additional analysis on the network flow data that's being captured.
@@ -390,8 +390,9 @@ As mentioned above, SoH relies on minimega's command and control infrastructure
 to drive and collect the experiment health state data. Under the hood, the SoH
 app uses C2 to execute a test on a VM (`cc exec`), wait for the command to
 complete (`cc commands`), grab the STDOUT/STDERR of the command (`cc
-responses`), and compare it to an expected response. Current tests executed on
-Linux VMs include the following:
+responses`), and compare it to an expected response. 
+
+Current tests executed on Linux VMs include the following:
 
 * `ip addr`
 * `ip route`
