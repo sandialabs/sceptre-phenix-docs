@@ -1,0 +1,2569 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A place for phenix users to call home.">
+      
+      
+        <meta name="author" content="activeshadow and dnkcom">
+      
+      
+      
+        <link rel="prev" href="../state-of-health/">
+      
+      
+        <link rel="next" href="../vm-multi-action/">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>User Authn/Authz in phenix - phenix documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/style.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="brown">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#user-authnauthz-in-phenix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="phenix documentation" class="md-header__button md-logo" aria-label="phenix documentation" data-md-component="logo">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            phenix documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Authn/Authz in phenix
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="brown"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="brown"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.04 7 9.54s-2.94 8.27-7 9.54c.95.3 1.95.46 3 .46a10 10 0 0 0 10-10A10 10 0 0 0 9 2"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sandialabs/sceptre-phenix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sandialabs/sceptre-phenix
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="phenix documentation" class="md-nav__button md-logo" aria-label="phenix documentation" data-md-component="logo">
+      
+  <img src="../images/phenix.png" alt="logo">
+
+    </a>
+    phenix documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sandialabs/sceptre-phenix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sandialabs/sceptre-phenix
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Experiments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../image/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Virtual Disk Images Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Knowledge Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Experiment Netflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration File Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scorch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scorch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state-of-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    State of Health
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    User Authn/Authz in phenix
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Authn/Authz in phenix
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#disabled-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      disabled Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabled-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      enabled Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxy-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      proxy Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-new-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new user
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Login
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-user-authentication-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating User Authentication Tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Administration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Administration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsstop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/stop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsschedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/schedule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentstrigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/trigger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentscaptures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/captures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsfiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsstop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/stop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsredeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/redeploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsscreenshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/screenshot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsvnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/vnc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmscaptures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/captures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmssnapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/snapshots
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmscommit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: applications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-topologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: topologies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-disks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: disks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: hosts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: users
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-In Roles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vm-multi-action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VM Multi Action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VMs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#disabled-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      disabled Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabled-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      enabled Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxy-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      proxy Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-new-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new user
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Login
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-user-authentication-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating User Authentication Tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Administration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Administration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsstop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/stop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsschedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/schedule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentstrigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/trigger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentscaptures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/captures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-experimentsfiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: experiments/files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsstop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/stop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsredeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/redeploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsscreenshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/screenshot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmsvnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/vnc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmscaptures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/captures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmssnapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/snapshots
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-vmscommit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: vms/commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: applications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-topologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: topologies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-disks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: disks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: hosts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource: users
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-In Roles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="user-authnauthz-in-phenix">User Authn/Authz in phenix<a class="headerlink" href="#user-authnauthz-in-phenix" title="Permanent link">&para;</a></h1>
+<p><code>phenix</code> provides three separate modes of user authentication (authn) and
+authorization (authz).</p>
+<ul>
+<li>disabled</li>
+<li>enabled</li>
+<li>proxy</li>
+</ul>
+<h2 id="disabled-mode"><code>disabled</code> Mode<a class="headerlink" href="#disabled-mode" title="Permanent link">&para;</a></h2>
+<p>When in <code>disabled</code> mode, no user authentication or authorization occurs. Users
+do not have to authenticate, and all actions are allowed.</p>
+<p>To use <code>disabled</code> mode, the UI should be built with <code>VUE_APP_AUTH=disabled</code> (if
+Docker is being used to build the UI, use Docker build arg
+<code>PHENIX_WEB_AUTH=disabled</code>) and the UI server should be started without the
+<code>-k/--jwt-signing-key</code> option set.</p>
+<h2 id="enabled-mode"><code>enabled</code> Mode<a class="headerlink" href="#enabled-mode" title="Permanent link">&para;</a></h2>
+<p>When in <code>enabled</code> mode, user authentication and authorization occurs within
+phenix directly. Users have to authenticate to the phenix UI, and certain
+actions are prohibited based on the role assigned to the user.</p>
+<p>To use <code>enabled</code> mode, the UI should be built with <code>VUE_APP_AUTH=enabled</code> (if
+Docker is being used to build the UI, use Docker build arg
+<code>PHENIX_WEB_AUTH=enabled</code>) and the UI server should be started with the
+<code>-k/--jwt-signing-key</code> (and optionally the <code>--jwt-lifetime</code>) option set.</p>
+<h2 id="proxy-mode"><code>proxy</code> Mode<a class="headerlink" href="#proxy-mode" title="Permanent link">&para;</a></h2>
+<p>When in <code>proxy</code> mode, user authentication is expected to occur in a reverse
+proxy that sits in front of phenix but user authorization still occurs within
+phenix directly. Users authenticate to the proxy, and certain actions are
+prohibited based on the role assigned to the user.</p>
+<p>To use <code>proxy</code> mode, the UI should be built with <code>VUE_APP_AUTH=proxy</code> (if Docker
+is being used to build the UI, use Docker build arg <code>PHENIX_WEB_AUTH=proxy</code>) and
+the UI server should be started with the <code>-k/--jwt-signing-key</code> and
+<code>--proxy-auth-header</code> (and optionally the <code>--jwt-lifetime</code>) options set.</p>
+<p>In addition, the reverse proxy should add a header to requests being proxied
+that contains the username of the authenticated user, with the name of the
+header matching what <code>--proxy-auth-header</code> is set to (for example,
+<code>--proxy-auth-header=X-phenix-user</code>).</p>
+<p>If a user is able to authenticate to the proxy but is not yet a user in phenix,
+they will be added as a phenix user automatically and assigned the <code>Disabled</code>
+role that will deny all actions until an admin user can assign them a different
+role.</p>
+<h2 id="create-a-new-user">Create a new user<a class="headerlink" href="#create-a-new-user" title="Permanent link">&para;</a></h2>
+<p>There are three primary ways to create new users.</p>
+<ol>
+<li>
+<p>Choose the <code>Create Account</code> link off the login page and complete all fields
+   in the <code>Create a New Account</code> dialogue. This will initiate a message to an
+   administrator's account who can then activate the account, setting the
+   role(s) and resource name(s).</p>
+<p><img alt="screenshot" class="center" src="../images/login_create.png" width="400" /></p>
+<p><img alt="screenshot" class="center" src="../images/create_new_account.png" width="400" /></p>
+</li>
+<li>
+<p>From the <code>Users</code> tab, click the <code>+</code> button to create a new user. Here the
+   administrator will add the <a href="#user-administration">role(s) and resource
+   name(s)</a>.</p>
+<p><img alt="screenshot" class="center" src="../images/create_a_new_user.png" width="400" /></p>
+</li>
+<li>
+<p>Create a YAML or JSON file at <code>/etc/phenix/users.[yml|json]</code> with the
+   following structure. When the <code>phenix</code> UI starts, it looks for this file and
+   adds any users present in the file that are not already present in <code>phenix</code>.
+   For users in the file that already exist, <code>phenix</code> ensures the user role
+   matches what's in the file and updates it as necessary. This file is also
+   automatically watched, so any users added to the file while <code>phenix</code> is
+   running will automatically be added to <code>phenix</code>.</p>
+</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">ui</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">users</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;username&gt;:&lt;password&gt;:&lt;role name&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></code></pre></div>
+<h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
+<p>The login page is self-descriptive. Using the <code>Remember me</code> checkbox will set a
+token to local storage so that you can remove the requirement to enter a
+<code>Username</code> and <code>Password</code> each time the page or site is reloaded. </p>
+<p>If an administrator starts the UI server with the following command,
+authentication is enabled:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>ui<span class="w"> </span>-k<span class="w"> </span>&lt;some_string&gt;
+</span></code></pre></div>
+<p>Without the <code>-k</code> (or <code>--jwt-signing-key</code>), authentication is disabled.</p>
+<h2 id="generating-user-authentication-tokens">Generating User Authentication Tokens<a class="headerlink" href="#generating-user-authentication-tokens" title="Permanent link">&para;</a></h2>
+<p>From the <code>Users</code> tab, click the key icon next to the given user's name. A dialog
+box will pop up where you can enter in a description for the token to be created
+and an expiration date. This expiration date should be entered in Golang time
+duration. For example, <code>4320h</code> is valid and represents 4320 hours or about 6
+months. After clicking <code>Create Token</code> a token should appear with the expiriation
+date.  </p>
+<p>This token can be used to authenticate when using the Phenix API. Specifically, you would include the following as a header in HTTP requests.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>X-phenix-auth-token: Bearer &lt;TOKEN&gt;
+</span></code></pre></div>
+<h2 id="user-administration">User Administration<a class="headerlink" href="#user-administration" title="Permanent link">&para;</a></h2>
+<h3 id="updating-users">Updating Users<a class="headerlink" href="#updating-users" title="Permanent link">&para;</a></h3>
+<p>An administrator is able to click on the username on the table in the Users tab
+to update a user. They can update <code>First Name</code> or <code>Last Name</code>, <code>Role</code>,
+<code>Experiment Names</code>, and <code>Resource Name(s)</code>.</p>
+<h3 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h3>
+<p><code>Global Admin</code> is the administrator level account and has access to all
+capabilities, to include user management. Global Admins also have access to all
+resources. The following table provides a high-level overview of all the
+available roles and their access rights.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th style="text-align: left;">Limits</th>
+<th style="text-align: center;">List</th>
+<th style="text-align: center;">Get</th>
+<th style="text-align: center;">Create</th>
+<th style="text-align: center;">Update</th>
+<th style="text-align: center;">Patch</th>
+<th style="text-align: center;">Delete</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global Admin</td>
+<td style="text-align: left;">Can see and control absolutely anything/everything.</td>
+<td style="text-align: center;">E V U</td>
+<td style="text-align: center;">E V U</td>
+<td style="text-align: center;">E V U</td>
+<td style="text-align: center;">E V U</td>
+<td style="text-align: center;">E V U</td>
+<td style="text-align: center;">E V U</td>
+</tr>
+<tr>
+<td>Global Viewer</td>
+<td style="text-align: left;">Can see absolutely anything/everything, but cannot make any changes.</td>
+<td style="text-align: center;">E V U</td>
+<td style="text-align: center;">E V U</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Experiment Admin</td>
+<td style="text-align: left;">Can see and control anything/everything for assigned experiments, including VMs, but cannot create new experiments.</td>
+<td style="text-align: center;">E V</td>
+<td style="text-align: center;">E V</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;">E V</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;">V</td>
+</tr>
+<tr>
+<td>Experiment User</td>
+<td style="text-align: left;">Can see assigned experiments, and can control VMs within assigned experiments, but cannot modify experiments themselves.</td>
+<td style="text-align: center;">E V</td>
+<td style="text-align: center;">E V</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Experiment Viewer</td>
+<td style="text-align: left;">Can see assigned experiments and VMs within assigned experiments, but cannot modify or control experiments or VMs.</td>
+<td style="text-align: center;">E V</td>
+<td style="text-align: center;">E V</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>VM Viewer</td>
+<td style="text-align: left;">Can only see VM screenshots and access VM VNC, nothing else.</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>Key: E - experiment resource, V - VM resource, U - user resource</p>
+<h3 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
+<h4 id="resource-experiments">Resource: <code>experiments</code><a class="headerlink" href="#resource-experiments" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get a list of all experiments</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes (list is filtered to only include experiments in scope)</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>get</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get a specific experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>create</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>create a new experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>delete a specific experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-experimentsstart">Resource: <code>experiments/start</code><a class="headerlink" href="#resource-experimentsstart" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>update</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>start an experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-experimentsstop">Resource: <code>experiments/stop</code><a class="headerlink" href="#resource-experimentsstop" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>update</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>stop an experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-experimentsschedule">Resource: <code>experiments/schedule</code><a class="headerlink" href="#resource-experimentsschedule" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>get</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get current schedule for an experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>create</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>schedule an experiment using schedule algorithm</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-experimentstrigger">Resource: <code>experiments/trigger</code><a class="headerlink" href="#resource-experimentstrigger" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>create</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>trigger the running stage of an experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-experimentscaptures">Resource: <code>experiments/captures</code><a class="headerlink" href="#resource-experimentscaptures" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of packet captures for an experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes (list is filtered to only include experiments in scope)</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes (list is filtered to only include VMs in scope)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-experimentsfiles">Resource: <code>experiments/files</code><a class="headerlink" href="#resource-experimentsfiles" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of files for an experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes (list is filtered to only include experiments in scope)</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>get</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get specific experiment file</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vms">Resource: <code>vms</code><a class="headerlink" href="#resource-vms" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of VMs for an experiment</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes (list is filtered to only include experiments in scope)</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes (list is filtered to only include VMs in scope)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>get</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>patch</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>update a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>delete a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmsstart">Resource: <code>vms/start</code><a class="headerlink" href="#resource-vmsstart" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>update</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>start a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmsstop">Resource: <code>vms/stop</code><a class="headerlink" href="#resource-vmsstop" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>update</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>stop a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmsredeploy">Resource: <code>vms/redeploy</code><a class="headerlink" href="#resource-vmsredeploy" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>update</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>redeploy a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmsscreenshot">Resource: <code>vms/screenshot</code><a class="headerlink" href="#resource-vmsscreenshot" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>get</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get screenshot for a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmsvnc">Resource: <code>vms/vnc</code><a class="headerlink" href="#resource-vmsvnc" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>get</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get VNC address for a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmscaptures">Resource: <code>vms/captures</code><a class="headerlink" href="#resource-vmscaptures" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of packet captures for a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>create</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>start a packet capture on a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>stop all packet captures on a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmssnapshots">Resource: <code>vms/snapshots</code><a class="headerlink" href="#resource-vmssnapshots" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of snapshots for a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>create</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>create a snapshot of a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>update</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>restore a specific experiment VM to a previous snapshot</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-vmscommit">Resource: <code>vms/commit</code><a class="headerlink" href="#resource-vmscommit" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>create</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>create a new backing image from a specific experiment VM</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-applications">Resource: <code>applications</code><a class="headerlink" href="#resource-applications" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of user applications</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes (list is filtered to only include applications in scope)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-topologies">Resource: <code>topologies</code><a class="headerlink" href="#resource-topologies" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of available topologies</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes (list is filtered to only include topologies in scope)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-disks">Resource: <code>disks</code><a class="headerlink" href="#resource-disks" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of available backing images</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes (list is filtered to only include backing images in scope)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-hosts">Resource: <code>hosts</code><a class="headerlink" href="#resource-hosts" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of minimega cluster hosts</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes (list is filtered to only include hosts in scope)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resource-users">Resource: <code>users</code><a class="headerlink" href="#resource-users" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get list of users</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes (list is filtered to only include users in scope)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>get</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>get a specific user</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>create</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>create a new user</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>patch</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>update an existing user</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>Desc</td>
+<td>delete an existing user</td>
+</tr>
+<tr>
+<td>Exp. Scoped</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Res. Scoped</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="built-in-roles">Built-In Roles<a class="headerlink" href="#built-in-roles" title="Permanent link">&para;</a></h3>
+<p>See the <a href="#resources">previous</a> section for policy resource and verb
+descriptions.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>case GLOBAL_ADMIN:
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  return Policies([]*Policy{
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    {
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>      Experiments:   []string{&quot;*&quot;},
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      Resources:     []string{&quot;*&quot;, &quot;*/*&quot;},
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>      Verbs:         []string{&quot;*&quot;},
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    },
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  })
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>case GLOBAL_VIEWER:
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  return Policies([]*Policy{
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    {
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>      Experiments:   []string{&quot;*&quot;},
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>      Resources:     []string{&quot;*&quot;, &quot;*/*&quot;},
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>      Verbs:         []string{&quot;list&quot;, &quot;get&quot;},
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    },
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  })
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>case EXP_ADMIN:
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>  return Policies([]*Policy{
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    {
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;},
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;update&quot;},
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    },
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    {
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>      Resources: []string{&quot;vms&quot;, &quot;vms/*&quot;},
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;create&quot;, &quot;update&quot;, &quot;patch&quot;, &quot;delete&quot;},
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    },
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    {
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>      Resources:     []string{&quot;disks&quot;},
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>    },
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>    {
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>      Resources:     []string{&quot;hosts&quot;},
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>    },
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>  })
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>case EXP_USER: // EXP_VIEWER + VM restart + VM update + VM capture
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>  return Policies([]*Policy{
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>    {
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;},
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;},
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>    },
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>    {
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>      Resources: []string{&quot;vms&quot;, &quot;vms/*&quot;},
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;patch&quot;},
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>    },
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>    {
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>      Resources: []string{&quot;vms/redeploy&quot;},
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>      Verbs:     []string{&quot;update&quot;},
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>    },
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>    {
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>      Resources: []string{&quot;vms/captures&quot;},
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>      Verbs:     []string{&quot;create&quot;, &quot;delete&quot;},
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>    },
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>    {
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>      Resources: []string{&quot;vms/snapshots&quot;},
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>      Verbs:     []string{&quot;list&quot;, &quot;create&quot;, &quot;update&quot;},
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>    },
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>    {
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>      Resources:     []string{&quot;hosts&quot;},
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>    },
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>  })
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>case EXP_VIEWER:
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>  return Policies([]*Policy{
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>    {
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;, &quot;vms&quot;, &quot;vms/*&quot;},
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;},
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>    },
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>    {
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>      Resources:     []string{&quot;hosts&quot;},
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>    },
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>  })
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>case VM_VIEWER:
+</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>  return Policies([]*Policy{
+</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>    {
+</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>      Resources: []string{&quot;vms&quot;},
+</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>      Verbs:     []string{&quot;list&quot;},
+</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>    },
+</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>    {
+</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>      Resources: []string{&quot;vms/screenshot&quot;, &quot;vms/vnc&quot;},
+</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>      Verbs:     []string{&quot;get&quot;},
+</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>    },
+</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>  })
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/sandialabs/sceptre-phenix-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/swagger.html" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M495.9 166.6c3.2 8.7.5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4l-55.6 17.8c-8.8 2.8-18.6.3-24.5-6.8-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4c-1.1-8.4-1.7-16.9-1.7-25.5s.6-17.1 1.7-25.4l-43.3-39.4c-6.9-6.2-9.6-15.9-6.4-24.6 4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2 5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8 8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
