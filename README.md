@@ -40,3 +40,12 @@ doing so should be as follows:
 
 It's also possible to create a new version per draft branch if the situation
 warrants.
+
+## Build docs locally
+
+To build and host the docs locally, run the following command:
+```shell
+make serve-docs
+```
+
+The docs will be served on `localhost:8000` by a Docker container. Any changes to the Markdown files or `mkdocs.yml` will trigger an automatic rebuild while the container is running. This alleviates the need to run the command every time a change is made.
