@@ -729,10 +729,10 @@
 
 
 <h1 id="welcome">Welcome<a class="headerlink" href="#welcome" title="Permanent link">&para;</a></h1>
-<p>This is the documentation for the minimega <code>phenix</code> orchestration tool. <code>phenix</code>
-development happens in the
-<a href="https://github.com/sandialabs/sceptre-phenix">sandialabs/sceptre-phenix</a> GitHub
-repository.</p>
+<p>This is the documentation for the minimega <code>phenix</code> orchestration tool. 
+<code>phenix</code> development happens in the
+<a href="https://github.com/sandialabs/sceptre-phenix">sandialabs/sceptre-phenix</a> 
+GitHub repository.</p>
 <h2 id="getting-started-with-phenix">Getting Started with phēnix<a class="headerlink" href="#getting-started-with-phenix" title="Permanent link">&para;</a></h2>
 <p>The first step in using <code>phenix</code> is to get it installed. <code>phenix</code> needs access
 to the minimega unix socket, so the best place to deploy it is on a minimega
@@ -755,32 +755,33 @@ safe to use this branch for phēnix all the time.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In most cases, it's much easier to deploy the latest version of both phēnix
-and minimega with Docker (see next section). The phēnix repository includes
-a Docker Compose file that will always ensure the required versions are
+and minimega with <a href="https://www.docker.com/">Docker</a> (see next section). 
+The phēnix repository includes
+a <a href="https://docs.docker.com/compose/">Docker Compose</a> file that will always 
+ensure the required versions are
 working together correctly.</p>
 </div>
 <h3 id="installing-and-running-via-docker">Installing and Running via Docker<a class="headerlink" href="#installing-and-running-via-docker" title="Permanent link">&para;</a></h3>
 <p>The phēnix repository includes Docker resources in the <code>docker</code> directory. By
-far the easiest way to get phēnix up and running is to use the Docker Compose
+far the easiest way to get phēnix up and running is to use the 
+<a href="https://docs.docker.com/compose/">Docker Compose</a>
 configuration located at <code>docker/docker-compose.yml</code>. This will ensure that the
 latest required version of minimega is also present and configured with the
 additional Linux tools required to operate correctly with phēnix.</p>
 <p>To run phēnix and minimega using Docker Compose, run the following command from
 the <code>docker</code> directory.</p>
-<div class="codehilite"><pre><span></span><code>docker compose up -d --build
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</span></code></pre></div>
 <p>The above command will first build the phenix and minimega Docker images and
 then start all the Docker services defined in the compose file in detached mode.</p>
 <p>Besides phēnix and minimega, there are two additional services defined in the
-compose file; one for ElasticSearch and one for Kibana. These are included in
+compose file; one for Elasticsearch and one for Kibana. These are included in
 the compose file because they're often used with the Scorch phēnix application.
-If you don't need the ElasticSearch and Kibana services, you can prevent them
+If you don't need the Elasticsearch and Kibana services, you can prevent them
 from being started by specifying that only the <code>phenix</code> service (and its
 dependency service <code>minimega</code>) be brought up.</p>
-<div class="codehilite"><pre><span></span><code>docker compose up -d --build phenix
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build<span class="w"> </span>phenix
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The Docker image will also include the <code>phenix</code> user apps available in the
@@ -789,21 +790,21 @@ repo.</p>
 </div>
 <p>With <code>phenix</code> running in a container, it's useful to setup a bash alias for
 <code>phenix</code>:</p>
-<div class="codehilite"><pre><span></span><code>alias phenix=&quot;docker exec -it phenix phenix&quot;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">phenix</span><span class="o">=</span><span class="s2">&quot;docker exec -it phenix phenix&quot;</span>
+</span></code></pre></div>
 <p>Included below are explanations of some of the configuration options chosen to
 be used in the Docker Compose file.</p>
 <p>The Docker <code>privileged</code> mode, along with the <code>/dev</code> and <code>/proc</code> volume mounts,
 are needed for building QCOW2 VM images with phēnix. They can be omitted if
 phēnix won't be used to build images.</p>
 <p>The <code>/var/log/phenix</code> volume mount is shared with the host to make debugging
-failed container issues easier, since phēnix writes logs to <code>/var/log/phenix</code> by
-default when run as root.</p>
+failed container issues easier, since phēnix writes logs to <code>/var/log/phenix</code> 
+by default when run as root.</p>
 <p>The <code>/etc/phenix</code> volume mount is shared with the host to persist phēnix
 configuration changes across container restarts, since the phēnix configuration
 store is written to <code>/etc/phenix/store.bdb</code> by default when run as root.</p>
-<p>The <code>/var/run/netns</code> volume mount is shared with the host to synchronize network
+<p>The <code>/var/run/netns</code> volume mount is shared with the host to synchronize 
+network
 namespaces created by phēnix taps between the phēnix and minimega containers.</p>
 <p>The <code>/phenix</code> volume mount is used as the base directory for phēnix by default
 (see <code>--base-dir.phenix</code> global option), so we share this directory with the
@@ -812,76 +813,73 @@ host to persist changes across container restarts.</p>
 <p>The easiest way to build from source is to use the Docker-based build script
 located at <code>hack/build/docker-build.sh</code> by running the following command from
 the root directory of the repository.</p>
-<div class="codehilite"><pre><span></span><code>hack/build/docker-build.sh
-</code></pre></div>
-
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hack/build/docker-build.sh
+</span></code></pre></div>
 <p>Once the build is finished, there will be a <code>phenix</code> executable located in the
-<code>bin</code> directory. For additional usage details, pass the <code>-h</code> option to the build
+<code>bin</code> directory. For additional usage details, pass the <code>-h</code> option to the 
+build
 script.</p>
 <h3 id="using">Using<a class="headerlink" href="#using" title="Permanent link">&para;</a></h3>
 <p>The following output results from <code>bin/phenix help</code>:</p>
-<div class="codehilite"><pre><span></span><code>A cli application for phenix
-
-Usage:
-  phenix [flags]
-  phenix [command]
-
-Available Commands:
-  config      Configuration file management
-  experiment  Experiment management
-  help        Help about any command
-  image       Virtual disk image management
-  ui          Run the phenix UI
-  util        Utility commands
-  version     print version information
-  vlan        Used to manage VLANs
-  vm          Virtual machine management
-
-Flags:
-      --base-dir.minimega string   base minimega directory (default &quot;/tmp/minimega&quot;)
-      --base-dir.phenix string     base phenix directory (default &quot;/phenix&quot;)
-  -h, --help                       help for phenix
-      --hostname-suffixes string   hostname suffixes to strip
-      --log.error-file string      log fatal errors to file (default &quot;/var/log/phenix/error.log&quot;)
-      --log.error-stderr           log fatal errors to STDERR (default true)
-      --store.endpoint string      endpoint for storage service (default &quot;bolt:///etc/phenix/store.bdb&quot;)
-
-Use &quot;phenix [command] --help&quot; for more information about a command.
-</code></pre></div>
-
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>A cli application for phenix
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Usage:
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  phenix [flags]
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  phenix [command]
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Available Commands:
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  config      Configuration file management
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  experiment  Experiment management
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  help        Help about any command
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  image       Virtual disk image management
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  ui          Run the phenix UI
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  util        Utility commands
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  version     print version information
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>  vlan        Used to manage VLANs
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>  vm          Virtual machine management
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>Flags:
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>      --base-dir.minimega string   base minimega directory (default &quot;/tmp/minimega&quot;)
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>      --base-dir.phenix string     base phenix directory (default &quot;/phenix&quot;)
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>  -h, --help                       help for phenix
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>      --hostname-suffixes string   hostname suffixes to strip
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>      --log.error-file string      log fatal errors to file (default &quot;/var/log/phenix/error.log&quot;)
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>      --log.error-stderr           log fatal errors to STDERR (default true)
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>      --store.endpoint string      endpoint for storage service (default &quot;bolt:///etc/phenix/store.bdb&quot;)
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>Use &quot;phenix [command] --help&quot; for more information about a command.
+</span></code></pre></div>
 <p>Thanks to <a href="https://github.com/spf13/viper">viper</a>, it is possible to specify
 values for all of the global and <code>ui</code> command flags listed above using a
-configuration file. Global flags set at the command line will override settings 
+configuration file. Global flags set at the command line will override 
+settings
 in the configuration file. phenix looks for a configuration in the following 
 locations.</p>
 <p>When run as root (not including sudo):</p>
-<div class="codehilite"><pre><span></span><code>/etc/phenix/config.[yaml|json|toml]
-</code></pre></div>
-
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/etc/phenix/config.[yaml|json|toml]
+</span></code></pre></div>
 <p>When run as regular user (including sudo):</p>
-<div class="codehilite"><pre><span></span><code>$HOME/.config/phenix/config.[yaml|json|toml]
-/etc/phenix/config.[yaml|json|toml]
-</code></pre></div>
-
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$HOME/.config/phenix/config.[yaml|json|toml]
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>/etc/phenix/config.[yaml|json|toml]
+</span></code></pre></div>
 <p>An example configuration file might look like the following:</p>
-<div class="codehilite"><pre><span></span><code>base-dir:
-  minimega: /tmp/minimega
-  phenix: /phenix
-log:
-  error-file: /var/log/phenix/error.log
-  error-stderr: true
-store:
-  endpoint: bolt:///etc/phenix/store.bdb
-ui:
-  listen-endpoint: 0.0.0.0:3000
-  jwt-signing-key: abcde12345
-  log-level: info
-  log-verbose: true
-  logs:
-    phenix-path: /var/log/phenix/phenix.log
-    minimega-path: /var/log/minimega/minimega.log
-</code></pre></div>
-
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">base-dir</span><span class="p">:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">minimega</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/minimega</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">phenix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/phenix</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">log</span><span class="p">:</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">error-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/phenix/error.log</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">error-stderr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nt">store</span><span class="p">:</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bolt:///etc/phenix/store.bdb</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nt">ui</span><span class="p">:</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span><span class="nt">listen-endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0:3000</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="nt">jwt-signing-key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcde12345</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">  </span><span class="nt">log-level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">info</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">  </span><span class="nt">log-verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="nt">logs</span><span class="p">:</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="nt">phenix-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/phenix/phenix.log</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="nt">minimega-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/minimega/minimega.log</span>
+</span></code></pre></div>
 <p>Environment variables can also be used to set global and <code>ui</code> command flags. The
 environment variables must be prefixed with <code>PHENIX_</code>, with the rest of the
 variable matching the flag name with <code>-</code> and <code>.</code> replaced with <code>_</code>. For example,
@@ -898,13 +896,13 @@ variable matching the flag name with <code>-</code> and <code>.</code> replaced 
 data needed throughout the various capabilities (as opposed to a database). By
 default it uses <a href="https://github.com/etcd-io/bbolt">bbolt</a> but also supports
 <a href="https://github.com/etcd-io/etcd">etcd</a>. <code>bbolt</code> is used by default because it
-has no external dependencies, but has a limitation of only being accessible on a
+has no external dependencies, but has a limitation of only being accessible on 
+a
 single machine. Using <code>etcd</code>, on the other hand, allows for users to run
 <code>phenix</code> on multiple machines and access the same data, but requires <code>etcd</code> be
 deployed as a separate service.</p>
 <p>To use <code>etcd</code>, the <code>--store.endpoint</code> global flag should be configured with the
-URL of the deployed <code>etcd</code> server. For example, <code>--store.endpoint
-etcd://localhost:2379</code>.</p>
+URL of the deployed <code>etcd</code> server. For example, <code>--store.endpoint etcd://localhost:2379</code>.</p>
 
 
 
@@ -976,7 +974,7 @@ etcd://localhost:2379</code>.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>

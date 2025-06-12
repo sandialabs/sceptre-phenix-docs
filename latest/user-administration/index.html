@@ -1295,21 +1295,19 @@ role.</p>
    running will automatically be added to <code>phenix</code>.</p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code>ui:
-  users:
-    - &lt;username&gt;:&lt;password&gt;:&lt;role name&gt;
-    - ...
-</code></pre></div>
-
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">ui</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">users</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;username&gt;:&lt;password&gt;:&lt;role name&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></code></pre></div>
 <h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
 <p>The login page is self-descriptive. Using the <code>Remember me</code> checkbox will set a
 token to local storage so that you can remove the requirement to enter a
 <code>Username</code> and <code>Password</code> each time the page or site is reloaded. </p>
 <p>If an administrator starts the UI server with the following command,
 authentication is enabled:</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix ui -k &lt;some_string&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>ui<span class="w"> </span>-k<span class="w"> </span>&lt;some_string&gt;
+</span></code></pre></div>
 <p>Without the <code>-k</code> (or <code>--jwt-signing-key</code>), authentication is disabled.</p>
 <h2 id="generating-user-authentication-tokens">Generating User Authentication Tokens<a class="headerlink" href="#generating-user-authentication-tokens" title="Permanent link">&para;</a></h2>
 <p>From the <code>Users</code> tab, click the key icon next to the given user's name. A dialog
@@ -1319,9 +1317,8 @@ duration. For example, <code>4320h</code> is valid and represents 4320 hours or 
 months. After clicking <code>Create Token</code> a token should appear with the expiriation
 date.  </p>
 <p>This token can be used to authenticate when using the Phenix API. Specifically, you would include the following as a header in HTTP requests.</p>
-<div class="codehilite"><pre><span></span><code>X-phenix-auth-token: Bearer &lt;TOKEN&gt;
-</code></pre></div>
-
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>X-phenix-auth-token: Bearer &lt;TOKEN&gt;
+</span></code></pre></div>
 <h2 id="user-administration">User Administration<a class="headerlink" href="#user-administration" title="Permanent link">&para;</a></h2>
 <h3 id="updating-users">Updating Users<a class="headerlink" href="#updating-users" title="Permanent link">&para;</a></h3>
 <p>An administrator is able to click on the username on the table in the Users tab
@@ -2396,101 +2393,101 @@ available roles and their access rights.</p>
 <h3 id="built-in-roles">Built-In Roles<a class="headerlink" href="#built-in-roles" title="Permanent link">&para;</a></h3>
 <p>See the <a href="#resources">previous</a> section for policy resource and verb
 descriptions.</p>
-<div class="codehilite"><pre><span></span><code>case GLOBAL_ADMIN:
-  return Policies([]*Policy{
-    {
-      Experiments:   []string{&quot;*&quot;},
-      Resources:     []string{&quot;*&quot;, &quot;*/*&quot;},
-      ResourceNames: []string{&quot;*&quot;},
-      Verbs:         []string{&quot;*&quot;},
-    },
-  })
-case GLOBAL_VIEWER:
-  return Policies([]*Policy{
-    {
-      Experiments:   []string{&quot;*&quot;},
-      Resources:     []string{&quot;*&quot;, &quot;*/*&quot;},
-      ResourceNames: []string{&quot;*&quot;},
-      Verbs:         []string{&quot;list&quot;, &quot;get&quot;},
-    },
-  })
-case EXP_ADMIN:
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;},
-      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;update&quot;},
-    },
-    {
-      Resources: []string{&quot;vms&quot;, &quot;vms/*&quot;},
-      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;create&quot;, &quot;update&quot;, &quot;patch&quot;, &quot;delete&quot;},
-    },
-    {
-      Resources:     []string{&quot;disks&quot;},
-      ResourceNames: []string{&quot;*&quot;},
-      Verbs:         []string{&quot;list&quot;},
-    },
-    {
-      Resources:     []string{&quot;hosts&quot;},
-      ResourceNames: []string{&quot;*&quot;},
-      Verbs:         []string{&quot;list&quot;},
-    },
-  })
-case EXP_USER: // EXP_VIEWER + VM restart + VM update + VM capture
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;},
-      Verbs:     []string{&quot;list&quot;, &quot;get&quot;},
-    },
-    {
-      Resources: []string{&quot;vms&quot;, &quot;vms/*&quot;},
-      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;patch&quot;},
-    },
-    {
-      Resources: []string{&quot;vms/redeploy&quot;},
-      Verbs:     []string{&quot;update&quot;},
-    },
-    {
-      Resources: []string{&quot;vms/captures&quot;},
-      Verbs:     []string{&quot;create&quot;, &quot;delete&quot;},
-    },
-    {
-      Resources: []string{&quot;vms/snapshots&quot;},
-      Verbs:     []string{&quot;list&quot;, &quot;create&quot;, &quot;update&quot;},
-    },
-    {
-      Resources:     []string{&quot;hosts&quot;},
-      ResourceNames: []string{&quot;*&quot;},
-      Verbs:         []string{&quot;list&quot;},
-    },
-  })
-case EXP_VIEWER:
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;, &quot;vms&quot;, &quot;vms/*&quot;},
-      Verbs:     []string{&quot;list&quot;, &quot;get&quot;},
-    },
-    {
-      Resources:     []string{&quot;hosts&quot;},
-      ResourceNames: []string{&quot;*&quot;},
-      Verbs:         []string{&quot;list&quot;},
-    },
-  })
-case VM_VIEWER:
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{&quot;vms&quot;},
-      Verbs:     []string{&quot;list&quot;},
-    },
-    {
-      Resources: []string{&quot;vms/screenshot&quot;, &quot;vms/vnc&quot;},
-      Verbs:     []string{&quot;get&quot;},
-    },
-  })
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>case GLOBAL_ADMIN:
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  return Policies([]*Policy{
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    {
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>      Experiments:   []string{&quot;*&quot;},
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      Resources:     []string{&quot;*&quot;, &quot;*/*&quot;},
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>      Verbs:         []string{&quot;*&quot;},
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    },
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  })
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>case GLOBAL_VIEWER:
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  return Policies([]*Policy{
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    {
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>      Experiments:   []string{&quot;*&quot;},
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>      Resources:     []string{&quot;*&quot;, &quot;*/*&quot;},
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>      Verbs:         []string{&quot;list&quot;, &quot;get&quot;},
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    },
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  })
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>case EXP_ADMIN:
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>  return Policies([]*Policy{
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    {
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;},
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;update&quot;},
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    },
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    {
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>      Resources: []string{&quot;vms&quot;, &quot;vms/*&quot;},
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;create&quot;, &quot;update&quot;, &quot;patch&quot;, &quot;delete&quot;},
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    },
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    {
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>      Resources:     []string{&quot;disks&quot;},
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>    },
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>    {
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>      Resources:     []string{&quot;hosts&quot;},
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>    },
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>  })
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>case EXP_USER: // EXP_VIEWER + VM restart + VM update + VM capture
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>  return Policies([]*Policy{
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>    {
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;},
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;},
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>    },
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>    {
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>      Resources: []string{&quot;vms&quot;, &quot;vms/*&quot;},
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;, &quot;patch&quot;},
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>    },
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>    {
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>      Resources: []string{&quot;vms/redeploy&quot;},
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>      Verbs:     []string{&quot;update&quot;},
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>    },
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>    {
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>      Resources: []string{&quot;vms/captures&quot;},
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>      Verbs:     []string{&quot;create&quot;, &quot;delete&quot;},
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>    },
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>    {
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>      Resources: []string{&quot;vms/snapshots&quot;},
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>      Verbs:     []string{&quot;list&quot;, &quot;create&quot;, &quot;update&quot;},
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>    },
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>    {
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>      Resources:     []string{&quot;hosts&quot;},
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>    },
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>  })
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>case EXP_VIEWER:
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>  return Policies([]*Policy{
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>    {
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>      Resources: []string{&quot;experiments&quot;, &quot;experiments/*&quot;, &quot;vms&quot;, &quot;vms/*&quot;},
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>      Verbs:     []string{&quot;list&quot;, &quot;get&quot;},
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>    },
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>    {
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>      Resources:     []string{&quot;hosts&quot;},
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>      ResourceNames: []string{&quot;*&quot;},
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>      Verbs:         []string{&quot;list&quot;},
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>    },
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>  })
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>case VM_VIEWER:
+</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>  // must supply experiment names and resource names or nothing will authorize
+</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>  return Policies([]*Policy{
+</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>    {
+</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>      Resources: []string{&quot;vms&quot;},
+</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>      Verbs:     []string{&quot;list&quot;},
+</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>    },
+</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>    {
+</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>      Resources: []string{&quot;vms/screenshot&quot;, &quot;vms/vnc&quot;},
+</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>      Verbs:     []string{&quot;get&quot;},
+</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>    },
+</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>  })
+</span></code></pre></div>
 
 
 
@@ -2562,7 +2559,7 @@ case VM_VIEWER:
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

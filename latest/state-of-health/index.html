@@ -877,7 +877,7 @@ example of no SoH information with the VNC button disabled.</p>
 <p><img alt="screenshot" class="center" src="../images/soh_no_details.png" width="800" /></p>
 <h2 id="network-volume">Network Volume<a class="headerlink" href="#network-volume" title="Permanent link">&para;</a></h2>
 <p>This tab displays a chord graph that shows network flows between nodes using
-flows from PacketBeat fed to ElasticSearch; connections represent the volume of
+flows from Packetbeat fed to Elasticsearch; connections represent the volume of
 traffic between nodes.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -900,74 +900,73 @@ configuration. SoH will only be enabled for an experiment if it's present in the
 scenario as <code>soh</code>, and has multiple configuration options available, described
 in detail below.</p>
 <h3 id="sample-soh-scenario-config">Sample SoH Scenario Config<a class="headerlink" href="#sample-soh-scenario-config" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>spec:
-  apps:
-  - name: soh
-    metadata:
-      appMetadataProfileKey: sohProfile # metadata key to look for in other apps
-      c2Timeout: 5m
-      exitOnError: false
-      hostCustomTests:
-        host-00:
-        - name: FooBarTest
-          testScript: |
-            cat /etc/passwd | grep root
-          validateStdout: |
-            count=$(wc -l)
-            [[ $count -eq 1 ]] &amp;&amp; exit 0 || exit 1
-          executor: bash
-        host-01:
-        - name: SuckaTest.ps1
-          testScript: |
-            Get-Process miniccc -ErrorAction SilentlyContinue
-          testStdout: miniccc
-          executor: powershell -NoProfile -ExecutionPolicy bypass -File
-      hostListeners:
-        client:
-        - :502
-        server:
-        - :80
-        - :443
-      hostProcesses:
-        client:
-        - miniccc
-        server:
-        - miniccc
-      hostsToUseUUIDForC2Active:
-      - host-02
-      injectICMPAllow: true
-      packetCapture:
-        elasticImage: /phenix/images/elasticsearch.qc2
-        packetBeatImage: /phenix/images/packetbeat.qc2
-        elasticServer:
-          hostname: soh-elasticsearch-server
-          vcpus: 4
-          memory: 4096
-          ipAddress: 172.16.200.1/16
-          vlan: MGMT
-        captureHosts:
-          client:
-          - IF0 # interface to monitor on &quot;client&quot; node in topology
-          server:
-          - IF0 # interface to monitor on &quot;server&quot; node in topology
-      skipInitialNetworkConfigTests: false # if true, testReachability will be off
-      skipHosts:
-      - kali.qc2 # can be an image name, in which case any host using image will be skipped
-      - foobar-host # can be hostname from topology
-      testReachability: full # can be off, sample, or full
-      testCustomReachability:
-      - src: host-00
-        dst: host-01|IF0
-        proto: tcp
-        port: 22
-        wait: 30s
-      - src: host-01
-        dst: host-00|IF0
-        proto: tcp
-        port: 22
-        wait: 30s
-</code></pre></div>
-
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">soh</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">appMetadataProfileKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sohProfile</span><span class="w"> </span><span class="c1"># metadata key to look for in other apps</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nt">c2Timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">exitOnError</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">hostCustomTests</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="nt">host-00</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FooBarTest</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="nt">testScript</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="no">cat /etc/passwd | grep root</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">validateStdout</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="no">count=$(wc -l)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">            </span><span class="no">[[ $count -eq 1 ]] &amp;&amp; exit 0 || exit 1</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">          </span><span class="nt">executor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="nt">host-01</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SuckaTest.ps1</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">          </span><span class="nt">testScript</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="no">Get-Process miniccc -ErrorAction SilentlyContinue</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">          </span><span class="nt">testStdout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">miniccc</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">          </span><span class="nt">executor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">powershell -NoProfile -ExecutionPolicy bypass -File</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="nt">hostListeners</span><span class="p">:</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="nt">client</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">:502</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">:80</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">:443</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="nt">hostProcesses</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="nt">client</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">miniccc</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">miniccc</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">hostsToUseUUIDForC2Active</span><span class="p">:</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host-02</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">      </span><span class="nt">injectICMPAllow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">      </span><span class="nt">packetCapture</span><span class="p">:</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">        </span><span class="nt">elasticImage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/phenix/images/elasticsearch.qc2</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="nt">packetBeatImage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/phenix/images/packetbeat.qc2</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">        </span><span class="nt">elasticServer</span><span class="p">:</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">soh-elasticsearch-server</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">          </span><span class="nt">vcpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4096</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">          </span><span class="nt">ipAddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.16.200.1/16</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">          </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MGMT</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">        </span><span class="nt">captureHosts</span><span class="p">:</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">          </span><span class="nt">client</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IF0</span><span class="w"> </span><span class="c1"># interface to monitor on &quot;client&quot; node in topology</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">          </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IF0</span><span class="w"> </span><span class="c1"># interface to monitor on &quot;server&quot; node in topology</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">      </span><span class="nt">skipInitialNetworkConfigTests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># if true, testReachability will be off</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">      </span><span class="nt">skipHosts</span><span class="p">:</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kali.qc2</span><span class="w"> </span><span class="c1"># can be an image name, in which case any host using image will be skipped</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foobar-host</span><span class="w"> </span><span class="c1"># can be hostname from topology</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">      </span><span class="nt">testReachability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span><span class="w"> </span><span class="c1"># can be off, sample, or full</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">      </span><span class="nt">testCustomReachability</span><span class="p">:</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host-00</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">        </span><span class="nt">dst</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host-01|IF0</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">        </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">22</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">        </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host-01</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">        </span><span class="nt">dst</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host-00|IF0</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">        </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">22</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">        </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+</span></code></pre></div>
 <h3 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
@@ -1052,18 +1051,18 @@ in detail below.</p>
 </li>
 <li>
 <p><code>packetCapture</code>: if present, a partially hidden packet capture infrastructure
-  based on Elastic, Kibana, and PacketBeat will be deployed for the experiment.
+  based on Elasticsearch, Kibana, and Packetbeat will be deployed for the experiment.
   See <a href="#packet-capture">Packet Capture</a> for more details. The default is <code>nil</code>.</p>
 <ul>
 <li>
 <p><code>elasticImage</code>: path to the disk image to use for the Elastic/Kibana VM
-  for packet capture. An <code>image/elasticsearch</code> config comes bundled with
+  for packet capture. An <code>image/PHENIX-elasticsearch</code> config comes bundled with
   phenix and can be used to build an image to use here. There is no default
   for this setting; if packet capture is to be deployed it must be provided.</p>
 </li>
 <li>
-<p><code>packetBeatImage</code>: path to the disk image to use for the PacketBeat VM for
-  packet capture. An <code>image/packetbeat</code> config comes bundled with phenix and
+<p><code>packetBeatImage</code>: path to the disk image to use for the Packetbeat VM for
+  packet capture. An <code>image/PHENIX-packetbeat</code> config comes bundled with phenix and
   can be used to build an image to use here. There is no default for this
   setting; if packet capture is to be deployed it must be provided.</p>
 </li>
@@ -1089,13 +1088,13 @@ in detail below.</p>
   used for will be added to the experiment VLAN specified by <code>vlan</code>. The
   IP address should be specified in CIDR notation. There should also be
   sufficient IP addresses after the one specified here to be assigned to
-  each of the PacketBeat monitor VMs that will be deployed, as the IP
+  each of the Packetbeat monitor VMs that will be deployed, as the IP
   addresses assigned to them on the VLAN specified by <code>vlan</code> will
   increment up from this IP. There is no default for this setting; if
   packet capture is to be deployed it must be provided.</p>
 </li>
 <li>
-<p><code>vlan</code>: the experiment VLAN to add the Elastic/Kibana and PacketBeat
+<p><code>vlan</code>: the experiment VLAN to add the Elastic/Kibana and Packetbeat
   VMs to. There is no default for this setting; if packet capture is to
   be deployed it must be provided.</p>
 </li>
@@ -1103,7 +1102,7 @@ in detail below.</p>
 </li>
 <li>
 <p><code>captureHosts</code>: a map of VMs, each specifying a list of network interface
-  names to monitor. One PacketBeat VM will be deployed for each VM interface
+  names to monitor. One Packetbeat VM will be deployed for each VM interface
   specified. The defalt is <code>nil</code>.</p>
 </li>
 </ul>
@@ -1123,7 +1122,7 @@ in detail below.</p>
 <p><code>testReachability</code>: reachability testing is the process of making sure each VM
   can reach other VMs within the experiment over the network. See <a href="#network-reachability">Network
   Reachability</a> for more details. There are three options
-  for this setting: <code>off, sample, full</code>.</p>
+  for this setting: <code>off</code>, <code>sample</code>, <code>full</code>.</p>
 <ul>
 <li>
 <p><code>off</code>: reachability testing is disabled. This is the default.</p>
@@ -1185,12 +1184,6 @@ agent active, but its network has to be configured manually, it will not be
 included in reachability tests during the post-start stage. Once the VM's
 network settings have been configured manually, the running stage can be
 triggered and the VM will be included in reachability tests this time around.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Support for custom reachability testing using TCP or UDP currently requires
-the use of the <code>activeshadow/minimega@tcp-conn-test</code> branch until <a href="https://github.com/sandia-minimega/minimega/pull/1457">PR
-1457</a> is merged.</p>
-</div>
 <h3 id="injecting-icmp-rules">Injecting ICMP Rules<a class="headerlink" href="#injecting-icmp-rules" title="Permanent link">&para;</a></h3>
 <p>The <code>injectICMPAllow</code> option can be used to add rules to routers/firewalls in
 the topology to prevent reachability tests from failing due to ACLs. When
@@ -1207,14 +1200,14 @@ experiment. This means the setting can be changed between runs of an experiment
 reflected accurately when the experiment is started again.</p>
 <h3 id="packet-capture">Packet Capture<a class="headerlink" href="#packet-capture" title="Permanent link">&para;</a></h3>
 <p>The SoH packet capture capability leverages minimega's tap mirroring to monitor
-traffic on experiment VM interfaces with PacketBeat and feed network flow data
-to ElasticSearch.</p>
-<p>When enabled, an Elastic/Kibana VM is added to the experiment's topology so it
-can be accessed via the phenix UI. PacketBeat VMs are deployed in minimega for
+traffic on experiment VM interfaces with Packetbeat and feed network flow data
+to Elasticsearch.</p>
+<p>When enabled, an Elasticsearch/Kibana VM is added to the experiment's topology so it
+can be accessed via the phenix UI. Packetbeat VMs are deployed in minimega for
 each experiment VM interface that's configured to be monitored, but are not
 added to the experiment topology so they do not clutter the phenix UI.</p>
 <p>When packet capture is enabled, the phenix UI SoH tab will include a Network
-Volume tab that uses network flow data queried from ElasticSearch to populate a
+Volume tab that uses network flow data queried from Elasticsearch to populate a
 chord graph in an effort to depict how much traffic is flowing between VMs.
 Users/Analysts can also access Kibana using VNC via the phenix UI to do
 additional analysis on the network flow data that's being captured.</p>
@@ -1223,8 +1216,8 @@ additional analysis on the network flow data that's being captured.</p>
 to drive and collect the experiment health state data. Under the hood, the SoH
 app uses C2 to execute a test on a VM (<code>cc exec</code>), wait for the command to
 complete (<code>cc commands</code>), grab the STDOUT/STDERR of the command (<code>cc
-responses</code>), and compare it to an expected response. Current tests executed on
-Linux VMs include the following:</p>
+responses</code>), and compare it to an expected response. </p>
+<p>Current tests executed on Linux VMs include the following:</p>
 <ul>
 <li><code>ip addr</code></li>
 <li><code>ip route</code></li>
@@ -1313,7 +1306,7 @@ Linux VMs include the following:</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

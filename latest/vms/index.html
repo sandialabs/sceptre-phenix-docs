@@ -1698,13 +1698,11 @@ you will be presented with a VM information modal.</p>
 <h3 id="from-the-command-line-binary">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary" title="Permanent link">&para;</a></h3>
 <p>There are two options for displaying the information for VMs in an experiment. First run 
 the following command to see information for all VMs in a given experiment.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm info &lt;experiment name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <p>Or, run the following to see the information for a specific VM in an experiment.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm info &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="create-a-backing-image">Create a Backing Image<a class="headerlink" href="#create-a-backing-image" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_1">From the Web-UI<a class="headerlink" href="#from-the-web-ui_1" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information 
@@ -1719,9 +1717,8 @@ modal.  Click the <code>memory snapshot</code> button as shown in the screenshot
 <p><img alt="screenshot" src="../images/vms_memory_snapshot.png" /></p>
 <h3 id="from-the-command-line-binary_2">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_2" title="Permanent link">&para;</a></h3>
 <p>To create an ELF memory dump, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm memory-snapshot &lt;experiment name&gt; &lt;vm name&gt; &lt;snapshot file path&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>memory-snapshot<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;<span class="w"> </span>&lt;snapshot<span class="w"> </span>file<span class="w"> </span>path&gt;
+</span></code></pre></div>
 <h2 id="create-a-vm-snapshot">Create a VM Snapshot<a class="headerlink" href="#create-a-vm-snapshot" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_3">From the Web-UI<a class="headerlink" href="#from-the-web-ui_3" title="Permanent link">&para;</a></h3>
 <p>Click on a running VM in a started experiment to access the VM information
@@ -1743,13 +1740,11 @@ capture has started. It is possible to start captures on multiple network taps.
 However, when you stop packet capture, it will stop captures on all network taps.</p>
 <h3 id="from-the-command-line-binary_5">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_5" title="Permanent link">&para;</a></h3>
 <p>To start a packet capture, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm capture start &lt;experiment name&gt; &lt;vm name&gt; &lt;iface index&gt; &lt;/path/to/out file&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>start<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;<span class="w"> </span>&lt;iface<span class="w"> </span>index&gt;<span class="w"> </span>&lt;/path/to/out<span class="w"> </span>file&gt;
+</span></code></pre></div>
 <p>To stop all packet captures on a running VM, use the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm capture stop &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>stop<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="kill-a-vm">Kill a VM<a class="headerlink" href="#kill-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_6">From the Web-UI<a class="headerlink" href="#from-the-web-ui_6" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information 
@@ -1760,9 +1755,8 @@ Click the <code>kill</code> button as shown in the screenshot below.</p>
 per the experiment configuration.</p>
 <h3 id="from-the-command-line-binary_6">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_6" title="Permanent link">&para;</a></h3>
 <p>To kill a VM, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm kill &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="modify-the-network-connectivity">Modify the Network Connectivity<a class="headerlink" href="#modify-the-network-connectivity" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_7">From the Web-UI<a class="headerlink" href="#from-the-web-ui_7" title="Permanent link">&para;</a></h3>
 <p>Click on the network for the desired VM in the Running Component to modify the 
@@ -1771,13 +1765,11 @@ you clicked on to. To revert back to previous setting, simply repeat selecting t
 network interface you wish to change, and select the previous network setting.</p>
 <h3 id="from-the-command-line-binary_7">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_7" title="Permanent link">&para;</a></h3>
 <p>To connect a VM network interface to a different network, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm net connect &lt;experiment name&gt; &lt;vm name&gt; &lt;iface index&gt; &lt;vlan id&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>net<span class="w"> </span>connect<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;<span class="w"> </span>&lt;iface<span class="w"> </span>index&gt;<span class="w"> </span>&lt;vlan<span class="w"> </span>id&gt;
+</span></code></pre></div>
 <p>To disconnect a VM network interface, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm net disconnect &lt;experiment name&gt; &lt;vm name&gt; &lt;iface index&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>net<span class="w"> </span>disconnect<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;<span class="w"> </span>&lt;iface<span class="w"> </span>index&gt;
+</span></code></pre></div>
 <h2 id="pause-a-vm">Pause a VM<a class="headerlink" href="#pause-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_8">From the Web-UI<a class="headerlink" href="#from-the-web-ui_8" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information 
@@ -1787,13 +1779,11 @@ click it to start.</p>
 <p><img alt="screenshot" src="../images/vms_pause.png" /></p>
 <h3 id="from-the-command-line-binary_8">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_8" title="Permanent link">&para;</a></h3>
 <p>To pause a VM, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm pause &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>pause<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <p>To resume a paused VM, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm resume &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>resume<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="redeploy-a-vm">Redeploy a VM<a class="headerlink" href="#redeploy-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_9">From the Web-UI<a class="headerlink" href="#from-the-web-ui_9" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information 
@@ -1802,9 +1792,8 @@ Click the <code>redeploy</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_redeploy.png" /></p>
 <h3 id="from-the-command-line-binary_9">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_9" title="Permanent link">&para;</a></h3>
 <p>To redploy a VM, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm redeploy &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>redeploy<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="reset-disk-state">Reset Disk State<a class="headerlink" href="#reset-disk-state" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_10">From the Web-UI<a class="headerlink" href="#from-the-web-ui_10" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information 
@@ -1813,9 +1802,8 @@ Click the <code>reset disk state</code> button as shown in the screenshot below.
 <p><img alt="screenshot" src="../images/vms_reset_disk_state.png" /></p>
 <h3 id="from-the-command-line-binary_10">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_10" title="Permanent link">&para;</a></h3>
 <p>To reset the first disk to the initial pre-boot state, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm reset-disk &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>reset-disk<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="restart-a-vm">Restart a VM<a class="headerlink" href="#restart-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_11">From the Web-UI<a class="headerlink" href="#from-the-web-ui_11" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information 
@@ -1824,9 +1812,8 @@ Click the <code>restart</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_restart.png" /></p>
 <h3 id="from-the-command-line-binary_11">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_11" title="Permanent link">&para;</a></h3>
 <p>To restart a VM, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm restart &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>restart<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="resume-a-vm">Resume a VM<a class="headerlink" href="#resume-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_12">From the Web-UI<a class="headerlink" href="#from-the-web-ui_12" title="Permanent link">&para;</a></h3>
 <p>Click on the name of the paused VM in a started experiment to access the VM information 
@@ -1834,9 +1821,8 @@ modal. Click the green play button (previously the pause button, furthest button
 left).</p>
 <h3 id="from-the-command-line-binary_12">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_12" title="Permanent link">&para;</a></h3>
 <p>To resume a paused VM, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm resume &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>resume<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="shutdown-a-vm">Shutdown a VM<a class="headerlink" href="#shutdown-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_13">From the Web-UI<a class="headerlink" href="#from-the-web-ui_13" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information 
@@ -1845,9 +1831,8 @@ Click the <code>shutdown</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_shutdown.png" /></p>
 <h3 id="from-the-command-line-binary_13">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_13" title="Permanent link">&para;</a></h3>
 <p>To shutdown a VM, run the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm shutdown &lt;experiment name&gt; &lt;vm name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>shutdown<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="modify-vm-settings">Modify VM Settings<a class="headerlink" href="#modify-vm-settings" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_14">From the Web-UI<a class="headerlink" href="#from-the-web-ui_14" title="Permanent link">&para;</a></h3>
 <p>There are two ways to modify VM settings:</p>
@@ -1872,9 +1857,8 @@ power button, second from the right on the modal footer). You are able to edit t
 </ol>
 <h3 id="from-the-command-line-binary_14">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_14" title="Permanent link">&para;</a></h3>
 <p><strong>This command is not yet implemented.</strong> For now, you can edit the stopped experiment directly with the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix cfg edit topology/&lt;topology name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>phenix<span class="w"> </span>cfg<span class="w"> </span>edit<span class="w"> </span>topology/&lt;topology<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <p>This will launch the system editor where you can directly modify the experiment settings.</p>
 <h2 id="applying-actions-to-multiple-vms">Applying Actions to Multiple VMs<a class="headerlink" href="#applying-actions-to-multiple-vms" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
@@ -1953,7 +1937,7 @@ actions to multiple VMs at once.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

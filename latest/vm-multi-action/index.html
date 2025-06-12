@@ -635,13 +635,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#startingstoppping-packet-captures" class="md-nav__link">
+  <a href="#startingstopping-packet-captures" class="md-nav__link">
     <span class="md-ellipsis">
-      Starting/stoppping Packet Captures
+      Starting/Stopping Packet Captures
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Starting/stoppping Packet Captures">
+    <nav class="md-nav" aria-label="Starting/Stopping Packet Captures">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -814,13 +814,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#startingstoppping-packet-captures" class="md-nav__link">
+  <a href="#startingstopping-packet-captures" class="md-nav__link">
     <span class="md-ellipsis">
-      Starting/stoppping Packet Captures
+      Starting/Stopping Packet Captures
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Starting/stoppping Packet Captures">
+    <nav class="md-nav" aria-label="Starting/Stopping Packet Captures">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -922,7 +922,7 @@ textbox to find VMs by:</p>
 <p><img alt="screenshot" src="../images/vms_multi_running_combined_terms.png" /></p>
 <h3 id="from-the-command-line-binary_1">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_1" title="Permanent link">&para;</a></h3>
 <p>Not applicable.</p>
-<h2 id="startingstoppping-packet-captures">Starting/stoppping Packet Captures<a class="headerlink" href="#startingstoppping-packet-captures" title="Permanent link">&para;</a></h2>
+<h2 id="startingstopping-packet-captures">Starting/Stopping Packet Captures<a class="headerlink" href="#startingstopping-packet-captures" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_2">From the Web-UI<a class="headerlink" href="#from-the-web-ui_2" title="Permanent link">&para;</a></h3>
 <p>When a valid ipv4 subnet is entered, the <code>play</code> button adjacent to the IPv4 label will be enabled.
 To start capturing, press the <code>play</code> button.</p>
@@ -935,17 +935,14 @@ to find all the VMs with active packet captures.</p>
 <p><img alt="screenshot" src="../images/vms_multi_captures_stop_all.png" /></p>
 <h3 id="from-the-command-line-binary_2">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_2" title="Permanent link">&para;</a></h3>
 <p>To start packet captures on running VMs for a specific subnet, use the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm capture start-subnet &lt;experiment name&gt; &lt;subnet&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>start-subnet<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;subnet&gt;
+</span></code></pre></div>
 <p>To stop all packet captures for a specific subnet, use the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm capture stop-subnet &lt;experiment name&gt; &lt;subnet&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>stop-subnet<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;subnet&gt;
+</span></code></pre></div>
 <p>To stop all packet captures for an experiment, use the following command.</p>
-<div class="codehilite"><pre><span></span><code>$&gt; phenix vm capture stop-all &lt;experiment name&gt;
-</code></pre></div>
-
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>stop-all<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
+</span></code></pre></div>
 <h2 id="stopped-experiment-component">Stopped Experiment Component<a class="headerlink" href="#stopped-experiment-component" title="Permanent link">&para;</a></h2>
 <p>Similar to the Running Experiment component, multiple VMs can be selected
 for the Stopped Experiment component.  In addition, VMs in the Stopped
@@ -1043,7 +1040,7 @@ Experiment component can be searched by:</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
