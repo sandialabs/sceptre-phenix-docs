@@ -118,6 +118,7 @@ spec:
       appMetadataProfileKey: sohProfile # metadata key to look for in other apps
       c2Timeout: 5m
       exitOnError: false
+      startupDelay: 5m                  # only delays at experiment start (PostStart phase)
       hostCustomTests:
         host-00:
         - name: FooBarTest
@@ -194,6 +195,14 @@ spec:
 
 * `exitOnError`: a boolean representing whether the app should cause the entire
   experiment deployment to fail if it has any errors. The default is `false`.
+
+* `startupDelay`: a [Golang duration
+  string](https://golang.org/pkg/time/#ParseDuration) specifying how long to
+  wait before initiating checks at the experiment starts. This can be useful
+  when some processes are not healthy immediately at experiment start. This
+  only delays SoH when it first runs at the experiment start. It will not delay
+  SoH when run manually later by clicking the 'Run SoH' button in the UI or
+  using the command line `trigger-running` command. The default is no delay.
 
 * `hostCustomTests`: If present, a map of custom tests to run on the given
   hosts.
