@@ -139,7 +139,7 @@ spec:
           rules.
 
         * `rules`: list of rules to apply to traffic.
-            * `id`: integer to identify the order of the fules in the set.
+            * `id`: integer to identify the order of the rules in the set.
 
             * `action`: action to apply to traffic matching rule.
 
