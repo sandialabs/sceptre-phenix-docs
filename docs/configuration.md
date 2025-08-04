@@ -731,3 +731,57 @@ When a scenario is selected, Builder will write the topology configuration to
 the phēnix store and an experiment configuration. When a scenario is not
 specified, the Builder app will save the topology configuration only. The user
 will then need to create an experiment in the phēnix UI.
+
+## Environment Variables
+
+Phēnix supports environment variables in its configuration files. On creation
+of a new phēnix config, any environment variable placeholders found in the
+config are replaced with their corresponding values. Placeholders can be in the
+format `${VAR}` or `${VAR:default}`, where `VAR` is the environment variable
+name, and `default` is an optional default value to use if the variable is not
+set. If the environment variable is not found and no default is provided, the
+placeholder is replaced with an empty string.
+
+Example config before parsing environment variables:
+
+```yaml
+  - name: foobar
+    metadata:
+      baz:
+        ip: ${HOST:localhost}
+```
+
+After parsing with `HOST=172.1.3.37`:
+
+```yaml
+  - name: foobar
+    metadata:
+      baz:
+        ip: 172.1.3.37
+```
+
+Or if `HOST` env variable isn't found, the default is used:
+
+```yaml
+  - name: foobar
+    metadata:
+      baz:
+        ip: localhost
+```
+
+### Environment variables using Docker
+If phēnix is running in a docker container (or docker compose), environment
+variables can be passed into the compose file and/or via args in any CLI calls
+to phēnix, e.g.
+
+```yaml
+    environment:
+      HOST: ${HOST}
+```
+
+or
+
+```bash
+docker exec -it -e BRANCH_NAME=foobar phenix phenix exp create foobar -t topo -s scenario
+```
+
