@@ -8,22 +8,13 @@ GitHub repository.
 ## Getting Started with phēnix
 
 The first step in using `phenix` is to get it installed. `phenix` needs access
-to the minimega unix socket, so the best place to deploy it is on a minimega
+to the minimega unix socket, so the best place to deploy it is on a 
+[minimega](https://www.sandia.gov/minimega/)
 cluster's head node. The minimega unix socket will be located at
 `/tmp/minimega/minimega` on default cluster deployments and will be owned by
 root, so unless the socket's group ownership and group write permissions have
 been updated, `phenix` will need to be run as root in order to access the
 socket.
-
-!!! note
-    In some cases, phēnix depends on recent features or bug fixes added to
-    minimega by the phēnix development team, but not yet merged into the main
-    minimega repo. To deal with this, the phēnix development team maintains a
-    fork of minimega [here](https://github.com/activeshadow/minimega) that
-    includes a `latest` branch with all the features and bug fixes required by
-    phēnix but not yet merged into the main repo. This `latest` branch is always
-    kept up to date with the latest version of the main minimega repo, so it's
-    safe to use this branch for phēnix all the time.
 
 !!! note
     In most cases, it's much easier to deploy the latest version of both phēnix
@@ -49,7 +40,7 @@ the `docker` directory.
 docker compose up -d --build
 ```
 
-The above command will first build the phenix and minimega Docker images and
+The above command will first build the phenix Docker image and
 then start all the Docker services defined in the compose file in detached mode.
 
 Besides phēnix and minimega, there are two additional services defined in the
