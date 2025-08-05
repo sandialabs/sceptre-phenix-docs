@@ -89,6 +89,27 @@ The `/phenix` volume mount is used as the base directory for phēnix by default
 (see `--base-dir.phenix` global option), so we share this directory with the
 host to persist changes across container restarts.
 
+### Simplified deployment
+The simplified deployment will deploy the latest version of phenix and minimega 
+without building from source, instead using the latest version of the phenix 
+Docker image pulled from GitHub.
+
+The primary differences are:
+- Uses pre-build phenix Docker image from GitHub
+- No Elasticsearch or Kibana services
+
+```shell
+git clone https://github.com/sandialabs/sceptre-phenix.git
+cd sceptre-phenix/docker
+
+# Start phenix and minimega containers
+docker compose -f no-build_docker-compose.yml up -d --pull
+
+# Run the following command and wait until minimega and phenix finish initializing
+docker compose logs -f
+# CTRL+C to exit
+```
+
 ### Building from Source
 
 The easiest way to build from source is to use the Docker-based build script
