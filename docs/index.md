@@ -129,8 +129,8 @@ script.
 
 The following output results from `bin/phenix help`:
 
-```
-A cli application for phenix
+```shell
+A cli application for phēnix
 
 Usage:
   phenix [flags]
@@ -141,6 +141,8 @@ Available Commands:
   experiment  Experiment management
   help        Help about any command
   image       Virtual disk image management
+  mm          Send commands, or attach, to minimega
+  settings    View or edit phenix settings
   ui          Run the phenix UI
   util        Utility commands
   version     print version information
@@ -150,11 +152,18 @@ Available Commands:
 Flags:
       --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
       --base-dir.phenix string     base phenix directory (default "/phenix")
-  -h, --help                       help for phenix
-      --hostname-suffixes string   hostname suffixes to strip
-      --log.error-file string      log fatal errors to file (default "/var/log/phenix/error.log")
-      --log.error-stderr           log fatal errors to STDERR (default true)
+      --bridge-mode string         bridge naming mode for experiments ('auto' uses experiment name for bridge; 'manual' uses user-specified bridge name, or 'phenix' if not specified) (options: manual | auto) (default "manual")
+      --deploy-mode string         deploy mode for minimega VMs (options: all | no-headnode | only-headnode) (default "no-headnode")
+      -h, --help                   help for phenix
+      --hostname-suffixes string   hostname suffixes to strip (default "-minimega,-phenix")
+      --log.error-file string      log fatal errors to file - DEPRECATED (Determined by log.file.level)
+      --log.error-stderr           log fatal errors to STDERR - DEPRECATED (Determined by log.level) (default true)
+      --log.file.level string      level to log messages at for log file (options: debug | info | warn | error | none) (default "info")
+      --log.file.path string       path to log to (default "/var/log/phenix/phenix.log")
+      --log.level string           level to log messages at (default "info")
       --store.endpoint string      endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
+      --unix-socket string         phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
+      --use-gre-mesh               use GRE tunnels between mesh nodes for VLAN trunking
 
 Use "phenix [command] --help" for more information about a command.
 ```
