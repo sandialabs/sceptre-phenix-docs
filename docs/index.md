@@ -8,22 +8,13 @@ GitHub repository.
 ## Getting Started with phēnix
 
 The first step in using `phenix` is to get it installed. `phenix` needs access
-to the minimega unix socket, so the best place to deploy it is on a minimega
+to the minimega unix socket, so the best place to deploy it is on a 
+[minimega](https://www.sandia.gov/minimega/)
 cluster's head node. The minimega unix socket will be located at
 `/tmp/minimega/minimega` on default cluster deployments and will be owned by
 root, so unless the socket's group ownership and group write permissions have
 been updated, `phenix` will need to be run as root in order to access the
 socket.
-
-!!! note
-    In some cases, phēnix depends on recent features or bug fixes added to
-    minimega by the phēnix development team, but not yet merged into the main
-    minimega repo. To deal with this, the phēnix development team maintains a
-    fork of minimega [here](https://github.com/activeshadow/minimega) that
-    includes a `latest` branch with all the features and bug fixes required by
-    phēnix but not yet merged into the main repo. This `latest` branch is always
-    kept up to date with the latest version of the main minimega repo, so it's
-    safe to use this branch for phēnix all the time.
 
 !!! note
     In most cases, it's much easier to deploy the latest version of both phēnix
@@ -49,7 +40,7 @@ the `docker` directory.
 docker compose up -d --build
 ```
 
-The above command will first build the phenix and minimega Docker images and
+The above command will first build the phenix Docker image and
 then start all the Docker services defined in the compose file in detached mode.
 
 Besides phēnix and minimega, there are two additional services defined in the
@@ -98,6 +89,27 @@ The `/phenix` volume mount is used as the base directory for phēnix by default
 (see `--base-dir.phenix` global option), so we share this directory with the
 host to persist changes across container restarts.
 
+### Simplified deployment
+The simplified deployment will deploy the latest version of phenix and minimega 
+without building from source, instead using the latest version of the phenix 
+Docker image pulled from GitHub.
+
+The primary differences are:
+- Uses pre-build phenix Docker image from GitHub
+- No Elasticsearch or Kibana services
+
+```shell
+git clone https://github.com/sandialabs/sceptre-phenix.git
+cd sceptre-phenix/docker
+
+# Start phenix and minimega containers
+docker compose -f no-build_docker-compose.yml up -d --pull
+
+# Run the following command and wait until minimega and phenix finish initializing
+docker compose logs -f
+# CTRL+C to exit
+```
+
 ### Building from Source
 
 The easiest way to build from source is to use the Docker-based build script
@@ -117,8 +129,8 @@ script.
 
 The following output results from `bin/phenix help`:
 
-```
-A cli application for phenix
+```shell
+A cli application for phēnix
 
 Usage:
   phenix [flags]
@@ -129,6 +141,8 @@ Available Commands:
   experiment  Experiment management
   help        Help about any command
   image       Virtual disk image management
+  mm          Send commands, or attach, to minimega
+  settings    View or edit phenix settings
   ui          Run the phenix UI
   util        Utility commands
   version     print version information
@@ -138,11 +152,18 @@ Available Commands:
 Flags:
       --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
       --base-dir.phenix string     base phenix directory (default "/phenix")
+      --bridge-mode string         bridge naming mode for experiments ('auto' uses experiment name for bridge; 'manual' uses user-specified bridge name, or 'phenix' if not specified) (options: manual | auto)
+      --deploy-mode string         deploy mode for minimega VMs (options: all | no-headnode | only-headnode)
   -h, --help                       help for phenix
-      --hostname-suffixes string   hostname suffixes to strip
-      --log.error-file string      log fatal errors to file (default "/var/log/phenix/error.log")
-      --log.error-stderr           log fatal errors to STDERR (default true)
+      --hostname-suffixes string   hostname suffixes to strip (default "-minimega,-phenix")
+      --log.error-file string      log fatal errors to file - DEPRECATED (Determined by log.file.level)
+      --log.error-stderr           log fatal errors to STDERR - DEPRECATED (Determined by log.level) (default true)
+      --log.file.level string      level to log messages at for log file (options: debug | info | warn | error | none) (default "info")
+      --log.file.path string       path to log to (default "/var/log/phenix/phenix.log")
+      --log.level string           level to log messages at (default "info")
       --store.endpoint string      endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
+      --unix-socket string         phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
+      --use-gre-mesh               use GRE tunnels between mesh nodes for VLAN trunking
 
 Use "phenix [command] --help" for more information about a command.
 ```
