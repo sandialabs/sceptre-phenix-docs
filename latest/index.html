@@ -329,6 +329,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#simplified-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplified deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#building-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Building from Source
@@ -678,6 +687,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#simplified-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplified deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#building-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Building from Source
@@ -735,23 +753,13 @@
 GitHub repository.</p>
 <h2 id="getting-started-with-phenix">Getting Started with phēnix<a class="headerlink" href="#getting-started-with-phenix" title="Permanent link">&para;</a></h2>
 <p>The first step in using <code>phenix</code> is to get it installed. <code>phenix</code> needs access
-to the minimega unix socket, so the best place to deploy it is on a minimega
+to the minimega unix socket, so the best place to deploy it is on a 
+<a href="https://www.sandia.gov/minimega/">minimega</a>
 cluster's head node. The minimega unix socket will be located at
 <code>/tmp/minimega/minimega</code> on default cluster deployments and will be owned by
 root, so unless the socket's group ownership and group write permissions have
 been updated, <code>phenix</code> will need to be run as root in order to access the
 socket.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In some cases, phēnix depends on recent features or bug fixes added to
-minimega by the phēnix development team, but not yet merged into the main
-minimega repo. To deal with this, the phēnix development team maintains a
-fork of minimega <a href="https://github.com/activeshadow/minimega">here</a> that
-includes a <code>latest</code> branch with all the features and bug fixes required by
-phēnix but not yet merged into the main repo. This <code>latest</code> branch is always
-kept up to date with the latest version of the main minimega repo, so it's
-safe to use this branch for phēnix all the time.</p>
-</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In most cases, it's much easier to deploy the latest version of both phēnix
@@ -772,7 +780,7 @@ additional Linux tools required to operate correctly with phēnix.</p>
 the <code>docker</code> directory.</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
 </span></code></pre></div>
-<p>The above command will first build the phenix and minimega Docker images and
+<p>The above command will first build the phenix Docker image and
 then start all the Docker services defined in the compose file in detached mode.</p>
 <p>Besides phēnix and minimega, there are two additional services defined in the
 compose file; one for Elasticsearch and one for Kibana. These are included in
@@ -809,11 +817,28 @@ namespaces created by phēnix taps between the phēnix and minimega containers.<
 <p>The <code>/phenix</code> volume mount is used as the base directory for phēnix by default
 (see <code>--base-dir.phenix</code> global option), so we share this directory with the
 host to persist changes across container restarts.</p>
+<h3 id="simplified-deployment">Simplified deployment<a class="headerlink" href="#simplified-deployment" title="Permanent link">&para;</a></h3>
+<p>The simplified deployment will deploy the latest version of phenix and minimega 
+without building from source, instead using the latest version of the phenix 
+Docker image pulled from GitHub.</p>
+<p>The primary differences are:
+- Uses pre-build phenix Docker image from GitHub
+- No Elasticsearch or Kibana services</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sandialabs/sceptre-phenix.git
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>sceptre-phenix/docker
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Start phenix and minimega containers</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>no-build_docker-compose.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--pull
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Run the following command and wait until minimega and phenix finish initializing</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># CTRL+C to exit</span>
+</span></code></pre></div>
 <h3 id="building-from-source">Building from Source<a class="headerlink" href="#building-from-source" title="Permanent link">&para;</a></h3>
 <p>The easiest way to build from source is to use the Docker-based build script
 located at <code>hack/build/docker-build.sh</code> by running the following command from
 the root directory of the repository.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hack/build/docker-build.sh
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hack/build/docker-build.sh
 </span></code></pre></div>
 <p>Once the build is finished, there will be a <code>phenix</code> executable located in the
 <code>bin</code> directory. For additional usage details, pass the <code>-h</code> option to the 
@@ -821,33 +846,42 @@ build
 script.</p>
 <h3 id="using">Using<a class="headerlink" href="#using" title="Permanent link">&para;</a></h3>
 <p>The following output results from <code>bin/phenix help</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>A cli application for phenix
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Usage:
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  phenix [flags]
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  phenix [command]
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Available Commands:
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  config      Configuration file management
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  experiment  Experiment management
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  help        Help about any command
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  image       Virtual disk image management
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  ui          Run the phenix UI
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  util        Utility commands
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  version     print version information
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>  vlan        Used to manage VLANs
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>  vm          Virtual machine management
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>Flags:
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>      --base-dir.minimega string   base minimega directory (default &quot;/tmp/minimega&quot;)
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>      --base-dir.phenix string     base phenix directory (default &quot;/phenix&quot;)
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>  -h, --help                       help for phenix
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>      --hostname-suffixes string   hostname suffixes to strip
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>      --log.error-file string      log fatal errors to file (default &quot;/var/log/phenix/error.log&quot;)
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>      --log.error-stderr           log fatal errors to STDERR (default true)
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>      --store.endpoint string      endpoint for storage service (default &quot;bolt:///etc/phenix/store.bdb&quot;)
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>Use &quot;phenix [command] --help&quot; for more information about a command.
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>A<span class="w"> </span>cli<span class="w"> </span>application<span class="w"> </span><span class="k">for</span><span class="w"> </span>phēnix
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Usage:
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>phenix<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>phenix<span class="w"> </span><span class="o">[</span>command<span class="o">]</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Available<span class="w"> </span>Commands:
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span>config<span class="w">      </span>Configuration<span class="w"> </span>file<span class="w"> </span>management
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span>experiment<span class="w">  </span>Experiment<span class="w"> </span>management
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nb">help</span><span class="w">        </span>Help<span class="w"> </span>about<span class="w"> </span>any<span class="w"> </span><span class="nb">command</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span>image<span class="w">       </span>Virtual<span class="w"> </span>disk<span class="w"> </span>image<span class="w"> </span>management
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span>mm<span class="w">          </span>Send<span class="w"> </span>commands,<span class="w"> </span>or<span class="w"> </span>attach,<span class="w"> </span>to<span class="w"> </span>minimega
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span>settings<span class="w">    </span>View<span class="w"> </span>or<span class="w"> </span>edit<span class="w"> </span>phenix<span class="w"> </span>settings
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span>ui<span class="w">          </span>Run<span class="w"> </span>the<span class="w"> </span>phenix<span class="w"> </span>UI
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span>util<span class="w">        </span>Utility<span class="w"> </span>commands
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">  </span>version<span class="w">     </span>print<span class="w"> </span>version<span class="w"> </span>information
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">  </span>vlan<span class="w">        </span>Used<span class="w"> </span>to<span class="w"> </span>manage<span class="w"> </span>VLANs
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">  </span>vm<span class="w">          </span>Virtual<span class="w"> </span>machine<span class="w"> </span>management
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>Flags:
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">      </span>--base-dir.minimega<span class="w"> </span>string<span class="w">   </span>base<span class="w"> </span>minimega<span class="w"> </span>directory<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;/tmp/minimega&quot;</span><span class="o">)</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">      </span>--base-dir.phenix<span class="w"> </span>string<span class="w">     </span>base<span class="w"> </span>phenix<span class="w"> </span>directory<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;/phenix&quot;</span><span class="o">)</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">      </span>--bridge-mode<span class="w"> </span>string<span class="w">         </span>bridge<span class="w"> </span>naming<span class="w"> </span>mode<span class="w"> </span><span class="k">for</span><span class="w"> </span>experiments<span class="w"> </span><span class="o">(</span><span class="s1">&#39;auto&#39;</span><span class="w"> </span>uses<span class="w"> </span>experiment<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>bridge<span class="p">;</span><span class="w"> </span><span class="s1">&#39;manual&#39;</span><span class="w"> </span>uses<span class="w"> </span>user-specified<span class="w"> </span>bridge<span class="w"> </span>name,<span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;phenix&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>specified<span class="o">)</span><span class="w"> </span><span class="o">(</span>options:<span class="w"> </span>manual<span class="w"> </span><span class="p">|</span><span class="w"> </span>auto<span class="o">)</span><span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;manual&quot;</span><span class="o">)</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">      </span>--deploy-mode<span class="w"> </span>string<span class="w">         </span>deploy<span class="w"> </span>mode<span class="w"> </span><span class="k">for</span><span class="w"> </span>minimega<span class="w"> </span>VMs<span class="w"> </span><span class="o">(</span>options:<span class="w"> </span>all<span class="w"> </span><span class="p">|</span><span class="w"> </span>no-headnode<span class="w"> </span><span class="p">|</span><span class="w"> </span>only-headnode<span class="o">)</span><span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;no-headnode&quot;</span><span class="o">)</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">      </span>-h,<span class="w"> </span>--help<span class="w">                   </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>phenix
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">      </span>--hostname-suffixes<span class="w"> </span>string<span class="w">   </span>hostname<span class="w"> </span>suffixes<span class="w"> </span>to<span class="w"> </span>strip<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;-minimega,-phenix&quot;</span><span class="o">)</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">      </span>--log.error-file<span class="w"> </span>string<span class="w">      </span>log<span class="w"> </span>fatal<span class="w"> </span>errors<span class="w"> </span>to<span class="w"> </span>file<span class="w"> </span>-<span class="w"> </span>DEPRECATED<span class="w"> </span><span class="o">(</span>Determined<span class="w"> </span>by<span class="w"> </span>log.file.level<span class="o">)</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">      </span>--log.error-stderr<span class="w">           </span>log<span class="w"> </span>fatal<span class="w"> </span>errors<span class="w"> </span>to<span class="w"> </span>STDERR<span class="w"> </span>-<span class="w"> </span>DEPRECATED<span class="w"> </span><span class="o">(</span>Determined<span class="w"> </span>by<span class="w"> </span>log.level<span class="o">)</span><span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="nb">true</span><span class="o">)</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">      </span>--log.file.level<span class="w"> </span>string<span class="w">      </span>level<span class="w"> </span>to<span class="w"> </span>log<span class="w"> </span>messages<span class="w"> </span>at<span class="w"> </span><span class="k">for</span><span class="w"> </span>log<span class="w"> </span>file<span class="w"> </span><span class="o">(</span>options:<span class="w"> </span>debug<span class="w"> </span><span class="p">|</span><span class="w"> </span>info<span class="w"> </span><span class="p">|</span><span class="w"> </span>warn<span class="w"> </span><span class="p">|</span><span class="w"> </span>error<span class="w"> </span><span class="p">|</span><span class="w"> </span>none<span class="o">)</span><span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;info&quot;</span><span class="o">)</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">      </span>--log.file.path<span class="w"> </span>string<span class="w">       </span>path<span class="w"> </span>to<span class="w"> </span>log<span class="w"> </span>to<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;/var/log/phenix/phenix.log&quot;</span><span class="o">)</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">      </span>--log.level<span class="w"> </span>string<span class="w">           </span>level<span class="w"> </span>to<span class="w"> </span>log<span class="w"> </span>messages<span class="w"> </span>at<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;info&quot;</span><span class="o">)</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">      </span>--store.endpoint<span class="w"> </span>string<span class="w">      </span>endpoint<span class="w"> </span><span class="k">for</span><span class="w"> </span>storage<span class="w"> </span>service<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;bolt:///etc/phenix/store.bdb&quot;</span><span class="o">)</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">      </span>--unix-socket<span class="w"> </span>string<span class="w">         </span>phēnix<span class="w"> </span>unix<span class="w"> </span>socket<span class="w"> </span>to<span class="w"> </span>listen<span class="w"> </span>on<span class="w"> </span><span class="o">(</span>ui<span class="w"> </span>subcommand<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>connect<span class="w"> </span>to<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;/tmp/phenix.sock&quot;</span><span class="o">)</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">      </span>--use-gre-mesh<span class="w">               </span>use<span class="w"> </span>GRE<span class="w"> </span>tunnels<span class="w"> </span>between<span class="w"> </span>mesh<span class="w"> </span>nodes<span class="w"> </span><span class="k">for</span><span class="w"> </span>VLAN<span class="w"> </span>trunking
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>Use<span class="w"> </span><span class="s2">&quot;phenix [command] --help&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>command.
 </span></code></pre></div>
 <p>Thanks to <a href="https://github.com/spf13/viper">viper</a>, it is possible to specify
 values for all of the global and <code>ui</code> command flags listed above using a
@@ -856,29 +890,29 @@ settings
 in the configuration file. phenix looks for a configuration in the following 
 locations.</p>
 <p>When run as root (not including sudo):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/etc/phenix/config.[yaml|json|toml]
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/etc/phenix/config.[yaml|json|toml]
 </span></code></pre></div>
 <p>When run as regular user (including sudo):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$HOME/.config/phenix/config.[yaml|json|toml]
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>/etc/phenix/config.[yaml|json|toml]
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$HOME/.config/phenix/config.[yaml|json|toml]
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>/etc/phenix/config.[yaml|json|toml]
 </span></code></pre></div>
 <p>An example configuration file might look like the following:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">base-dir</span><span class="p">:</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">minimega</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/minimega</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">phenix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/phenix</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">log</span><span class="p">:</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">error-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/phenix/error.log</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">error-stderr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nt">store</span><span class="p">:</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bolt:///etc/phenix/store.bdb</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nt">ui</span><span class="p">:</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span><span class="nt">listen-endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0:3000</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="nt">jwt-signing-key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcde12345</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">  </span><span class="nt">log-level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">info</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">  </span><span class="nt">log-verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="nt">logs</span><span class="p">:</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="nt">phenix-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/phenix/phenix.log</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="nt">minimega-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/minimega/minimega.log</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">base-dir</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">minimega</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/minimega</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">phenix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/phenix</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">log</span><span class="p">:</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">error-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/phenix/error.log</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="nt">error-stderr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nt">store</span><span class="p">:</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bolt:///etc/phenix/store.bdb</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nt">ui</span><span class="p">:</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="nt">listen-endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0:3000</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="nt">jwt-signing-key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcde12345</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="nt">log-level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">info</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span><span class="nt">log-verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span><span class="nt">logs</span><span class="p">:</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="nt">phenix-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/phenix/phenix.log</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="nt">minimega-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/log/minimega/minimega.log</span>
 </span></code></pre></div>
 <p>Environment variables can also be used to set global and <code>ui</code> command flags. The
 environment variables must be prefixed with <code>PHENIX_</code>, with the rest of the
