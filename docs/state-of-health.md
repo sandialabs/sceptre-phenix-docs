@@ -95,19 +95,6 @@ details. (In this screenshot, the mouse is hovering over the traffic for IP
 
 ![screenshot](images/chord_tooltip.png){: width=800 .center}
 
-## SoH Messages
-
-The final tab will display any error messages from the SoH agents.
-
-![screeshot](images/soh_messages.png){: width=800 .center}
-
-## Configuration
-
-Just like any other app, the SoH app is configured via the `Scenario`
-configuration. SoH will only be enabled for an experiment if it's present in the
-scenario as `soh`, and has multiple configuration options available, described
-in detail below.
-
 ### Sample SoH Scenario Config
 
 ```yaml
