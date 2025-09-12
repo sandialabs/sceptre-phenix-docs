@@ -5,7 +5,9 @@ networking, hardware-in-the-loop devices, etc. in a layered, scripted, and
 codified manner. `phenix` itself includes four (4) default apps that get applied
 to every experiment by default. In addition to the default apps, it is possible
 to apply _user apps_ to an experiment using a
-[scenario](configuration.md#scenario) configuration.
+[scenario](configuration.md#scenario) configuration. Apps can also be disabled at startup,
+either through the `phenix experiment create` command or in the scenario file. This allows apps to execute
+their `running` stage only when manually triggered by the user.
 
 ## Default Apps
 
@@ -43,7 +45,7 @@ spec:
                 peer: rtr2
                 tunnels:
                   - local: 192.168.10.0/24
-                    remote: 192.168.100.0/24
+                    remote: 192.168.100.0/24>
             acl:
               ingress:
                 eth0: in-rules
