@@ -114,6 +114,7 @@ in detail below.
 spec:
   apps:
   - name: soh
+    disabled: false
     metadata:
       appMetadataProfileKey: sohProfile # metadata key to look for in other apps
       c2Timeout: 5m
@@ -181,6 +182,11 @@ spec:
 ```
 
 ### Configuration Options
+
+* `disabled`: Like any (non-default) phenix app, `soh` can be disabled at startup
+  by setting `disabled: true`. In this case, health checks will not be run at experiment
+  startup but can be triggered manually after the experiment is running through either
+  the `phenix` cli or web UI
 
 * `appMetadataProfileKey`: since the listeners and processes one might want to
   monitor could be highly dependent on other apps that are configured for an
