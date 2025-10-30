@@ -39,7 +39,7 @@ spec:
           metadata:
             ipsec:
               - local: 10.0.10.2
-                remote 10.0.40.2
+                remote: 10.0.40.2
                 peer: rtr2
                 tunnels:
                   - local: 192.168.10.0/24
@@ -83,9 +83,25 @@ spec:
                 dnsServers:
                   - 192.168.0.254
                 staticAssignments:
-                  00:00:00:00:00:BB: 192.168.0.50
+                  "00:00:00:00:00:BB": 192.168.0.50
             dns:
-              1.2.3.4: foo.com
+              "1.2.3.4": foo.com
+            snmp:
+              listenAddress: 10.0.0.254
+              systemName: edge-router-01
+              location: "Lab A, Rack 2, U 24"
+              contact: "network-admins@example.com"
+              communities:
+                - name: readonly-community
+                  authorization: ro
+                  trapTargets:
+                    - 10.0.50.5
+                - name: readwrite-community
+                  authorization: rw
+                  clients:
+                    - 10.0.1.11
+                  trapTargets:
+                    - 10.0.50.5
             snat:
               - interface: eth0
                 srcAddr: 192.168.0.0/24
@@ -197,6 +213,26 @@ spec:
 
 * `dns`: if present, map of IP-to-domain DNS entries to create on the router.
 
+* `snmp`: if present, SNMP is configured on the router.
+
+    * `listenAddress`: IP address on a local interface to bind SNMP to. Defaults to listening on all interfaces.
+
+    * `systemName`: a string describing the system.
+
+    * `location`: a string for the system's physical location.
+
+    * `contact`: a string for the system's contact information.
+
+    * `communities`: a list of SNMP communities to configure.
+
+        * `name`: the community string/name. This is required.
+
+        * `authorization`: the authorization level for the community. Can be `ro` (read-only) or `rw` (read-write). Defaults to `ro` if not specified.
+
+        * `clients`: a list of client IP addresses that are allowed to use this community.
+
+        * `trapTargets`: a list of IP addresses to send SNMP traps to.
+
 * `emulators`: if present, a list of network emulator traffic policies to apply
   to one or more interfaces on egress. For each emulator in the list, only the
   `name` key is required, though the traffic policy will not get applied if
@@ -233,7 +269,7 @@ spec:
     rules are actually applied to packets "egressing out of" interface `eth0`.
 
 !!! note
-    Currently, the `ipsec`, `emulators`, and `snat`/`dnat` metadata sections only
+    Currently, the `ipsec`, `emulators`, `snmp`, and `snat`/`dnat` metadata sections only
     apply to Vyatta/VyOS routers.
 
 !!! note
