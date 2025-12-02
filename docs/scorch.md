@@ -269,6 +269,8 @@ If a component fails, the Scorch app will skip the remaining components involved
 
 ## Example Configuration
 
+Example Scenario using the [vmstats](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/vmstats), [hoststats](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/hoststats), [tcpdump](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/tcpdump), [trafficgen](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/trafficgen), [snort](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/snort), and `break` components.
+
 ```yaml
 apiVersion: phenix.sandia.gov/v2
 kind: Scenario
