@@ -178,6 +178,7 @@ The following Scorch component types have been developed external to the main ph
 | ettercap | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/ettercap) | Component that runs Ettercap, relies on `ettercap` executable in the VM. |
 | hoststats | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/hoststats) | Collects statistics on minimega host(s). |
 | iperf | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/iperf) | Collects network performance measurements using [iperf3](https://github.com/esnet/iperf) or [rperf](https://github.com/opensource-3d-p/rperf). |
+| kafka | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/kafka) | Filters and exports Kafka data as a CSV or JSON file. |
 | mm | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/mm) | minimega (mm) Component. |
 | opcexport | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/opcexport) | Exports data from an OPC server to Elasticsearch. |
 | pcap | [link](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pcap) | Collects PCAPs from VMs via minimega's `capture pcap` API. |
