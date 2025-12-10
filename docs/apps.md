@@ -18,6 +18,127 @@ their `running` stage only when manually triggered by the user.
 | startup | configures minimega startup injections based on OS type                                      |
 | vrouter | customizes Vyatta/VyOS and minirouter routers, including setting interfaces, ACL rules, etc. |
 
+### ntp App
+
+The `ntp` app configures experiment VMs to use a NTP server in the experiment.
+
+There are two ways to configure the NTP app:
+- By specifying a VM node in the Topology with the label `ntp-server`, with the value for the label being the interface name to use as a destination IP for NTP clients. This method will result in all VMs in the Topology being configured for NTP.
+- By setting `defaultSource` in the `ntp` app metadata in Scenario. This method requires all VMs to be configured as NTP clients be listed in the `hosts` attribute.
+
+App Options. These are only needed if not using the VM label method as explained above.
+
+- `defaultSource`: NTP server to use if no label is specified in topology
+  - `hostname`: hostname of NTP server in the topology to use as the source
+  - `interface`: interface name from which IP will be extracted to configure clients. Note that this name must be the name of the interface in the phenix Topology.
+  - `address`: IP address to use as the NTP server. This takes precedence over other configs, and can be used to configure an external NTP server (e.g. hardware clock).
+- `hosts`: list of hosts to configure NTP options for, including clients and server.
+  - `client`: what NTP service is used by the client, and thus what configuration file will be changed. Available options are `ntp`, `systemd`, and `windows`. By default, it's `ntp` for Linux VMs and `windows` for Windows VMs. The `systemd` option may need to be used for newer Ubuntu VMs (22.04+).
+    - `ntp`: `/etc/ntpd.conf`, for the ntp daemon (`sudo apt install ntp`)
+    - `systemd`: `/etc/systemd/timesyncd.conf`, for `systemd-timesyncd`
+    - `windows`: `/phenix/startup/25-ntp.ps1`, which will configure Windows NTP using `w32tm`
+  - `server`: what NTP service is used by the server. Available options are `""` and `ntpd`. If unset or set to empty string, the NTP server won't be configured. If set to `ntpd`, then `/etc/ntp.conf` will be configured on the server VM.
+  - `source`: Override source options for this client VM. Available options are the same as `defaultSource`.
+
+#### NTP Label Example
+
+Example of the `ntp` app using a VM label in a Topology. 
+Note that with this option, the NTP VM must be configured manually via an inject or other method.
+
+```yaml title="ntp example scenario using VM label"
+spec:
+  apps:
+    - name: ntp
+```
+
+```yaml title="ntp example topology using VM label"
+spec:
+  nodes:
+    - general:
+        description: Network Time server
+        hostname: ntp
+      labels:
+        ntp-server: eth0  # this tells ntp app to use eth0 on this VM
+      hardware:
+        drives:
+          - image: bennu.qc2
+        os_type: linux
+      network:
+        interfaces:
+          - address: 172.17.0.11
+            gateway: 172.17.0.1
+            mask: 24
+            name: eth0
+            proto: static
+            type: ethernet
+            vlan: example
+          - address: 172.16.1.14
+            gateway: 172.16.1.1
+            mask: 16
+            name: mgmt
+            proto: static
+            type: ethernet
+            vlan: MGMT
+```
+
+#### NTP App Metadata Example
+
+Example of the `ntp` app using app metadata to configure the server and clients.
+
+```yaml title="ntp example scenario with app metadata"
+spec:
+  apps:
+    - name: ntp
+      metadata:
+        defaultSource:
+          hostname: ntp-server
+          interface: eth0
+          address: 172.17.0.11
+      hosts:
+        - hostname: ntp-server
+          metadata:
+            server: ntpd
+        - hostname: ntpd-host
+          metadata:
+            client: ntp
+        - hostname: systemd-host
+          metadata:
+            client: systemd
+        - hostname: windows-host
+          metadata:
+            client: windows
+            source:
+              address: 172.16.1.14
+```
+
+```yaml title="ntp example topology with app metadata"
+spec:
+  nodes:
+    - general:
+        description: Network Time server
+        hostname: ntp
+      hardware:
+        drives:
+          - image: bennu.qc2
+        os_type: linux
+      network:
+        interfaces:
+          - address: 172.17.0.11
+            gateway: 172.17.0.1
+            mask: 24
+            name: eth0
+            proto: static
+            type: ethernet
+            vlan: example
+          - address: 172.16.1.14
+            gateway: 172.16.1.1
+            mask: 16
+            name: mgmt
+            proto: static
+            type: ethernet
+            vlan: MGMT
+```
+
 ### vrouter App
 
 As of commit `e276a5b`, the `vrouter` app also supports the use of minimega's
