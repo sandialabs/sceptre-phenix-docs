@@ -58,6 +58,21 @@ settings required to connect all of the nodes in a topology together. This
 configuration becomes the basis for most of the minimega commands later created
 in the relevant minimega startup script (at least for internal VMs).
 
+Topologies can also include other topologies, using the `includeTopologies`
+key. This feature allows users to include common components from an existing
+topology. These includes can come from either the phēnix store (by name) or
+from a file path to a topology on disk. Included topologies are merged into the
+including topology.
+
+```yml
+...
+includeTopologies:
+- /phenix/topologies/foo.yml
+- bar-from-store
+nodes:
+...
+```
+
 ### Default Settings
 
 If left unmodified or unset, the following are the default settings for each

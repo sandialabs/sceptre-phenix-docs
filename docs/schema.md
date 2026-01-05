@@ -12,9 +12,19 @@ here](#node-schemas).
 Topology:
   type: object
   title: Demo Topology
-  required:
-  - nodes
+  anyOf:
+  - required:
+	- nodes
+  - required:
+	- includeTopologies
   properties:
+    includeTopologies:
+      type: array
+      items:
+      type: string
+      example:
+      - /phenix/topologies/enterprise/phenix-configs/topology.yml
+      - store-topo
     nodes:
       type: array
       title: Nodes
