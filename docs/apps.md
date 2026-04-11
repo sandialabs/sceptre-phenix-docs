@@ -34,11 +34,14 @@ These are only needed if not using the VM label method as explained above.
   - `interface`: interface name from which IP will be extracted to configure clients. Note that this name must be the name of the interface in the phenix Topology.
   - `address`: IP address to use as the NTP server. This takes precedence over other configs, and can be used to configure an external NTP server (e.g. hardware clock).
 - `hosts`: list of hosts to configure NTP options for, including clients and server.
-  - `client`: what NTP service is used by the client, and thus what configuration file will be changed. Available options are `ntp`, `systemd`, and `windows`. By default, it's `ntp` for Linux VMs and `windows` for Windows VMs. The `systemd` option may need to be used for newer Ubuntu VMs (22.04+).
-    - `ntp`: `/etc/ntpd.conf`, for the ntp daemon (`sudo apt install ntp`)
+  - `client`: what NTP service is used by the client, and thus what configuration file will be changed. Available options are `ntp`, `chrony`, `systemd`, and `windows`.
+    - `ntp`: `/etc/ntp.conf`, for the ntp daemon (`sudo apt install ntp`)
+    - `chrony`: `/etc/chrony/chrony.conf`, for `chronyd` (`sudo apt install chrony`). Recommended for VMs that may not be able to reach the NTP server immediately at startup — the config is tuned to retry aggressively and step the clock quickly once the server becomes reachable.
     - `systemd`: `/etc/systemd/timesyncd.conf`, for `systemd-timesyncd`
     - `windows`: `/phenix/startup/25-ntp.ps1`, which will configure Windows NTP using `w32tm`
-  - `server`: what NTP service is used by the server. Available options are `""` and `ntpd`. If unset or set to empty string, the NTP server won't be configured. If set to `ntpd`, then `/etc/ntp.conf` will be configured on the server VM.
+  - `server`: what NTP service is used by the server. Available options are `ntpd` and `chronyd`. If unset, the NTP server won't be configured.
+    - `ntpd`: `/etc/ntp.conf`, for the ntp daemon
+    - `chronyd`: `/etc/chrony/chrony.conf`, for `chronyd`. Default path is for Debian/Ubuntu — other distros may use `/etc/chrony.conf`.
   - `source`: Override source options for this client VM. Available options are the same as `defaultSource`.
 
 #### NTP Label Example
@@ -74,7 +77,6 @@ spec:
             type: ethernet
             vlan: example
           - address: 172.16.1.14
-            gateway: 172.16.1.1
             mask: 16
             name: mgmt
             proto: static
@@ -94,22 +96,27 @@ spec:
         defaultSource:
           hostname: ntp-server
           interface: eth0
-          address: 172.17.0.11
       hosts:
         - hostname: ntp-server
           metadata:
-            server: ntpd
-        - hostname: ntpd-host
+            server: ntpd         # serve time using ntpd
+        - hostname: chrony-host
+          metadata:
+            client: chrony
+        - hostname: ntp-host
           metadata:
             client: ntp
         - hostname: systemd-host
           metadata:
             client: systemd
+            source:
+              hostname: other-ntp-server # use a different NTP server for this client
+              interface: eth1            # address extracted from topology host|iface pair
         - hostname: windows-host
           metadata:
             client: windows
             source:
-              address: 172.16.1.14
+              address: 172.16.1.14  # use a specific IP instead of in-experiment host|iface
 ```
 
 ```yaml title="ntp example topology with app metadata"
@@ -132,7 +139,6 @@ spec:
             type: ethernet
             vlan: example
           - address: 172.16.1.14
-            gateway: 172.16.1.1
             mask: 16
             name: mgmt
             proto: static
