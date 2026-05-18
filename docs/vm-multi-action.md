@@ -16,7 +16,42 @@ the same as described in [VMs](vms.md).
 
 ### From the Command Line Binary
 
-Not applicable.
+Several `phenix vm` commands support selecting target VMs by label with `-l` / `--label`, or all VMs using `all`.
+When using labels, a VM name argument is not required.
+
+Supported commands:
+
+* `phenix vm info`
+* `phenix vm pause`
+* `phenix vm resume`
+* `phenix vm restart`
+* `phenix vm reset-disk`
+* `phenix vm redeploy`
+* `phenix vm shutdown`
+* `phenix vm kill`
+
+Behavior:
+
+* Multiple labels are supported and use OR semantics (a VM is selected if any label matches).
+* Labels support glob patterns (for example, `ot-*` or `*-server`).
+* The special label `all` selects every VM in the experiment.
+* Labels can be provided by repeating `-l` and/or as a comma-separated value.
+
+Examples:
+
+```shell
+# Show VM info for all VMs with a label matching "ot-*"
+phenix vm info <experiment name> --label ot-*
+
+# Restart VMs that match either label
+phenix vm restart <experiment name> -l control -l historian
+
+# Pause VMs using comma-separated labels
+phenix vm pause <experiment name> -l control,historian
+
+# Shutdown all VMs in the experiment
+phenix vm shutdown <experiment name> --label all
+```
 
 ## Searching for VMs
 
