@@ -48,7 +48,7 @@ phenix vm info <experiment name>
 Or, run the following to see the information for a specific VM in an experiment.
 
 ```shell
-phenix vm info <experiment name> <vm name>
+phenix vm info <experiment name> [vm name] [--label <label>]
 ```
 
 ## Create a Backing Image
@@ -146,7 +146,7 @@ per the experiment configuration.
 To kill a VM, run the following command.
 
 ```shell
-phenix vm kill <experiment name> <vm name>
+phenix vm kill <experiment name> [vm name] [--label <label>]
 ```
 
 ## Modify the Network Connectivity
@@ -188,13 +188,13 @@ click it to start.
 To pause a VM, run the following command.
 
 ```shell
-phenix vm pause <experiment name> <vm name>
+phenix vm pause <experiment name> [vm name] [--label <label>]
 ```
 
 To resume a paused VM, run the following command.
 
 ```shell
-phenix vm resume <experiment name> <vm name>
+phenix vm resume <experiment name> [vm name] [--label <label>]
 ```
 
 ## Redeploy a VM
@@ -212,7 +212,7 @@ Click the `redeploy` button as shown in the screenshot below.
 To redploy a VM, run the following command.
 
 ```shell
-phenix vm redeploy <experiment name> <vm name>
+phenix vm redeploy <experiment name> [vm name] [--label <label>]
 ```
 
 ## Reset Disk State
@@ -230,7 +230,7 @@ Click the `reset disk state` button as shown in the screenshot below.
 To reset the first disk to the initial pre-boot state, run the following command.
 
 ```shell
-phenix vm reset-disk <experiment name> <vm name>
+phenix vm reset-disk <experiment name> [vm name] [--label <label>]
 ```
 
 ## Restart a VM
@@ -248,7 +248,7 @@ Click the `restart` button as shown in the screenshot below.
 To restart a VM, run the following command.
 
 ```shell
-phenix vm restart <experiment name> <vm name>
+phenix vm restart <experiment name> [vm name] [--label <label>]
 ```
 
 ## Resume a VM
@@ -264,7 +264,7 @@ left).
 To resume a paused VM, run the following command.
 
 ```shell
-phenix vm resume <experiment name> <vm name>
+phenix vm resume <experiment name> [vm name] [--label <label>]
 ```
 
 ## Shutdown a VM
@@ -282,7 +282,7 @@ Click the `shutdown` button as shown in the screenshot below.
 To shutdown a VM, run the following command.
 
 ```shell
-phenix vm shutdown <experiment name> <vm name>
+phenix vm shutdown <experiment name> [vm name] [--label <label>]
 ```
 
 ## Modify VM Settings
