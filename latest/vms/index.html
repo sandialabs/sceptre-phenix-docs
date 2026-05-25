@@ -2414,7 +2414,7 @@ the following command to see information for all VMs in a given experiment.</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div>
 <p>Or, run the following to see the information for a specific VM in an experiment.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="create-a-backing-image">Create a Backing Image<a class="headerlink" href="#create-a-backing-image" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_1">From the Web-UI<a class="headerlink" href="#from-the-web-ui_1" title="Permanent link">&para;</a></h3>
@@ -2468,7 +2468,7 @@ Click the <code>kill</code> button as shown in the screenshot below.</p>
 per the experiment configuration.</p>
 <h3 id="from-the-command-line-binary_6">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_6" title="Permanent link">&para;</a></h3>
 <p>To kill a VM, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="modify-the-network-connectivity">Modify the Network Connectivity<a class="headerlink" href="#modify-the-network-connectivity" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_7">From the Web-UI<a class="headerlink" href="#from-the-web-ui_7" title="Permanent link">&para;</a></h3>
@@ -2492,10 +2492,10 @@ click it to start.</p>
 <p><img alt="screenshot" src="../images/vms_pause.png" /></p>
 <h3 id="from-the-command-line-binary_8">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_8" title="Permanent link">&para;</a></h3>
 <p>To pause a VM, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>pause<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>pause<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <p>To resume a paused VM, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>resume<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>resume<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="redeploy-a-vm">Redeploy a VM<a class="headerlink" href="#redeploy-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_9">From the Web-UI<a class="headerlink" href="#from-the-web-ui_9" title="Permanent link">&para;</a></h3>
@@ -2505,7 +2505,7 @@ Click the <code>redeploy</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_redeploy.png" /></p>
 <h3 id="from-the-command-line-binary_9">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_9" title="Permanent link">&para;</a></h3>
 <p>To redploy a VM, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>redeploy<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>redeploy<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="reset-disk-state">Reset Disk State<a class="headerlink" href="#reset-disk-state" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_10">From the Web-UI<a class="headerlink" href="#from-the-web-ui_10" title="Permanent link">&para;</a></h3>
@@ -2515,7 +2515,7 @@ Click the <code>reset disk state</code> button as shown in the screenshot below.
 <p><img alt="screenshot" src="../images/vms_reset_disk_state.png" /></p>
 <h3 id="from-the-command-line-binary_10">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_10" title="Permanent link">&para;</a></h3>
 <p>To reset the first disk to the initial pre-boot state, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>reset-disk<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>reset-disk<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="restart-a-vm">Restart a VM<a class="headerlink" href="#restart-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_11">From the Web-UI<a class="headerlink" href="#from-the-web-ui_11" title="Permanent link">&para;</a></h3>
@@ -2525,7 +2525,7 @@ Click the <code>restart</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_restart.png" /></p>
 <h3 id="from-the-command-line-binary_11">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_11" title="Permanent link">&para;</a></h3>
 <p>To restart a VM, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>restart<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>restart<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="resume-a-vm">Resume a VM<a class="headerlink" href="#resume-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_12">From the Web-UI<a class="headerlink" href="#from-the-web-ui_12" title="Permanent link">&para;</a></h3>
@@ -2534,7 +2534,7 @@ modal. Click the green play button (previously the pause button, furthest button
 left).</p>
 <h3 id="from-the-command-line-binary_12">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_12" title="Permanent link">&para;</a></h3>
 <p>To resume a paused VM, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>resume<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>resume<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="shutdown-a-vm">Shutdown a VM<a class="headerlink" href="#shutdown-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_13">From the Web-UI<a class="headerlink" href="#from-the-web-ui_13" title="Permanent link">&para;</a></h3>
@@ -2544,7 +2544,7 @@ Click the <code>shutdown</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_shutdown.png" /></p>
 <h3 id="from-the-command-line-binary_13">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_13" title="Permanent link">&para;</a></h3>
 <p>To shutdown a VM, run the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>shutdown<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;vm<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>shutdown<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>vm<span class="w"> </span>name<span class="o">]</span><span class="w"> </span><span class="o">[</span>--label<span class="w"> </span>&lt;label&gt;<span class="o">]</span>
 </span></code></pre></div>
 <h2 id="modify-vm-settings">Modify VM Settings<a class="headerlink" href="#modify-vm-settings" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_14">From the Web-UI<a class="headerlink" href="#from-the-web-ui_14" title="Permanent link">&para;</a></h3>

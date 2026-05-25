@@ -1453,7 +1453,39 @@ left of the search text box.  The buttons on the toolbar are essentially
 the same as described in <a href="../vms/">VMs</a>.</p>
 <p><img alt="screenshot" src="../images/vms_multi_select.png" /></p>
 <h3 id="from-the-command-line-binary">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary" title="Permanent link">&para;</a></h3>
-<p>Not applicable.</p>
+<p>Several <code>phenix vm</code> commands support selecting target VMs by label with <code>-l</code> / <code>--label</code>, or all VMs using <code>all</code>.
+When using labels, a VM name argument is not required.</p>
+<p>Supported commands:</p>
+<ul>
+<li><code>phenix vm info</code></li>
+<li><code>phenix vm pause</code></li>
+<li><code>phenix vm resume</code></li>
+<li><code>phenix vm restart</code></li>
+<li><code>phenix vm reset-disk</code></li>
+<li><code>phenix vm redeploy</code></li>
+<li><code>phenix vm shutdown</code></li>
+<li><code>phenix vm kill</code></li>
+</ul>
+<p>Behavior:</p>
+<ul>
+<li>Multiple labels are supported and use OR semantics (a VM is selected if any label matches).</li>
+<li>Labels support glob patterns (for example, <code>ot-*</code> or <code>*-server</code>).</li>
+<li>The special label <code>all</code> selects every VM in the experiment.</li>
+<li>Labels can be provided by repeating <code>-l</code> and/or as a comma-separated value.</li>
+</ul>
+<p>Examples:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Show VM info for all VMs with a label matching &quot;ot-*&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>--label<span class="w"> </span>ot-*
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Restart VMs that match either label</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>phenix<span class="w"> </span>vm<span class="w"> </span>restart<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>-l<span class="w"> </span>control<span class="w"> </span>-l<span class="w"> </span>historian
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Pause VMs using comma-separated labels</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>phenix<span class="w"> </span>vm<span class="w"> </span>pause<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>-l<span class="w"> </span>control,historian
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Shutdown all VMs in the experiment</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>phenix<span class="w"> </span>vm<span class="w"> </span>shutdown<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>--label<span class="w"> </span>all
+</span></code></pre></div>
 <h2 id="searching-for-vms">Searching for VMs<a class="headerlink" href="#searching-for-vms" title="Permanent link">&para;</a></h2>
 <p>The search text box can be used to filter the list of VMs to
 only apply actions to the filtered list.</p>
@@ -1502,13 +1534,13 @@ to find all the VMs with active packet captures.</p>
 <p><img alt="screenshot" src="../images/vms_multi_captures_stop_all.png" /></p>
 <h3 id="from-the-command-line-binary_2">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_2" title="Permanent link">&para;</a></h3>
 <p>To start packet captures on running VMs for a specific subnet, use the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>start-subnet<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;subnet&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>start-subnet<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;subnet&gt;
 </span></code></pre></div>
 <p>To stop all packet captures for a specific subnet, use the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>stop-subnet<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;subnet&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>stop-subnet<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;subnet&gt;
 </span></code></pre></div>
 <p>To stop all packet captures for an experiment, use the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>stop-all<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>capture<span class="w"> </span>stop-all<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div>
 <h2 id="stopped-experiment-component">Stopped Experiment Component<a class="headerlink" href="#stopped-experiment-component" title="Permanent link">&para;</a></h2>
 <p>Similar to the Running Experiment component, multiple VMs can be selected
