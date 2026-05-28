@@ -307,13 +307,54 @@ power button, second from the right on the modal footer). You are able to edit t
 
 ### From the Command Line Binary
 
-**This command is not yet implemented.** For now, you can edit the stopped experiment directly with the following command.
+To modify VM settings, run the following command, specifying one or more of the
+configuration flags described below.
 
 ```shell
-phenix cfg edit topology/<topology name>
+phenix vm set <experiment name> [<vm name>] [flags]
 ```
 
-This will launch the system editor where you can directly modify the experiment settings.
+Only the flags that are explicitly provided will be applied; any setting whose
+flag is omitted is left unchanged. The following flags are supported:
+
+| Flag                  | Description                                                                                                       |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `-c, --cpu`           | Number of VM CPUs (1-8 is valid).                                                                                 |
+| `-m, --mem`           | Amount of memory in megabytes (512, 1024, 2048, 3072, 4096, 8192, 12288, 16384 are valid).                        |
+| `-d, --disk`          | VM backing disk image.                                                                                            |
+| `-p, --partition`     | Partition of disk to inject files into.                                                                           |
+| `--do-not-boot`       | Set the do-not-boot flag for the VM.                                                                              |
+| `--snapshot`          | Set the snapshot (non-persistent) flag for the VM.                                                                |
+| `-L, --label-changes key=value` | VM label to set, in `key=value` form. May be repeated to set multiple labels.                                         |
+| `--append-label`       | Append the provided labels to the VM's existing labels instead of replacing them.                                     |
+| `-l, --label`         | Apply the change to every VM whose label matches the provided label (supports glob patterns). Use `all` to select every VM in the experiment. May be repeated. |
+
+For example, to set the CPU count to 4 and memory to 2048 MB for a VM named
+`my-vm` in an experiment named `my-exp`:
+
+```shell
+phenix vm set my-exp my-vm --cpu 4 --mem 2048
+```
+
+To set the `role=server` labels on VMs whose existing labels matches
+`tier=web*` in the same experiment, without clearing the existing labels:
+
+```shell
+phenix vm set my-exp --label "tier=web*" -L role=server --append-labels
+```
+
+To set two labels on the VM `my-vm` and replace the existing labels on the VM:
+
+```shell
+phenix vm set my-exp my-vm -L val1=true -L val2=roger
+```
+
+!!! note
+    Only label updates and interface VLAN connections can be modified while an
+    experiment is running. To change CPU, memory, disk, partition, do-not-boot,
+    or snapshot settings, the experiment must be stopped. Use
+    [`phenix vm net`](#modify-the-network-connectivity) to modify interface
+    VLAN connections on a running experiment.
 
 ## Applying Actions to Multiple VMs
 
