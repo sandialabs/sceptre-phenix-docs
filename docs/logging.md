@@ -45,6 +45,56 @@ graph TD
     Core -->|ProcessStderrLogs| Plog
 ```
 
+## CLI Verbosity (`--log.level`)
+
+You can temporarily increase or decrease log verbosity for any command by using the global `--log.level` flag.
+
+```bash
+phenix <command> --log.level=<level>
+```
+
+This is useful when troubleshooting because it only affects that command invocation.
+
+### Available Levels
+
+phēnix supports the following log levels for `--log.level`:
+
+* `debug`: Most verbose output for troubleshooting.
+* `info`: Default level. Normal operational messages.
+* `warn`: Warnings and errors.
+* `error`: Errors only.
+* `none`: Suppress all standard log output.
+
+!!! note
+    Level names are case-insensitive (for example, `DEBUG` and `debug` are equivalent).
+
+### Examples
+
+Use higher verbosity to inspect behavior while running a command:
+
+```bash
+# Run the UI with debug logging for this invocation
+phenix ui --log.level=debug
+
+# Show only warnings and errors while listing experiments
+phenix exp list --log.level=warn
+
+# Keep command output quiet unless an error occurs
+phenix config get --log.level=error Role/vm-admin
+```
+
+To change the default level for all future commands, use settings:
+
+```bash
+phenix settings set log.level debug
+```
+
+To revert and use the configured default again for subsequent commands:
+
+```bash
+phenix settings unset log.level
+```
+
 ## The App Contract
 
 All applications (Go or Python) running under phēnix must adhere to the following contract to ensure their logs are correctly parsed and displayed in the UI:

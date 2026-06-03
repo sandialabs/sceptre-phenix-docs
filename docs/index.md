@@ -90,7 +90,8 @@ docker exec -it phenix phenix <command>
 
 ## 📚 Documentation
 
-*   [**Configuration**](configuration.md): Learn about Topologies, Scenarios, and Experiments.
-*   [**Settings**](settings.md): Configure the phēnix daemon (logging, storage, UI).
-*   [**Experiments**](experiments.md): Manage the lifecycle of your experiments.
-*   [**Apps**](apps.md): Extend functionality with Apps.
+* [**Configuration**](configuration.md): Learn about Topologies, Scenarios, and Experiments.
+* [**Settings**](settings.md): Configure the phēnix daemon (logging, storage, UI).
+* [**Experiments**](experiments.md): Manage the lifecycle of your experiments.
+* [**Apps**](apps.md): Extend functionality with Apps.
+* [**Logging**](logging.md): Learn about the logging facilities in phēnix and how to increase verbosity
