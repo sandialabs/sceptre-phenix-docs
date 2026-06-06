@@ -2569,10 +2569,77 @@ power button, second from the right on the modal footer). You are able to edit t
 </li>
 </ol>
 <h3 id="from-the-command-line-binary_14">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_14" title="Permanent link">&para;</a></h3>
-<p><strong>This command is not yet implemented.</strong> For now, you can edit the stopped experiment directly with the following command.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>phenix<span class="w"> </span>cfg<span class="w"> </span>edit<span class="w"> </span>topology/&lt;topology<span class="w"> </span>name&gt;
+<p>To modify VM settings, run the following command, specifying one or more of the
+configuration flags described below.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span><span class="nb">set</span><span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>&lt;vm<span class="w"> </span>name&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
 </span></code></pre></div>
-<p>This will launch the system editor where you can directly modify the experiment settings.</p>
+<p>Only the flags that are explicitly provided will be applied; any setting whose
+flag is omitted is left unchanged. The following flags are supported:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-c, --cpu</code></td>
+<td>Number of VM CPUs (1-8 is valid).</td>
+</tr>
+<tr>
+<td><code>-m, --mem</code></td>
+<td>Amount of memory in megabytes (512, 1024, 2048, 3072, 4096, 8192, 12288, 16384 are valid).</td>
+</tr>
+<tr>
+<td><code>-d, --disk</code></td>
+<td>VM backing disk image.</td>
+</tr>
+<tr>
+<td><code>-p, --partition</code></td>
+<td>Partition of disk to inject files into.</td>
+</tr>
+<tr>
+<td><code>--do-not-boot</code></td>
+<td>Set the do-not-boot flag for the VM.</td>
+</tr>
+<tr>
+<td><code>--snapshot</code></td>
+<td>Set the snapshot (non-persistent) flag for the VM.</td>
+</tr>
+<tr>
+<td><code>-L, --label-changes key=value</code></td>
+<td>VM label to set, in <code>key=value</code> form. May be repeated to set multiple labels.</td>
+</tr>
+<tr>
+<td><code>--append-label</code></td>
+<td>Append the provided labels to the VM's existing labels instead of replacing them.</td>
+</tr>
+<tr>
+<td><code>-l, --label</code></td>
+<td>Apply the change to every VM whose label matches the provided label (supports glob patterns). Use <code>all</code> to select every VM in the experiment. May be repeated.</td>
+</tr>
+</tbody>
+</table>
+<p>For example, to set the CPU count to 4 and memory to 2048 MB for a VM named
+<code>my-vm</code> in an experiment named <code>my-exp</code>:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span><span class="nb">set</span><span class="w"> </span>my-exp<span class="w"> </span>my-vm<span class="w"> </span>--cpu<span class="w"> </span><span class="m">4</span><span class="w"> </span>--mem<span class="w"> </span><span class="m">2048</span>
+</span></code></pre></div>
+<p>To set the <code>role=server</code> labels on VMs whose existing labels matches
+<code>tier=web*</code> in the same experiment, without clearing the existing labels:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span><span class="nb">set</span><span class="w"> </span>my-exp<span class="w"> </span>--label<span class="w"> </span><span class="s2">&quot;tier=web*&quot;</span><span class="w"> </span>-L<span class="w"> </span><span class="nv">role</span><span class="o">=</span>server<span class="w"> </span>--append-labels
+</span></code></pre></div>
+<p>To set two labels on the VM <code>my-vm</code> and replace the existing labels on the VM:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span><span class="nb">set</span><span class="w"> </span>my-exp<span class="w"> </span>my-vm<span class="w"> </span>-L<span class="w"> </span><span class="nv">val1</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>-L<span class="w"> </span><span class="nv">val2</span><span class="o">=</span>roger
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only label updates and interface VLAN connections can be modified while an
+experiment is running. To change CPU, memory, disk, partition, do-not-boot,
+or snapshot settings, the experiment must be stopped. Use
+<a href="#modify-the-network-connectivity"><code>phenix vm net</code></a> to modify interface
+VLAN connections on a running experiment.</p>
+</div>
 <h2 id="applying-actions-to-multiple-vms">Applying Actions to Multiple VMs<a class="headerlink" href="#applying-actions-to-multiple-vms" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
