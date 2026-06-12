@@ -425,6 +425,7 @@ application instead of as a stand-alone executable.
 | scorch | [Scorch](scorch.md) &mdash; **SC**enario **ORCH**estration &mdash; is an automated scenario orchestration framework within phenix |
 | soh    | provide [state of health](state-of-health.md) monitoring for an experiment                                                        |
 | tap    | manage host taps (typically used for external network access) for an experiment                                                   |
+| mgmt_tap    | manage host taps into the mgmt VLAN (typically used for host to VM access) for an experiment                                                   |
 
 ### tap App
 
@@ -508,6 +509,44 @@ spec:
                     # can also use `protocols` to specify a list of protocols
                     protocol: tcp
 ```
+
+### mgmt_tap App
+The `mgmt_tap` application creates tap interfaces on the management network of an experiment, enabling file transfer and remote access to virtual machines within the experiment. The `mgmt_tap`:
+- Creates taps specifically on the MGMT VLAN
+- Creates taps on all compute hosts in the experiment
+- Automatically assigns IPs with configurable subnet
+- Optionally applied IP namespace isolation
+- Removes taps and namespaces during cleanup phase
+
+The following is an example of how the default `mgmt_tap` app can be configured via a `Scenario` configuration.
+
+```yaml title="mgmt_tap app default example"
+spec:
+  apps:
+    - name: mgmt_tap
+```
+
+This creates:
+- Tap interfaces on all hosts with IPs `172.16.111.1/16`, `172.16.111.2/16`, etc.
+- No network namespace isolation
+- Basic tap creation on MGMT VLAN
+
+
+The following is an example of how the `mgmt_tap` app can be configured via a `Scenario` configuration with optional settings `subent` and `namespace`.
+
+```yaml title="mgmt_tap app optional example"
+spec:
+  apps:
+    - name: mgmt_tap
+      metadata:
+        subnet: 172.16.0.0/16
+        namespace: true
+```
+
+This creates:
+- Tap interfaces with IPs `172.16.0.1/16`, `172.16.0.2/16`, etc.
+- Each tap in its own network namespace (`<exp_name>_net`)
+- Full namespace isolation for IP address conflicts
 
 ## User Apps
 
