@@ -1,11 +1,11 @@
 # State of Health
 
 State of Health (SoH) is a core (but not default) app meant to assist with
-understanding the state of a running experiment. It has many [configuration
-options](#configuration-options), and relies on minimega's command and control
-infrastructure (ie. the `miniccc` agent running in experiment VMs) to drive and
-collect the experiment health state data. See the [command and
-control](#command-and-control) section for more details.
+understanding the state of a running experiment. It has many [configuration options](#configuration-options), and relies on [minimega's command and control
+infrastructure](https://www.sandia.gov/minimega/module-28-miniccc-and-the-cc-api/) (ie. the `miniccc` agent running in experiment VMs) to drive and
+collect the experiment health state data. See the [command and control](#command-and-control) section for more details.
+
+## User Interface
 
 SoH information is presented in the UI in three separate tabs. You can access
 the information by clicking the SoH button from the Experiments or Running
@@ -19,7 +19,7 @@ Button available in running experiment.
 
 ![screenshot](images/exp_run.png){: width=200 .center}
 
-## Topology Graph
+### Topology Graph
 
 This tab displays a network graph of the running experiment.
 
@@ -39,11 +39,11 @@ could be:
 It is also possible to filter the graph based on nodes that are either:
 
 * `Running`,
-* `Not running`,
-* `Not booted`, or
-* `Not deployed`.
+* `Not running`
+* `Not booted`
+* `Not deployed`
 
-The `Refresh Network` button will reset the filter, showing all nodes. 
+The `Refresh Network` button will reset the filter, showing all nodes.
 
 The `Manual Refresh` button will request the latest server-side SoH data and
 update the three tabs.
@@ -68,13 +68,13 @@ modal will only show the current CPU load.
 
 Note the green button in the lower right corner of the modal; this will provide
 access to the VNC for any running VM. When the VM is not running, access to the
-VNC will be disabled. Finally, if there is no SoH information to report on a 
+VNC will be disabled. Finally, if there is no SoH information to report on a
 given VM, it will be noted in the details modal. The following screenshot is an
 example of no SoH information with the VNC button disabled.
 
 ![screenshot](images/soh_no_details.png){: width=800 .center}
 
-## Network Volume
+### Network Volume
 
 This tab displays a chord graph that shows network flows between nodes using
 flows from Packetbeat fed to Elasticsearch; connections represent the volume of
@@ -95,80 +95,7 @@ details. (In this screenshot, the mouse is hovering over the traffic for IP
 
 ![screenshot](images/chord_tooltip.png){: width=800 .center}
 
-### Sample SoH Scenario Config
-
-```yaml
-spec:
-  apps:
-  - name: soh
-    disabled: false
-    metadata:
-      appMetadataProfileKey: sohProfile # metadata key to look for in other apps
-      c2Timeout: 5m
-      exitOnError: false
-      startupDelay: 5m                  # only delays at experiment start (PostStart phase)
-      hostCustomTests:
-        host-00:
-        - name: FooBarTest
-          testScript: |
-            cat /etc/passwd | grep root
-          validateStdout: |
-            count=$(wc -l)
-            [[ $count -eq 1 ]] && exit 0 || exit 1
-          executor: bash
-        host-01:
-        - name: SuckaTest.ps1
-          testScript: |
-            Get-Process miniccc -ErrorAction SilentlyContinue
-          testStdout: miniccc
-          executor: powershell -NoProfile -ExecutionPolicy bypass -File
-      hostListeners:
-        client:
-        - :502
-        server:
-        - :80
-        - :443
-      hostProcesses:
-        client:
-        - miniccc
-        server:
-        - miniccc
-      hostsToUseUUIDForC2Active:
-      - host-02
-      injectICMPAllow: true
-      packetCapture:
-        elasticImage: /phenix/images/elasticsearch.qc2
-        packetBeatImage: /phenix/images/packetbeat.qc2
-        elasticServer:
-          hostname: soh-elasticsearch-server
-          vcpus: 4
-          memory: 4096
-          ipAddress: 172.16.200.1/16
-          vlan: MGMT
-        captureHosts:
-          client:
-          - IF0 # interface to monitor on "client" node in topology
-          server:
-          - IF0 # interface to monitor on "server" node in topology
-      skipInitialNetworkConfigTests: false # if true, testReachability will be off
-      skipHosts:
-      - kali.qc2 # can be an image name, in which case any host using image will be skipped
-      - foobar-host # can be hostname from topology
-      testReachability: full # can be off, sample, or full
-      testCustomReachability:
-      - src: host-00
-        dst: host-01|IF0
-        proto: tcp
-        port: 22
-        wait: 30s
-      - src: host-01
-        dst: host-00|IF0
-        proto: tcp
-        port: 22
-        wait: 30s
-```
-
-### Configuration Options
+## Configuration Options
 
 * `disabled`: Like any (non-default) phenix app, `soh` can be disabled at startup
   by setting `disabled: true`. In this case, health checks will not be run at experiment
@@ -260,7 +187,7 @@ spec:
       can be used to build an image to use here. There is no default for this
       setting; if packet capture is to be deployed it must be provided.
 
-    * `elasticServer`: 
+    * `elasticServer`:
 
         * `hostname`: the hostname to use for the Elastic/Kibana server added to
           the experiment topology. There is no default for this setting; if
@@ -369,7 +296,7 @@ experiment. This means the setting can be changed between runs of an experiment
 (e.g., using `phenix config edit experiment/<name>`) and the change will be
 reflected accurately when the experiment is started again.
 
-### Packet Capture 
+### Packet Capture
 
 The SoH packet capture capability leverages minimega's tap mirroring to monitor
 traffic on experiment VM interfaces with Packetbeat and feed network flow data
@@ -386,13 +313,85 @@ chord graph in an effort to depict how much traffic is flowing between VMs.
 Users/Analysts can also access Kibana using VNC via the phenix UI to do
 additional analysis on the network flow data that's being captured.
 
+## Sample SoH Scenario Config
+
+```yaml
+spec:
+  apps:
+  - name: soh
+    disabled: false
+    metadata:
+      appMetadataProfileKey: sohProfile  # metadata key to look for in other apps
+      c2Timeout: 5m
+      exitOnError: false
+      startupDelay: 5m  # only delays at experiment start (PostStart phase)
+      hostCustomTests:
+        host-00:
+        - name: FooBarTest
+          testScript: |
+            cat /etc/passwd | grep root
+          validateStdout: |
+            count=$(wc -l)
+            [[ $count -eq 1 ]] && exit 0 || exit 1
+          executor: bash
+        host-01:
+        - name: SuckaTest.ps1
+          testScript: |
+            Get-Process miniccc -ErrorAction SilentlyContinue
+          testStdout: miniccc
+          executor: powershell -NoProfile -ExecutionPolicy bypass -File
+      hostListeners:
+        client:
+        - :502
+        server:
+        - :80
+        - :443
+      hostProcesses:
+        client:
+        - miniccc
+        server:
+        - miniccc
+      hostsToUseUUIDForC2Active:
+      - host-02
+      injectICMPAllow: true
+      packetCapture:
+        elasticImage: /phenix/images/elasticsearch.qc2
+        packetBeatImage: /phenix/images/packetbeat.qc2
+        elasticServer:
+          hostname: soh-elasticsearch-server
+          vcpus: 4
+          memory: 4096
+          ipAddress: 172.16.200.1/16
+          vlan: MGMT
+        captureHosts:
+          client:
+          - IF0  # interface to monitor on "client" node in topology
+          server:
+          - IF0  # interface to monitor on "server" node in topology
+      skipInitialNetworkConfigTests: false  # if true, testReachability will be off
+      skipHosts:
+      - kali.qc2  # can be an image name, in which case any host using image will be skipped
+      - foobar-host  # can be hostname from topology
+      testReachability: full  # can be off, sample, or full
+      testCustomReachability:
+      - src: host-00
+        dst: host-01|IF0
+        proto: tcp
+        port: 22
+        wait: 30s
+      - src: host-01
+        dst: host-00|IF0
+        proto: tcp
+        port: 22
+        wait: 30s
+```
+
 ## Command and Control
 
-As mentioned above, SoH relies on minimega's command and control infrastructure
+As mentioned earlier, SoH relies on minimega's command and control infrastructure ([miniccc](https://www.sandia.gov/minimega/module-28-miniccc-and-the-cc-api/))
 to drive and collect the experiment health state data. Under the hood, the SoH
 app uses C2 to execute a test on a VM (`cc exec`), wait for the command to
-complete (`cc commands`), grab the STDOUT/STDERR of the command (`cc
-responses`), and compare it to an expected response. 
+complete (`cc commands`), grab the STDOUT/STDERR of the command (`cc responses`), and compare it to an expected response.
 
 Current tests executed on Linux VMs include the following:
 
