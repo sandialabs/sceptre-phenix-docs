@@ -13,7 +13,7 @@ repository named `.phenix.yml`) should be applied. Applying the phēnix workflow
 config file will trigger existing experiments to be updated and restarted,
 depending on settings within the workflow config file.
 
-Optional tags can be passed as URL querries when the workflow config is applied.
+Optional tags can be passed as URL queries when the workflow config is applied.
 These tags are stored as a string `key1=value1,key2=value2`.
 
 ### Add/Update Topology or Scenario Config

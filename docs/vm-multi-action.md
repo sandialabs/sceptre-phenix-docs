@@ -5,7 +5,7 @@
 ### From the Web-UI
 
 The experiment must be started; click on the experiment name to enter the
-Running Experiment component. Within that component, click on the checkbox 
+Running Experiment component. Within that component, click on the checkbox
 adjacent to the `VM Name` column to select all the VMs.  Alternatively,
 the checkbox adjacent to a specific VM name can be used to select the
 VM.  Once one or more VMs are selected, a toolbar will appear to the
@@ -64,7 +64,7 @@ The experiment must be started; click on the experiment name to enter the
 Running Experiment component. Within that component, use the search
 textbox to find VMs by:
 
-  * state - The keywords `running,shutdown,paused,capturing` can be used 
+  * state - The keywords `running,shutdown,paused,capturing` can be used
   to find  VMs in a specific state.  Also, the `not` keyword can be used
   to negate search term(s) (i.e. `not running`)
 
@@ -75,7 +75,7 @@ textbox to find VMs by:
   searched for a keyword contained within the field
 
   * combine search terms - Search terms can be combined by using `or and`
-  keywords.  Parenthesis can also be used to group search terms. 
+  keywords.  Parenthesis can also be used to group search terms.
 
   * escape keywords - To find keywords that appear in a VM name use double
   quotes. For example, to find a VM named `free_running`, type `"running"`.
@@ -135,17 +135,17 @@ Similar to the Running Experiment component, multiple VMs can be selected
 for the Stopped Experiment component.  In addition, VMs in the Stopped
 Experiment component can be searched by:
 
-* state - The keyword `dnb` can be used to find all VMs with the 
+* state - The keyword `dnb` can be used to find all VMs with the
   `do not boot` flag set to `true`.  Also, the `not` keyword can be used
   to negate search term(s) (i.e. `not dnb`)
 
 * ipv4 address - VMs in a specific subnet can be found by entering the
   subnet (i.e `192.168.2.0/30`)
 
-* other fields (i.e. VM, host, disk) 
+* other fields (i.e. VM, host, disk)
 
 * combine search terms - Search terms can be combined by using `or and`
-  keywords.  Parenthesis can also be used to group search terms. 
+  keywords.  Parenthesis can also be used to group search terms.
 
 * escape keywords - To find keywords that appear in a VM name use double
   quotes. For example, to find a VM named `dnb_me`, type `"dnb"`.
