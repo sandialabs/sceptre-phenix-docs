@@ -14,13 +14,7 @@ Documentation is built and deployed automatically using GitHub Actions.
 - **`main` branch**: Pushing to `main` will automatically build and deploy the `latest` version of the docs.
 - **`dev` branch**: Pushing to `dev` will automatically build and deploy the `dev` version of the docs.
 
-The workflow will commit the built static site to the `gh-pages` branch and push it to the repository, publishing the changes. No manual deployment is necessary.
-
-> [!NOTE]
-> You will see a second workflow named **"pages-build-deployment"** running automatically after the deployment workflow completes.
-> This is the standard GitHub system workflow that takes the static files pushed to the `gh-pages` branch and actually serves them to the web.
->
-> **Do not disable this workflow.** It is required for the site to be visible.
+The workflow will build and publish the documentation from each branch. No manual deployment is necessary.
 
 ### Previewing Feature Branches
 
@@ -35,16 +29,17 @@ This will deploy a version named after your branch (e.g., `feat-new-docs`). When
 > [!IMPORTANT]
 > **Note for Forks:** To preview deployments on your own fork, you must enable GitHub Pages:
 >
-> 1.  Go to **Settings** > **Pages**.
-> 2.  Under **Build and deployment** > **Source**, select **Deploy from a branch**.
-> 3.  Under **Branch**, select `gh-pages` and `/ (root)`.
-> 4.  Click **Save**.
+> 1. Go to **Settings** > **Pages**.
+> 2. Under **Build and deployment** > **Source**, select **Deploy from a branch**.
+> 3. Under **Branch**, select desired branch name and `/ (root)`.
+> 4. Click **Save**.
 >
 > Your site will be available at `https://<username>.github.io/sceptre-phenix-docs/`.
 
 ## Build Docs Locally
 
 To build and serve the documentation locally, which includes the versioning selector, run:
+
 ```shell
 make serve
 ```
