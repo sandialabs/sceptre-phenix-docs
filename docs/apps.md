@@ -46,7 +46,7 @@ These are only needed if not using the VM label method as explained above.
 
 #### NTP Label Example
 
-Example of the `ntp` app using a VM label in a Topology. 
+Example of the `ntp` app using a VM label in a Topology.
 Note that with this option, the NTP VM must be configured manually via an inject or other method.
 
 ```yaml title="ntp example scenario using VM label"

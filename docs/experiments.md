@@ -24,7 +24,7 @@ $> phenix exp list
 Clicking the `stopped` button will start the experiment; similarly the `started`
 button will stop the experiment. A progress bar is used to update the progress
 of starting an experiment. During the update to the experiment -- starting or
-stopping -- it will not be accessible or available to delete. 
+stopping -- it will not be accessible or available to delete.
 
 ### From the Command Line Binary
 
@@ -98,7 +98,7 @@ Use "phenix experiment [command] --help" for more information about a command.
 
 ![screenshot](images/create_exp.png){: width=800 .center}
 
-Click the `+` button to the right of the filter field. 
+Click the `+` button to the right of the filter field.
 
 ![screenshot](images/create_exp_dia.png){: width=400 .center}
 
@@ -122,8 +122,8 @@ The `phenix exp create --help` command will output:
 ```
 Create an experiment
 
-  Used to create an experiment from an existing configuration; can be a 
-  topology, or topology and scenario. (Optional are the arguments for scenario 
+  Used to create an experiment from an existing configuration; can be a
+  topology, or topology and scenario. (Optional are the arguments for scenario
   or base directory.)
 
 Usage:
