@@ -532,7 +532,7 @@ This creates:
 - Basic tap creation on MGMT VLAN
 
 
-The following is an example of how the `mgmt_tap` app can be configured via a `Scenario` configuration with optional settings `subent` and `namespace`.
+The following is an example of how the `mgmt_tap` app can be configured via a `Scenario` configuration with optional settings `subnet` and `namespace`.
 
 ```yaml title="mgmt_tap app optional example"
 spec:
