@@ -48,3 +48,23 @@ The docs will be served on `localhost:8000` by a Docker container.
 Any changes to the Markdown files or `mkdocs.yml` will trigger an
 automatic rebuild while the container is running. This alleviates
 the need to run the command every time a change is made.
+
+## Linting and Code Quality
+
+This repository uses [prek](https://prek.j178.dev/) (a Rust drop-in alternative to `pre-commit`) to enforce repository-wide checks such as spell-checking (`codespell`), shell linting (`shellcheck`), YAML linting (`yamllint`), conventional commit messages, and general hygiene. The same checks run in CI via the [Lint workflow](.github/workflows/lint.yml).
+
+Install the dev tooling and register the git pre-commit hooks once:
+
+```shell
+make install-dev
+```
+
+Run all hooks against every file manually:
+
+```shell
+make lint
+# or, equivalently
+prek run --all-files
+```
+
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for additional contribution guidelines.
