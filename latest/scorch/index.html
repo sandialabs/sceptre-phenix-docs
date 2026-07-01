@@ -810,7 +810,12 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#built-in-components" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -870,9 +875,15 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#user-defined-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User-defined Components
+      
+    </span>
+  </a>
   
 </li>
       
@@ -884,23 +895,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Replace">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-defined-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        User-defined Components
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1321,7 +1315,12 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#built-in-components" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1381,9 +1380,15 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#user-defined-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User-defined Components
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1395,23 +1400,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Replace">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-defined-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        User-defined Components
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1486,16 +1474,16 @@
 
 
 <h1 id="scorch">Scorch<a class="headerlink" href="#scorch" title="Permanent link">&para;</a></h1>
-<p>Scorch &mdash; <strong>SC</strong>enario <strong>ORCH</strong>estration &mdash; is an automated scenario orchestration framework within phenix. It is included in phenix as a <a href="../apps/#additional-core-apps">core app</a>. The development of the Scorch framework was motivated by the need to facilitate rigorous experimentation. Some advantages of Scorch include the ability to run many repeated scenarios on an experiment with consistency and minimal overhead. Scorch also provides the ability to efficiently capture experimental data for retrieval and analysis.</p>
-<p>A phenix <a href="../configuration/#scenario">scenario</a> configuration file is used to define and configure the Scorch app for use on a topology. The Scorch app is meant to allow for the staging of <a href="#scorch-components">Scorch components</a> in sequence to execute against a running experiment. When applied to a given topology, the Scorch app will be available in the Scorch table to execute and then observe, manipulate in some cases, and review output from available components for a given <a href="#stages">stage</a> in the <a href="#scorch-pipeline">Scorch pipeline</a>.</p>
-<p>The screenshots and <a href="#example-configuration">configuration file</a> in the rest of this document are from an example Scorch app, <code>scorch-demo</code>.</p>
+<p>Scorch &mdash; <strong>SC</strong>enario <strong>ORCH</strong>estration &mdash; is an automated scenario orchestration framework within phēnix. It is included in phēnix as a <a href="../apps/#additional-core-apps">core app</a>. The development of the Scorch framework was motivated by the need to facilitate rigorous experimentation. Some advantages of Scorch include the ability to run many repeated scenarios on an experiment with consistency and minimal overhead. Scorch also provides the ability to efficiently capture experimental data for retrieval and analysis.</p>
+<p>A phēnix <a href="../configuration/#scenario">scenario</a> configuration file is used to define and configure the Scorch app for use on a topology. The Scorch app is meant to allow for the staging of <a href="#scorch-components">Scorch components</a> in sequence to execute against a running experiment. When applied to a given topology, the Scorch app will be available in the <a href="#scorch-table">Scorch table</a> to execute and then observe, manipulate in some cases, and review output from available components for a given <a href="#stages">stage</a> in the <a href="#scorch-pipeline">Scorch pipeline</a>.</p>
+<p>The screenshots and <a href="#example-configuration">configuration file</a> in the rest of this document are from an example Scorch scenario, <code>scorch-demo</code>.</p>
 <h2 id="scorch-components">Scorch Components<a class="headerlink" href="#scorch-components" title="Permanent link">&para;</a></h2>
-<p>A Scorch component is simply an executable available to be called by the Scorch app within phenix. A component is expected to implement any or all of the various <a href="#stages">stages</a> in the <a href="#scorch-pipeline">Scorch pipeline</a>.</p>
+<p>A Scorch component is simply an executable available to be called by the Scorch app within phēnix. A component is expected to implement any or all of the various <a href="#stages">stages</a> in the <a href="#scorch-pipeline">Scorch pipeline</a>.</p>
 <p>For an executable to be considered a Scorch component, it must meet the following requirements:</p>
 <ol>
 <li>Follow the <code>phenix-scorch-component-&lt;type&gt;</code> naming convention, where <code>&lt;type&gt;</code> is the component type used in the Scorch app configuration. An example would be <code>phenix-scorch-component-tcpdump</code>.</li>
 <li>Be an executable file.</li>
-<li>Be in the <code>PATH</code> of the user running phenix.</li>
+<li>Be in the <code>PATH</code> of the user running phēnix.</li>
 </ol>
 <p>When the Scorch app executes a Scorch component, it will pass a number of positional arguments to the component via the command line, as well as the JSON representation of the experiment the component is to be executed against via STDIN. The positional arguments passed are as follows:</p>
 <ol>
@@ -1512,19 +1500,19 @@
 <ol>
 <li>Filebeat to be enabled and configured in the Scorch app configuration.</li>
 <li>A Filebeat input to be configured for each component generating and collecting data.</li>
-<li>The <code>filebeat</code> executable installed and in the <code>PATH</code> of the user running phenix.</li>
+<li>The <code>filebeat</code> executable installed and in the <code>PATH</code> of the user running phēnix.</li>
 </ol>
 <p>See the <a href="#example-configuration">example configuration</a> below for examples of how Filebeat and Filebeat inputs are configured in the Scorch app configuration.</p>
-<h3 id="built-in-components">Built-in Components<a class="headerlink" href="#built-in-components" title="Permanent link">&para;</a></h3>
-<p>The following Scorch component types are considered <code>core</code> components, in that they are included in the main phenix repository and are available for use in Scorch app configurations by default.</p>
+<h2 id="built-in-components">Built-in Components<a class="headerlink" href="#built-in-components" title="Permanent link">&para;</a></h2>
+<p>The following Scorch component types are considered <code>core</code> components, in that they are included in the main phēnix repository and are available for use in Scorch app configurations by default.</p>
 <ul>
-<li>break</li>
-<li>pause</li>
-<li>soh</li>
-<li>tap</li>
+<li><a href="#break-component">break</a></li>
+<li><a href="#pause-component">pause</a></li>
+<li><a href="#soh-component">soh</a></li>
+<li><a href="#tap-component">tap</a></li>
 </ul>
-<h4 id="break-component"><code>break</code> Component<a class="headerlink" href="#break-component" title="Permanent link">&para;</a></h4>
-<p>The <code>break</code> component is comparable to a source code break point when debugging an application in that it pauses execution of the current Scorch run until a user exits the break. While the <code>break</code> component is running, users have access to a shell on the server running phenix as the user running phenix. The first user to access the shell via the terminal modal in the UI will have read-write access. If other users access the shell, they will have read-only access but will get live updates as the user with read-write access uses the terminal.</p>
+<h3 id="break-component"><code>break</code> Component<a class="headerlink" href="#break-component" title="Permanent link">&para;</a></h3>
+<p>The <code>break</code> component is comparable to a source code break point when debugging an application in that it pauses execution of the current Scorch run until a user exits the break. While the <code>break</code> component is running, users have access to a shell on the server running phēnix as the user running phēnix. The first user to access the shell via the terminal modal in the UI will have read-write access. If other users access the shell, they will have read-only access but will get live updates as the user with read-write access uses the terminal.</p>
 <p>It's possible to configure the <code>break</code> component in the Scorch app configuration to create a minimega tap when the component is executed. When the component is executed, the tap will be deleted. In addition to the tap, external network access can also be configured (e.g., Internet access).</p>
 <p>An example of configuring a <code>break</code> component to create a tap and configure external network access during the <code>configure</code> stage is as follows. The <code>break</code> component can be configured to run in any stage.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">spec</span><span class="p">:</span>
@@ -1543,8 +1531,8 @@
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="nt">runs</span><span class="p">:</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">configure</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;break-tap&quot;</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
-<h4 id="pause-component"><code>pause</code> Component<a class="headerlink" href="#pause-component" title="Permanent link">&para;</a></h4>
-<p>The <code>pause</code> component is similar to the <code>break</code> component in that it pauses execution of the current Scorch run, but instead of waiting for user intervention, the <code>pause</code> component waits for a configured duration before continuing.</p>
+<h3 id="pause-component"><code>pause</code> Component<a class="headerlink" href="#pause-component" title="Permanent link">&para;</a></h3>
+<p>The <code>pause</code> component is similar to the <a href="#break-component"><code>break</code></a> component in that it pauses execution of the current Scorch run, but instead of waiting for user intervention, the <code>pause</code> component waits for a configured duration before continuing.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scorch</span>
@@ -1580,11 +1568,12 @@
 </span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="nt">start</span><span class="p">:</span>
 </span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pause-random</span>
 </span></code></pre></div>
-<h4 id="soh-component"><code>soh</code> Component<a class="headerlink" href="#soh-component" title="Permanent link">&para;</a></h4>
+<h3 id="soh-component"><code>soh</code> Component<a class="headerlink" href="#soh-component" title="Permanent link">&para;</a></h3>
 <p>The <code>soh</code> component allows users to execute the <a href="../state-of-health/">State of
 Health</a> app at scheduled times throughout a Scorch run. This
 is handy when, for example, other Scorch components might cause nodes in the
-experiment to misbehave or fail. The component can be configured to limit which
+experiment to misbehave or fail.</p>
+<p>The component can be configured to limit which
 health checks are run, and can also be configured to fail if any of the health
 checks fail. The log level can also be configured, which will limit what logs
 get sent to the component's UI modal while the component is running.</p>
@@ -1611,8 +1600,8 @@ get sent to the component's UI modal while the component is running.</p>
 </span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">      </span><span class="nt">runs</span><span class="p">:</span>
 </span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;health-check&quot;</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
-<h4 id="tap-component"><code>tap</code> Component<a class="headerlink" href="#tap-component" title="Permanent link">&para;</a></h4>
-<p>The <code>tap</code> component implements the exact same functionality described above in the <code>break</code> component for creating a minimega tap and, optionally, external network access, but allows for the tap (and external network access, if configured) to exist while other components are executed (as opposed to only existing for the duration of the <code>break</code> component).</p>
+<h3 id="tap-component"><code>tap</code> Component<a class="headerlink" href="#tap-component" title="Permanent link">&para;</a></h3>
+<p>The <code>tap</code> component implements the exact same functionality described above in the <a href="#break-component"><code>break</code></a> component for creating a minimega tap and, optionally, external network access, but allows for the tap (and external network access, if configured) to exist while other components are executed (as opposed to only existing for the duration of the <a href="#break-component"><code>break</code></a> component).</p>
 <p>An example of configuring a <code>tap</code> component to create a tap and configure external network access is as follows. The <code>tap</code> component can only be configured to run in the <code>start</code> stage (create the tap) and the <code>stop</code> stage (delete the tap).</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
@@ -1630,20 +1619,113 @@ get sent to the component's UI modal while the component is running.</p>
 </span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tap-inet&quot;</span><span class="p p-Indicator">]</span>
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tap-inet&quot;</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
-<p><strong>NOTE:</strong> In deployments where <code>minimega</code> is running in a container on the headnode, and Docker networking is in use (e.g., the <code>minimega</code> container is <strong>not</strong> configured to use host networking), users will need to execute the following commands if access to the <code>minimega</code> tap created by the <code>tap</code> (or <code>break</code>) component from the Docker host is required.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ovs-docker add-port phenix TDN minimega
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>docker exec -it minimega ovs-vsctl add-port phenix TDN
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ovs-vsctl add-port phenix temp-tap tag=&lt;vlan ID&gt; -- set interface temp-tap type=internal
+<p><strong>NOTE:</strong> In deployments where <code>minimega</code> is running in a container on the headnode, and Docker networking is in use (e.g., the <code>minimega</code> container is <strong>not</strong> configured to use host networking), users will need to execute the following commands if access to the <code>minimega</code> tap created by the <a href="#tap-component"><code>tap</code></a> (or <a href="#break-component"><code>break</code></a>) component from the Docker host is required.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ovs-docker<span class="w"> </span>add-port<span class="w"> </span>phenix<span class="w"> </span>TDN<span class="w"> </span>minimega
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>minimega<span class="w"> </span>ovs-vsctl<span class="w"> </span>add-port<span class="w"> </span>phenix<span class="w"> </span>TDN
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ovs-vsctl<span class="w"> </span>add-port<span class="w"> </span>phenix<span class="w"> </span>temp-tap<span class="w"> </span><span class="nv">tag</span><span class="o">=</span>&lt;vlan<span class="w"> </span>ID&gt;<span class="w"> </span>--<span class="w"> </span><span class="nb">set</span><span class="w"> </span>interface<span class="w"> </span>temp-tap<span class="w"> </span><span class="nv">type</span><span class="o">=</span>internal
 </span></code></pre></div>
-<p>The above commands assume the name of the minimega container is <code>minimega</code>. The name of the local tap created (in this case, <code>temp-tap</code>) can be whatever, but the value for the VLAN tag must match the numerical ID of the VLAN that's mapped to the VLAN alias used in the <code>tap</code> (or <code>break</code>) component configuration.</p>
-<blockquote>
+<p>The above commands assume the name of the minimega container is <code>minimega</code>. The name of the local tap created (in this case, <code>temp-tap</code>) can be whatever, but the value for the VLAN tag must match the numerical ID of the VLAN that's mapped to the VLAN alias used in the <a href="#tap-component"><code>tap</code></a> (or <a href="#break-component"><code>break</code></a>) component configuration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>Using host networking mode for the <code>minimega</code> container allows for all the above nonsense to be skipped.</p>
-</blockquote>
+</div>
+<h2 id="user-defined-components">User-defined Components<a class="headerlink" href="#user-defined-components" title="Permanent link">&para;</a></h2>
+<p>The following Scorch component types have been developed external to the main phenix repository and are available in the <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch">sceptre-phenix-apps</a> repository, which also includes README-based documentation for each component. Most are developed in Python, and leverage common helper classes that ease the development of user components.</p>
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/art">art</a></td>
+<td>Atomic Red Team</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/caldera">caldera</a></td>
+<td>Executes operations in <a href="https://caldera.mitre.org/">MITRE Caldera</a> via the REST API.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/cc">cc</a></td>
+<td>minimega Command and Control (<a href="https://www.sandia.gov/minimega/module-28-miniccc-and-the-cc-api/">miniccc</a>).</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/collector">collector</a></td>
+<td>Collects and processes data from cyber-physical experiments and Scorch components.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/disruption">disruption</a></td>
+<td>Orchestrates and executes disruption scenarios for cyber-physical experiments.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/ettercap">ettercap</a></td>
+<td>Runs <a href="https://github.com/Ettercap/ettercap">Ettercap</a>.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/hoststats">hoststats</a></td>
+<td>Collects resource utilization statistics on minimega hosts.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/iperf">iperf</a></td>
+<td>Collects network performance measurements using <a href="https://github.com/esnet/iperf">iperf3</a> or <a href="https://github.com/opensource-3d-p/rperf">rperf</a>.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/kafka">kafka</a></td>
+<td>Filters and exports Kafka data as a CSV or JSON file.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/mm">mm</a></td>
+<td>minimega (mm) Component.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/opcexport">opcexport</a></td>
+<td>Exports data from an OPC server to Elasticsearch.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pcap">pcap</a></td>
+<td>Collects PCAPs from VMs via minimega's <code>capture pcap</code> <a href="https://www.sandia.gov/minimega/module-39-network-capture/">API</a>.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pipe">pipe</a></td>
+<td>Implements minimega <code>pipe</code> <a href="https://www.sandia.gov/minimega/module-29-miniplumber/">API</a>.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/providerdata">providerdata</a></td>
+<td>Collects and verifies data from pybennu providers, such as the RTDS or OPALRT.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/qos">qos</a></td>
+<td>Apply Quality of Service (<a href="https://sandia-minimega.github.io/#header_5.57">QoS</a>) effects on network interfaces, including dropping packets (loss), delaying packets (delay), or limiting bandwidth (rate).</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/rtds">rtds</a></td>
+<td>Collects and verifies data from the Real-Time Dynamic Simulator (RTDS), and orchestrates the starting/stopping of RSCAD cases.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/snort">snort</a></td>
+<td>Configures and runs <a href="https://www.snort.org/">Snort</a>.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/tcpdump">tcpdump</a></td>
+<td>Executes and collects and processes data from <code>tcpdump</code>.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/trafficgen">trafficgen</a></td>
+<td>Network traffic generation.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/vmstats">vmstats</a></td>
+<td>Collects resource utilization statistics from Linux VMs in the experiment, using the <code>vmstats</code> command.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="replace">Replace<a class="headerlink" href="#replace" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>[!WARNING]
-The <code>replace</code> feature applies changes to the entire component spec. Please choose placeholder names carefully!</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>replace</code> feature applies changes to the entire component spec. Please choose placeholder names carefully!</p>
+</div>
 <p>The <code>replace</code> feature allows dynamic substitution of values in component metadata at runtime. Replacements are defined per-run (or loop) and are resolved once when the run/loop starts, ensuring consistent values throughout the entire pipeline. This can be used to parameterize components, or introduce controlled randomness into experiments.</p>
 <p>Replacements are defined in the <code>replace</code> block of a run or loop. Each key is a placeholder string that will be replaced in component metadata. The type specifies how the replacement value is determined. Replaces can be 'stacked' like below, where the <code>{{RAND1}}</code> is defined at the run level and carries through to all subordinate loops, but <code>{{OVERRIDE}}</code> is overridden in each interior loop.</p>
 <p>An example scorch run:</p>
@@ -1685,7 +1767,7 @@ The <code>replace</code> feature applies changes to the entire component spec. P
 </span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="w">              </span><span class="s">&#39;{{OVERRIDE}}&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;loop</span><span class="nv"> </span><span class="s">2&#39;</span><span class="p p-Indicator">]</span>
 </span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="w">            </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">cc</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
-<p>Would result in the following commands:
+<p>Would result in the following commands:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;We have picked RAND1: bar, RAND2: {{RAND2}}, RAND3: {{RAND3}}, override: run&quot;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;We have picked RAND1: bar, RAND2: 19, RAND3: {{RAND3}}, override: loop 1&quot;</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;We have picked RAND1: bar, RAND2: 19, RAND3: 86.97164992182161, override: loop 2&quot;</span>
@@ -1695,134 +1777,22 @@ The <code>replace</code> feature applies changes to the entire component spec. P
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;We have picked RAND1: bar, RAND2: 82, RAND3: 91.0323724023587, override: loop 2&quot;</span>
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;We have picked RAND1: bar, RAND2: 82, RAND3: 96.65899272237336, override: loop 2&quot;</span>
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;We have picked RAND1: bar, RAND2: 82, RAND3: 94.85640056376343, override: loop 2&quot;</span>
-</span></code></pre></div></p>
-<p>The same resolved values are used across all stages (configure, start, stop, cleanup) and all subordinate loop iterations (until they are overridden). However, each new run of the same scorch pipeline will generate new replacement values, allowing for variability across runs.</p>
-<h3 id="user-defined-components">User-defined Components<a class="headerlink" href="#user-defined-components" title="Permanent link">&para;</a></h3>
-<p>The following Scorch component types have been developed external to the main phenix repository and are available in the <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch">sceptre-phenix-apps</a> repository, which also includes README-based documentation for each component. They are all developed in Python, and leverage common helper classes that ease the development of user components.</p>
-<table>
-<thead>
-<tr>
-<th>App</th>
-<th>Link</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>art</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/art">link</a></td>
-<td>Atomic Red Team</td>
-</tr>
-<tr>
-<td>caldera</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/caldera">link</a></td>
-<td>Executes operations in <a href="https://caldera.mitre.org/">MITRE Caldera</a> via the REST API.</td>
-</tr>
-<tr>
-<td>cc</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/cc">link</a></td>
-<td>minimega Command and Control (cc) Component.</td>
-</tr>
-<tr>
-<td>collector</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/collector">link</a></td>
-<td>Collects and processes data from cyber-physical experiments and Scorch components.</td>
-</tr>
-<tr>
-<td>disruption</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/disruption">link</a></td>
-<td>Orchestrates and executes disruption scenarios for cyber-physical experiments.</td>
-</tr>
-<tr>
-<td>ettercap</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/ettercap">link</a></td>
-<td>Component that runs Ettercap, relies on <code>ettercap</code> executable in the VM.</td>
-</tr>
-<tr>
-<td>hoststats</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/hoststats">link</a></td>
-<td>Collects statistics on minimega host(s).</td>
-</tr>
-<tr>
-<td>iperf</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/iperf">link</a></td>
-<td>Collects network performance measurements using <a href="https://github.com/esnet/iperf">iperf3</a> or <a href="https://github.com/opensource-3d-p/rperf">rperf</a>.</td>
-</tr>
-<tr>
-<td>kafka</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/kafka">link</a></td>
-<td>Filters and exports Kafka data as a CSV or JSON file.</td>
-</tr>
-<tr>
-<td>mm</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/mm">link</a></td>
-<td>minimega (mm) Component.</td>
-</tr>
-<tr>
-<td>opcexport</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/opcexport">link</a></td>
-<td>Exports data from an OPC server to Elasticsearch.</td>
-</tr>
-<tr>
-<td>pcap</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pcap">link</a></td>
-<td>Collects PCAPs from VMs via minimega's <code>capture pcap</code> API.</td>
-</tr>
-<tr>
-<td>pipe</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pipe">link</a></td>
-<td>Implements minimega <code>pipe</code> API.</td>
-</tr>
-<tr>
-<td>providerdata</td>
-<td><a href="https://github.com/GhostofGoes/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/providerdata">link</a></td>
-<td>Collects and verifies data from pybennu providers, such as the RTDS or OPALRT.</td>
-</tr>
-<tr>
-<td>qos</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/qos">link</a></td>
-<td>Apply Quality of Service (QoS) effects on network interfaces, including dropping packets (loss), delaying packets (delay), or limiting bandwidth (rate).</td>
-</tr>
-<tr>
-<td>rtds</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/rtds">link</a></td>
-<td>Collects and verifies data from the Real-Time Dynamic Simulator (RTDS), and orchestrates the starting/stopping of RSCAD cases.</td>
-</tr>
-<tr>
-<td>snort</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/snort">link</a></td>
-<td>Configures and runs <a href="https://www.snort.org/">Snort</a>. Snort must be installed on VMs.</td>
-</tr>
-<tr>
-<td>tcpdump</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/tcpdump">link</a></td>
-<td>Executes and collects and processes data from <code>tcpdump</code>.</td>
-</tr>
-<tr>
-<td>trafficgen</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/trafficgen">link</a></td>
-<td>Traffic Generator.</td>
-</tr>
-<tr>
-<td>vmstats</td>
-<td><a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/vmstats">link</a></td>
-<td>Collects resource utilization statistics from Linux VMs in the experiment, using the <code>vmstats</code> command.</td>
-</tr>
-</tbody>
-</table>
+</span></code></pre></div>
+<p>The same resolved values are used across all stages (<code>configure</code>, <code>start</code>, <code>stop</code>, <code>cleanup</code>) and all subordinate loop iterations (until they are overridden). However, each new run of the same scorch pipeline will generate new replacement values, allowing for variability across runs.</p>
 <h2 id="scorch-table">Scorch Table<a class="headerlink" href="#scorch-table" title="Permanent link">&para;</a></h2>
-<p>The Scorch table, accessible as one of the tab selections within the phenix UI, lists all possible Scorch apps available based on the experiments established in phenix. The following columns or functions are available:</p>
+<p>The Scorch table, accessible as one of the tab selections within the phēnix UI, lists all possible Scorch apps available based on the experiments established in phēnix. The following columns or functions are available:</p>
 <ul>
 <li>Experiment name</li>
 <li>Experiment status: this reports on the status of the experiment &mdash; an experiment must be running for a Scorch app to start</li>
 <li>Scorch app status: this will report the running or stopped status of the Scorch app itself</li>
-<li>Terminal: if the Scorch app has reached a break point, a terminal will be available &mdash; if clicked, a terminal dialog will be opened and is running on the phenix host system</li>
-<li>Find an Experiment: similar to the search fields in other tables within the phenix UI, it is possible to filter experiment names based on terms entered here</li>
+<li>Terminal: if the Scorch app has reached a break point, a terminal will be available &mdash; if clicked, a terminal dialog will be opened and is running on the phēnix host system</li>
+<li>Find an Experiment: similar to the search fields in other tables within the phēnix UI, it is possible to filter experiment names based on terms entered here</li>
 </ul>
 <p><img alt="Scorch Table" src="../images/table.png" /></p>
 <h2 id="scorch-pipeline">Scorch Pipeline<a class="headerlink" href="#scorch-pipeline" title="Permanent link">&para;</a></h2>
-<p>Scorch pipelines are available on the <a href="#scorch-table">Scorch table</a> in the phenix UI. The table is sorted by Experiment name by default. Only those experiments with the Scorch app configured in the <a href="../configuration/#scenario">scenario</a> configuration will be listed in the table. It is possible to <em>start</em> or <em>stop</em> an experiment, as well as <em>start</em> or <em>stop</em> a Scorch component. Finally, if a terminal is available when a break point is reached in a running Scorch app, it can be accessed from the table.</p>
-<p>The Scorch pipeline provides a graphical representation of the Scorch app, including the <code>configure, start, stop, and cleanup</code> stages. If the Scorch app provides output for a given step, or component, users can click into the component and receive the output. A user can access the terminal if a break point is reached by clicking on the component. As with the terminal access described above, a dialog will be presented with a terminal running on the phenix host system.</p>
+<p>Scorch pipelines are available on the <a href="#scorch-table">Scorch table</a> in the phēnix UI. The table is sorted by Experiment name by default. Only those experiments with the Scorch app configured in the <a href="../configuration/#scenario">scenario</a> configuration will be listed in the table. It is possible to <em>start</em> or <em>stop</em> an experiment, as well as <em>start</em> or <em>stop</em> a Scorch component. Finally, if a terminal is available when a break point is reached in a running Scorch app, it can be accessed from the table.</p>
+<p>The Scorch pipeline provides a graphical representation of the Scorch app, including the <code>configure</code>, <code>start</code>, <code>stop</code>, and <code>cleanup</code> stages. If the Scorch app provides output for a given step, or component, users can click into the component and receive the output.</p>
+<p>A user can access the terminal if a break point is reached by clicking on the component. As with the terminal access described above, a dialog will be presented with a terminal running on the phēnix host system.</p>
 <p><img alt="Scorch Pipeline" src="../images/pipeline.png" /></p>
 <p>The following functions are also available in the Scorch pipeline UI:</p>
 <ul>
@@ -1840,9 +1810,10 @@ The <code>replace</code> feature applies changes to the entire component spec. P
 <li><code>cleanup</code></li>
 </ol>
 <p>A Scorch component may implement any or all of the various stages, and Scorch will execute each stage inside the components in order. Each component can be configured in the Scorch app scenario <a href="../configuration/">configuration file</a>.</p>
-<blockquote>
-<p>* There is additional <code>done</code> stage in the UI obtained when <code>cleanup</code> has been completed. It is meant to report the completion of all stages in the Pipeline UI.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is additional <code>done</code> stage in the UI obtained when <code>cleanup</code> has been completed. It is meant to report the completion of all stages in the Pipeline UI.</p>
+</div>
 <p>It's completely up to the component developer if and how an execution stage is implemented and handled by the component. If a component is configured in the Scorch app to be executed as part of a stage, but the component does not implement said stage, then the Scorch app will happily continue on to the next component in the stage (unless the component errors out if the current stage is not implemented, in which case the Scorch run will fail).</p>
 <p><img alt="Pipeline Stages" src="../images/stages.png" /></p>
 <p>The following indicators are presented for each component of the Scorch app:</p>
@@ -1866,7 +1837,7 @@ The <code>replace</code> feature applies changes to the entire component spec. P
 <p>If a component fails, the Scorch app will skip the remaining components involved in the current execution stage and jump to the next appropriate stage to complete the Scorch run. For example, if a component fails in the <code>Configure</code> stage the Scorch app will jump to the <code>Cleanup</code> stage, and if a component fails in the <code>Start</code> stage Scorch will jump to the <code>Stop</code> stage (skipping execution of any configured loops in either case).</p>
 <p><img alt="Failed component &mdash; trafficgen in the Configure stage" class="center" src="../images/failed.png" width="300" /></p>
 <h2 id="example-configuration">Example Configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h2>
-<p>Example Scenario using the <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/vmstats">vmstats</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/hoststats">hoststats</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/tcpdump">tcpdump</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/trafficgen">trafficgen</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/snort">snort</a>, and <code>break</code> components.</p>
+<p>Example Scenario using the <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/vmstats">vmstats</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/hoststats">hoststats</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/tcpdump">tcpdump</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/trafficgen">trafficgen</a>, <a href="https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/snort">snort</a>, and <a href="#break-component"><code>break</code></a> components.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phenix.sandia.gov/v2</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Scenario</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">metadata</span><span class="p">:</span>
