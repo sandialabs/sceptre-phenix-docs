@@ -15,6 +15,18 @@ default_language_version.python = "3.12"
 # helper scripts. We focus on spelling, shell/YAML linting, conventional
 # commits, and general hygiene.
 
+# Linting of GitHub Actions workflows for security issues
+# https://docs.zizmor.sh/audits/
+[[repos]]
+repo = "https://github.com/zizmorcore/zizmor-pre-commit"
+rev = "v1.26.1"
+
+[[repos.hooks]]
+id = "zizmor"
+args = [
+    "--no-progress",
+    "--fix"
+]
 
 # Spell checking
 [[repos]]
