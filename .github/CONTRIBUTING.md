@@ -12,6 +12,7 @@ Thank you for your interest in contributing to the phenix documentation! We welc
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Submitting Code](#submitting-code)
 - [Code Quality](#code-quality)
+- [Updating Actions](#updating-actions)
 - [License](#license)
 
 ## Getting Started
@@ -151,6 +152,14 @@ Run every hook against every file manually:
 make lint
 # or, equivalently
 prek run --all-files
+```
+
+## Updating Actions
+
+To update the pinned versions of Actions in the GitHub Workflows, run the following command:
+
+```bash
+make update-actions
 ```
 
 ## License
