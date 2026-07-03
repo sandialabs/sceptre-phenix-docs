@@ -512,11 +512,9 @@ spec:
 
 ### mgmt_tap App
 The `mgmt_tap` application creates tap interfaces on the management network of an experiment, enabling file transfer and remote access to virtual machines within the experiment. The `mgmt_tap`:
-- Creates taps specifically on the MGMT VLAN
-- Creates taps on all compute hosts in the experiment
-- Automatically assigns IPs with configurable subnet
-- Optionally applied IP namespace isolation
-- Removes taps and namespaces during cleanup phase
+- Creates taps on the configured VLAN (defaults to `MGMT`) on all compute hosts in the experiment
+- Automatically assigns sequential IPs from a configurable subnet
+- Removes taps during cleanup phase
 
 The following is an example of how the default `mgmt_tap` app can be configured via a `Scenario` configuration.
 
@@ -526,27 +524,20 @@ spec:
     - name: mgmt_tap
 ```
 
-This creates:
-- Tap interfaces on all hosts with IPs `172.16.111.1/16`, `172.16.111.2/16`, etc.
-- No network namespace isolation
-- Basic tap creation on MGMT VLAN
+This creates tap interfaces on all hosts with IPs `172.16.0.1/16`, `172.16.0.2/16`, etc. on the `MGMT` VLAN.
 
-
-The following is an example of how the `mgmt_tap` app can be configured via a `Scenario` configuration with optional settings `subnet` and `namespace`.
+The following is an example of how the `mgmt_tap` app can be configured via a `Scenario` configuration with optional settings `subnet` and `vlan`.
 
 ```yaml title="mgmt_tap app optional example"
 spec:
   apps:
     - name: mgmt_tap
       metadata:
-        subnet: 172.16.0.0/16
-        namespace: true
+        subnet: 10.0.0.0/24
+        vlan: INTERNAL
 ```
 
-This creates:
-- Tap interfaces with IPs `172.16.0.1/16`, `172.16.0.2/16`, etc.
-- Each tap in its own network namespace (`<exp_name>_net`)
-- Full namespace isolation for IP address conflicts
+This creates tap interfaces with IPs `10.0.0.1/24`, `10.0.0.2/24`, etc. on the `INTERNAL` VLAN.
 
 ## User Apps
 
