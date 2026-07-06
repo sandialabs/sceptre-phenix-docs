@@ -2047,32 +2047,24 @@ implemented yet.</p>
 </span></code></pre></div>
 <h3 id="mgmt_tap-app">mgmt_tap App<a class="headerlink" href="#mgmt_tap-app" title="Permanent link">&para;</a></h3>
 <p>The <code>mgmt_tap</code> application creates tap interfaces on the management network of an experiment, enabling file transfer and remote access to virtual machines within the experiment. The <code>mgmt_tap</code>:
-- Creates taps specifically on the MGMT VLAN
-- Creates taps on all compute hosts in the experiment
-- Automatically assigns IPs with configurable subnet
-- Optionally applied IP namespace isolation
-- Removes taps and namespaces during cleanup phase</p>
+- Creates taps on the configured VLAN (defaults to <code>MGMT</code>) on all compute hosts in the experiment
+- Automatically assigns sequential IPs from a configurable subnet
+- Removes taps during cleanup phase</p>
 <p>The following is an example of how the default <code>mgmt_tap</code> app can be configured via a <code>Scenario</code> configuration.</p>
 <div class="language-yaml highlight"><span class="filename">mgmt_tap app default example</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mgmt_tap</span>
 </span></code></pre></div>
-<p>This creates:
-- Tap interfaces on all hosts with IPs <code>172.16.111.1/16</code>, <code>172.16.111.2/16</code>, etc.
-- No network namespace isolation
-- Basic tap creation on MGMT VLAN</p>
-<p>The following is an example of how the <code>mgmt_tap</code> app can be configured via a <code>Scenario</code> configuration with optional settings <code>subnet</code> and <code>namespace</code>.</p>
+<p>This creates tap interfaces on all hosts with IPs <code>172.16.0.1/16</code>, <code>172.16.0.2/16</code>, etc. on the <code>MGMT</code> VLAN.</p>
+<p>The following is an example of how the <code>mgmt_tap</code> app can be configured via a <code>Scenario</code> configuration with optional settings <code>subnet</code> and <code>vlan</code>.</p>
 <div class="language-yaml highlight"><span class="filename">mgmt_tap app optional example</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mgmt_tap</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">      </span><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.16.0.0/16</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/24</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INTERNAL</span>
 </span></code></pre></div>
-<p>This creates:
-- Tap interfaces with IPs <code>172.16.0.1/16</code>, <code>172.16.0.2/16</code>, etc.
-- Each tap in its own network namespace (<code>&lt;exp_name&gt;_net</code>)
-- Full namespace isolation for IP address conflicts</p>
+<p>This creates tap interfaces with IPs <code>10.0.0.1/24</code>, <code>10.0.0.2/24</code>, etc. on the <code>INTERNAL</code> VLAN.</p>
 <h2 id="user-apps">User Apps<a class="headerlink" href="#user-apps" title="Permanent link">&para;</a></h2>
 <p><code>phenix</code> <em>user apps</em> are stand-alone executables that <code>phenix</code> shells out to at
 different stages of the experiment lifecycle (
