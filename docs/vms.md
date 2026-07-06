@@ -38,7 +38,7 @@ Buttons from left to right:
 
 ### From the Command Line Binary
 
-There are two options for displaying the information for VMs in an experiment. First run 
+There are two options for displaying the information for VMs in an experiment. First run
 the following command to see information for all VMs in a given experiment.
 
 ```shell
@@ -55,7 +55,7 @@ phenix vm info <experiment name> [vm name] [--label <label>]
 
 ### From the Web-UI
 
-Click on the name of a running VM in a started experiment to access the VM information 
+Click on the name of a running VM in a started experiment to access the VM information
 modal.  Click the `create backing image` button as shown in the screenshot below.
 
 ![screenshot](images/vms_backing_image.png)
@@ -109,9 +109,9 @@ Not applicable.
 
 ### From the Web-UI
 
-Click on the name of the network tap on a running VM in a started experiment to 
-start a packet capture. The name of the network tap will turn green once a packet 
-capture has started. It is possible to start captures on multiple network taps. 
+Click on the name of the network tap on a running VM in a started experiment to
+start a packet capture. The name of the network tap will turn green once a packet
+capture has started. It is possible to start captures on multiple network taps.
 However, when you stop packet capture, it will stop captures on all network taps.
 
 ### From the Command Line Binary
@@ -132,13 +132,13 @@ phenix vm capture stop <experiment name> <vm name>
 
 ### From the Web-UI
 
-Click on the name of a running VM in a started experiment to access the VM information 
+Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the `modify state` button on the far right to open the modify state toolbar.
 Click the `kill` button as shown in the screenshot below.
 
 ![screenshot](images/vms_kill.png)
 
-_Note_: if you stop and then start the experiment again, that VM will run again 
+_Note_: if you stop and then start the experiment again, that VM will run again
 per the experiment configuration.
 
 ### From the Command Line Binary
@@ -153,9 +153,9 @@ phenix vm kill <experiment name> [vm name] [--label <label>]
 
 ### From the Web-UI
 
-Click on the network for the desired VM in the Running Component to modify the 
-settings. Select from a pull down what network you want to switch the VM interface 
-you clicked on to. To revert back to previous setting, simply repeat selecting the 
+Click on the network for the desired VM in the Running Component to modify the
+settings. Select from a pull down what network you want to switch the VM interface
+you clicked on to. To revert back to previous setting, simply repeat selecting the
 network interface you wish to change, and select the previous network setting.
 
 ### From the Command Line Binary
@@ -176,9 +176,9 @@ phenix vm net disconnect <experiment name> <vm name> <iface index>
 
 ### From the Web-UI
 
-Click on the name of a running VM in a started experiment to access the VM information 
+Click on the name of a running VM in a started experiment to access the VM information
 modal. To pause a VM, click on the `pause` button as shown in the screenshot below.
-To start a paused VM, that same button will become a green play button; simply 
+To start a paused VM, that same button will become a green play button; simply
 click it to start.
 
 ![screenshot](images/vms_pause.png)
@@ -201,7 +201,7 @@ phenix vm resume <experiment name> [vm name] [--label <label>]
 
 ### From the Web-UI
 
-Click on the name of a running VM in a started experiment to access the VM information 
+Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the `modify state` button on the far right to open the modify state toolbar.
 Click the `redeploy` button as shown in the screenshot below.
 
@@ -219,7 +219,7 @@ phenix vm redeploy <experiment name> [vm name] [--label <label>]
 
 ### From the Web-UI
 
-Click on the name of a running VM in a started experiment to access the VM information 
+Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the `modify state` button on the far right to open the modify state toolbar.
 Click the `reset disk state` button as shown in the screenshot below.
 
@@ -237,7 +237,7 @@ phenix vm reset-disk <experiment name> [vm name] [--label <label>]
 
 ### From the Web-UI
 
-Click on the name of a running VM in a started experiment to access the VM information 
+Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the `modify state` button on the far right to open the modify state toolbar.
 Click the `restart` button as shown in the screenshot below.
 
@@ -255,8 +255,8 @@ phenix vm restart <experiment name> [vm name] [--label <label>]
 
 ### From the Web-UI
 
-Click on the name of the paused VM in a started experiment to access the VM information 
-modal. Click the green play button (previously the pause button, furthest button to the 
+Click on the name of the paused VM in a started experiment to access the VM information
+modal. Click the green play button (previously the pause button, furthest button to the
 left).
 
 ### From the Command Line Binary
@@ -271,7 +271,7 @@ phenix vm resume <experiment name> [vm name] [--label <label>]
 
 ### From the Web-UI
 
-Click on the name of a running VM in a started experiment to access the VM information 
+Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the `modify state` button on the far right to open the modify state toolbar.
 Click the `shutdown` button as shown in the screenshot below.
 
@@ -291,7 +291,7 @@ phenix vm shutdown <experiment name> [vm name] [--label <label>]
 
 There are two ways to modify VM settings:
 
-1. Click on a stopped experiment to access the Stopped Component. You are able to edit the 
+1. Click on a stopped experiment to access the Stopped Component. You are able to edit the
 following:
     * Host name
     * CPUs

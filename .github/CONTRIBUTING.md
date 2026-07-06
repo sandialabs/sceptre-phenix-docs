@@ -1,8 +1,8 @@
-Contributing to SCEPTRE Phenix Docs
+# Contributing to SCEPTRE Phenix Docs
 
 Thank you for your interest in contributing to the phenix documentation! We welcome contributions from everyone and appreciate your efforts to improve our project. This guide will help you understand how to contribute effectively.
 
-> Note: A failure to follow this guide will result in delay of PRs until there is compliance. 
+> Note: A failure to follow this guide will result in delay of PRs until there is compliance.
 
 ## Table of Contents
 
@@ -11,6 +11,8 @@ Thank you for your interest in contributing to the phenix documentation! We welc
   - [Reporting Issues](#reporting-issues)
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Submitting Code](#submitting-code)
+- [Code Quality](#code-quality)
+- [Updating Actions](#updating-actions)
 - [License](#license)
 
 ## Getting Started
@@ -54,7 +56,7 @@ If you encounter a bug or have a feature request, please open an issue in the [I
 
 ### Suggesting Enhancements
 
-We welcome suggestions for improvements! Please open an issue to discuss your ideas before implementing them. 
+We welcome suggestions for improvements! Please open an issue to discuss your ideas before implementing them.
 
 ### Submitting Code
 
@@ -100,7 +102,7 @@ We welcome suggestions for improvements! Please open an issue to discuss your id
     ```bash
     git commit -m "feat(auth): add user authentication feature"
     ```
-    If you need to write a longer commit message, you can do so by running `git commit`. This will open your default text editor where you can write a detailed commit message. The first line should be a brief summary conforming to the format above, followed by a blank line, and then a more detailed explanation. 
+    If you need to write a longer commit message, you can do so by running `git commit`. This will open your default text editor where you can write a detailed commit message. The first line should be a brief summary conforming to the format above, followed by a blank line, and then a more detailed explanation.
 
     Example:
     ```bash
@@ -126,14 +128,40 @@ We welcome suggestions for improvements! Please open an issue to discuss your id
     In the interactive rebase interface, change the word `pick` to `squash` (or `s`) for all commits you want to combine into the first commit. After saving and closing the editor, you will be prompted to create a new commit message. Write a single, comprehensive commit message that summarizes all the changes.
 
 5. **Push to Your Fork**: If you had to rebase, you may need to force push your changes to your forked repository.
-    
+
     Example:
     ```bash
     git push origin feat/add-user-authentication --force
     ```
-    
+
 6. **Open a Pull Request**: Go to the original repository and open a [pull request](https://github.com/sandialabs/sceptre-phenix-docs/pulls). Provide a clear description of your changes and reference any related issues.
 
-## License
-By contributing to this project, you agree that your contributions will be licensed under the [GNU](https://github.com/sandialabs/sceptre-phenix-docs/blob/main/LICENSE) License.
+## Code Quality
 
+This project uses [prek](https://prek.j178.dev/) (a Rust drop-in alternative to `pre-commit`) to run repository-wide checks (spell-checking, shell/YAML linting, conventional commit validation, and general hygiene). The same checks run in CI via the [Lint workflow](workflows/lint.yml).
+
+Install the dev tooling and register git pre-commit hooks once:
+
+```bash
+make install-dev
+```
+
+Run every hook against every file manually:
+
+```bash
+make lint
+# or, equivalently
+prek run --all-files
+```
+
+## Updating Actions
+
+To update the pinned versions of Actions in the GitHub Workflows, run the following command:
+
+```bash
+make update-actions
+```
+
+## License
+
+By contributing to this project, you agree that your contributions will be licensed under the [GNU](https://github.com/sandialabs/sceptre-phenix-docs/blob/main/LICENSE) License.

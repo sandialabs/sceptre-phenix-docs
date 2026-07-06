@@ -69,7 +69,7 @@ Scenario:
 			type: boolean
 			default: false
 			example: false
-			nullable: true	  
+			nullable: true  
 		  hosts:
 			type: array
 			items:

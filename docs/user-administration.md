@@ -88,7 +88,7 @@ ui:
 
 The login page is self-descriptive. Using the `Remember me` checkbox will set a
 token to local storage so that you can remove the requirement to enter a
-`Username` and `Password` each time the page or site is reloaded. 
+`Username` and `Password` each time the page or site is reloaded.
 
 If an administrator starts the UI server with the following command,
 authentication is enabled:
@@ -106,7 +106,7 @@ box will pop up where you can enter in a description for the token to be created
 and an expiration date. This expiration date should be entered in Golang time
 duration. For example, `4320h` is valid and represents 4320 hours or about 6
 months. After clicking `Create Token` a token should appear with the expiration
-date.  
+date.
 
 This token can be used to authenticate when using the Phenix API. Specifically, you would include the following as a header in HTTP requests.
 
@@ -544,4 +544,3 @@ case VM_VIEWER:
     },
   })
 ```
-
