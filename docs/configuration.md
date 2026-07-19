@@ -111,7 +111,7 @@ Optional values for a node in the topology configuration can include:
 - file injections (and main disk inject partition)
 - labels, which are typically used by phēnix apps
 - routing ruleset(s)
-- delay triggered by `user`, `time`, or `c2` (command and control)
+- delay triggered by `user`, `timer`, or `c2` (command and control)
 
 !!! warning
     If not specified, the default disk partition to inject files into is `1`.
@@ -128,7 +128,7 @@ three options available to set, but on only one option can be set:
    start either through the phēnix UI or command line (the latter can be by
    phēnix or minimega commands).
 
-1. `time` is a string that is set as a delay in minutes; e.g., `5m`.
+1. `timer` is a string that is set as a delay in minutes; e.g., `5m`.
 
 1. `c2` requires minimega command and control. Note in the example below that
    the hostname `AD1` will be delayed starting until the VM `host-00` has
@@ -227,7 +227,7 @@ spec:
       snapshot: true
       do_not_boot: false
     delay:
-      time: 5m
+      timer: 5m
     hardware:
       os_type: linux
       drives:
