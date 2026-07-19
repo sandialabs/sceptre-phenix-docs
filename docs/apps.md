@@ -462,6 +462,13 @@ default netns.
     configurations. If you experience problems with external access, it may be
     due to a more restrictive iptables configuration than we've tested with.
 
+By default, the host taps are created during the experiment's **post-start**
+stage. The optional `stage` metadata option can be used to instead create the
+taps during the **pre-start** stage, which is useful when other apps or VMs need
+the taps to already exist when the experiment starts. Valid values are
+`pre-start` and `post-start`; when unset, it defaults to `post-start` to
+preserve backwards compatibility.
+
 The following is an example of how the `tap` app can be configured via a
 `Scenario` configuration, showing all the possible options.
 
@@ -474,6 +481,10 @@ spec:
   apps:
     - name: tap
       metadata:
+        # the experiment lifecycle stage to create the taps in -- valid values
+        # are 'pre-start' and 'post-start' (will default to 'post-start' if not
+        # provided)
+        stage: post-start
         taps:
             # the bridge to add the tap to (will default to 'phenix' if not provided)
           - bridge: phenix
