@@ -105,6 +105,85 @@ tab that provides VNC access to the VM.
 
 Not applicable.
 
+## Mount a VM
+
+The VM Mount feature lets you transfer files to and from a running VM directly
+through the phēnix Web-UI. It is an optional feature that must be enabled when
+starting the phēnix UI with the `vm-mount` feature flag (see
+[Enabling VM Mount](#enabling-vm-mount) below).
+
+!!! note
+
+    Mounting a VM requires the minimega command-and-control agent (`miniccc`)
+    to be installed and actively running in the VM. If `cc` is not active for a
+    VM, the mount button is disabled.
+
+### Enabling VM Mount
+
+VM Mount is disabled by default. Enable it by passing the `vm-mount` feature to
+the `--features` flag when starting the UI:
+
+```shell
+phenix ui --features vm-mount
+```
+
+The feature can also be enabled via the `ui.features` configuration key or the
+`PHENIX_UI_FEATURES` environment variable. See
+[Settings & Configuration](settings.md#settings-reference) for details.
+
+### From the Web-UI
+
+The experiment must be started. Click on the name of a running VM to access the
+VM information modal, then click the `mount vm` button (the hard-drive icon).
+
+![screenshot](images/vms_mount_vm.png)
+
+The mount browser modal presents two panes:
+
+* **Local file system** — browse to a file on your local machine and upload it
+  into the VM, or download a file from the VM to your local machine.
+* **Experiment files** — copy files that already exist on the phēnix server
+  into the VM. This option is only available when the
+  [experiment file server](settings.md#settings-reference) is enabled (see
+  below).
+
+### Uploading Experiment Files from the phēnix Server
+
+phēnix can optionally run a lightweight file server on a port separate from the
+main UI. This was added to support environments where the phēnix UI is only
+reachable on a private network but files (for example, application installers or
+configuration files) need to be uploaded to an experiment from a public network.
+
+When the file server is enabled, the VM Mount modal gains the **Experiment
+files** option described above, allowing files that have been uploaded to an
+experiment to be copied directly into a VM without going through the user's
+local machine.
+
+Enable the file server by passing the `--file-server-endpoint` flag when
+starting the UI:
+
+```shell
+# Bind to 127.0.0.1 on port 8080 (port-only value binds to localhost)
+phenix ui --features vm-mount --file-server-endpoint 8080
+
+# Bind to a specific interface and port
+phenix ui --features vm-mount --file-server-endpoint 0.0.0.0:8080
+```
+
+The file server presents a simple interface for selecting an experiment and
+uploading a file to it. When authentication/authorization is enabled for the
+main phēnix UI, it is automatically enforced on the file server as well, so
+users must already have valid phēnix credentials to upload files. File upload
+permissions are included in the default **Experiment Admin** and **Experiment
+User** roles.
+
+See [Settings & Configuration](settings.md#settings-reference) for the
+`ui.file-server-endpoint` configuration key.
+
+### From the Command Line Binary
+
+Not applicable.
+
 ## Packet Capture
 
 ### From the Web-UI
