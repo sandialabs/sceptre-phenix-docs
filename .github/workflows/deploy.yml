@@ -7,14 +7,22 @@ on:
       - dev
   # Allow manual triggering for feature branch previews
   workflow_dispatch:
-  # Trigger cleanup when a PR is closed
-  pull_request:
+  # Trigger cleanup when a PR is closed. Uses pull_request_target (not
+  # pull_request) so the GITHUB_TOKEN keeps write access even when the PR
+  # came from a fork -- pull_request always forces a read-only token for
+  # fork PRs, which is not enough to push the gh-pages deletion commit.
+  # Safe here because this job never checks out or executes the PR's head
+  # ref/code; it only computes a branch-derived version name.
+  pull_request_target:
     types:
       - closed
 
-# Cancel in-progress builds if a new commit is pushed to the same branch
+# Cancel in-progress builds if a new commit is pushed to the same branch.
+# Keyed by event_name as well as ref: a merged fork PR fires both a `push`
+# to main and a `pull_request`/`pull_request_target` `closed` event that
+# both resolve to refs/heads/main, and they must not cancel each other.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -45,13 +53,17 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       # Automatic deployment for main -> latest
+      # Restricted to the `push` event: a closed pull_request_target for a
+      # merged PR also resolves github.ref to refs/heads/main (the merge
+      # ref no longer exists once the PR is closed), so without this guard
+      # this step would also fire on PR-close, racing the real push run.
       - name: Deploy documentation from main branch
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: mike deploy --push --update-aliases latest
 
       # Automatic deployment for dev -> dev
       - name: Deploy documentation from dev branch
-        if: github.ref == 'refs/heads/dev'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
         run: mike deploy --push dev
 
       # Manual deployment for feature branches -> feat-branch-name
@@ -66,7 +78,7 @@ jobs:
 
       # Automatic cleanup of feature branch deployments
       - name: Delete documentation version for closed PR
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        if: github.event_name == 'pull_request_target' && github.event.action == 'closed'
         run: |
           # Sanitize the branch name using the same logic as deployment
           VERSION=$(echo $GITHUB_HEAD_REF | sed 's/[^a-zA-Z0-9]/-/g')
