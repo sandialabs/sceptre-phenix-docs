@@ -91,3 +91,42 @@ phēnix resolves configuration settings in the following order (highest to lowes
 | `ui.logs.minimega-path` | `PHENIX_UI_LOGS_MINIMEGA_PATH` | `""` | Path to the minimega log file to display in the UI. **(Restart Required)** |
 | `ui.features` | `PHENIX_UI_FEATURES` | `""` | Comma-separated list of optional UI features to enable. Currently supports `vm-mount`, which enables transferring files to and from a running VM. See [Mount a VM](vms.md#mount-a-vm). **(Restart Required)** |
 | `ui.file-server-endpoint` | `PHENIX_UI_FILE_SERVER_ENDPOINT` | `0` (disabled) | Address (`port` or `host:port`) for the separate experiment file-upload server. A port-only value binds to `127.0.0.1`. Also works with the `vm-mount` feature - see [Uploading Experiment Files from the phēnix Server](vms.md#uploading-experiment-files-from-the-phenix-server). **(Restart Required)** |
+
+## phēnix Apps Environment Variables
+
+Apps (`phenix-apps`) run as subprocesses and read their configuration from the environment.
+phēnix sets these itself when it launches an app:
+
+| Environment Variable | Value | Description |
+| :--- | :--- | :--- |
+| `PHENIX_DIR` | `base-dir.phenix` | Base phēnix data directory. |
+| `PHENIX_FILES_DIR` | experiment files directory | Where the app reads and writes experiment files. |
+| `PHENIX_LOG_LEVEL` | phēnix's own value, else `DEBUG` | App log verbosity. |
+| `PHENIX_LOG_FILE` | `stderr` | App logs stream back to phēnix rather than to a file. |
+| `PHENIX_DRYRUN` | `true` / `false` | Whether the run is a dry run. |
+| `PHENIX_STORE_ENDPOINT` | `store.endpoint` | Data store endpoint (user apps only). |
+| `PHENIX_SCORCH_STARTTIME` | run start time | Scorch components only. |
+
+The rest are inherited from the phēnix process:
+
+| Environment Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PHENIX_TEMP_DIR` | `/tmp/phenix` | App temporary directory. |
+| `MM_FILEPATH` | `/phenix/images` | Base minimega file path. |
+| `MM_SOCKET_PATH` | `/tmp/minimega/minimega` | minimega command socket. |
+
+### miniccc (`cc`) Timing
+
+Apps drive VMs over minimega's `cc` command-and-control channel. These bound how long an app
+waits, in seconds.
+
+| Environment Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PHENIX_CC_POLL_RATE` | `2.0` | Interval between `cc` polls. |
+| `PHENIX_CC_CLIENT_GRACE` | `300.0` | Wait for a miniccc client to register before failing. |
+| `PHENIX_CC_SEND_GRACE` | `300.0` | Wait for a file send or component start to be acknowledged. |
+| `PHENIX_CC_CMD_GRACE` | `0.0` | Wait for a command response. `0` waits indefinitely, supervised by client liveness instead. |
+| `PHENIX_CC_EXITCODE_GRACE` | `10.0` | Wait for an exit code once the response is counted. |
+| `PHENIX_CC_LIVENESS_INTERVAL` | `10.0` | Interval between client-liveness checks during an unbounded wait. |
+| `PHENIX_CC_LOG_INTERVAL` | `10.0` | Delay before the first "still waiting" log line. |
+| `PHENIX_CC_LOG_MAX_INTERVAL` | `320.0` | Ceiling for that interval, which doubles each time. |
