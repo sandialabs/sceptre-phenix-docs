@@ -168,7 +168,7 @@ priority = 1
 [[repos.hooks]]
 id = "no-commit-to-branch"
 name = "branch name validation"
-description = "Prevent committing to 'main', 'master', or any branch that aren't kebab-case (only allows letters, numbers, and hyphens)"
+description = "Prevent committing to 'main', 'master', or any branch that isn't kebab-case (only allows letters, numbers, and hyphens)"
 args = [
   "--branch",
   "main",
@@ -177,6 +177,6 @@ args = [
   "--branch",
   "dev",
   "--pattern",
-  '.*[^\w-].*'
+  '.*[^A-Za-z0-9-].*'
 ]
 priority = 1
