@@ -52,7 +52,6 @@ It is also possible to filter the graph based on nodes that are either:
     see external nodes again.
 
 The `Refresh Network` button will reset the filter, showing all nodes.
-The `Refresh Network` button will reset the filter, showing all nodes.
 
 The `Manual Refresh` button will request the latest server-side SoH data and
 update the three tabs.
@@ -77,7 +76,6 @@ modal will only show the current CPU load.
 
 Note the green button in the lower right corner of the modal; this will provide
 access to the VNC for any running VM. When the VM is not running, access to the
-VNC will be disabled. Finally, if there is no SoH information to report on a
 VNC will be disabled. Finally, if there is no SoH information to report on a
 given VM, it will be noted in the details modal. The following screenshot is an
 example of no SoH information with the VNC button disabled.
@@ -244,7 +242,6 @@ details. (In this screenshot, the mouse is hovering over the traffic for IP
       setting; if packet capture is to be deployed it must be provided.
 
     * `elasticServer`:
-    * `elasticServer`:
 
         * `hostname`: the hostname to use for the Elastic/Kibana server added to
           the experiment topology. There is no default for this setting; if
@@ -353,7 +350,6 @@ experiment. This means the setting can be changed between runs of an experiment
 (e.g., using `phenix config edit experiment/<name>`) and the change will be
 reflected accurately when the experiment is started again.
 
-### Packet Capture
 ### Packet Capture
 
 The SoH packet capture capability leverages minimega's tap mirroring to monitor
