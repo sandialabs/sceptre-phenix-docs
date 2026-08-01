@@ -77,7 +77,6 @@ nav:
     - Files: configuration.md
     - Settings: settings.md
     - Logging: logging.md
-    - Git Workflow: git-workflow.md
   - Experiments:
     - Overview: experiments.md
     - VMs: vms.md
@@ -90,6 +89,9 @@ nav:
     - State of Health: state-of-health.md
   - Networking:
     - Netflow: netflow.md
+  - Integrations:
+    - API: api.md
+    - Git Workflow: git-workflow.md
   - Administration:
     - Users: user-administration.md
   - Reference:
