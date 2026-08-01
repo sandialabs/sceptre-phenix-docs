@@ -50,9 +50,9 @@ update the three tabs.
 
 Hovering over a node in the graph will cause it to expand to show what operating
 system the node is running. An orange border around a node is indicative of the
-node currently having health issues (e.g., expected processes not running or not
-being able to reach other nodes on the network). Other virtual systems will also
-be represented accordingly (e.g., a printer or firewall).
+node currently having health issues (e.g., expected files or processes are
+missing, or the node cannot reach other nodes on the network). Other virtual
+systems will also be represented accordingly (e.g., a printer or firewall).
 
 ![screenshot](images/linux.png){: width=800 .center}
 
@@ -150,6 +150,19 @@ details. (In this screenshot, the mouse is hovering over the traffic for IP
       STDERR from the executed script. If this validation script exits 0, the
       test passes. If it exits non-zero, the test fails. This validation script
       should always be a bash script, even if the host is a Windows host.
+
+* `hostFiles`: a map of VMs, each specifying a list of file paths that should
+  exist within the VM. Paths may target Linux or Windows VMs. Missing files are
+  reported in the node's **Files** table in the SoH details modal and mark the
+  node as unhealthy. The default is `nil`.
+
+    ```yaml
+    hostFiles:
+      linux-server:
+      - /etc/phenix/startup/1_hostname-start.sh
+      windows-client:
+      - 'C:\ProgramData\phenix\ready.txt'
+    ```
 
 * `hostListeners`: a map of VMs, each specifying a list of listening ports to
   check for within the VM. If the port can be listening on any interface, the
@@ -340,6 +353,11 @@ spec:
             Get-Process miniccc -ErrorAction SilentlyContinue
           testStdout: miniccc
           executor: powershell -NoProfile -ExecutionPolicy bypass -File
+      hostFiles:
+        host-00:
+        - /etc/phenix/startup/1_hostname-start.sh
+        host-01:
+        - 'C:\ProgramData\phenix\ready.txt'
       hostListeners:
         client:
         - :502
@@ -398,6 +416,7 @@ Current tests executed on Linux VMs include the following:
 * `ip addr`
 * `ip route`
 * `ping -c 1 <ip>`
+* `stat -c present -- '<path>'`
 * `pgrep -f <process>`
 * `ss -lntu state all 'sport = <port>'`
 * `cat /proc/loadavg`
@@ -407,6 +426,7 @@ Corresponding tests for Windows VMs include the following:
 * `ipconfig /all`
 * `route print`
 * `ping -n 1 <ip>`
+* `powershell -NoProfile -Command "if (Test-Path -LiteralPath '<path>' -PathType Leaf) { 'present' }"`
 * `powershell -command "Get-Process <process> -ErrorAction SilentlyContinue"`
 * `powershell -command "netstat -an | select-string -pattern 'listening' | select-string -pattern '<port>'"`
 * `powershell -command "Get-WmiObject Win32_Processor | Measure-Object -Property LoadPercentage -Average | Select Average"`
