@@ -18,6 +18,27 @@ their `running` stage only when manually triggered by the user.
 | startup | configures minimega startup injections based on OS type                                      |
 | vrouter | customizes Vyatta/VyOS and minirouter routers, including setting interfaces, ACL rules, etc. |
 
+### Disable Default Apps for a VM
+
+To keep a VM managed by `phenix` and minimega without applying the built-in
+default apps, set the `phenix/default-apps` node annotation to `false` in the
+topology:
+
+```yaml title="disable default apps for one VM"
+spec:
+  nodes:
+    - annotations:
+        phenix/default-apps: false
+      general:
+        hostname: custom-vm
+      # remaining node configuration omitted
+```
+
+This skips the `ntp`, `serial`, `startup`, and `vrouter` apps for that node
+during every lifecycle stage. User apps configured in a scenario are
+unaffected. Omit the annotation, or set it to `true`, to retain the default
+behavior.
+
 ### ntp App
 
 The `ntp` app configures experiment VMs to use a NTP server in the experiment.
