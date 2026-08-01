@@ -178,6 +178,66 @@ configuration schema for an external node in the topology is defined
     This is a quirk of how we internally decide which node schema should be used
     (via `oneOf`).
 
+An external node still requires a `type`, `general.hostname`, and (if you want
+it to show up connected to anything in the topology graph) a `network`
+section, just like a regular node. However, the `external_node` schema is
+intentionally simpler than the schema used for minimega-deployed nodes:
+
+- there is no `drives` key (external nodes have no disk image to snapshot or
+  inject files into)
+- there is no `injections`, `delay`, `routes`, `ospf`, `rulesets`, `advanced`,
+  or `commands` support, since none of those apply to a device that phenix
+  doesn't deploy or control
+- network interfaces only support the flat set of fields shown in the
+  [`external_node` schema](schema.md#external_node-schema) (`name`, `proto`,
+  `address`, `mask`, `gateway`, `vlan`). There's no `oneOf` between
+  static/dhcp/serial interface types like there is for minimega nodes
+
+```yaml
+- type: HIL
+  external: true
+  general:
+    hostname: plc-01
+    description: Physical PLC on the test bench
+  hardware:
+    os_type: linux
+  network:
+    interfaces:
+    - name: eth0
+      vlan: EXP-1
+      address: 192.168.10.50
+      mask: 24
+      proto: static
+```
+
+#### Special and Edge Cases
+
+- **Not deployed, not monitored by C2.** External nodes are never started in
+  minimega and never run `miniccc`, so they're excluded from the automated
+  [State of Health](state-of-health.md#command-and-control) checks (network
+  config, listening ports, processes, CPU load, etc.) that rely on C2. Their IP
+  address(es) are still gathered from the topology, though, so they can be used
+  as the `src` or `dst` of a
+  [`testCustomReachability`](state-of-health.md#configuration-options) entry to
+  ping-test connectivity to/from the external device.
+- **`skipHosts` doesn't apply.** Since external nodes are already skipped from
+  C2-based monitoring, the SoH `skipHosts` setting has no effect on them.
+- **Interfaces on the `MGMT` or `MIRROR` VLANs are ignored in the graph.** The
+  SoH topology graph builder skips any interface whose VLAN is `MGMT` or
+  `MIRROR` (case-insensitive) when drawing connections, regardless of whether
+  the node is external or a regular VM.
+- **`vlan` can be omitted, but then the node won't be connected to anything.**
+  If an external node's interface doesn't specify a `vlan`, or the interface is
+  left off entirely, the node will still appear in the SoH topology graph as an
+  isolated node with no lines connecting it to anything else.
+- **Getting a line drawn in the graph.** To have phenix draw a line between an
+  external node and other nodes in the SoH topology graph, give the external
+  node a `network.interfaces[].vlan` value that exactly matches the `vlan`
+  value used on the interface(s) of the node(s) you want it connected to (the
+  VLAN name acts as the shared switch/interface node in the graph). It doesn't
+  matter whether the matching nodes are VMs or other external nodes &mdash;
+  any two nodes sharing a VLAN name will be connected in the graph.
+
 ### Example
 
 A contrived, four node example &mdash; three VMs and a router &mdash; is given
