@@ -32,6 +32,8 @@ could be:
 * `Not running` (part of the experiment, but currently paused)
 * `Not booted` (part of the experiment, but marked as Do Not Boot)
 * `Not deployed` (part of the experiment, but flushed from minimega)
+* `External` (an [external node](configuration.md#external-nodes), i.e.
+  hardware in the loop, not deployed by minimega)
 * `Experiment stopped`
 
 ![screenshot](images/graph_legend.png){: width=800 .center}
@@ -42,6 +44,12 @@ It is also possible to filter the graph based on nodes that are either:
 * `Not running`
 * `Not booted`
 * `Not deployed`
+
+!!! warning
+    There is no filter option for `External` nodes. Applying any of the filters
+    above will hide external nodes from the graph, since they don't match any
+    of the filterable statuses. Use `Refresh Network` to clear the filter and
+    see external nodes again.
 
 The `Refresh Network` button will reset the filter, showing all nodes.
 
@@ -73,6 +81,39 @@ given VM, it will be noted in the details modal. The following screenshot is an
 example of no SoH information with the VNC button disabled.
 
 ![screenshot](images/soh_no_details.png){: width=800 .center}
+
+### External Devices
+
+Experiments that include hardware-in-the-loop or other devices not deployed by
+minimega can still represent them in the topology graph by adding them to the
+topology as [external nodes](configuration.md#external-nodes) (`external:
+true`). External nodes show up in the graph with the `External` status color
+(see the legend above) and, when hovered, still show which OS type/icon was
+configured for them.
+
+Because external nodes don't run `miniccc`, they're excluded from the
+automated command-and-control-based checks described in [Command and
+Control](#command-and-control) (network config, reachability, listening ports,
+processes, CPU load). Clicking on an external node's details modal will
+therefore always report no SoH information available, and the VNC button will
+be disabled since phenix has no console access to it.
+
+External nodes can still participate in reachability testing indirectly: their
+IP address(es) are read from the topology configuration, so they can be used as
+the `src` or `dst` in a
+[`testCustomReachability`](#configuration-options) entry to verify connectivity
+to/from the device from another VM in the experiment.
+
+!!! tip "Getting a line to draw to an external device"
+    The topology graph only draws a line between two nodes when they share a
+    common VLAN name on one of their network interfaces (the VLAN name becomes
+    the shared switch node in the graph). To connect an external node to the
+    rest of the topology in the graph, give it a `network.interfaces[].vlan`
+    value that matches the VLAN used by the node(s) you want it connected to.
+    Interfaces on the `MGMT` or `MIRROR` VLANs are always ignored when drawing
+    these lines (for both external and internal nodes), and an external node
+    with no `vlan` set on its interface(s) will appear in the graph as an
+    isolated node with no connecting lines.
 
 ### Network Volume
 
