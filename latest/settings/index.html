@@ -510,6 +510,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#phenix-apps-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phēnix Apps Environment Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="phēnix Apps Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#miniccc-cc-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        miniccc (cc) Timing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1297,6 +1325,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#phenix-apps-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phēnix Apps Environment Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="phēnix Apps Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#miniccc-cc-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        miniccc (cc) Timing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1449,6 +1505,136 @@ Changes made via this command are applied immediately (hot-swapped) without rest
 <td style="text-align: left;"><code>PHENIX_UI_FILE_SERVER_ENDPOINT</code></td>
 <td style="text-align: left;"><code>0</code> (disabled)</td>
 <td style="text-align: left;">Address (<code>port</code> or <code>host:port</code>) for the separate experiment file-upload server. A port-only value binds to <code>127.0.0.1</code>. Also works with the <code>vm-mount</code> feature - see <a href="../vms/#uploading-experiment-files-from-the-phenix-server">Uploading Experiment Files from the phēnix Server</a>. <strong>(Restart Required)</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="phenix-apps-environment-variables">phēnix Apps Environment Variables<a class="headerlink" href="#phenix-apps-environment-variables" title="Permanent link">&para;</a></h2>
+<p>Apps (<code>phenix-apps</code>) run as subprocesses and read their configuration from the environment.
+phēnix sets these itself when it launches an app:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Environment Variable</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>PHENIX_DIR</code></td>
+<td style="text-align: left;"><code>base-dir.phenix</code></td>
+<td style="text-align: left;">Base phēnix data directory.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_FILES_DIR</code></td>
+<td style="text-align: left;">experiment files directory</td>
+<td style="text-align: left;">Where the app reads and writes experiment files.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_LOG_LEVEL</code></td>
+<td style="text-align: left;">phēnix's own value, else <code>DEBUG</code></td>
+<td style="text-align: left;">App log verbosity.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_LOG_FILE</code></td>
+<td style="text-align: left;"><code>stderr</code></td>
+<td style="text-align: left;">App logs stream back to phēnix rather than to a file.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_DRYRUN</code></td>
+<td style="text-align: left;"><code>true</code> / <code>false</code></td>
+<td style="text-align: left;">Whether the run is a dry run.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_STORE_ENDPOINT</code></td>
+<td style="text-align: left;"><code>store.endpoint</code></td>
+<td style="text-align: left;">Data store endpoint (user apps only).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_SCORCH_STARTTIME</code></td>
+<td style="text-align: left;">run start time</td>
+<td style="text-align: left;">Scorch components only.</td>
+</tr>
+</tbody>
+</table>
+<p>The rest are inherited from the phēnix process:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Environment Variable</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>PHENIX_TEMP_DIR</code></td>
+<td style="text-align: left;"><code>/tmp/phenix</code></td>
+<td style="text-align: left;">App temporary directory.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MM_FILEPATH</code></td>
+<td style="text-align: left;"><code>/phenix/images</code></td>
+<td style="text-align: left;">Base minimega file path.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MM_SOCKET_PATH</code></td>
+<td style="text-align: left;"><code>/tmp/minimega/minimega</code></td>
+<td style="text-align: left;">minimega command socket.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="miniccc-cc-timing">miniccc (<code>cc</code>) Timing<a class="headerlink" href="#miniccc-cc-timing" title="Permanent link">&para;</a></h3>
+<p>Apps drive VMs over minimega's <code>cc</code> command-and-control channel. These bound how long an app
+waits, in seconds.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Environment Variable</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_POLL_RATE</code></td>
+<td style="text-align: left;"><code>2.0</code></td>
+<td style="text-align: left;">Interval between <code>cc</code> polls.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_CLIENT_GRACE</code></td>
+<td style="text-align: left;"><code>300.0</code></td>
+<td style="text-align: left;">Wait for a miniccc client to register before failing.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_SEND_GRACE</code></td>
+<td style="text-align: left;"><code>300.0</code></td>
+<td style="text-align: left;">Wait for a file send or component start to be acknowledged.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_CMD_GRACE</code></td>
+<td style="text-align: left;"><code>0.0</code></td>
+<td style="text-align: left;">Wait for a command response. <code>0</code> waits indefinitely, supervised by client liveness instead.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_EXITCODE_GRACE</code></td>
+<td style="text-align: left;"><code>10.0</code></td>
+<td style="text-align: left;">Wait for an exit code once the response is counted.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_LIVENESS_INTERVAL</code></td>
+<td style="text-align: left;"><code>10.0</code></td>
+<td style="text-align: left;">Interval between client-liveness checks during an unbounded wait.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_LOG_INTERVAL</code></td>
+<td style="text-align: left;"><code>10.0</code></td>
+<td style="text-align: left;">Delay before the first "still waiting" log line.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PHENIX_CC_LOG_MAX_INTERVAL</code></td>
+<td style="text-align: left;"><code>320.0</code></td>
+<td style="text-align: left;">Ceiling for that interval, which doubles each time.</td>
 </tr>
 </tbody>
 </table>
