@@ -89,6 +89,7 @@ nav:
     - State of Health: state-of-health.md
   - Networking:
     - Netflow: netflow.md
+    - Tunneler: tunneler.md
   - Integrations:
     - API: api.md
     - Git Workflow: git-workflow.md
