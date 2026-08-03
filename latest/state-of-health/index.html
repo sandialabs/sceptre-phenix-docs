@@ -811,6 +811,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#external-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#network-volume" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1348,6 +1359,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#external-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#network-volume" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1478,6 +1500,8 @@ could be:</p>
 <li><code>Not running</code> (part of the experiment, but currently paused)</li>
 <li><code>Not booted</code> (part of the experiment, but marked as Do Not Boot)</li>
 <li><code>Not deployed</code> (part of the experiment, but flushed from minimega)</li>
+<li><code>External</code> (an <a href="../configuration/#external-nodes">external node</a>, i.e.
+  hardware in the loop, not deployed by minimega)</li>
 <li><code>Experiment stopped</code></li>
 </ul>
 <p><img alt="screenshot" class="center" src="../images/graph_legend.png" width="800" /></p>
@@ -1488,6 +1512,13 @@ could be:</p>
 <li><code>Not booted</code></li>
 <li><code>Not deployed</code></li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is no filter option for <code>External</code> nodes. Applying any of the filters
+above will hide external nodes from the graph, since they don't match any
+of the filterable statuses. Use <code>Refresh Network</code> to clear the filter and
+see external nodes again.</p>
+</div>
 <p>The <code>Refresh Network</code> button will reset the filter, showing all nodes.</p>
 <p>The <code>Manual Refresh</code> button will request the latest server-side SoH data and
 update the three tabs.</p>
@@ -1509,6 +1540,36 @@ VNC will be disabled. Finally, if there is no SoH information to report on a
 given VM, it will be noted in the details modal. The following screenshot is an
 example of no SoH information with the VNC button disabled.</p>
 <p><img alt="screenshot" class="center" src="../images/soh_no_details.png" width="800" /></p>
+<h3 id="external-devices">External Devices<a class="headerlink" href="#external-devices" title="Permanent link">&para;</a></h3>
+<p>Experiments that include hardware-in-the-loop or other devices not deployed by
+minimega can still represent them in the topology graph by adding them to the
+topology as <a href="../configuration/#external-nodes">external nodes</a> (<code>external:
+true</code>). External nodes show up in the graph with the <code>External</code> status color
+(see the legend above) and, when hovered, still show which OS type/icon was
+configured for them.</p>
+<p>Because external nodes don't run <code>miniccc</code>, they're excluded from the
+automated command-and-control-based checks described in <a href="#command-and-control">Command and
+Control</a> (network config, reachability, listening ports,
+processes, CPU load). Clicking on an external node's details modal will
+therefore always report no SoH information available, and the VNC button will
+be disabled since phenix has no console access to it.</p>
+<p>External nodes can still participate in reachability testing indirectly: their
+IP address(es) are read from the topology configuration, so they can be used as
+the <code>src</code> or <code>dst</code> in a
+<a href="#configuration-options"><code>testCustomReachability</code></a> entry to verify connectivity
+to/from the device from another VM in the experiment.</p>
+<div class="admonition tip">
+<p class="admonition-title">Getting a line to draw to an external device</p>
+<p>The topology graph only draws a line between two nodes when they share a
+common VLAN name on one of their network interfaces (the VLAN name becomes
+the shared switch node in the graph). To connect an external node to the
+rest of the topology in the graph, give it a <code>network.interfaces[].vlan</code>
+value that matches the VLAN used by the node(s) you want it connected to.
+Interfaces on the <code>MGMT</code> or <code>MIRROR</code> VLANs are always ignored when drawing
+these lines (for both external and internal nodes), and an external node
+with no <code>vlan</code> set on its interface(s) will appear in the graph as an
+isolated node with no connecting lines.</p>
+</div>
 <h3 id="network-volume">Network Volume<a class="headerlink" href="#network-volume" title="Permanent link">&para;</a></h3>
 <p>This tab displays a chord graph that shows network flows between nodes using
 flows from Packetbeat fed to Elasticsearch; connections represent the volume of
