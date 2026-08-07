@@ -2036,7 +2036,7 @@ role.</p>
 <h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
 <p>The login page is self-descriptive. Using the <code>Remember me</code> checkbox will set a
 token to local storage so that you can remove the requirement to enter a
-<code>Username</code> and <code>Password</code> each time the page or site is reloaded. </p>
+<code>Username</code> and <code>Password</code> each time the page or site is reloaded.</p>
 <p>If an administrator starts the UI server with the following command,
 authentication is enabled:</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>ui<span class="w"> </span>-k<span class="w"> </span>&lt;some_string&gt;
@@ -2048,7 +2048,7 @@ box will pop up where you can enter in a description for the token to be created
 and an expiration date. This expiration date should be entered in Golang time
 duration. For example, <code>4320h</code> is valid and represents 4320 hours or about 6
 months. After clicking <code>Create Token</code> a token should appear with the expiration
-date.  </p>
+date.</p>
 <p>This token can be used to authenticate when using the Phenix API. Specifically, you would include the following as a header in HTTP requests.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>X-phenix-auth-token: Bearer &lt;TOKEN&gt;
 </span></code></pre></div>

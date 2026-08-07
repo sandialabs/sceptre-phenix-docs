@@ -2613,7 +2613,7 @@ you will be presented with a VM information modal.</p>
 <li><code>close</code> modify state toolbar</li>
 </ul>
 <h3 id="from-the-command-line-binary">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary" title="Permanent link">&para;</a></h3>
-<p>There are two options for displaying the information for VMs in an experiment. First run 
+<p>There are two options for displaying the information for VMs in an experiment. First run
 the following command to see information for all VMs in a given experiment.</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div>
@@ -2622,7 +2622,7 @@ the following command to see information for all VMs in a given experiment.</p>
 </span></code></pre></div>
 <h2 id="create-a-backing-image">Create a Backing Image<a class="headerlink" href="#create-a-backing-image" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_1">From the Web-UI<a class="headerlink" href="#from-the-web-ui_1" title="Permanent link">&para;</a></h3>
-<p>Click on the name of a running VM in a started experiment to access the VM information 
+<p>Click on the name of a running VM in a started experiment to access the VM information
 modal.  Click the <code>create backing image</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_backing_image.png" /></p>
 <h3 id="from-the-command-line-binary_1">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_1" title="Permanent link">&para;</a></h3>
@@ -2710,9 +2710,9 @@ User</strong> roles.</p>
 <p>Not applicable.</p>
 <h2 id="packet-capture">Packet Capture<a class="headerlink" href="#packet-capture" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_6">From the Web-UI<a class="headerlink" href="#from-the-web-ui_6" title="Permanent link">&para;</a></h3>
-<p>Click on the name of the network tap on a running VM in a started experiment to 
-start a packet capture. The name of the network tap will turn green once a packet 
-capture has started. It is possible to start captures on multiple network taps. 
+<p>Click on the name of the network tap on a running VM in a started experiment to
+start a packet capture. The name of the network tap will turn green once a packet
+capture has started. It is possible to start captures on multiple network taps.
 However, when you stop packet capture, it will stop captures on all network taps.</p>
 <h3 id="from-the-command-line-binary_6">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_6" title="Permanent link">&para;</a></h3>
 <p>To start a packet capture, run the following command.</p>
@@ -2723,11 +2723,11 @@ However, when you stop packet capture, it will stop captures on all network taps
 </span></code></pre></div>
 <h2 id="kill-a-vm">Kill a VM<a class="headerlink" href="#kill-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_7">From the Web-UI<a class="headerlink" href="#from-the-web-ui_7" title="Permanent link">&para;</a></h3>
-<p>Click on the name of a running VM in a started experiment to access the VM information 
+<p>Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the <code>modify state</code> button on the far right to open the modify state toolbar.
 Click the <code>kill</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_kill.png" /></p>
-<p><em>Note</em>: if you stop and then start the experiment again, that VM will run again 
+<p><em>Note</em>: if you stop and then start the experiment again, that VM will run again
 per the experiment configuration.</p>
 <h3 id="from-the-command-line-binary_7">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_7" title="Permanent link">&para;</a></h3>
 <p>To kill a VM, run the following command.</p>
@@ -2735,9 +2735,9 @@ per the experiment configuration.</p>
 </span></code></pre></div>
 <h2 id="modify-the-network-connectivity">Modify the Network Connectivity<a class="headerlink" href="#modify-the-network-connectivity" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_8">From the Web-UI<a class="headerlink" href="#from-the-web-ui_8" title="Permanent link">&para;</a></h3>
-<p>Click on the network for the desired VM in the Running Component to modify the 
-settings. Select from a pull down what network you want to switch the VM interface 
-you clicked on to. To revert back to previous setting, simply repeat selecting the 
+<p>Click on the network for the desired VM in the Running Component to modify the
+settings. Select from a pull down what network you want to switch the VM interface
+you clicked on to. To revert back to previous setting, simply repeat selecting the
 network interface you wish to change, and select the previous network setting.</p>
 <h3 id="from-the-command-line-binary_8">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_8" title="Permanent link">&para;</a></h3>
 <p>To connect a VM network interface to a different network, run the following command.</p>
@@ -2748,9 +2748,9 @@ network interface you wish to change, and select the previous network setting.</
 </span></code></pre></div>
 <h2 id="pause-a-vm">Pause a VM<a class="headerlink" href="#pause-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_9">From the Web-UI<a class="headerlink" href="#from-the-web-ui_9" title="Permanent link">&para;</a></h3>
-<p>Click on the name of a running VM in a started experiment to access the VM information 
+<p>Click on the name of a running VM in a started experiment to access the VM information
 modal. To pause a VM, click on the <code>pause</code> button as shown in the screenshot below.
-To start a paused VM, that same button will become a green play button; simply 
+To start a paused VM, that same button will become a green play button; simply
 click it to start.</p>
 <p><img alt="screenshot" src="../images/vms_pause.png" /></p>
 <h3 id="from-the-command-line-binary_9">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_9" title="Permanent link">&para;</a></h3>
@@ -2762,7 +2762,7 @@ click it to start.</p>
 </span></code></pre></div>
 <h2 id="redeploy-a-vm">Redeploy a VM<a class="headerlink" href="#redeploy-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_10">From the Web-UI<a class="headerlink" href="#from-the-web-ui_10" title="Permanent link">&para;</a></h3>
-<p>Click on the name of a running VM in a started experiment to access the VM information 
+<p>Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the <code>modify state</code> button on the far right to open the modify state toolbar.
 Click the <code>redeploy</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_redeploy.png" /></p>
@@ -2772,7 +2772,7 @@ Click the <code>redeploy</code> button as shown in the screenshot below.</p>
 </span></code></pre></div>
 <h2 id="reset-disk-state">Reset Disk State<a class="headerlink" href="#reset-disk-state" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_11">From the Web-UI<a class="headerlink" href="#from-the-web-ui_11" title="Permanent link">&para;</a></h3>
-<p>Click on the name of a running VM in a started experiment to access the VM information 
+<p>Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the <code>modify state</code> button on the far right to open the modify state toolbar.
 Click the <code>reset disk state</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_reset_disk_state.png" /></p>
@@ -2782,7 +2782,7 @@ Click the <code>reset disk state</code> button as shown in the screenshot below.
 </span></code></pre></div>
 <h2 id="restart-a-vm">Restart a VM<a class="headerlink" href="#restart-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_12">From the Web-UI<a class="headerlink" href="#from-the-web-ui_12" title="Permanent link">&para;</a></h3>
-<p>Click on the name of a running VM in a started experiment to access the VM information 
+<p>Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the <code>modify state</code> button on the far right to open the modify state toolbar.
 Click the <code>restart</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_restart.png" /></p>
@@ -2792,8 +2792,8 @@ Click the <code>restart</code> button as shown in the screenshot below.</p>
 </span></code></pre></div>
 <h2 id="resume-a-vm">Resume a VM<a class="headerlink" href="#resume-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_13">From the Web-UI<a class="headerlink" href="#from-the-web-ui_13" title="Permanent link">&para;</a></h3>
-<p>Click on the name of the paused VM in a started experiment to access the VM information 
-modal. Click the green play button (previously the pause button, furthest button to the 
+<p>Click on the name of the paused VM in a started experiment to access the VM information
+modal. Click the green play button (previously the pause button, furthest button to the
 left).</p>
 <h3 id="from-the-command-line-binary_13">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_13" title="Permanent link">&para;</a></h3>
 <p>To resume a paused VM, run the following command.</p>
@@ -2801,7 +2801,7 @@ left).</p>
 </span></code></pre></div>
 <h2 id="shutdown-a-vm">Shutdown a VM<a class="headerlink" href="#shutdown-a-vm" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_14">From the Web-UI<a class="headerlink" href="#from-the-web-ui_14" title="Permanent link">&para;</a></h3>
-<p>Click on the name of a running VM in a started experiment to access the VM information 
+<p>Click on the name of a running VM in a started experiment to access the VM information
 modal. Click the <code>modify state</code> button on the far right to open the modify state toolbar.
 Click the <code>shutdown</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_shutdown.png" /></p>
@@ -2813,7 +2813,7 @@ Click the <code>shutdown</code> button as shown in the screenshot below.</p>
 <h3 id="from-the-web-ui_15">From the Web-UI<a class="headerlink" href="#from-the-web-ui_15" title="Permanent link">&para;</a></h3>
 <p>There are two ways to modify VM settings:</p>
 <ol>
-<li>Click on a stopped experiment to access the Stopped Component. You are able to edit the 
+<li>Click on a stopped experiment to access the Stopped Component. You are able to edit the
 following:<ul>
 <li>Host name</li>
 <li>CPUs</li>

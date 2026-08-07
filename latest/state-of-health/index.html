@@ -1936,7 +1936,8 @@ additional analysis on the network flow data that's being captured.</p>
 <p>As mentioned earlier, SoH relies on minimega's command and control infrastructure (<a href="https://www.sandia.gov/minimega/module-28-miniccc-and-the-cc-api/">miniccc</a>)
 to drive and collect the experiment health state data. Under the hood, the SoH
 app uses C2 to execute a test on a VM (<code>cc exec</code>), wait for the command to
-complete (<code>cc commands</code>), grab the STDOUT/STDERR of the command (<code>cc responses</code>), and compare it to an expected response.</p>
+complete (<code>cc commands</code>), grab the STDOUT/STDERR of the command (<code>cc
+responses</code>), and compare it to an expected response.</p>
 <p>Current tests executed on Linux VMs include the following:</p>
 <ul>
 <li><code>ip addr</code></li>
