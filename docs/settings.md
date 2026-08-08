@@ -92,6 +92,18 @@ phēnix resolves configuration settings in the following order (highest to lowes
 | `ui.features` | `PHENIX_UI_FEATURES` | `""` | Comma-separated list of optional UI features to enable. Currently supports `vm-mount`, which enables transferring files to and from a running VM. See [Mount a VM](vms.md#mount-a-vm). **(Restart Required)** |
 | `ui.file-server-endpoint` | `PHENIX_UI_FILE_SERVER_ENDPOINT` | `0` (disabled) | Address (`port` or `host:port`) for the separate experiment file-upload server. A port-only value binds to `127.0.0.1`. Also works with the `vm-mount` feature - see [Uploading Experiment Files from the phēnix Server](vms.md#uploading-experiment-files-from-the-phenix-server). **(Restart Required)** |
 
+## Web UI Session Timeout
+
+The web UI's **Settings** page (admin-only) can also automatically log out idle users. Unlike
+the settings above, this is stored in the data store and takes effect immediately when saved —
+no `config.yaml` or restart involved.
+
+| Setting | Default | Description |
+| :--- | :--- | :--- |
+| Log out idle users | Disabled | Enables the idle timeout. |
+| Idle timeout (minutes) | `30` | Minutes of inactivity before an idle user is logged out. |
+| Warning before logout (minutes) | `3` | How long before logout to warn the user. |
+
 ## phēnix Apps Environment Variables
 
 Apps (`phenix-apps`) run as subprocesses and read their configuration from the environment.
