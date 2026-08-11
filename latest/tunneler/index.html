@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../settings/">
+        <link rel="prev" href="../netflow/">
       
       
-        <link rel="next" href="../experiments/">
+        <link rel="next" href="../api/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Logging - phenix documentation</title>
+        <title>Tunneler - phenix documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#logging" class="md-skip">
+        <a href="#tunneler" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Logging
+              Tunneler
             
           </span>
         </div>
@@ -288,20 +288,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -322,7 +320,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -393,37 +391,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Logging
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
         
   
   
@@ -439,137 +410,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cli-verbosity-loglevel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CLI Verbosity (--log.level)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="CLI Verbosity (--log.level)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#available-levels" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Available Levels
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-app-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The App Contract
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The App Contract">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#python-apps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python Apps
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#go-apps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Go Apps
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#phenix-core" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        phēnix Core
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#http-request-logging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        HTTP Request Logging
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -918,18 +758,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -950,7 +792,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -993,10 +835,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../tunneler/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunneler
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1012,6 +881,120 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-the-tunneler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading the Tunneler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starting-the-tunneler-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting the Tunneler Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-port-forward-for-a-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Port Forward for a VM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-listeners-from-the-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Listeners from the Command Line
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing Listeners from the Command Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activate-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        activate &lt;id&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivate-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        deactivate &lt;id&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-id-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        move &lt;id&gt; &lt;port&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1353,10 +1336,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#downloading-the-tunneler" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture
+        Downloading the Tunneler
       
     </span>
   </a>
@@ -1364,61 +1347,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cli-verbosity-loglevel" class="md-nav__link">
+  <a href="#starting-the-tunneler-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CLI Verbosity (--log.level)
+        Starting the Tunneler Server
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="CLI Verbosity (--log.level)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#available-levels" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Available Levels
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-app-contract" class="md-nav__link">
+  <a href="#creating-a-port-forward-for-a-vm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The App Contract
+        Creating a Port Forward for a VM
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The App Contract">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-listeners-from-the-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Listeners from the Command Line
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing Listeners from the Command Line">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#python-apps" class="md-nav__link">
+  <a href="#list" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Python Apps
+        list
       
     </span>
   </a>
@@ -1426,10 +1392,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#go-apps" class="md-nav__link">
+  <a href="#activate-id" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Go Apps
+        activate &lt;id&gt;
       
     </span>
   </a>
@@ -1437,10 +1403,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#phenix-core" class="md-nav__link">
+  <a href="#deactivate-id" class="md-nav__link">
     <span class="md-ellipsis">
       
-        phēnix Core
+        deactivate &lt;id&gt;
       
     </span>
   </a>
@@ -1448,10 +1414,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#http-request-logging" class="md-nav__link">
+  <a href="#move-id-port" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HTTP Request Logging
+        move &lt;id&gt; &lt;port&gt;
       
     </span>
   </a>
@@ -1483,146 +1449,150 @@
   
 
 
-<h1 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h1>
-<p>phēnix features a centralized logging system that aggregates logs from the core daemon, internal Go services, and external user applications.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<p>The logging architecture is designed to be <strong>centralized</strong>. The phēnix core acts as the aggregator, capturing <code>stderr</code> from all running applications, parsing the output as JSON, and ingesting it into the centralized logging system.</p>
-<pre class="mermaid"><code>graph TD
-    subgraph "phēnix core"
-        Core[phēnix Daemon]
-        Plog[plog Package]
-        FileLog[File Logger]
-        ConsoleLog[Console Logger]
-        UILog[UI Logger]
-        Config[Viper Config]
-    end
-
-    subgraph "Go Apps"
-        GoApp[Go Application]
-        GoSlog[slog JSON Handler]
-    end
-
-    subgraph "Python Apps"
-        PyApp[Python Application]
-        PyLog[Python Logger]
-        PySink[phēnix Stderr Sink]
-    end
-
-    Config --&gt;|Watches config.yaml| Plog
-    Core --&gt;|Uses| Plog
-
-    Plog --&gt;|Write JSON/Text| FileLog
-    Plog --&gt;|Write Text| ConsoleLog
-    Plog --&gt;|Publish| UILog
-
-    GoApp --&gt;|Log| GoSlog
-    GoSlog --&gt;|JSON via Stderr| Core
-
-    PyApp --&gt;|Log| PyLog
-    PyLog --&gt;|Log| PySink
-    PySink --&gt;|JSON via Stderr| Core
-
-    Core --&gt;|ProcessStderrLogs| Plog</code></pre>
-<h2 id="cli-verbosity-loglevel">CLI Verbosity (<code>--log.level</code>)<a class="headerlink" href="#cli-verbosity-loglevel" title="Permanent link">&para;</a></h2>
-<p>You can temporarily increase or decrease log verbosity for any command by using the global <code>--log.level</code> flag.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix<span class="w"> </span>&lt;command&gt;<span class="w"> </span>--log.level<span class="o">=</span>&lt;level&gt;
-</span></code></pre></div>
-<p>This is useful when troubleshooting because it only affects that command invocation.</p>
-<h3 id="available-levels">Available Levels<a class="headerlink" href="#available-levels" title="Permanent link">&para;</a></h3>
-<p>phēnix supports the following log levels for <code>--log.level</code>:</p>
-<ul>
-<li><code>debug</code>: Most verbose output for troubleshooting.</li>
-<li><code>info</code>: Default level. Normal operational messages.</li>
-<li><code>warn</code>: Warnings and errors.</li>
-<li><code>error</code>: Errors only.</li>
-<li><code>none</code>: Suppress all standard log output.</li>
-</ul>
+<h1 id="tunneler">Tunneler<a class="headerlink" href="#tunneler" title="Permanent link">&para;</a></h1>
+<p>The <code>phenix-tunneler</code> is a small application that runs on a user's local
+machine to forward TCP traffic from VMs in a running experiment down to
+local ports. This lets a user interact with a VM directly using command line tools, instead of having to go through noVNC in a browser. A common
+example is using a real RDP client to connect to a Windows VM instead of
+interacting with it through noVNC (which enables things like copy/paste
+support that noVNC does not).</p>
+<p>Traffic is proxied through the phēnix UI server over a WebSocket
+connection, so the local machine only needs network access to the phēnix
+UI.</p>
+<h2 id="downloading-the-tunneler">Downloading the Tunneler<a class="headerlink" href="#downloading-the-tunneler" title="Permanent link">&para;</a></h2>
+<p>Click on the <code>Tunneler</code> tab in the banner near the top of the phēnix UI.</p>
+<p><img alt="screenshot" src="../images/tunneler_tab.png" /></p>
+<p>This page lists the <code>phenix-tunneler</code> binaries built for the phēnix
+instance's version, along with a download link for each supported OS and
+architecture:</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>MacOS</td>
+<td>arm64</td>
+</tr>
+<tr>
+<td>MacOS</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>amd64</td>
+</tr>
+</tbody>
+</table>
+<p>Download the binary that matches your local machine and make it
+executable (on Linux/MacOS, <code>chmod +x phenix-tunneler-&lt;os&gt;-&lt;arch&gt;</code>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Level names are case-insensitive (for example, <code>DEBUG</code> and <code>debug</code> are equivalent).</p>
+<p>The <code>Tunneler</code> tab, and its downloads, are only available if the
+phēnix server has been configured to serve tunneler binaries (a
+<code>downloads/tunneler</code> directory must exist alongside the phēnix
+binary on the server). This will be the case if you have a typical deployment using the Docker image.</p>
 </div>
-<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
-<p>Use higher verbosity to inspect behavior while running a command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Run the UI with debug logging for this invocation</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>phenix<span class="w"> </span>ui<span class="w"> </span>--log.level<span class="o">=</span>debug
+<h2 id="starting-the-tunneler-server">Starting the Tunneler Server<a class="headerlink" href="#starting-the-tunneler-server" title="Permanent link">&para;</a></h2>
+<p>Once downloaded, start the tunneler's local proxy server with the <code>serve</code>
+subcommand, passing it the full URL to the phēnix UI:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix-tunneler<span class="w"> </span>serve<span class="w"> </span>https://phenix.example.com
+</span></code></pre></div>
+<p>If authentication is enabled in the phēnix UI, credentials must also be
+provided via one of the following flags:</p>
+<ul>
+<li><code>--username</code> (<code>-u</code>) -- the phēnix username to log in with. The tunneler
+  will prompt for the corresponding password (input is hidden) and use it
+  to log in to phēnix on your behalf.</li>
+<li><code>--auth-token</code> (<code>-t</code>) -- an existing phēnix API/JWT auth token, used in
+  place of a username/password login. The username is parsed directly out
+  of the token, so a separate <code>--username</code> isn't needed.</li>
+<li><code>--use-cookie</code> (<code>-c</code>) -- optional, only used alongside <code>--auth-token</code>.
+  Sets the name of a cookie to send the auth token in, in addition to the
+  <code>X-Phenix-Auth-Token</code> header, for phēnix deployments that expect the
+  token as a cookie.</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># log in interactively with a username/password</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>phenix-tunneler<span class="w"> </span>serve<span class="w"> </span>https://phenix.example.com<span class="w"> </span>--username<span class="w"> </span>jdoe
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Show only warnings and errors while listing experiments</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>phenix<span class="w"> </span>exp<span class="w"> </span>list<span class="w"> </span>--log.level<span class="o">=</span>warn
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Keep command output quiet unless an error occurs</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>phenix<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>--log.level<span class="o">=</span>error<span class="w"> </span>Role/vm-admin
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># use an existing auth token instead of logging in</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>phenix-tunneler<span class="w"> </span>serve<span class="w"> </span>https://phenix.example.com<span class="w"> </span>--auth-token<span class="w"> </span>&lt;token&gt;
 </span></code></pre></div>
-<p>To change the default level for all future commands, use settings:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>phenix<span class="w"> </span>settings<span class="w"> </span><span class="nb">set</span><span class="w"> </span>log.level<span class="w"> </span>debug
-</span></code></pre></div>
-<p>To revert and use the configured default again for subsequent commands:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>phenix<span class="w"> </span>settings<span class="w"> </span><span class="nb">unset</span><span class="w"> </span>log.level
-</span></code></pre></div>
-<h2 id="the-app-contract">The App Contract<a class="headerlink" href="#the-app-contract" title="Permanent link">&para;</a></h2>
-<p>All applications (Go or Python) running under phēnix must adhere to the following contract to ensure their logs are correctly parsed and displayed in the UI:</p>
+<p>The <code>serve</code> command keeps running in the foreground and needs to stay
+running for as long as forwarded ports should remain reachable locally.
+While it runs, it:</p>
+<ul>
+<li>Connects to phēnix over a WebSocket and listens for port forward
+  create/delete events happening across the phēnix UI.</li>
+<li>Fetches the list of port forwards that already exist for the logged-in
+  user and creates local listeners for each of them.</li>
+<li>Automatically creates a new local listener any time the logged-in user
+  creates a new port forward for a VM in the phēnix UI (see below).</li>
+<li>Exposes a local Unix domain socket (at
+  <code>$TMPDIR/phenix/tunneler.sock</code>) that the other <code>phenix-tunneler</code>
+  subcommands (<code>list</code>, <code>activate</code>, <code>deactivate</code>, <code>move</code>) use to manage
+  listeners while <code>serve</code> is running.</li>
+</ul>
+<h2 id="creating-a-port-forward-for-a-vm">Creating a Port Forward for a VM<a class="headerlink" href="#creating-a-port-forward-for-a-vm" title="Permanent link">&para;</a></h2>
+<p>With <code>phenix-tunneler serve</code> running locally, create a port forward for a
+VM from the phēnix UI:</p>
 <ol>
-<li><strong>Output</strong>: Logs must be written to <code>stderr</code>.</li>
-<li><strong>Format</strong>: Logs must be single-line <strong>JSON</strong> objects.</li>
-<li><strong>Required Fields</strong>:<ul>
-<li><code>level</code>: <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code></li>
-<li><code>msg</code>: The log message string.</li>
-<li><code>time</code>: Timestamp (RFC3339 or similar).</li>
+<li>Open a running experiment and click on a VM tile to open its VM
+   information modal.</li>
+<li>Click the <code>create port forward</code> button (the arrow icon). This button
+   requires the VM to be running with an active cc agent.</li>
+<li>Fill out the <code>Create New Port Forward</code> dialog:<ul>
+<li><code>Source Port</code> -- the port to listen on locally.</li>
+<li><code>Destination Host</code> -- the host, reachable from the phēnix server,
+  to forward traffic to (typically the VM's own IP address).</li>
+<li><code>Destination Port</code> -- the port on the destination host to forward
+  traffic to (e.g., <code>3389</code> for RDP).</li>
 </ul>
 </li>
-<li><strong>Optional Fields</strong>:<ul>
-<li><code>traceback</code>: For exceptions/panics (string).</li>
-</ul>
-</li>
+<li>Click <code>Create</code>.</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Check out the <a href="../examples/#example-applications">Example Applications</a> for complete, runnable reference implementations in Go and Python.</p>
-</div>
-<h3 id="python-apps">Python Apps<a class="headerlink" href="#python-apps" title="Permanent link">&para;</a></h3>
-<p>Use the <code>phenix_apps.common.logger</code>. It is pre-configured to output JSON to stderr.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>For fatal errors, <strong>raise an exception</strong> (e.g., <code>ValueError</code>, <code>RuntimeError</code>) instead of calling <code>sys.exit(1)</code>. The <code>AppBase</code> class wraps execution in a try/except block and will automatically catch the exception, log the traceback as structured JSON, and exit cleanly.</p>
-</div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">phenix_apps.common.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_func</span><span class="p">():</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting operation&quot;</span><span class="p">)</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="c1"># ... code ...</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="c1"># Automatically captures traceback and formats as JSON</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Operation failed&quot;</span><span class="p">)</span>
+<p>If the port forward was created by the same user that's logged into the
+running <code>phenix-tunneler serve</code> process, the local listener is activated
+automatically -- no further action is needed. Port forwards created by
+other users show up too, but must be activated manually (see
+<a href="#activate-id"><code>activate</code></a> below) before they can be used locally.</p>
+<p>Once a local port is listening, connect to it with whatever application
+is appropriate (an RDP client, a database client, <code>ssh</code>, etc.) and
+traffic will be forwarded through the phēnix UI server to the VM.</p>
+<p>Existing port forwards for a VM are listed in the same VM information
+modal, and can be removed by clicking the trash icon next to a forward.</p>
+<h2 id="managing-listeners-from-the-command-line">Managing Listeners from the Command Line<a class="headerlink" href="#managing-listeners-from-the-command-line" title="Permanent link">&para;</a></h2>
+<p>While <code>phenix-tunneler serve</code> is running, use the following subcommands
+(in another terminal) to inspect and manage local listeners.</p>
+<h3 id="list"><code>list</code><a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
+<p>Show a table of all known port forwards, including their local port and
+whether or not they're currently listening (activated) locally.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>phenix-tunneler<span class="w"> </span>list
 </span></code></pre></div>
-<h3 id="go-apps">Go Apps<a class="headerlink" href="#go-apps" title="Permanent link">&para;</a></h3>
-<p>Use <code>log/slog</code> with a JSON handler.</p>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="s">&quot;log/slog&quot;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="s">&quot;os&quot;</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nx">logger</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">slog</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">slog</span><span class="p">.</span><span class="nx">NewJSONHandler</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">))</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nx">slog</span><span class="p">.</span><span class="nx">SetDefault</span><span class="p">(</span><span class="nx">logger</span><span class="p">)</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nx">slog</span><span class="p">.</span><span class="nx">Info</span><span class="p">(</span><span class="s">&quot;Application started&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;my-app&quot;</span><span class="p">)</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+<h3 id="activate-id"><code>activate &lt;id&gt;</code><a class="headerlink" href="#activate-id" title="Permanent link">&para;</a></h3>
+<p>Start listening locally on the local port assigned to the given listener
+ID. Used to manually activate a port forward that wasn't created by the
+logged-in user (and therefore wasn't activated automatically).</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>phenix-tunneler<span class="w"> </span>activate<span class="w"> </span>&lt;id&gt;
 </span></code></pre></div>
-<h3 id="phenix-core">phēnix Core<a class="headerlink" href="#phenix-core" title="Permanent link">&para;</a></h3>
-<p>Use the <code>phenix/util/plog</code> package for logging within the core application.</p>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;phenix/util/plog&quot;</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kd">func</span><span class="w"> </span><span class="nx">MyFunc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="c1">// Always provide a LogType enum for UI filtering</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">plog</span><span class="p">.</span><span class="nx">Info</span><span class="p">(</span><span class="nx">plog</span><span class="p">.</span><span class="nx">TypeSystem</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;System initialized&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;version&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span><span class="p">)</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+<h3 id="deactivate-id"><code>deactivate &lt;id&gt;</code><a class="headerlink" href="#deactivate-id" title="Permanent link">&para;</a></h3>
+<p>Stop listening locally for the given listener ID, without deleting the
+port forward itself.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>phenix-tunneler<span class="w"> </span>deactivate<span class="w"> </span>&lt;id&gt;
 </span></code></pre></div>
-<h3 id="http-request-logging">HTTP Request Logging<a class="headerlink" href="#http-request-logging" title="Permanent link">&para;</a></h3>
-<p>To view detailed HTTP request logs (method, path, status, duration), start the UI with the <code>--log-requests</code> flag.</p>
-<div class="admonition tip">
-<p class="admonition-title">Troubleshooting</p>
-<p>For common logging issues and solutions, please see the <a href="../troubleshooting/">Troubleshooting</a> page.</p>
-</div>
+<h3 id="move-id-port"><code>move &lt;id&gt; &lt;port&gt;</code><a class="headerlink" href="#move-id-port" title="Permanent link">&para;</a></h3>
+<p>Move an existing listener to a different local port.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>phenix-tunneler<span class="w"> </span>move<span class="w"> </span>&lt;id&gt;<span class="w"> </span>&lt;port&gt;
+</span></code></pre></div>
+<p>Listener IDs used by <code>activate</code>, <code>deactivate</code>, and <code>move</code> can be found
+in the output of <code>phenix-tunneler list</code>.</p>
 
 
 
