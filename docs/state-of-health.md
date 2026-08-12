@@ -58,9 +58,10 @@ update the three tabs.
 
 Hovering over a node in the graph will cause it to expand to show what operating
 system the node is running. An orange border around a node is indicative of the
-node currently having health issues (e.g., expected files or processes are
-missing, or the node cannot reach other nodes on the network). Other virtual
-systems will also be represented accordingly (e.g., a printer or firewall).
+node currently having health issues (e.g., expected files, services, or
+processes are missing, or the node cannot reach other nodes on the network).
+Other virtual systems will also be represented accordingly (e.g., a printer or
+firewall).
 
 ![screenshot](images/linux.png){: width=800 .center}
 
@@ -203,6 +204,20 @@ details. (In this screenshot, the mouse is hovering over the traffic for IP
       - /etc/phenix/startup/1_hostname-start.sh
       windows-client:
       - 'C:\ProgramData\phenix\ready.txt'
+    ```
+
+* `hostServices`: a map of VMs, each specifying a list of service names that
+  should be running within the VM. Linux VMs are checked via `systemctl`, and
+  Windows VMs are checked via `Get-Service`. Services that aren't active are
+  reported in the node's **Services** table in the SoH details modal and mark
+  the node as unhealthy. The default is `nil`.
+
+    ```yaml
+    hostServices:
+      linux-server:
+      - sshd
+      windows-client:
+      - Spooler
     ```
 
 * `hostListeners`: a map of VMs, each specifying a list of listening ports to
@@ -399,6 +414,11 @@ spec:
         - /etc/phenix/startup/1_hostname-start.sh
         host-01:
         - 'C:\ProgramData\phenix\ready.txt'
+      hostServices:
+        host-00:
+        - sshd
+        host-01:
+        - Spooler
       hostListeners:
         client:
         - :502
@@ -459,6 +479,7 @@ Current tests executed on Linux VMs include the following:
 * `ip route`
 * `ping -c 1 <ip>`
 * `stat -c present -- '<path>'`
+* `systemctl is-active -- '<service>'`
 * `pgrep -f <process>`
 * `ss -lntu state all 'sport = <port>'`
 * `cat /proc/loadavg`
@@ -469,6 +490,7 @@ Corresponding tests for Windows VMs include the following:
 * `route print`
 * `ping -n 1 <ip>`
 * `powershell -NoProfile -Command "if (Test-Path -LiteralPath '<path>' -PathType Leaf) { 'present' }"`
+* `powershell -NoProfile -Command "if ((Get-Service -Name '<service>' -ErrorAction SilentlyContinue).Status -eq 'Running') { 'active' }"`
 * `powershell -command "Get-Process <process> -ErrorAction SilentlyContinue"`
 * `powershell -command "netstat -an | select-string -pattern 'listening' | select-string -pattern '<port>'"`
 * `powershell -command "Get-WmiObject Win32_Processor | Measure-Object -Property LoadPercentage -Average | Select Average"`
