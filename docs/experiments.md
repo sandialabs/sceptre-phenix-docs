@@ -151,6 +151,59 @@ Global Flags:
       --store.endpoint string      endpoint for storage service (default "bolt:///root/.phenix.bdb")
 ```
 
+## Deleting Experiments
+
+### From the Web-UI
+
+The experiment must be stopped before it can be deleted; click the trash can
+icon next to the experiment to delete it.
+
+### From the Command Line Binary
+
+An experiment must be stopped before it can be deleted:
+
+```
+$> phenix exp stop <experiment name>
+$> phenix exp delete <experiment name>
+```
+
+Alternatively, the `-f`/`--force` flag can be used to automatically stop a
+running experiment before deleting it, similar to `docker rm -f`:
+
+```
+$> phenix exp delete -f <experiment name>
+```
+
+Using `all` instead of a specific experiment name will delete all stopped
+experiments (or, when combined with `--force`, all experiments regardless of
+whether they are running).
+
+The `phenix exp delete --help` command will output:
+
+```
+Delete an experiment
+
+  Used to delete an existing experiment; experiment must be stopped.
+  Using 'all' instead of a specific experiment name will include all
+  stopped experiments. Use the -f/--force flag to automatically stop
+  a running experiment before deleting it.
+
+Usage:
+  phenix experiment delete <experiment name> [flags]
+
+Flags:
+  -f, --force   Stop a running experiment before deleting it
+  -h, --help    help for delete
+
+Global Flags:
+      --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
+      --base-dir.phenix string     base phenix directory (default "/phenix")
+      --hostname-suffixes string   hostname suffixes to strip
+      --log.error-file string      log fatal errors to file (default "/root/.phenix.err")
+      --log.error-stderr           log fatal errors to STDERR
+      --store.endpoint string      endpoint for storage service (default "bolt:///root/.phenix.bdb")
+```
+
 ## Scheduling an Experiment
 
 ### From Web-UI
