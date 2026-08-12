@@ -145,6 +145,7 @@ spec:
             - reachability         # Basic ICMP-based reachability testing. Will use `testReachability` setting in soh app config.
             - custom-reachability  # IP-based reachability testing (TCP or UDP). Will use `testCustomReachability` setting in soh app config.
             - files                # Ensure expected files exist in nodes. Will use `hostFiles` setting in soh app config.
+            - services             # Ensure expected services are running in nodes. Will use `hostServices` setting in soh app config.
             - processes            # Ensure processes are running in nodes. Will use `hostProcesses` setting in soh app config.
             - ports                # Ensure listeners are running in nodes. Will use `hostListeners` setting in soh app config.
             - custom               # Run custom tests in nodes. Will use `hostCustomTests` setting in soh app config.
