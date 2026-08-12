@@ -94,7 +94,7 @@ configured for them.
 Because external nodes don't run `miniccc`, they're excluded from the
 automated command-and-control-based checks described in [Command and
 Control](#command-and-control) (network config, reachability, listening ports,
-processes, CPU load). Clicking on an external node's details modal will
+processes, Docker containers, CPU load). Clicking on an external node's details modal will
 therefore always report no SoH information available, and the VNC button will
 be disabled since phenix has no console access to it.
 
@@ -203,6 +203,25 @@ details. (In this screenshot, the mouse is hovering over the traffic for IP
       - /etc/phenix/startup/1_hostname-start.sh
       windows-client:
       - 'C:\ProgramData\phenix\ready.txt'
+    ```
+
+* `dockerContainers`: a map of VMs, each specifying a list of Docker container
+  names/IDs that should be up and healthy within the VM. For each container, if
+  it has a [Docker
+  healthcheck](https://docs.docker.com/reference/dockerfile/#healthcheck)
+  configured, its health status (`healthy`, `unhealthy`, or `starting`) is
+  used to determine node health; otherwise, the container simply being in the
+  `running` state is considered healthy. Requires the `docker` CLI to be
+  available on the VM (Linux or Windows) and the VM's `miniccc` user to have
+  permission to run it. Results are reported in the node's **Docker
+  Containers** table in the SoH details modal and mark the node as unhealthy
+  if a container is missing, not running, or unhealthy. The default is `nil`.
+
+    ```yaml
+    dockerContainers:
+      linux-server:
+      - nginx
+      - redis
     ```
 
 * `hostListeners`: a map of VMs, each specifying a list of listening ports to
@@ -399,6 +418,10 @@ spec:
         - /etc/phenix/startup/1_hostname-start.sh
         host-01:
         - 'C:\ProgramData\phenix\ready.txt'
+      dockerContainers:
+        host-00:
+        - nginx
+        - redis
       hostListeners:
         client:
         - :502

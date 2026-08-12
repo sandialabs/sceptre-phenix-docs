@@ -147,6 +147,7 @@ spec:
             - files                # Ensure expected files exist in nodes. Will use `hostFiles` setting in soh app config.
             - processes            # Ensure processes are running in nodes. Will use `hostProcesses` setting in soh app config.
             - ports                # Ensure listeners are running in nodes. Will use `hostListeners` setting in soh app config.
+            - docker               # Ensure Docker containers are up/healthy in nodes. Will use `dockerContainers` setting in soh app config.
             - custom               # Run custom tests in nodes. Will use `hostCustomTests` setting in soh app config.
             - cpu-load             # Gather CPU load stats from nodes.
             - flows                # Gather packet flows from ElasticSearch server. Requires `packetCapture` setting to be configured in soh app config.
