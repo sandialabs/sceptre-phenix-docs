@@ -85,6 +85,7 @@ Global Flags:
       --log.system.max-backups int   maximum number of old log files to retain (default 3)
       --log.system.max-size int      maximum size in megabytes of the log file before it gets rotated (default 100)
       --log.system.path string       path to system log (JSON format) (default "/var/log/phenix/phenix.log")
+      --mount-dir string             base directory for VM filesystem mounts (default: <base-dir.phenix>/mounts)
       --store.endpoint string        endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
       --unix-socket string           phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
       --use-gre-mesh                 use GRE tunnels between mesh nodes for VLAN trunking

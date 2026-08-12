@@ -182,7 +182,44 @@ See [Settings & Configuration](settings.md#settings-reference) for the
 
 ### From the Command Line Binary
 
-Not applicable.
+Use `phenix vm mount` to mount a running VM's filesystem to a directory on the
+phēnix headnode. Unlike the Web-UI mount browser above, this does not require
+the `vm-mount` UI feature flag to be enabled, and the mounted filesystem is
+accessed directly on the headnode's filesystem rather than through the
+browser.
+
+```shell
+phenix vm mount <experiment name> <vm name> [host path]
+```
+
+If `host path` is omitted, the VM is mounted to a default path of
+`<mount-dir>/<experiment name>/<vm name>`, where `<mount-dir>` defaults to
+`<base-dir.phenix>/mounts` (see [`mount-dir`](settings.md#settings-reference)).
+The command prints the resolved host path once the mount succeeds.
+
+```shell
+phenix vm mount my-exp my-vm
+# VM my-vm in experiment my-exp mounted at: /phenix/mounts/my-exp/my-vm
+
+phenix vm mount my-exp my-vm /tmp/my-vm-files
+# VM my-vm in experiment my-exp mounted at: /tmp/my-vm-files
+```
+
+To unmount the VM's filesystem, run:
+
+```shell
+phenix vm unmount <experiment name> <vm name>
+```
+
+!!! note
+
+    Mounting a VM requires the minimega command-and-control agent (`miniccc`)
+    to be installed and actively running in the VM; the command will fail if
+    the agent is not reachable.
+
+    Mounts are automatically unmounted, and their mount directories removed,
+    when the owning experiment is stopped or deleted, so mounts do not
+    outlive their experiment.
 
 ## Packet Capture
 
