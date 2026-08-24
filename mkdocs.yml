@@ -88,6 +88,7 @@ nav:
     - Scorch: scorch.md
     - State of Health: state-of-health.md
   - Networking:
+    - Bridge Mode: bridge-mode.md
     - Netflow: netflow.md
     - Tunneler: tunneler.md
   - Integrations:
