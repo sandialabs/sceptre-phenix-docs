@@ -154,6 +154,8 @@ make lint
 prek run --all-files
 ```
 
+CI runs the same hooks with `--hook-stage manual`. The only hook that does not run there is the branch name validation, which is local to committing: GitHub emits a `push` event on `main` after every merged pull request, and that would otherwise fail the workflow even though nobody committed to `main` directly.
+
 ## Updating Actions
 
 To update the pinned versions of Actions in the GitHub Workflows, run the following command:

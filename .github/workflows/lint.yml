@@ -24,4 +24,7 @@ jobs:
       - name: Validate prek config
         run: prek validate-config prek.toml
       - name: Run prek
-        run: prek run --all-files --show-diff-on-failure
+        # The 'manual' stage runs every hook except those scoped to local git
+        # stages (e.g. branch name validation, which would fail on the 'main'
+        # push event GitHub emits after a PR merge).
+        run: prek run --all-files --hook-stage manual --show-diff-on-failure

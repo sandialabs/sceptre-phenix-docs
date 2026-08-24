@@ -14,6 +14,10 @@ default_language_version.python = "3.12"
 # This repository contains documentation (Markdown + MkDocs config) and shell
 # helper scripts. We focus on spelling, shell/YAML linting, conventional
 # commits, and general hygiene.
+#
+# Stages: CI runs `prek run --all-files --hook-stage manual`. Hooks that do not
+# set `stages` run in every stage, so they run in CI as well; hooks that only
+# make sense locally (branch name validation) are scoped to `["pre-commit"]`.
 
 # Linting of GitHub Actions workflows for security issues
 # https://docs.zizmor.sh/audits/
@@ -169,6 +173,10 @@ priority = 1
 id = "no-commit-to-branch"
 name = "branch name validation"
 description = "Prevent committing to 'main', 'master', or any branch that isn't kebab-case (only allows letters, numbers, and hyphens)"
+# Local commit-time only. CI runs with `--hook-stage manual`, where this hook is
+# skipped: merging a PR triggers a `push` event on 'main', and the checked out
+# branch there is legitimately 'main' even though nobody committed to it directly.
+stages = ["pre-commit"]
 args = [
   "--branch",
   "main",
