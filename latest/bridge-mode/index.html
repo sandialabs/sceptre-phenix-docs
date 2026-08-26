@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../bridge-mode/">
+        <link rel="prev" href="../state-of-health/">
       
       
-        <link rel="next" href="../tunneler/">
+        <link rel="next" href="../netflow/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Netflow - phenix documentation</title>
+        <title>Bridge Mode - phenix documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#experiment-netflow" class="md-skip">
+        <a href="#bridge-mode" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Netflow
+              Bridge Mode
             
           </span>
         </div>
@@ -807,34 +807,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../bridge-mode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bridge Mode
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -854,7 +826,7 @@
   <span class="md-ellipsis">
     
   
-    Netflow
+    Bridge Mode
   
 
     
@@ -872,7 +844,7 @@
   <span class="md-ellipsis">
     
   
-    Netflow
+    Bridge Mode
   
 
     
@@ -898,10 +870,154 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage
+        Modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        manual (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-names-and-topologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge Names and Topologies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-name-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge Name Collisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-bridge-mode-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Bridge Mode Matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-bridge-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Bridge Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Bridge Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-command-line-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Command Line Flag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configuration File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Environment Variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-netflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to Netflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings Reference
       
     </span>
   </a>
@@ -912,6 +1028,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Netflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1281,10 +1425,154 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage
+        Modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        manual (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-names-and-topologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge Names and Topologies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-name-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge Name Collisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-bridge-mode-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Bridge Mode Matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-bridge-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Bridge Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Bridge Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-command-line-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Command Line Flag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configuration File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Environment Variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-netflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to Netflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings Reference
       
     </span>
   </a>
@@ -1311,44 +1599,131 @@
   
 
 
-<h1 id="experiment-netflow">Experiment Netflow<a class="headerlink" href="#experiment-netflow" title="Permanent link">&para;</a></h1>
-<p>The minimega platform supports <a href="https://sandia-minimega.github.io/#header_5.9">netflow
-capture</a>, wherein flows
-through an Open vSwitch bridge can be parsed into an ASCII format and forwarded
-to a remote endpoint for additional consumption.</p>
-<p>phēnix extends this capability by making the minimega netflow ASCII format
-available for streaming over WebSockets for experiments. The only requirement
-for enabling netflow for an experiment is that the experiment be configured to
-use a bridge name that is not the default <code>phenix</code> bridge. This can be done
-automatically for all experiments by enabling <a href="../bridge-mode/">auto bridge mode</a>,
-or per-experiment via the UI by expanding the <code>Options</code> section when creating a
-new experiment and providing the <code>Default Bridge Name</code> setting.</p>
-<p><img alt="screenshot" class="center" src="../images/create_exp_options.png" width="250" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code>Default Bridge Name</code> field is only shown when the server is running in
-<code>manual</code> bridge mode. In <code>auto</code> mode the bridge name is always the
-experiment name, so the field is hidden.</p>
-</div>
-<p>This can also be done via the CLI by providing the <code>--default-bridge, -b</code> option
-when using the <code>phenix exp create</code> subcommand.</p>
+<h1 id="bridge-mode">Bridge Mode<a class="headerlink" href="#bridge-mode" title="Permanent link">&para;</a></h1>
+<p>phēnix uses <a href="https://www.openvswitch.org/">Open vSwitch (OVS)</a> bridges managed by
+minimega to connect VMs to virtual networks. The <strong>bridge mode</strong> setting controls
+how phēnix names the default OVS bridge assigned to each experiment.</p>
+<h2 id="modes">Modes<a class="headerlink" href="#modes" title="Permanent link">&para;</a></h2>
+<h3 id="manual-default"><code>manual</code> (Default)<a class="headerlink" href="#manual-default" title="Permanent link">&para;</a></h3>
+<p>In <code>manual</code> mode, the bridge name for an experiment comes from the default
+bridge name supplied when the experiment is <strong>created</strong> — the <code>--default-bridge</code>
+flag on <code>phenix experiment create</code>, the <code>Default Bridge Name</code> field in the UI's
+<code>Options</code> section, or the <code>defaultBridge</code> key in a workflow file. It is a
+property of the experiment, not of the topology it uses. If no bridge name is
+provided, phēnix falls back to the shared default bridge named <strong><code>phenix</code></strong>.</p>
+<p>This means that unless you explicitly assign a unique bridge name when creating
+an experiment, all experiments using <code>manual</code> mode that have no custom bridge
+name configured will share the same <code>phenix</code> bridge.</p>
+<h3 id="auto"><code>auto</code><a class="headerlink" href="#auto" title="Permanent link">&para;</a></h3>
+<p>In <code>auto</code> mode, phēnix automatically assigns each experiment's own name as its
+default bridge name. This gives every experiment a unique bridge without any
+manual configuration, and the <code>Default Bridge Name</code> field is hidden in the UI's
+experiment creation form because it would have no effect.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>As mentioned above, the experiment netflow capability <strong>will not work</strong> if a
-default bridge name is not explicitly specified for an experiment. This is
-to prevent network flows across multiple experiments from being captured.</p>
 </div>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>Running experiments will have a green network icon to the left of the VM search
-box that, when clicked, will start netflow capture for the non-default bridge
-the experiment is configured to use for all VM network interfaces.</p>
-<p><img alt="screenshot" class="center" src="../images/exp_netflow_button.png" width="800" /></p>
-<p>Once enabled, the icon will turn red (to signify it can be stopped), and a new
-<code>Netflow</code> tab will appear next to the <code>VMs</code> and <code>Files</code> tabs for the running
-experiment. This tab will be updated with ASCII netflow data from minimega as it
-streams in.</p>
-<p><img alt="screenshot" class="center" src="../images/exp_netflow_tab.png" width="800" /></p>
-<p>To stop netflow capture for the experiment, click the red network icon.</p>
+<p>Because OVS bridge names are limited to <strong>15 characters</strong>, experiment names
+    must be 15 characters or fewer when using <code>auto</code> bridge mode. phēnix will
+    return an error if you attempt to create or update an experiment with a
+    longer name while <code>auto</code> mode is active.</p>
+<h2 id="bridge-names-and-topologies">Bridge Names and Topologies<a class="headerlink" href="#bridge-names-and-topologies" title="Permanent link">&para;</a></h2>
+<p>The experiment's default bridge is applied to every node interface in the
+topology that does not name a bridge of its own. An interface that explicitly
+sets a <code>bridge</code> other than <code>phenix</code> in the topology keeps that value, in both
+<code>manual</code> and <code>auto</code> mode. Bear this in mind when using <code>auto</code> mode for
+isolation: topology-pinned bridges are left untouched and can still be shared
+between experiments.</p>
+<h2 id="bridge-name-collisions">Bridge Name Collisions<a class="headerlink" href="#bridge-name-collisions" title="Permanent link">&para;</a></h2>
+<p>Two experiments may not share the same default bridge name unless that name is
+the shared <code>phenix</code> bridge. Creating or updating an experiment whose default
+bridge is already claimed by another experiment fails with:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>experiment &lt;other-experiment&gt; already using default bridge &lt;bridge-name&gt;
+</span></code></pre></div>
+<p>Because <code>auto</code> mode derives the bridge name from the (necessarily unique)
+experiment name, this collision cannot occur in <code>auto</code> mode.</p>
+<h2 id="why-bridge-mode-matters">Why Bridge Mode Matters<a class="headerlink" href="#why-bridge-mode-matters" title="Permanent link">&para;</a></h2>
+<p>Giving each experiment a unique bridge name has two important benefits:</p>
+<ol>
+<li>
+<p><strong>Network isolation</strong> — Experiments sharing the <code>phenix</code> bridge are kept
+   apart by VLAN alone. Giving each experiment its own bridge adds a second
+   layer of separation, so a VLAN misconfiguration or overlapping VLAN range
+   cannot bridge traffic between two experiments on the same host.</p>
+</li>
+<li>
+<p><strong>Netflow capture</strong> — phēnix's <a href="../netflow/">netflow</a> feature only works for
+   experiments that have a bridge name other than the default <code>phenix</code> bridge.
+   Using <code>auto</code> mode (or manually specifying a unique bridge name per
+   experiment) is therefore a prerequisite for per-experiment netflow capture.</p>
+</li>
+</ol>
+<h2 id="configuring-bridge-mode">Configuring Bridge Mode<a class="headerlink" href="#configuring-bridge-mode" title="Permanent link">&para;</a></h2>
+<p>Bridge mode is a <strong>global</strong> setting applied at the phēnix server level. It can
+be set in three ways, listed from highest to lowest precedence:</p>
+<h3 id="1-command-line-flag">1. Command Line Flag<a class="headerlink" href="#1-command-line-flag" title="Permanent link">&para;</a></h3>
+<p><code>--bridge-mode</code> is a global flag accepted by any phēnix subcommand, but it is
+only consulted when an experiment is <strong>created or updated</strong>. Passing it to
+<code>phenix exp start</code> or any other subcommand has no effect, because the bridge
+name was already fixed when the experiment was created.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Run the UI server in auto mode; every experiment created through it gets a</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># bridge named after the experiment.</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>phenix<span class="w"> </span>ui<span class="w"> </span>--bridge-mode<span class="w"> </span>auto
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create a single experiment in auto mode from the CLI.</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>my-exp<span class="w"> </span>-t<span class="w"> </span>my-topology<span class="w"> </span>--bridge-mode<span class="w"> </span>auto
+</span></code></pre></div>
+<h3 id="2-configuration-file">2. Configuration File<a class="headerlink" href="#2-configuration-file" title="Permanent link">&para;</a></h3>
+<p>Add <code>bridge-mode</code> to the phēnix configuration file (see
+<a href="../settings/">Settings &amp; Configuration</a> for file locations):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">bridge-mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auto</span>
+</span></code></pre></div>
+<h3 id="3-environment-variable">3. Environment Variable<a class="headerlink" href="#3-environment-variable" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PHENIX_BRIDGE_MODE</span><span class="o">=</span>auto
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>phenix<span class="w"> </span>ui
+</span></code></pre></div>
+<h2 id="example-workflow">Example Workflow<a class="headerlink" href="#example-workflow" title="Permanent link">&para;</a></h2>
+<p>The following shows how to start the phēnix UI server in <code>auto</code> mode so that
+all experiments automatically receive unique bridges:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>phenix<span class="w"> </span>ui<span class="w"> </span>--bridge-mode<span class="w"> </span>auto
+</span></code></pre></div>
+<p>With the server running in <code>auto</code> mode, creating a new experiment requires the
+name to be 15 characters or fewer:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Works — name is within the 15-character limit</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>my-exp<span class="w"> </span>-t<span class="w"> </span>my-topology
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Fails — name is too long for auto bridge mode</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>my-very-long-experiment-name<span class="w"> </span>-t<span class="w"> </span>my-topology
+</span></code></pre></div>
+<h2 id="relationship-to-netflow">Relationship to Netflow<a class="headerlink" href="#relationship-to-netflow" title="Permanent link">&para;</a></h2>
+<p>The <a href="../netflow/">netflow</a> feature captures network flows from the OVS bridge
+used by an experiment, but it explicitly excludes the shared default <code>phenix</code>
+bridge to prevent flows from multiple experiments being mixed together.</p>
+<p>Setting bridge mode to <code>auto</code> is the simplest way to satisfy this requirement
+across all experiments. Alternatively, in <code>manual</code> mode you can specify a
+unique <code>--default-bridge</code> name per experiment at creation time:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>my-exp<span class="w"> </span>-t<span class="w"> </span>my-topology<span class="w"> </span>--default-bridge<span class="w"> </span>my-exp-br
+</span></code></pre></div>
+<p>See the <a href="../netflow/">Netflow</a> page for more details on enabling and using
+netflow capture.</p>
+<h2 id="settings-reference">Settings Reference<a class="headerlink" href="#settings-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Setting Key</th>
+<th style="text-align: left;">Environment Variable</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>bridge-mode</code></td>
+<td style="text-align: left;"><code>PHENIX_BRIDGE_MODE</code></td>
+<td style="text-align: left;"><code>manual</code></td>
+<td style="text-align: left;">Bridge naming mode for experiments. <code>auto</code> uses the experiment name as the bridge name; <code>manual</code> uses the user-specified bridge name, or <code>phenix</code> if not specified.</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -973,6 +973,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../bridge-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../netflow/" class="md-nav__link">
         
   
@@ -1579,9 +1607,10 @@ running <code>phenix image build --help</code> will output:</p>
 </span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>      --log.system.max-backups int   maximum number of old log files to retain (default 3)
 </span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>      --log.system.max-size int      maximum size in megabytes of the log file before it gets rotated (default 100)
 </span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>      --log.system.path string       path to system log (JSON format) (default "/var/log/phenix/phenix.log")
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>      --store.endpoint string        endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>      --unix-socket string           phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
-</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>      --use-gre-mesh                 use GRE tunnels between mesh nodes for VLAN trunking
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>      --mount-dir string             base directory for VM filesystem mounts (default: &lt;base-dir.phenix&gt;/mounts)
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>      --store.endpoint string        endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>      --unix-socket string           phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>      --use-gre-mesh                 use GRE tunnels between mesh nodes for VLAN trunking
 </span></code></pre></div>
 <h2 id="miscellaneous-commands">Miscellaneous Commands<a class="headerlink" href="#miscellaneous-commands" title="Permanent link">&para;</a></h2>
 <h3 id="append">append<a class="headerlink" href="#append" title="Permanent link">&para;</a></h3>

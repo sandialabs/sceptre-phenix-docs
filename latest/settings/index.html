@@ -979,6 +979,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../bridge-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../netflow/" class="md-nav__link">
         
   
@@ -1579,6 +1607,12 @@ Changes made via this command are applied immediately (hot-swapped) without rest
 </thead>
 <tbody>
 <tr>
+<td style="text-align: left;"><code>bridge-mode</code></td>
+<td style="text-align: left;"><code>PHENIX_BRIDGE_MODE</code></td>
+<td style="text-align: left;"><code>manual</code></td>
+<td style="text-align: left;">Bridge naming mode for experiments. <code>auto</code> uses the experiment name as the bridge name; <code>manual</code> uses the user-specified bridge name, or <code>phenix</code> if not specified. See <a href="../bridge-mode/">Bridge Mode</a>.</td>
+</tr>
+<tr>
 <td style="text-align: left;"><code>log.level</code></td>
 <td style="text-align: left;"><code>PHENIX_LOG_LEVEL</code></td>
 <td style="text-align: left;"><code>info</code></td>
@@ -1637,6 +1671,12 @@ Changes made via this command are applied immediately (hot-swapped) without rest
 <td style="text-align: left;"><code>PHENIX_UI_FILE_SERVER_ENDPOINT</code></td>
 <td style="text-align: left;"><code>0</code> (disabled)</td>
 <td style="text-align: left;">Address (<code>port</code> or <code>host:port</code>) for the separate experiment file-upload server. A port-only value binds to <code>127.0.0.1</code>. Also works with the <code>vm-mount</code> feature - see <a href="../vms/#uploading-experiment-files-from-the-phenix-server">Uploading Experiment Files from the phēnix Server</a>. <strong>(Restart Required)</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>mount-dir</code></td>
+<td style="text-align: left;"><code>PHENIX_MOUNT_DIR</code></td>
+<td style="text-align: left;"><code>&lt;base-dir.phenix&gt;/mounts</code></td>
+<td style="text-align: left;">Base directory used for VM filesystem mounts created via <code>phenix vm mount</code>. See <a href="../vms/#mount-a-vm">Mount a VM</a>.</td>
 </tr>
 </tbody>
 </table>
