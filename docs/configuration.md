@@ -116,8 +116,12 @@ Optional values for a node in the topology configuration can include:
 !!! warning
     If not specified, the default disk partition to inject files into is `1`.
     This will fail for a disk that is using LVM. In order to use a disk image
-    that's using LVM, set the `inject_partition` to 0 to force phenix to skip
-    injections all together but still snapshot the base image.
+    that's using LVM, set `inject_partition: 0` on the first drive to force
+    phēnix to skip disk injections but still snapshot the base image. The
+    `startup` app will automatically deliver its generated scripts through C2;
+    other files configured for injection are still skipped. See
+    [C2 Startup Script Delivery](apps.md#c2-startup-script-delivery) for the
+    requirements and configuration options.
 
 #### Delay Start
 
