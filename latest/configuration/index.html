@@ -2130,8 +2130,12 @@ Hostnames should not be used as a FQDN.</p>
 <p class="admonition-title">Warning</p>
 <p>If not specified, the default disk partition to inject files into is <code>1</code>.
 This will fail for a disk that is using LVM. In order to use a disk image
-that's using LVM, set the <code>inject_partition</code> to 0 to force phenix to skip
-injections all together but still snapshot the base image.</p>
+that's using LVM, set <code>inject_partition: 0</code> on the first drive to force
+phēnix to skip disk injections but still snapshot the base image. The
+<code>startup</code> app will automatically deliver its generated scripts through C2;
+other files configured for injection are still skipped. See
+<a href="../apps/#c2-startup-script-delivery">C2 Startup Script Delivery</a> for the
+requirements and configuration options.</p>
 </div>
 <h4 id="delay-start">Delay Start<a class="headerlink" href="#delay-start" title="Permanent link">&para;</a></h4>
 <p>It is possible to delay the start of a VM with the <code>delay</code> value. There are
