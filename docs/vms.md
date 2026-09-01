@@ -232,16 +232,26 @@ However, when you stop packet capture, it will stop captures on all network taps
 
 ### From the Command Line Binary
 
-To start a packet capture, run the following command.
+To start a packet capture, run the following command, specifying the target
+network interface by its name (as declared in the experiment topology, e.g.
+`IF0`) or its zero-based index.
 
 ```shell
-phenix vm capture start <experiment name> <vm name> <iface index> </path/to/out file>
+phenix vm capture start <experiment name> <vm name> <iface name/index> </path/to/out file>
 ```
 
 To stop all packet captures on a running VM, use the following command.
 
 ```shell
 phenix vm capture stop <experiment name> <vm name>
+```
+
+To stop the packet capture running on a single interface, without affecting
+any other captures running on the same VM, provide the interface name or
+index.
+
+```shell
+phenix vm capture stop <experiment name> <vm name> <iface name/index>
 ```
 
 ## Kill a VM
