@@ -43,6 +43,14 @@ $> phenix exp restart <experiment name>
 Optionally, you can use the `--dry-run` flag to do everything except call out to
 minimega.
 
+After an experiment stops successfully, phenix deletes the VM disk snapshots
+created for file injection. To keep these snapshots for debugging, use
+`--keep-injection-snapshots` or its `-K` shorthand:
+
+```
+$> phenix exp stop --keep-injection-snapshots <experiment name>
+```
+
 The `phenix exp --help` command will output:
 
 ```
