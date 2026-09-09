@@ -959,6 +959,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managing-listeners-from-the-local-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Listeners from the Local Web App
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#managing-listeners-from-the-command-line" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1397,6 +1408,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managing-listeners-from-the-local-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Listeners from the Local Web App
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#managing-listeners-from-the-command-line" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1596,6 +1618,12 @@ is appropriate (an RDP client, a database client, <code>ssh</code>, etc.) and
 traffic will be forwarded through the phēnix UI server to the VM.</p>
 <p>Existing port forwards for a VM are listed in the same VM information
 modal, and can be removed by clicking the trash icon next to a forward.</p>
+<h2 id="managing-listeners-from-the-local-web-app">Managing Listeners from the Local Web App<a class="headerlink" href="#managing-listeners-from-the-local-web-app" title="Permanent link">&para;</a></h2>
+<p>The <code>serve`` command provides an option for also serving up a local web
+application for listing and managing listeners. It is disabled by default, and
+can be enabled with the ``--web-listen 127.0.0.1:8080</code> flag (the address or
+port can be changed if needed).</p>
+<p><img alt="screenshot" src="../images/tunneler_web_app.png" /></p>
 <h2 id="managing-listeners-from-the-command-line">Managing Listeners from the Command Line<a class="headerlink" href="#managing-listeners-from-the-command-line" title="Permanent link">&para;</a></h2>
 <p>While <code>phenix-tunneler serve</code> is running, use the following subcommands
 (in another terminal) to inspect and manage local listeners.</p>
