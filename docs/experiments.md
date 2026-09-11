@@ -68,7 +68,8 @@ Available Commands:
   scorch          Start a Scorch run for experiment
   start           Start an experiment
   stop            Stop an experiment
-  trigger-running Trigger running stage for app(s) in experiment
+  trigger            Trigger lifecycle stage for app(s) in experiment
+  trigger-running Trigger running stage for app(s) in experiment (deprecated - use `trigger`)
 
 Flags:
   -h, --help   help for experiment
@@ -226,4 +227,56 @@ Then apply the desired schedule with the following command.
 
 ```
 $> phenix experiment schedule <experiment name> <algorithm>
+```
+
+## Triggering App Lifecycle Stages
+
+You can manually trigger specific app lifecycle stages for a running or stopped
+experiment without needing to stop and restart it.
+
+### From the Command Line
+
+The `phenix exp trigger` command allows you to invoke app lifecycle stages on demand:
+
+```
+$> phenix exp trigger <lifecycle> <experiment name> [<app name> ...]
+```
+
+Where `<lifecycle>` can be one of:
+- `configure` (or `config`)
+- `pre-start` (or `pre`)
+- `post-start` (or `post`)
+- `running` (or `run`)
+- `cleanup` (or `clean`)
+
+**Examples:**
+
+Trigger the running stage for all apps in an experiment:
+```
+$> phenix exp trigger running my-experiment
+```
+
+Trigger the running stage for a specific app:
+```
+$> phenix exp trigger running my-experiment soh
+```
+
+Trigger configure stage for all experiments:
+```
+$> phenix exp trigger configure all
+```
+
+### Deprecated Command
+
+The `phenix exp trigger-running` command is deprecated and will be removed in a
+future release. Please use `phenix exp trigger running` instead.
+
+The deprecated command:
+```
+$> phenix exp trigger-running my-experiment [<app name> ...]
+```
+
+Is equivalent to:
+```
+$> phenix exp trigger running my-experiment [<app name> ...]
 ```
