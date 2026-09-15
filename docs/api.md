@@ -16,13 +16,13 @@ available in two places:
 * **On a running phēnix server**: every phēnix instance also hosts its own
   copy of the same interactive API docs at the `/docs/` path:
 
-    ```
+    ```text
     http://<phenix-host>:<port>/docs/
     ```
 
     For a default local installation, this would be:
 
-    ```
+    ```text
     http://localhost:3000/docs/
     ```
 
@@ -54,7 +54,7 @@ If UI/API authentication is enabled (see
 auth token generated from the `Users` tab in the web UI, passed as the
 `X-phenix-auth-token` header:
 
-```
+```http
 X-phenix-auth-token: ******
 ```
 

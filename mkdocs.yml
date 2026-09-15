@@ -97,5 +97,6 @@ nav:
   - Administration:
     - Users: user-administration.md
   - Reference:
+    - minimega: minimega.md
     - Troubleshooting: troubleshooting.md
     - Schema: schema.md

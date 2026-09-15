@@ -88,7 +88,18 @@ Multiple search terms
 
 ### From the Command Line Binary
 
-Not applicable.
+While the interactive search bar is specific to the Web-UI, you can view and list all VMs in an experiment (or filter for specific VMs by name or label) using the `phenix vm info` command:
+
+```bash
+# List details for all VMs in an experiment
+phenix vm info <experiment name>
+
+# Display details for a specific VM in an experiment
+phenix vm info <experiment name> <vm name>
+
+# Filter VMs by label
+phenix vm info <experiment name> --label <label>
+```
 
 ## Starting/Stopping Packet Captures
 

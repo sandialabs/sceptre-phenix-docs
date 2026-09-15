@@ -110,8 +110,8 @@ date.
 
 This token can be used to authenticate when using the Phenix API. Specifically, you would include the following as a header in HTTP requests.
 
-```
-X-phenix-auth-token: Bearer <TOKEN>
+```http
+X-phenix-auth-token: ******
 ```
 
 ## User Administration
@@ -136,6 +136,7 @@ available roles and their access rights.
 | Experiment Admin  | Can see and control anything/everything for assigned experiments, including VMs, but cannot create new experiments.      | E V   | E V   |   V    | E V    |   V   |   V    |
 | Experiment User   | Can see assigned experiments, and can control VMs within assigned experiments, but cannot modify experiments themselves. | E V   | E V   |        |        |   V   |        |
 | Experiment Viewer | Can see assigned experiments and VMs within assigned experiments, but cannot modify or control experiments or VMs.       | E V   | E V   |        |        |       |        |
+| VM Admin          | Can see assigned experiments, and has full administrative control over VMs in assigned experiments.                       | E V   | E V   |   V    |   V    |   V   |   V    |
 | VM Viewer         | Can only see VM screenshots and access VM VNC, nothing else.                                                             |   V   |       |        |        |       |        |
 
 Key: E - experiment resource, V - VM resource, U - user resource
@@ -443,104 +444,295 @@ Key: E - experiment resource, V - VM resource, U - user resource
 | Exp. Scoped | no
 | Res. Scoped | yes
 
+#### Resource: `users/roles`
+
+|      |      |
+|------|------|
+| Verb | patch
+| Desc | update user role assignments
+| Exp. Scoped | no
+| Res. Scoped | yes
+
+#### Resource: `configs`
+
+|      |      |
+|------|------|
+| Verb | list, get, create, update, delete
+| Desc | manage store configurations (topologies, scenarios, etc.)
+| Exp. Scoped | no
+| Res. Scoped | yes
+
+#### Resource: `settings`
+
+|      |      |
+|------|------|
+| Verb | update
+| Desc | update phēnix system settings
+| Exp. Scoped | no
+| Res. Scoped | no
+
+#### Resource: `vms/mount`
+
+|      |      |
+|------|------|
+| Verb | list, get, post, patch, delete
+| Desc | manage VM filesystem mounts on headnode
+| Exp. Scoped | yes
+| Res. Scoped | yes
+
+#### Resource: `vms/forwards`
+
+|      |      |
+|------|------|
+| Verb | list, get, create, delete
+| Desc | manage port forwarding rules for experiment VMs
+| Exp. Scoped | yes
+| Res. Scoped | yes
+
+#### Resource: `vms/cdrom`
+
+|      |      |
+|------|------|
+| Verb | update, delete
+| Desc | mount or eject CD-ROM ISO images on experiment VMs
+| Exp. Scoped | yes
+| Res. Scoped | yes
+
+#### Resource: `vms/memorySnapshot`
+
+|      |      |
+|------|------|
+| Verb | create
+| Desc | create ELF memory dumps of experiment VMs
+| Exp. Scoped | yes
+| Res. Scoped | yes
+
 ### Built-In Roles
 
-See the [previous](#resources) section for policy resource and verb
-descriptions.
+The following default roles are defined in phēnix as YAML resource specifications:
 
+#### Global Admin (`global-admin`)
+
+```yaml
+apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: global-admin
+spec:
+  roleName: Global Admin
+  policies:
+  - resources:
+    - "*"
+    - "*/*"
+    resourceNames:
+    - "*"
+    - "*/*"
+    verbs:
+    - "*"
 ```
-case GLOBAL_ADMIN:
-  return Policies([]*Policy{
-    {
-      Experiments:   []string{"*"},
-      Resources:     []string{"*", "*/*"},
-      ResourceNames: []string{"*"},
-      Verbs:         []string{"*"},
-    },
-  })
-case GLOBAL_VIEWER:
-  return Policies([]*Policy{
-    {
-      Experiments:   []string{"*"},
-      Resources:     []string{"*", "*/*"},
-      ResourceNames: []string{"*"},
-      Verbs:         []string{"list", "get"},
-    },
-  })
-case EXP_ADMIN:
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{"experiments", "experiments/*"},
-      Verbs:     []string{"list", "get", "update"},
-    },
-    {
-      Resources: []string{"vms", "vms/*"},
-      Verbs:     []string{"list", "get", "create", "update", "patch", "delete"},
-    },
-    {
-      Resources:     []string{"disks"},
-      ResourceNames: []string{"*"},
-      Verbs:         []string{"list"},
-    },
-    {
-      Resources:     []string{"hosts"},
-      ResourceNames: []string{"*"},
-      Verbs:         []string{"list"},
-    },
-  })
-case EXP_USER: // EXP_VIEWER + VM restart + VM update + VM capture
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{"experiments", "experiments/*"},
-      Verbs:     []string{"list", "get"},
-    },
-    {
-      Resources: []string{"vms", "vms/*"},
-      Verbs:     []string{"list", "get", "patch"},
-    },
-    {
-      Resources: []string{"vms/redeploy"},
-      Verbs:     []string{"update"},
-    },
-    {
-      Resources: []string{"vms/captures"},
-      Verbs:     []string{"create", "delete"},
-    },
-    {
-      Resources: []string{"vms/snapshots"},
-      Verbs:     []string{"list", "create", "update"},
-    },
-    {
-      Resources:     []string{"hosts"},
-      ResourceNames: []string{"*"},
-      Verbs:         []string{"list"},
-    },
-  })
-case EXP_VIEWER:
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{"experiments", "experiments/*", "vms", "vms/*"},
-      Verbs:     []string{"list", "get"},
-    },
-    {
-      Resources:     []string{"hosts"},
-      ResourceNames: []string{"*"},
-      Verbs:         []string{"list"},
-    },
-  })
-case VM_VIEWER:
-  // must supply experiment names and resource names or nothing will authorize
-  return Policies([]*Policy{
-    {
-      Resources: []string{"vms"},
-      Verbs:     []string{"list"},
-    },
-    {
-      Resources: []string{"vms/screenshot", "vms/vnc"},
-      Verbs:     []string{"get"},
-    },
-  })
+
+#### Global Viewer (`global-viewer`)
+
+```yaml
+apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: global-viewer
+spec:
+  roleName: Global Viewer
+  policies:
+  - resources:
+    - "*"
+    - "*/*"
+    resourceNames:
+    - "*"
+    - "*/*"
+    verbs:
+    - list
+    - get
+  - resources:
+    - "vms/mount"
+    resourceNames:
+    - "*"
+    - "*/*"
+    verbs:
+    - post
+    - delete
+```
+
+#### Experiment Admin (`experiment-admin`)
+
+```yaml
+apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: experiment-admin
+spec:
+  roleName: Experiment Admin
+  policies:
+  - resources:
+    - experiments
+    - "experiments/*"
+    verbs:
+    - list
+    - get
+    - update
+  - resources:
+    - vms
+    - "vms/*"
+    verbs:
+    - list
+    - get
+    - create
+    - update
+    - patch
+    - delete
+  - resources:
+    - disks
+    resourceNames:
+    - "*"
+    verbs:
+    - list
+  - resources:
+    - "experiments/files"
+    verbs:
+    - create
+  - resources:
+    - hosts
+    resourceNames:
+    - "*"
+    verbs:
+    - list
+```
+
+#### Experiment User (`experiment-user`)
+
+```yaml
+apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: experiment-user
+spec:
+  roleName: Experiment User
+  policies:
+  - resources:
+    - experiments
+    - "experiments/*"
+    verbs:
+    - list
+    - get
+  - resources:
+    - vms
+    - "vms/*"
+    verbs:
+    - list
+    - get
+    - patch
+  - resources:
+    - "vms/redeploy"
+    verbs:
+    - update
+  - resources:
+    - "vms/captures"
+    verbs:
+    - create
+    - delete
+  - resources:
+    - "vms/snapshots"
+    verbs:
+    - list
+    - create
+    - update
+  - resources:
+    - "experiments/files"
+    verbs:
+    - create
+  - resources:
+    - hosts
+    resourceNames:
+    - "*"
+    verbs:
+    - list
+```
+
+#### Experiment Viewer (`experiment-viewer`)
+
+```yaml
+apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: experiment-viewer
+spec:
+  roleName: Experiment Viewer
+  policies:
+  - resources:
+    - experiments
+    - "experiments/*"
+    - vms
+    - "vms/*"
+    verbs:
+    - list
+    - get
+  - resources:
+    - hosts
+    resourceNames:
+    - "*"
+    verbs:
+    - list
+  - resources:
+    - "vms/mount"
+    verbs:
+    - post
+    - delete
+```
+
+#### VM Admin (`vm-admin`)
+
+```yaml
+apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: vm-admin
+spec:
+  roleName: VM Admin
+  policies:
+  - resources:
+    - experiments
+    - "experiments/*"
+    verbs:
+    - list
+    - get
+  - resources:
+    - vms
+    - "vms/*"
+    verbs:
+    - "*"
+```
+
+#### VM Viewer (`vm-viewer`)
+
+```yaml
+apiVersion: phenix.sandia.gov/v1
+kind: Role
+metadata:
+  name: vm-viewer
+spec:
+  roleName: VM Viewer
+  policies:
+  - resources:
+    - vms
+    verbs:
+    - list
+  - resources:
+    - "vms/screenshot"
+    - "vms/vnc"
+    verbs:
+    - get
+  - resources:
+    - "vms/mount"
+    verbs:
+    - post
+    - list
+    - delete
+    - get
 ```

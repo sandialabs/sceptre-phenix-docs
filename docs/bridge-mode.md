@@ -47,7 +47,7 @@ Two experiments may not share the same default bridge name unless that name is
 the shared `phenix` bridge. Creating or updating an experiment whose default
 bridge is already claimed by another experiment fails with:
 
-```
+```text
 experiment <other-experiment> already using default bridge <bridge-name>
 ```
 

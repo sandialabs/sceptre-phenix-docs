@@ -203,7 +203,7 @@ The following Scorch component types have been developed external to the main ph
 | --- | ----------- |
 | [art](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/art) | Atomic Red Team |
 | [caldera](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/caldera) | Executes operations in [MITRE Caldera](https://caldera.mitre.org/) via the REST API. |
-| [cc](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/cc) | minimega Command and Control ([miniccc](https://www.sandia.gov/minimega/module-28-miniccc-and-the-cc-api/)). |
+| [cc](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/cc) | minimega Command and Control ([miniccc](https://sandia-minimega.github.io/minimega/training/miniclass/module-28/)). |
 | [collector](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/collector) | Collects and processes data from cyber-physical experiments and Scorch components. |
 | [disruption](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/disruption) | Orchestrates and executes disruption scenarios for cyber-physical experiments. |
 | [ettercap](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/ettercap) | Runs [Ettercap](https://github.com/Ettercap/ettercap). |
@@ -212,10 +212,10 @@ The following Scorch component types have been developed external to the main ph
 | [kafka](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/kafka) | Filters and exports Kafka data as a CSV or JSON file. |
 | [mm](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/mm) | minimega (mm) Component. |
 | [opcexport](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/opcexport) | Exports data from an OPC server to Elasticsearch. |
-| [pcap](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pcap) | Collects PCAPs from VMs via minimega's `capture pcap` [API](https://www.sandia.gov/minimega/module-39-network-capture/). |
-| [pipe](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pipe) | Implements minimega `pipe` [API](https://www.sandia.gov/minimega/module-29-miniplumber/). |
+| [pcap](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pcap) | Collects PCAPs from VMs via minimega's `capture pcap` [API](https://sandia-minimega.github.io/minimega/training/miniclass/module-39/). |
+| [pipe](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/pipe) | Implements minimega `pipe` [API](https://sandia-minimega.github.io/minimega/training/miniclass/module-29/). |
 | [providerdata](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/providerdata) | Collects and verifies data from pybennu providers, such as the RTDS or OPALRT. |
-| [qos](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/qos) | Apply Quality of Service ([QoS](https://sandia-minimega.github.io/#header_5.57)) effects on network interfaces, including dropping packets (loss), delaying packets (delay), or limiting bandwidth (rate). |
+| [qos](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/qos) | Apply Quality of Service ([QoS](https://sandia-minimega.github.io/minimega/reference/minimega/#qos)) effects on network interfaces, including dropping packets (loss), delaying packets (delay), or limiting bandwidth (rate). |
 | [rtds](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/rtds) | Collects and verifies data from the Real-Time Dynamic Simulator (RTDS), and orchestrates the starting/stopping of RSCAD cases. |
 | [snort](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/snort) | Configures and runs [Snort](https://www.snort.org/). |
 | [tcpdump](https://github.com/sandialabs/sceptre-phenix-apps/tree/main/src/python/phenix_apps/apps/scorch/tcpdump) | Executes and collects and processes data from `tcpdump`. |

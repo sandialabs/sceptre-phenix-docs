@@ -37,7 +37,7 @@ To reset your configuration, use the command `phenix settings unset --all` inste
 
 The phēnix Scenario configuration was upgraded from `v1` to `v2`. While phēnix attempts to handle this automatically, experiments created with an older `v1` scenario may fail with an error like this:
 
-```
+```text
 'scenario.apps': source data must be an array or slice, got map
 ```
 

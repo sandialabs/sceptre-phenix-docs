@@ -77,6 +77,29 @@ phēnix resolves configuration settings in the following order (highest to lowes
 3.  **Environment Variables**: Variables like `PHENIX_LOG_LEVEL`.
 4.  **Defaults**: Internal application defaults.
 
+## Global Flags
+
+The following global flags are supported by all `phenix` subcommands:
+
+| Flag | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `--base-dir.minimega` | `string` | `/tmp/minimega` | Base minimega directory. |
+| `--base-dir.phenix` | `string` | `/phenix` | Base phēnix directory. |
+| `--bridge-mode` | `string` | `manual` | Bridge naming mode for experiments (`auto` uses experiment name for bridge; `manual` uses user-specified bridge name, or `phenix` if omitted). |
+| `--deploy-mode` | `string` | — | Deploy mode for minimega VMs (`all`, `no-headnode`, or `only-headnode`). |
+| `-h, --help` | — | — | Display help information for the command. |
+| `--hostname-suffixes` | `string` | `-minimega,-phenix` | Hostname suffixes to strip. |
+| `--log.console` | `string` | `stderr` | Destination output for console logs in text format (`stderr`, `stdout`, or a file path). |
+| `--log.level` | `string` | `info` | Level to log messages at (`debug`, `info`, `warn`, `error`). |
+| `--log.system.max-age` | `int` | `90` | Maximum number of days to retain old log files. |
+| `--log.system.max-backups` | `int` | `3` | Maximum number of old log files to retain. |
+| `--log.system.max-size` | `int` | `100` | Maximum size in megabytes of the system log file before rotation. |
+| `--log.system.path` | `string` | `/var/log/phenix/phenix.log` | Path to persistent system log in JSON Lines format, with one JSON object per line. |
+| `--mount-dir` | `string` | `<base-dir.phenix>/mounts` | Base directory for VM filesystem mounts. |
+| `--store.endpoint` | `string` | `bolt:///etc/phenix/store.bdb` | Endpoint for the storage service. |
+| `--unix-socket` | `string` | `/tmp/phenix.sock` | phēnix unix socket to listen on (`ui` subcommand) or connect to. |
+| `--use-gre-mesh` | — | `false` | Use GRE tunnels between mesh nodes for VLAN trunking. |
+
 ## Settings Reference
 
 | Setting Key | Environment Variable | Default | Description |
