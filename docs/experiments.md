@@ -12,9 +12,10 @@ the user has access to view or edit.
 This will display a list of all available experiments: it is run as a `root`
 user.
 
+```bash
+phenix exp list
 ```
-$> phenix exp list
-```
+
 <br>
 
 ## Starting / Stopping Experiments
@@ -28,16 +29,16 @@ stopping -- it will not be accessible or available to delete.
 
 ### From the Command Line Binary
 
-```
-$> phenix exp start <experiment name>
-```
-Or ...
-```
-$> phenix exp stop <experiment name>
+```bash
+phenix exp start <experiment name>
 ```
 Or ...
+```bash
+phenix exp stop <experiment name>
 ```
-$> phenix exp restart <experiment name>
+Or ...
+```bash
+phenix exp restart <experiment name>
 ```
 
 Optionally, you can use the `--dry-run` flag to do everything except call out to
@@ -45,7 +46,7 @@ minimega.
 
 The `phenix exp --help` command will output:
 
-```
+```text
 Experiment management
 
 Usage:
@@ -73,25 +74,11 @@ Available Commands:
 Flags:
   -h, --help   help for experiment
 
-Global Flags:
-      --base-dir.minimega string     base minimega directory (default "/tmp/minimega")
-      --base-dir.phenix string       base phenix directory (default "/phenix")
-      --bridge-mode string           bridge naming mode for experiments ('auto' uses experiment name for bridge; 'manual' uses user-specified bridge name, or 'phenix' if not specified) (options: manual | auto)
-      --deploy-mode string           deploy mode for minimega VMs (options: all | no-headnode | only-headnode)
-      --hostname-suffixes string     hostname suffixes to strip (default "-minimega,-phenix")
-      --log.console string           output for console logs (text format) (stderr, stdout, or file path) (default "stderr")
-      --log.level string             level to log messages at (default "info")
-      --log.system.max-age int       maximum number of days to retain old log files (default 90)
-      --log.system.max-backups int   maximum number of old log files to retain (default 3)
-      --log.system.max-size int      maximum size in megabytes of the log file before it gets rotated (default 100)
-      --log.system.path string       path to system log (JSON format) (default "/var/log/phenix/phenix.log")
-      --mount-dir string             base directory for VM filesystem mounts (default: <base-dir.phenix>/mounts)
-      --store.endpoint string        endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
-      --unix-socket string           phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
-      --use-gre-mesh                 use GRE tunnels between mesh nodes for VLAN trunking
-
 Use "phenix experiment [command] --help" for more information about a command.
 ```
+
+!!! note
+    For a list of global flags supported across all `phenix` subcommands, see [Global Flags](settings.md#global-flags).
 
 ## Create a New Experiment
 
@@ -107,48 +94,70 @@ Enter `Experiment Name` and `Experiment Topology`, the remaining selection are
 optional. In this example, `bennu` is an example topology and is not included
 by default. You will need to [create](configuration.md) your own topology(ies).
 
+#### Purely via the Web-UI (Uploading Topo/Scenario Files)
+
+You can create an experiment entirely through the Web-UI using custom topology and scenario files without needing to use the CLI:
+
+1. **Upload Configurations in the Configs Tab**:
+   * Navigate to the **Configs** tab.
+   * Click the **Upload** button to upload your topology file (`.yaml`).
+   * (Optional) Click **Upload** again to upload your scenario file (`.yaml`).
+   * Verify that your uploaded configurations appear in the table (e.g., `topology/my-topology` and `scenario/my-scenario`).
+
+2. **Create Experiment in Experiments Tab**:
+   * Navigate to the **Experiments** tab.
+   * Click the `+` button to open the creation dialog.
+   * Enter an **Experiment Name**.
+   * Select your uploaded topology from the **Experiment Topology** dropdown.
+   * (Optional) Select your uploaded scenario from the **Experiment Scenario** dropdown.
+   * Click **Save** to create the experiment.
+
 ### From the Command Line Binary
 
-Three options are available from the command line. The only requirements are for
-an experiment and topology name; scenario and base directory are optional.
+You can create an experiment using either saved configuration names from the phēnix store or direct file paths to topology and scenario configuration files (`.yaml`).
 
-```
-$> phenix experiment create <experiment name> -t <topology name>
-$> phenix experiment create <experiment name> -t <topology name> -s <scenario name>
-$> phenix experiment create <experiment name> -t <topology name> -s <scenario name> -d </path/to/dir/>`
+```bash
+# Using stored configuration names
+phenix experiment create <experiment name> -t <topology name>
+phenix experiment create <experiment name> -t <topology name> -s <scenario name>
+
+# Using direct file paths for topology and scenario
+phenix experiment create <experiment name> -t /path/to/topology.yaml
+phenix experiment create <experiment name> -t /path/to/topology.yaml -s /path/to/scenario.yaml
+
+# Specifying a base directory and disabled apps
+phenix experiment create <experiment name> -t /path/to/topology.yaml -s /path/to/scenario.yaml -d </path/to/dir/> --disabled-apps "app1,app2"
 ```
 
 The `phenix exp create --help` command will output:
 
-```
+```text
 Create an experiment
 
-  Used to create an experiment from an existing configuration; can be a
-  topology, or topology and scenario. (Optional are the arguments for scenario
-  or base directory.)
+  Used to create an experiment from existing configurations; can be a
+  topology, or topology and scenario, or paths to topology/scenario
+  configuration files (YAML or JSON). (Optional are the arguments for
+  scenario or base directory.)
 
 Usage:
   phenix experiment create <experiment name> [flags]
 
 Examples:
 
-  phenix experiment create <experiment name> -t <topology name>
-  phenix experiment create <experiment name> -t <topology name> -s <scenario name>
-  phenix experiment create <experiment name> -t <topology name> -s <scenario name> -d </path/to/dir/>
+  phenix experiment create <experiment name> -t <topology name or /path/to/filename>
+  phenix experiment create <experiment name> -t <topology name or /path/to/filename> -s <scenario name or /path/to/filename>
+  phenix experiment create <experiment name> -t <topology name or /path/to/filename> -s <scenario name or /path/to/filename> -d </path/to/dir/>
+  phenix experiment create <experiment name> -t <topology name or /path/to/filename> -s <scenario name or /path/to/filename> --disabled-apps "app1,app2"
 
 Flags:
-  -d, --base-dir string   Base directory to use for experiment (optional)
-  -h, --help              help for create
-  -s, --scenario string   Name of an existing scenario to use (optional)
-  -t, --topology string   Name of an existing topology to use
-
-Global Flags:
-      --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
-      --base-dir.phenix string     base phenix directory (default "/phenix")
-      --hostname-suffixes string   hostname suffixes to strip
-      --log.error-file string      log fatal errors to file (default "/root/.phenix.err")
-      --log.error-stderr           log fatal errors to STDERR
-      --store.endpoint string      endpoint for storage service (default "bolt:///root/.phenix.bdb")
+  -d, --base-dir string         Base directory to use for experiment (optional)
+  -b, --default-bridge string   Default bridge name to use for experiment (optional) (default "phenix")
+      --disabled-apps strings   Comma separated ist of apps to disable
+  -h, --help                    help for create
+  -s, --scenario string         Name of an existing scenario to use (optional)
+  -t, --topology string         Name of an existing topology to use
+      --vlan-max int            VLAN pool maximum
+      --vlan-min int            VLAN pool minimum
 ```
 
 ## Deleting Experiments
@@ -162,16 +171,16 @@ icon next to the experiment to delete it.
 
 An experiment must be stopped before it can be deleted:
 
-```
-$> phenix exp stop <experiment name>
-$> phenix exp delete <experiment name>
+```bash
+phenix exp stop <experiment name>
+phenix exp delete <experiment name>
 ```
 
 Alternatively, the `-f`/`--force` flag can be used to automatically stop a
 running experiment before deleting it, similar to `docker rm -f`:
 
-```
-$> phenix exp delete -f <experiment name>
+```bash
+phenix exp delete -f <experiment name>
 ```
 
 Using `all` instead of a specific experiment name will delete all stopped
@@ -180,7 +189,7 @@ whether they are running).
 
 The `phenix exp delete --help` command will output:
 
-```
+```text
 Delete an experiment
 
   Used to delete an existing experiment; experiment must be stopped.
@@ -191,17 +200,12 @@ Delete an experiment
 Usage:
   phenix experiment delete <experiment name> [flags]
 
+Aliases:
+  delete, del
+
 Flags:
   -f, --force   Stop a running experiment before deleting it
   -h, --help    help for delete
-
-Global Flags:
-      --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
-      --base-dir.phenix string     base phenix directory (default "/phenix")
-      --hostname-suffixes string   hostname suffixes to strip
-      --log.error-file string      log fatal errors to file (default "/root/.phenix.err")
-      --log.error-stderr           log fatal errors to STDERR
-      --store.endpoint string      endpoint for storage service (default "bolt:///root/.phenix.bdb")
 ```
 
 ## Scheduling an Experiment
@@ -218,12 +222,48 @@ filter field and start button to select a desired schedule.
 
 The list of available schedules can be found by running the following command.
 
-```
-$> phenix exp schedulers
+```bash
+phenix experiment schedulers
 ```
 
 Then apply the desired schedule with the following command.
 
+```bash
+phenix experiment schedule <experiment name> <algorithm>
 ```
-$> phenix experiment schedule <experiment name> <algorithm>
+
+## Common Workflows
+
+### 1. Basic Experiment Lifecycle
+
+```bash
+# 1. Create experiment from topology/scenario files
+phenix exp create my-experiment -t /path/to/topology.yaml -s /path/to/scenario.yaml
+
+# 2. Start the experiment
+phenix exp start my-experiment
+
+# 3. View status and inspect VMs
+phenix exp list
+phenix vm info my-experiment
+
+# 4. Stop the experiment when testing finishes
+phenix exp stop my-experiment
+
+# 5. Delete the experiment
+phenix exp delete my-experiment
+```
+
+### 2. Updating and Reconfiguring an Experiment
+
+```bash
+# Reconfigure a running experiment after modifying underlying configuration files
+phenix exp reconfigure my-experiment
+```
+
+### 3. Dry-Run Deployment Testing
+
+```bash
+# Test experiment startup logic without deploying minimega VMs
+phenix exp start my-experiment --dry-run
 ```

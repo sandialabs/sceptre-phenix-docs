@@ -62,7 +62,7 @@ modal.  Click the `create backing image` button as shown in the screenshot below
 
 ### From the Command Line Binary
 
-Not applicable.
+There is currently no CLI subcommand to create backing images from running VMs. This operation is available through the Web-UI and the REST API (`POST /api/vms/commit`).
 
 ## Create a Memory Snapshot
 
@@ -92,7 +92,7 @@ modal.  Click the `vm snapshot` button as shown in the screenshot below.
 
 ### From the Command Line Binary
 
-Not applicable.
+While ELF memory dumps can be created via `phenix vm memory-snapshot`, there is currently no CLI subcommand to take standard VM disk snapshots. VM disk snapshots are managed through the Web-UI and the REST API (`POST /api/vms/snapshots`).
 
 ## VM VNC Access
 

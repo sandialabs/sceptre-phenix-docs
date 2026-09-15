@@ -2,7 +2,7 @@
 
 State of Health (SoH) is a core (but not default) app meant to assist with
 understanding the state of a running experiment. It has many [configuration options](#configuration-options), and relies on [minimega's command and control
-infrastructure](https://www.sandia.gov/minimega/module-28-miniccc-and-the-cc-api/) (ie. the `miniccc` agent running in experiment VMs) to drive and
+infrastructure](https://sandia-minimega.github.io/minimega/training/miniclass/module-28/) (ie. the `miniccc` agent running in experiment VMs) to drive and
 collect the experiment health state data. See the [command and control](#command-and-control) section for more details.
 
 ## User Interface
@@ -218,6 +218,7 @@ details. (In this screenshot, the mouse is hovering over the traffic for IP
       - sshd
       windows-client:
       - Spooler
+    ```
 * `dockerContainers`: a map of VMs, each specifying a list of Docker container
   names/IDs that should be up and healthy within the VM. For each container, if
   it has a [Docker
@@ -488,7 +489,7 @@ spec:
 
 ## Command and Control
 
-As mentioned earlier, SoH relies on minimega's command and control infrastructure ([miniccc](https://www.sandia.gov/minimega/module-28-miniccc-and-the-cc-api/))
+As mentioned earlier, SoH relies on minimega's command and control infrastructure ([miniccc](https://sandia-minimega.github.io/minimega/training/miniclass/module-28/))
 to drive and collect the experiment health state data. Under the hood, the SoH
 app uses C2 to execute a test on a VM (`cc exec`), wait for the command to
 complete (`cc commands`), grab the STDOUT/STDERR of the command (`cc

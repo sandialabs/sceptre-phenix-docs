@@ -1,7 +1,7 @@
 # Experiment Netflow
 
 The minimega platform supports [netflow
-capture](https://sandia-minimega.github.io/#header_5.9), wherein flows
+capture](https://sandia-minimega.github.io/minimega/reference/minimega/#capture), wherein flows
 through an Open vSwitch bridge can be parsed into an ASCII format and forwarded
 to a remote endpoint for additional consumption.
 

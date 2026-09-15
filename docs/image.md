@@ -19,11 +19,16 @@ phenix image create <image name>
 
 The `phenix image create --help` will output:
 
-```
+```text
 Create a disk image configuration
 
   Used to create a virtual disk image configuration from which to build
-  an image
+	an image.
+
+	When specifying the --size option, the following units can be used:
+
+	M - Megabytes
+	G - Gigabytes
 
 Usage:
   phenix image create <image name> [flags]
@@ -31,29 +36,24 @@ Usage:
 Examples:
 
   phenix image create <image name>
-  phenix image create --size 2G --variant mingui --release xenial --format qcow2 --compress --overlays foobar --packages foo --scripts bar <image name>
+  phenix image create --size 2G --variant mingui --release noble --compress --overlays foobar --packages foo --scripts bar <image name>
 
 Flags:
-  -c, --compress                    Compress image after creation (does not apply to raw image)
-  -d, --debootstrap-append string   Additional arguments to debootstrap "(default: --components=main,restricted,universe,multiverse)"
-  -f, --format string               Format of disk image (default "raw")
-  -h, --help                        help for create
-  -m, --mirror string               Debootstrap mirror (must match release) (default "http://us.archive.ubuntu.com/ubuntu/")
-  -O, --overlays string             List of overlay names (include full path; separated by comma)
-  -P, --packages string             List of packages to include in addition to those provided by variant (separated by comma)
-  -R, --ramdisk                     Create a kernel/initrd pair in addition to a disk image
-  -r, --release string              OS release codename (default "bionic")
-  -T, --scripts string              List of scripts to include in addition to the defaults (include full path; separated by comma)
-  -s, --size string                 Image size to use (default "5G")
-  -v, --variant string              Image variant to use (default "minbase")
-
-Global Flags:
-      --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
-      --base-dir.phenix string     base phenix directory (default "/phenix")
-      --hostname-suffixes string   hostname suffixes to strip
-      --log.error-file string      log fatal errors to file (default "/var/log/phenix/error.log")
-      --log.error-stderr           log fatal errors to STDERR
-      --store.endpoint string      endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
+  -l, --components string    List of components from the mirror to download packages from (separated by comma)
+  -c, --compress             Compress image after creation (does not apply to raw image)
+  -f, --format string        Format of disk image (default "qcow2")
+  -h, --help                 help for create
+  -k, --kernel-args string   List of parameters which grub will pass to the Linux kernel (e.g. 'net.ifnames=0','consoleblank=0'); separated by comma)
+  -m, --mirror string        Debootstrap mirror (must match release) (default "http://us.archive.ubuntu.com/ubuntu")
+      --no-virtuals          Don't add virtual filesystem mounts to chroot before executing scripts when running vmdb2 (default is 'false')
+  -O, --overlays string      List of overlay names (include full path; separated by comma)
+  -P, --packages string      List of packages to include in addition to those provided by variant (separated by comma)
+  -R, --ramdisk              Create a kernel/initrd pair in addition to a disk image
+  -r, --release string       OS release codename (default "jammy")
+  -T, --scripts string       List of scripts to include in addition to the defaults (include full path; separated by comma)
+  -s, --size string          Image size to use (default "10G")
+      --skip-default-pkgs    Skip default packages typically included in all builds
+  -v, --variant string       Image variant to use (default "minbase")
 ```
 
 The `vmdb2` configuration file can be read by running the following command:
@@ -68,7 +68,7 @@ Building a disk image requires an existing configuration in the store
 (i.e., the `create` command should be run first to create a configuration);
 running `phenix image build --help` will output:
 
-```
+```text
 Build a virtual disk image
 
   Used to build a new virtual disk using an existing configuration; vmdb2 must
@@ -89,23 +89,6 @@ Flags:
   -o, --output string   Specify the output directory for the disk image to be saved to
   -v, --verbose         Enable verbose output
   -x, --very-verbose    Enable very verbose output, additionally writes output log file to <image name>.log
-
-Global Flags:
-      --base-dir.minimega string     base minimega directory (default "/tmp/minimega")
-      --base-dir.phenix string       base phenix directory (default "/phenix")
-      --bridge-mode string           bridge naming mode for experiments ('auto' uses experiment name for bridge; 'manual' uses user-specified bridge name, or 'phenix' if not specified) (options: manual | auto)
-      --deploy-mode string           deploy mode for minimega VMs (options: all | no-headnode | only-headnode)
-      --hostname-suffixes string     hostname suffixes to strip (default "-minimega,-phenix")
-      --log.console string           output for console logs (text format) (stderr, stdout, or file path) (default "stderr")
-      --log.level string             level to log messages at (default "info")
-      --log.system.max-age int       maximum number of days to retain old log files (default 90)
-      --log.system.max-backups int   maximum number of old log files to retain (default 3)
-      --log.system.max-size int      maximum size in megabytes of the log file before it gets rotated (default 100)
-      --log.system.path string       path to system log (JSON format) (default "/var/log/phenix/phenix.log")
-      --mount-dir string             base directory for VM filesystem mounts (default: <base-dir.phenix>/mounts)
-      --store.endpoint string        endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
-      --unix-socket string           phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
-      --use-gre-mesh                 use GRE tunnels between mesh nodes for VLAN trunking
 ```
 
 ## Miscellaneous Commands
@@ -138,13 +121,13 @@ the new configuration.
 
 ### delete
 
-```
+```shell
 phenix image delete <image name>
 ```
 
 An alternative could be to use the configuration management tool.
 
-```
+```shell
 phenix cfg delete image/<image name>
 ```
 
