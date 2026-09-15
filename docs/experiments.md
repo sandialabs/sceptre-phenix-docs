@@ -266,6 +266,26 @@ Trigger configure stage for all experiments:
 $> phenix exp trigger configure all
 ```
 
+### `trigger configure` vs. `reconfigure`
+
+`phenix exp trigger configure` and `phenix experiment reconfigure` both re-run
+the `configure` lifecycle stage, but they serve different purposes and are not
+interchangeable:
+
+| | `phenix exp trigger configure` | `phenix experiment reconfigure` |
+|---|---|---|
+| Use case | Manually re-run a specific app's (or apps') configure hook on demand, e.g. for debugging | Re-apply configuration after editing an experiment's stored topology, scenario, or deployment settings |
+| Targets specific apps | Yes, via `[<app name> ...]` | No, always applies to every app |
+| Validates the experiment config | No | Yes |
+| Runs registered config hooks | No | Yes |
+| Resets the minimega bridge | No | Yes (deletes it so it's recreated with current settings, unless using the GRE mesh) |
+| Guards against running experiments | No | Yes (refuses to run if the experiment is running) |
+
+Use `phenix experiment reconfigure` after changing an experiment's stored
+settings. Use `phenix exp trigger configure` for targeted, on-demand
+re-invocation of one or more apps' configure hooks, such as when debugging an
+app.
+
 ### Deprecated Command
 
 The `phenix exp trigger-running` command is deprecated and will be removed in a
