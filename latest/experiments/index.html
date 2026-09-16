@@ -636,6 +636,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="From the Web-UI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purely-via-the-web-ui-uploading-toposcenario-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purely via the Web-UI (Uploading Topo/Scenario Files)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -721,6 +738,56 @@
     <span class="md-ellipsis">
       
         From the Command Line Binary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-basic-experiment-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basic Experiment Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-updating-and-reconfiguring-an-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Updating and Reconfiguring an Experiment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dry-run-deployment-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dry-Run Deployment Testing
       
     </span>
   </a>
@@ -1382,6 +1449,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../minimega/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minimega
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
@@ -1563,6 +1658,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="From the Web-UI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purely-via-the-web-ui-uploading-toposcenario-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purely via the Web-UI (Uploading Topo/Scenario Files)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1659,6 +1771,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-basic-experiment-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basic Experiment Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-updating-and-reconfiguring-an-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Updating and Reconfiguring an Experiment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dry-run-deployment-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dry-Run Deployment Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1687,9 +1849,9 @@ the user has access to view or edit.</p>
 <h3 id="from-the-command-line-binary">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary" title="Permanent link">&para;</a></h3>
 <p>This will display a list of all available experiments: it is run as a <code>root</code>
 user.</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$&gt; phenix exp list
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>phenix<span class="w"> </span>exp<span class="w"> </span>list
 </span></code></pre></div>
-<br></p>
+<p><br></p>
 <h2 id="starting-stopping-experiments">Starting / Stopping Experiments<a class="headerlink" href="#starting-stopping-experiments" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_1">From the Web-UI<a class="headerlink" href="#from-the-web-ui_1" title="Permanent link">&para;</a></h3>
 <p>Clicking the <code>stopped</code> button will start the experiment; similarly the <code>started</code>
@@ -1697,13 +1859,13 @@ button will stop the experiment. A progress bar is used to update the progress
 of starting an experiment. During the update to the experiment -- starting or
 stopping -- it will not be accessible or available to delete.</p>
 <h3 id="from-the-command-line-binary_1">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_1" title="Permanent link">&para;</a></h3>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$&gt; phenix exp start &lt;experiment name&gt;
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>phenix<span class="w"> </span>exp<span class="w"> </span>start<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div>
 Or ...
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$&gt; phenix exp stop &lt;experiment name&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>phenix<span class="w"> </span>exp<span class="w"> </span>stop<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div>
 Or ...
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$&gt; phenix exp restart &lt;experiment name&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>phenix<span class="w"> </span>exp<span class="w"> </span>restart<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div></p>
 <p>Optionally, you can use the <code>--dry-run</code> flag to do everything except call out to
 minimega.</p>
@@ -1735,25 +1897,12 @@ minimega.</p>
 </span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>Flags:
 </span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>  -h, --help   help for experiment
 </span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>Global Flags:
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>      --base-dir.minimega string     base minimega directory (default "/tmp/minimega")
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>      --base-dir.phenix string       base phenix directory (default "/phenix")
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>      --bridge-mode string           bridge naming mode for experiments ('auto' uses experiment name for bridge; 'manual' uses user-specified bridge name, or 'phenix' if not specified) (options: manual | auto)
-</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>      --deploy-mode string           deploy mode for minimega VMs (options: all | no-headnode | only-headnode)
-</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>      --hostname-suffixes string     hostname suffixes to strip (default "-minimega,-phenix")
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>      --log.console string           output for console logs (text format) (stderr, stdout, or file path) (default "stderr")
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>      --log.level string             level to log messages at (default "info")
-</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>      --log.system.max-age int       maximum number of days to retain old log files (default 90)
-</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>      --log.system.max-backups int   maximum number of old log files to retain (default 3)
-</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>      --log.system.max-size int      maximum size in megabytes of the log file before it gets rotated (default 100)
-</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>      --log.system.path string       path to system log (JSON format) (default "/var/log/phenix/phenix.log")
-</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>      --mount-dir string             base directory for VM filesystem mounts (default: &lt;base-dir.phenix&gt;/mounts)
-</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>      --store.endpoint string        endpoint for storage service (default "bolt:///etc/phenix/store.bdb")
-</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>      --unix-socket string           phēnix unix socket to listen on (ui subcommand) or connect to (default "/tmp/phenix.sock")
-</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>      --use-gre-mesh                 use GRE tunnels between mesh nodes for VLAN trunking
-</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>
-</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>Use "phenix experiment [command] --help" for more information about a command.
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>Use "phenix experiment [command] --help" for more information about a command.
 </span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a list of global flags supported across all <code>phenix</code> subcommands, see <a href="../settings/#global-flags">Global Flags</a>.</p>
+</div>
 <h2 id="create-a-new-experiment">Create a New Experiment<a class="headerlink" href="#create-a-new-experiment" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_2">From the Web-UI<a class="headerlink" href="#from-the-web-ui_2" title="Permanent link">&para;</a></h3>
 <p><img alt="screenshot" class="center" src="../images/create_exp.png" width="800" /></p>
@@ -1762,42 +1911,66 @@ minimega.</p>
 <p>Enter <code>Experiment Name</code> and <code>Experiment Topology</code>, the remaining selection are
 optional. In this example, <code>bennu</code> is an example topology and is not included
 by default. You will need to <a href="../configuration/">create</a> your own topology(ies).</p>
+<h4 id="purely-via-the-web-ui-uploading-toposcenario-files">Purely via the Web-UI (Uploading Topo/Scenario Files)<a class="headerlink" href="#purely-via-the-web-ui-uploading-toposcenario-files" title="Permanent link">&para;</a></h4>
+<p>You can create an experiment entirely through the Web-UI using custom topology and scenario files without needing to use the CLI:</p>
+<ol>
+<li><strong>Upload Configurations in the Configs Tab</strong>:</li>
+<li>Navigate to the <strong>Configs</strong> tab.</li>
+<li>Click the <strong>Upload</strong> button to upload your topology file (<code>.yaml</code>).</li>
+<li>(Optional) Click <strong>Upload</strong> again to upload your scenario file (<code>.yaml</code>).</li>
+<li>
+<p>Verify that your uploaded configurations appear in the table (e.g., <code>topology/my-topology</code> and <code>scenario/my-scenario</code>).</p>
+</li>
+<li>
+<p><strong>Create Experiment in Experiments Tab</strong>:</p>
+</li>
+<li>Navigate to the <strong>Experiments</strong> tab.</li>
+<li>Click the <code>+</code> button to open the creation dialog.</li>
+<li>Enter an <strong>Experiment Name</strong>.</li>
+<li>Select your uploaded topology from the <strong>Experiment Topology</strong> dropdown.</li>
+<li>(Optional) Select your uploaded scenario from the <strong>Experiment Scenario</strong> dropdown.</li>
+<li>Click <strong>Save</strong> to create the experiment.</li>
+</ol>
 <h3 id="from-the-command-line-binary_2">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_2" title="Permanent link">&para;</a></h3>
-<p>Three options are available from the command line. The only requirements are for
-an experiment and topology name; scenario and base directory are optional.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$&gt; phenix experiment create &lt;experiment name&gt; -t &lt;topology name&gt;
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$&gt; phenix experiment create &lt;experiment name&gt; -t &lt;topology name&gt; -s &lt;scenario name&gt;
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>$&gt; phenix experiment create &lt;experiment name&gt; -t &lt;topology name&gt; -s &lt;scenario name&gt; -d &lt;/path/to/dir/&gt;`
+<p>You can create an experiment using either saved configuration names from the phēnix store or direct file paths to topology and scenario configuration files (<code>.yaml</code>).</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Using stored configuration names</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>-t<span class="w"> </span>&lt;topology<span class="w"> </span>name&gt;
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>-t<span class="w"> </span>&lt;topology<span class="w"> </span>name&gt;<span class="w"> </span>-s<span class="w"> </span>&lt;scenario<span class="w"> </span>name&gt;
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Using direct file paths for topology and scenario</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>-t<span class="w"> </span>/path/to/topology.yaml
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>-t<span class="w"> </span>/path/to/topology.yaml<span class="w"> </span>-s<span class="w"> </span>/path/to/scenario.yaml
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># Specifying a base directory and disabled apps</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>-t<span class="w"> </span>/path/to/topology.yaml<span class="w"> </span>-s<span class="w"> </span>/path/to/scenario.yaml<span class="w"> </span>-d<span class="w"> </span>&lt;/path/to/dir/&gt;<span class="w"> </span>--disabled-apps<span class="w"> </span><span class="s2">"app1,app2"</span>
 </span></code></pre></div>
 <p>The <code>phenix exp create --help</code> command will output:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Create an experiment
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  Used to create an experiment from an existing configuration; can be a
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  topology, or topology and scenario. (Optional are the arguments for scenario
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  or base directory.)
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Usage:
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  phenix experiment create &lt;experiment name&gt; [flags]
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>Examples:
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>  phenix experiment create &lt;experiment name&gt; -t &lt;topology name&gt;
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  phenix experiment create &lt;experiment name&gt; -t &lt;topology name&gt; -s &lt;scenario name&gt;
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  phenix experiment create &lt;experiment name&gt; -t &lt;topology name&gt; -s &lt;scenario name&gt; -d &lt;/path/to/dir/&gt;
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>Flags:
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  -d, --base-dir string   Base directory to use for experiment (optional)
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>  -h, --help              help for create
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  -s, --scenario string   Name of an existing scenario to use (optional)
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>  -t, --topology string   Name of an existing topology to use
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>Global Flags:
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>      --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>      --base-dir.phenix string     base phenix directory (default "/phenix")
-</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>      --hostname-suffixes string   hostname suffixes to strip
-</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>      --log.error-file string      log fatal errors to file (default "/root/.phenix.err")
-</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>      --log.error-stderr           log fatal errors to STDERR
-</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>      --store.endpoint string      endpoint for storage service (default "bolt:///root/.phenix.bdb")
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  Used to create an experiment from existing configurations; can be a
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  topology, or topology and scenario, or paths to topology/scenario
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  configuration files (YAML or JSON). (Optional are the arguments for
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  scenario or base directory.)
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Usage:
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  phenix experiment create &lt;experiment name&gt; [flags]
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Examples:
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  phenix experiment create &lt;experiment name&gt; -t &lt;topology name or /path/to/filename&gt;
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  phenix experiment create &lt;experiment name&gt; -t &lt;topology name or /path/to/filename&gt; -s &lt;scenario name or /path/to/filename&gt;
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>  phenix experiment create &lt;experiment name&gt; -t &lt;topology name or /path/to/filename&gt; -s &lt;scenario name or /path/to/filename&gt; -d &lt;/path/to/dir/&gt;
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  phenix experiment create &lt;experiment name&gt; -t &lt;topology name or /path/to/filename&gt; -s &lt;scenario name or /path/to/filename&gt; --disabled-apps "app1,app2"
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>Flags:
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  -d, --base-dir string         Base directory to use for experiment (optional)
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>  -b, --default-bridge string   Default bridge name to use for experiment (optional) (default "phenix")
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>      --disabled-apps strings   Comma separated ist of apps to disable
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>  -h, --help                    help for create
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>  -s, --scenario string         Name of an existing scenario to use (optional)
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>  -t, --topology string         Name of an existing topology to use
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>      --vlan-max int            VLAN pool maximum
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>      --vlan-min int            VLAN pool minimum
 </span></code></pre></div>
 <h2 id="deleting-experiments">Deleting Experiments<a class="headerlink" href="#deleting-experiments" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_3">From the Web-UI<a class="headerlink" href="#from-the-web-ui_3" title="Permanent link">&para;</a></h3>
@@ -1805,12 +1978,12 @@ an experiment and topology name; scenario and base directory are optional.</p>
 icon next to the experiment to delete it.</p>
 <h3 id="from-the-command-line-binary_3">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_3" title="Permanent link">&para;</a></h3>
 <p>An experiment must be stopped before it can be deleted:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$&gt; phenix exp stop &lt;experiment name&gt;
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>$&gt; phenix exp delete &lt;experiment name&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>phenix<span class="w"> </span>exp<span class="w"> </span>stop<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>phenix<span class="w"> </span>exp<span class="w"> </span>delete<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div>
 <p>Alternatively, the <code>-f</code>/<code>--force</code> flag can be used to automatically stop a
 running experiment before deleting it, similar to <code>docker rm -f</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$&gt; phenix exp delete -f &lt;experiment name&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>phenix<span class="w"> </span>exp<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;
 </span></code></pre></div>
 <p>Using <code>all</code> instead of a specific experiment name will delete all stopped
 experiments (or, when combined with <code>--force</code>, all experiments regardless of
@@ -1826,17 +1999,12 @@ whether they are running).</p>
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>Usage:
 </span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>  phenix experiment delete &lt;experiment name&gt; [flags]
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>Flags:
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>  -f, --force   Stop a running experiment before deleting it
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>  -h, --help    help for delete
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>Global Flags:
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>      --base-dir.minimega string   base minimega directory (default "/tmp/minimega")
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>      --base-dir.phenix string     base phenix directory (default "/phenix")
-</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>      --hostname-suffixes string   hostname suffixes to strip
-</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>      --log.error-file string      log fatal errors to file (default "/root/.phenix.err")
-</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>      --log.error-stderr           log fatal errors to STDERR
-</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>      --store.endpoint string      endpoint for storage service (default "bolt:///root/.phenix.bdb")
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>Aliases:
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>  delete, del
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>Flags:
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>  -f, --force   Stop a running experiment before deleting it
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>  -h, --help    help for delete
 </span></code></pre></div>
 <h2 id="scheduling-an-experiment">Scheduling an Experiment<a class="headerlink" href="#scheduling-an-experiment" title="Permanent link">&para;</a></h2>
 <h3 id="from-web-ui">From Web-UI<a class="headerlink" href="#from-web-ui" title="Permanent link">&para;</a></h3>
@@ -1846,10 +2014,36 @@ filter field and start button to select a desired schedule.</p>
 <p><img alt="screenshot" class="center" src="../images/schedule.png" width="400" /></p>
 <h3 id="from-the-command-line-binary_4">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_4" title="Permanent link">&para;</a></h3>
 <p>The list of available schedules can be found by running the following command.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$&gt; phenix exp schedulers
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>schedulers
 </span></code></pre></div>
 <p>Then apply the desired schedule with the following command.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$&gt; phenix experiment schedule &lt;experiment name&gt; &lt;algorithm&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>phenix<span class="w"> </span>experiment<span class="w"> </span>schedule<span class="w"> </span>&lt;experiment<span class="w"> </span>name&gt;<span class="w"> </span>&lt;algorithm&gt;
+</span></code></pre></div>
+<h2 id="common-workflows">Common Workflows<a class="headerlink" href="#common-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="1-basic-experiment-lifecycle">1. Basic Experiment Lifecycle<a class="headerlink" href="#1-basic-experiment-lifecycle" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 1. Create experiment from topology/scenario files</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>phenix<span class="w"> </span>exp<span class="w"> </span>create<span class="w"> </span>my-experiment<span class="w"> </span>-t<span class="w"> </span>/path/to/topology.yaml<span class="w"> </span>-s<span class="w"> </span>/path/to/scenario.yaml
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># 2. Start the experiment</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>phenix<span class="w"> </span>exp<span class="w"> </span>start<span class="w"> </span>my-experiment
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># 3. View status and inspect VMs</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>phenix<span class="w"> </span>exp<span class="w"> </span>list
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>phenix<span class="w"> </span>vm<span class="w"> </span>info<span class="w"> </span>my-experiment
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="c1"># 4. Stop the experiment when testing finishes</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>phenix<span class="w"> </span>exp<span class="w"> </span>stop<span class="w"> </span>my-experiment
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="c1"># 5. Delete the experiment</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>phenix<span class="w"> </span>exp<span class="w"> </span>delete<span class="w"> </span>my-experiment
+</span></code></pre></div>
+<h3 id="2-updating-and-reconfiguring-an-experiment">2. Updating and Reconfiguring an Experiment<a class="headerlink" href="#2-updating-and-reconfiguring-an-experiment" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Reconfigure a running experiment after modifying underlying configuration files</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>phenix<span class="w"> </span>exp<span class="w"> </span>reconfigure<span class="w"> </span>my-experiment
+</span></code></pre></div>
+<h3 id="3-dry-run-deployment-testing">3. Dry-Run Deployment Testing<a class="headerlink" href="#3-dry-run-deployment-testing" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Test experiment startup logic without deploying minimega VMs</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>phenix<span class="w"> </span>exp<span class="w"> </span>start<span class="w"> </span>my-experiment<span class="w"> </span>--dry-run
 </span></code></pre></div>
 
 

@@ -1861,6 +1861,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../minimega/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minimega
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
@@ -2682,7 +2710,7 @@ the following command to see information for all VMs in a given experiment.</p>
 modal.  Click the <code>create backing image</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_backing_image.png" /></p>
 <h3 id="from-the-command-line-binary_1">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_1" title="Permanent link">&para;</a></h3>
-<p>Not applicable.</p>
+<p>There is currently no CLI subcommand to create backing images from running VMs. This operation is available through the Web-UI and the REST API (<code>POST /api/vms/commit</code>).</p>
 <h2 id="create-a-memory-snapshot">Create a Memory Snapshot<a class="headerlink" href="#create-a-memory-snapshot" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_2">From the Web-UI<a class="headerlink" href="#from-the-web-ui_2" title="Permanent link">&para;</a></h3>
 <p>Click on the name of a running VM in a started experiment to access the VM information
@@ -2698,7 +2726,7 @@ modal.  Click the <code>memory snapshot</code> button as shown in the screenshot
 modal.  Click the <code>vm snapshot</code> button as shown in the screenshot below.</p>
 <p><img alt="screenshot" src="../images/vms_snapshot.png" /></p>
 <h3 id="from-the-command-line-binary_3">From the Command Line Binary<a class="headerlink" href="#from-the-command-line-binary_3" title="Permanent link">&para;</a></h3>
-<p>Not applicable.</p>
+<p>While ELF memory dumps can be created via <code>phenix vm memory-snapshot</code>, there is currently no CLI subcommand to take standard VM disk snapshots. VM disk snapshots are managed through the Web-UI and the REST API (<code>POST /api/vms/snapshots</code>).</p>
 <h2 id="vm-vnc-access">VM VNC Access<a class="headerlink" href="#vm-vnc-access" title="Permanent link">&para;</a></h2>
 <h3 id="from-the-web-ui_4">From the Web-UI<a class="headerlink" href="#from-the-web-ui_4" title="Permanent link">&para;</a></h3>
 <p>The experiment must be started; click on the VM screenshot to open a new browser
