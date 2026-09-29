@@ -1,14 +1,23 @@
-> [!IMPORTANT]
-> **ARCHIVED** - phenix documentation and phenix.sceptre.dev is now maintained at [sceptre-phenix/docs](https://github.com/sandialabs/sceptre-phenix/tree/main/docs)
+> [!CAUTION]
+> **DEPRECATED AND ARCHIVED.** This repository is no longer maintained and does not accept changes.
+> The phēnix documentation, including the source for [phenix.sceptre.dev](https://phenix.sceptre.dev),
+> now lives in the [`docs/`](https://github.com/sandialabs/sceptre-phenix/tree/main/docs) directory of
+> [sceptre-phenix](https://github.com/sandialabs/sceptre-phenix). Open documentation issues and pull
+> requests there instead.
+>
+> The documentation moved in [sandialabs/sceptre-phenix#419](https://github.com/sandialabs/sceptre-phenix/pull/419),
+> and the pull requests still open here were migrated in
+> [sandialabs/sceptre-phenix#443](https://github.com/sandialabs/sceptre-phenix/pull/443).
+> The rest of this README describes how this repository worked before the move.
 
 # phēnix Documentation
 
 [![Deploy Documentation](https://github.com/sandialabs/sceptre-phenix-docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/sandialabs/sceptre-phenix-docs/actions/workflows/deploy.yml)
-[![Docs](https://img.shields.io/badge/docs-latest-orange)](https://sandialabs.github.io/sceptre-phenix-docs/)
+[![Docs](https://img.shields.io/badge/docs-latest-orange)](https://phenix.sceptre.dev)
 
-This repository contains the source code and configuration for the official [phēnix documentation](https://sandialabs.github.io/sceptre-phenix-docs/).
+This repository contained the source code and configuration for the official [phēnix documentation](https://phenix.sceptre.dev).
 
-The documentation is built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) and versioned with [mike](https://github.com/jimporter/mike).
+The documentation was built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) and versioned with [mike](https://github.com/jimporter/mike).
 
 ## Automated Deployment
 
