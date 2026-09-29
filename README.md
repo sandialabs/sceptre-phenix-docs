@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **ARCHIVED** - phenix documentation and phenix.sceptre.dev is now maintained at [sceptre-phenix/docs](https://github.com/sandialabs/sceptre-phenix/tree/main/docs)
+
 # phēnix Documentation
 
 [![Deploy Documentation](https://github.com/sandialabs/sceptre-phenix-docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/sandialabs/sceptre-phenix-docs/actions/workflows/deploy.yml)
